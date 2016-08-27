@@ -42,6 +42,13 @@
   <ItemGroup>
     <Compile Include="Config\ConfigHelper.cs" />
     <Compile Include="Config\RSASecretConfig.cs" />
+    <Compile Include="DataAccess\CurrentDbConnection.cs" />
+    <Compile Include="DataAccess\DataAccessBase.cs" />
+    <Compile Include="DataAccess\DataAccessHelper.cs" />
+    <Compile Include="DataAccess\DbConnectionConfig.cs" />
+    <Compile Include="DataAccess\DbConnectionExtension.cs" />
+    <Compile Include="DataAccess\GenericDataAccessBase.cs" />
+    <Compile Include="DataAccess\OwnSqlDbConnection.cs" />
     <Compile Include="Extension\BasicTypeExtension.cs" />
     <Compile Include="GZip\GZipHelper.cs" />
     <Compile Include="MD5\MD5Helper.cs" />
