@@ -23,6 +23,16 @@
         /// <summary>
         /// 采购入库退货单
         /// </summary>
-        BuyReturned = 21
+        BuyReturned = 21,
+
+        /// <summary>
+        /// 入库单(库存)
+        /// </summary>
+        StockIn = 30,
+
+        /// <summary>
+        /// 出库单(库存)
+        /// </summary>
+        StockOut = 31,
     }
 }
