@@ -18,7 +18,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace Usableness.Framework.DatabaseDb
+namespace CPSS.Common.Helper.DataAccess
 {
     public class DataAccessHelper
     {

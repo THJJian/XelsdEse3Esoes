@@ -17,7 +17,7 @@
 using System;
 using System.Data;
 
-namespace Usableness.Framework.DatabaseDb
+namespace CPSS.Common.Helper.DataAccess
 {
     public abstract class GenericDataAccessBase<T> : DataAccessBase where T : class
     {

@@ -16,7 +16,7 @@
 
 using System;
 
-namespace Usableness.Framework.DatabaseDb
+namespace CPSS.Common.Helper.DataAccess
 {
     [Serializable]
     public class DbConnectionConfig

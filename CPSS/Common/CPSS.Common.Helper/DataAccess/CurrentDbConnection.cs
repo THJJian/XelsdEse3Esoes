@@ -17,9 +17,9 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
-using Usableness.Framework.Config;
+using CPSS.Common.Helper.Config;
 
-namespace Usableness.Framework.DatabaseDb
+namespace CPSS.Common.Helper.DataAccess
 {
     public class CurrentDbConnection
     {
@@ -55,7 +55,7 @@ namespace Usableness.Framework.DatabaseDb
         private DbConnectionConfig ConnectionConfig {
             get
             {
-                var config = ConfigHandler.GetConfig<DbConnectionConfig>("~/config/connection.config");
+                var config = ConfigHelper.GetConfig<DbConnectionConfig>("~/config/connection.config");
                 return config;
             }
         }
