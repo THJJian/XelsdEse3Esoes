@@ -30,6 +30,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="David.Mongodb.Client">
+      <HintPath>..\..\packages\David.Mongodb.Client.1.0.0\lib\David.Mongodb.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>..\..\packages\MongoDB.Driver.Core.2.2.4\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -52,9 +67,18 @@
     <Compile Include="Extension\BasicTypeExtension.cs" />
     <Compile Include="GZip\GZipHelper.cs" />
     <Compile Include="MD5\MD5Helper.cs" />
+    <Compile Include="MongoDB\BsonValueType.cs" />
+    <Compile Include="MongoDB\ConstraintDataEntity.cs" />
+    <Compile Include="MongoDB\Interface\IMongoDbDataAccess.cs" />
+    <Compile Include="MongoDB\DataAccess\MongoDbDataAccess.cs" />
+    <Compile Include="MongoDB\MongoDbConfig.cs" />
+    <Compile Include="MongoDB\SpecialField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
