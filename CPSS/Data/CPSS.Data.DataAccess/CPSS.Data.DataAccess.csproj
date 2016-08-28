@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{40657EA0-4675-4383-B704-14C6D18E2044}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CPSS.Data.DataAccess</RootNamespace>
+    <AssemblyName>CPSS.Data.DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccountDataAccess.generated.cs">
+      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ClientsDataAccess.generated.cs">
+      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CompanyDataAccess.generated.cs">
+      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccessTemplate.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DepartmentDataAccess.generated.cs">
+      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeesDataAccess.generated.cs">
+      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\CPSS.Common.Helper\CPSS.Common.Helper.csproj">
+      <Project>{52AA19B4-E29E-4237-95F0-58C7E1EAA46D}</Project>
+      <Name>CPSS.Common.Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CPSS.Data.DataAccess.DataModelMapper\CPSS.Data.DataAccess.DataModelMapper.csproj">
+      <Project>{2b0bced4-f371-46ab-9f1b-7d018c5c28e3}</Project>
+      <Name>CPSS.Data.DataAccess.DataModelMapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CPSS.Data.DataAccess.Interfaces\CPSS.Data.DataAccess.Interfaces.csproj">
+      <Project>{b95a4ce0-b75a-41fe-91a1-c6a69e6a9ac7}</Project>
+      <Name>CPSS.Data.DataAccess.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CPSS.Data.DataAcess.DataModels\CPSS.Data.DataAcess.DataModels.csproj">
+      <Project>{4d260557-883d-4dac-b1fc-e2f4d031f106}</Project>
+      <Name>CPSS.Data.DataAcess.DataModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="DataAccessTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DataAccessTemplate.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
