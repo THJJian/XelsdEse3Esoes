@@ -33,6 +33,9 @@
     <Reference Include="David.Mongodb.Client">
       <HintPath>..\..\packages\David.Mongodb.Client.1.0.0\lib\David.Mongodb.Client.dll</HintPath>
     </Reference>
+    <Reference Include="Enyim.Caching">
+      <HintPath>..\..\packages\EnyimMemcached.2.16.0\lib\net35\Enyim.Caching.dll</HintPath>
+    </Reference>
     <Reference Include="MongoDB.Bson">
       <HintPath>..\..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
@@ -55,6 +58,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Cached\CacheKeyHelper.cs" />
+    <Compile Include="Cached\MemcacheHelper.cs" />
     <Compile Include="Config\ConfigHelper.cs" />
     <Compile Include="Config\RSASecretConfig.cs" />
     <Compile Include="DataAccess\CurrentDbConnection.cs" />

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using System.Xml.Serialization;
+using CPSS.Common.Helper.Cached;
 using CPSS.Common.Helper.MD5;
 
 namespace CPSS.Common.Helper.Config
