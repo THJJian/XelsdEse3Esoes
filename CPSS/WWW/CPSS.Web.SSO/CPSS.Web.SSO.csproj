@@ -103,10 +103,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\Sign\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\Common\CPSS.Common.Helper\CPSS.Common.Helper.csproj">
       <Project>{52AA19B4-E29E-4237-95F0-58C7E1EAA46D}</Project>
