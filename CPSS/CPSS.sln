@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Common", "01-Common", "{9716E64F-E165-4CE2-95BB-F9F46BC4A92E}"
 EndProject
@@ -30,6 +30,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Service.ViewService.ViewModels", "Service\CPSS.Service.ViewService.ViewModels\CPSS.Service.ViewService.ViewModels.csproj", "{DC83CBE0-F68C-4B4C-90E4-4131C729B80A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Service.ViewService", "Service\CPSS.Service.ViewService\CPSS.Service.ViewService.csproj", "{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Web.SSO", "WWW\CPSS.Web.SSO\CPSS.Web.SSO.csproj", "{483F4D5B-AB7B-4FB1-B1AA-77F11A0004C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Common.Core.Validation", "Common\CPSS.Common.Core.Validation\CPSS.Common.Core.Validation.csproj", "{BBF0EFFC-813A-41D1-B78E-0D32B27DE630}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +81,14 @@ Global
 		{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{483F4D5B-AB7B-4FB1-B1AA-77F11A0004C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483F4D5B-AB7B-4FB1-B1AA-77F11A0004C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483F4D5B-AB7B-4FB1-B1AA-77F11A0004C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483F4D5B-AB7B-4FB1-B1AA-77F11A0004C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBF0EFFC-813A-41D1-B78E-0D32B27DE630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBF0EFFC-813A-41D1-B78E-0D32B27DE630}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBF0EFFC-813A-41D1-B78E-0D32B27DE630}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBF0EFFC-813A-41D1-B78E-0D32B27DE630}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +104,7 @@ Global
 		{2EB1A678-F426-4EC9-BBE0-F6312F985784} = {19A6CCA8-A599-41CD-B56F-863ACC003E7D}
 		{DC83CBE0-F68C-4B4C-90E4-4131C729B80A} = {19A6CCA8-A599-41CD-B56F-863ACC003E7D}
 		{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD} = {19A6CCA8-A599-41CD-B56F-863ACC003E7D}
+		{483F4D5B-AB7B-4FB1-B1AA-77F11A0004C4} = {EC8522FA-4A86-462E-8D99-B5D93E1743F8}
+		{BBF0EFFC-813A-41D1-B78E-0D32B27DE630} = {9716E64F-E165-4CE2-95BB-F9F46BC4A92E}
 	EndGlobalSection
 EndGlobal
