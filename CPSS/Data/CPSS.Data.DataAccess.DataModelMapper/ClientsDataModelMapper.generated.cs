@@ -15,7 +15,7 @@ namespace CPSS.Data.DataAccess
 	/// <summary>
     /// 手动映射DataReader到ClientsDataModel
     /// </summary>
-    public partial class DataReaderToClientsDataModelMapper : IDataReaderToEntityMapper<CPSS.Data.DataAcess.DataModels.ClientsDataModel>
+    public partial class DataReaderToClientsDataModelMapper
     {
 		/// <summary>
         /// 映射

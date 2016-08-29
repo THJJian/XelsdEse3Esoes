@@ -51,17 +51,6 @@ namespace CPSS.Data.DataAccess
         /// </summary>
         /// <param name="reader"></param>
         /// <param name="entity"></param>
-		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.Entities entity)
-		{
-			var mapper = new DataReaderToEntitiesMapper();
-			mapper.Map(reader, entity);
-		}
-	
-		/// <summary>
-        /// 映射
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="entity"></param>
 		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.DepartmentDataModel entity)
 		{
 			var mapper = new DataReaderToDepartmentDataModelMapper();
@@ -330,92 +319,6 @@ namespace CPSS.Data.DataAccess
 				//while(reader.Read())
 				//{
 					//var entity = new CPSS.Data.DataAcess.DataModels.CompanyDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
-		/// <summary>
-		/// 执行sql转换到单个实体
-		/// </summary>
-		public static CPSS.Data.DataAcess.DataModels.Entities ExecuteReadSqlToEntities(this DataAccessBase dataAccessBase, bool isProc = false)
-        {			
-            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
-			{
-				if(reader.Read())
-				{
-					var result = new CPSS.Data.DataAcess.DataModels.Entities();
-					DataReaderMapHelper.Map(reader, result);
-					reader.Close();
-					dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-					return result;
-				}
-                dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			}
-			return null;
-        }
-
-		/// <summary>
-		/// 执行sql转换到单个实体
-		/// </summary>
-		public static CPSS.Data.DataAcess.DataModels.Entities ExecuteReadSqlToEntities(this DataAccessBase dataAccessBase,IDbTransaction trans, bool isProc = false)
-        {			
-            var reader = dataAccessBase.QueryGetDataReader(trans,isProc);
-			CPSS.Data.DataAcess.DataModels.Entities result = null;
-			if(reader.Read())
-			{
-				result = new CPSS.Data.DataAcess.DataModels.Entities();
-				DataReaderMapHelper.Map(reader, result);
-			}
-			reader.Close();
-			dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			return result;
-        }
-		
-		/// <summary>
-		/// 执行sql转换到实体列表
-		/// </summary>
-		public static List<CPSS.Data.DataAcess.DataModels.Entities> ExecuteReadSqlToEntitiesList(this DataAccessBase dataAccessBase, bool isProc = false)
-        {			
-			var result = new  List<CPSS.Data.DataAcess.DataModels.Entities>();
-            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
-			{
-				while(reader.Read())
-				{
-					var entity = new CPSS.Data.DataAcess.DataModels.Entities();
-					DataReaderMapHelper.Map(reader, entity);
-					result.Add(entity);
-				}
-				reader.Close();
-				dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			}
-			return result;
-        }
-		
-		///// <summary>
-		///// 执行sql转换翻页数据
-		///// </summary>
-		//public static PageData<CPSS.Data.DataAcess.DataModels.Entities> ExecuteReadSqlToEntitiesPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
-        //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.Entities>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.Entities>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.Entities();
 					//DataReaderMapHelper.Map(reader, entity);
 					//listData.Add(entity);
 				//}

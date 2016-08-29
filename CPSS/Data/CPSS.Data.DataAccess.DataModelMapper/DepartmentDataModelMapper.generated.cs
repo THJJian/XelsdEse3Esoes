@@ -15,7 +15,7 @@ namespace CPSS.Data.DataAccess
 	/// <summary>
     /// 手动映射DataReader到DepartmentDataModel
     /// </summary>
-    public partial class DataReaderToDepartmentDataModelMapper : IDataReaderToEntityMapper<CPSS.Data.DataAcess.DataModels.DepartmentDataModel>
+    public partial class DataReaderToDepartmentDataModelMapper
     {
 		/// <summary>
         /// 映射

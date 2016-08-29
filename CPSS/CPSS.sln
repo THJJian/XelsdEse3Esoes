@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Common", "01-Common", "{9716E64F-E165-4CE2-95BB-F9F46BC4A92E}"
 EndProject
@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Common.HTTP", "Common\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Data", "02-Data", "{18475F7A-6F23-400C-BD35-02AC93BA8BF9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Business", "03-Business", "{19A6CCA8-A599-41CD-B56F-863ACC003E7D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03-Service", "03-Service", "{19A6CCA8-A599-41CD-B56F-863ACC003E7D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04-WWW", "04-WWW", "{EC8522FA-4A86-462E-8D99-B5D93E1743F8}"
 EndProject
@@ -24,6 +24,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Data.DataAccess", "Data\CPSS.Data.DataAccess\CPSS.Data.DataAccess.csproj", "{40657EA0-4675-4383-B704-14C6D18E2044}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Data.DataAccess.DataModelMapper", "Data\CPSS.Data.DataAccess.DataModelMapper\CPSS.Data.DataAccess.DataModelMapper.csproj", "{2B0BCED4-F371-46AB-9F1B-7D018C5C28E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Service.ViewService.Interfaces", "Service\CPSS.Service.ViewService.Interfaces\CPSS.Service.ViewService.Interfaces.csproj", "{2EB1A678-F426-4EC9-BBE0-F6312F985784}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{2B0BCED4-F371-46AB-9F1B-7D018C5C28E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2B0BCED4-F371-46AB-9F1B-7D018C5C28E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2B0BCED4-F371-46AB-9F1B-7D018C5C28E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2EB1A678-F426-4EC9-BBE0-F6312F985784}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2EB1A678-F426-4EC9-BBE0-F6312F985784}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2EB1A678-F426-4EC9-BBE0-F6312F985784}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2EB1A678-F426-4EC9-BBE0-F6312F985784}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +77,6 @@ Global
 		{4D260557-883D-4DAC-B1FC-E2F4D031F106} = {18475F7A-6F23-400C-BD35-02AC93BA8BF9}
 		{40657EA0-4675-4383-B704-14C6D18E2044} = {18475F7A-6F23-400C-BD35-02AC93BA8BF9}
 		{2B0BCED4-F371-46AB-9F1B-7D018C5C28E3} = {18475F7A-6F23-400C-BD35-02AC93BA8BF9}
+		{2EB1A678-F426-4EC9-BBE0-F6312F985784} = {19A6CCA8-A599-41CD-B56F-863ACC003E7D}
 	EndGlobalSection
 EndGlobal
