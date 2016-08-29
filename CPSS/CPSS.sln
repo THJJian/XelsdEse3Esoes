@@ -27,6 +27,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Data.DataAccess.DataMo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Service.ViewService.Interfaces", "Service\CPSS.Service.ViewService.Interfaces\CPSS.Service.ViewService.Interfaces.csproj", "{2EB1A678-F426-4EC9-BBE0-F6312F985784}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Service.ViewService.ViewModels", "Service\CPSS.Service.ViewService.ViewModels\CPSS.Service.ViewService.ViewModels.csproj", "{DC83CBE0-F68C-4B4C-90E4-4131C729B80A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Service.ViewService", "Service\CPSS.Service.ViewService\CPSS.Service.ViewService.csproj", "{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -65,6 +69,14 @@ Global
 		{2EB1A678-F426-4EC9-BBE0-F6312F985784}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2EB1A678-F426-4EC9-BBE0-F6312F985784}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2EB1A678-F426-4EC9-BBE0-F6312F985784}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC83CBE0-F68C-4B4C-90E4-4131C729B80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC83CBE0-F68C-4B4C-90E4-4131C729B80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC83CBE0-F68C-4B4C-90E4-4131C729B80A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC83CBE0-F68C-4B4C-90E4-4131C729B80A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -78,5 +90,7 @@ Global
 		{40657EA0-4675-4383-B704-14C6D18E2044} = {18475F7A-6F23-400C-BD35-02AC93BA8BF9}
 		{2B0BCED4-F371-46AB-9F1B-7D018C5C28E3} = {18475F7A-6F23-400C-BD35-02AC93BA8BF9}
 		{2EB1A678-F426-4EC9-BBE0-F6312F985784} = {19A6CCA8-A599-41CD-B56F-863ACC003E7D}
+		{DC83CBE0-F68C-4B4C-90E4-4131C729B80A} = {19A6CCA8-A599-41CD-B56F-863ACC003E7D}
+		{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD} = {19A6CCA8-A599-41CD-B56F-863ACC003E7D}
 	EndGlobalSection
 EndGlobal

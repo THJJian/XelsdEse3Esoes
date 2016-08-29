@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Cached\CacheKeyHelper.cs" />
     <Compile Include="Cached\MemcacheHelper.cs" />
+    <Compile Include="Config\BuildConfigFilePath.cs" />
     <Compile Include="Config\ConfigHelper.cs" />
     <Compile Include="Config\RSASecretConfig.cs" />
     <Compile Include="DataAccess\CurrentDbConnection.cs" />
@@ -79,6 +80,8 @@
     <Compile Include="MongoDB\MongoDbConfig.cs" />
     <Compile Include="MongoDB\SpecialField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Signature\SignatureHelper.cs" />
+    <Compile Include="Signature\SignatureKeyConfig.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

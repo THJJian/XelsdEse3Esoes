@@ -84,6 +84,19 @@ namespace CPSS.Common.Helper.Extension
             return Int64.TryParse(source, out result) ? result : defaultVal;
         }
 
+        /// <summary>
+        /// 将一个日期格式的祝福串转换成日期
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static DateTime ToDateTime(this string source)
+        {
+            DateTime outVal;
+            var defaultVal = DateTime.Now;
+            if (DateTime.TryParse(source, out outVal)) defaultVal = outVal;
+            return defaultVal;
+        }
+
         #endregion
 
         #region Byte Converter Object
