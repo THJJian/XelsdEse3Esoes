@@ -10,6 +10,7 @@ namespace CPSS.Common.Helper.Extension
         /// </summary>
         /// <param name="controller"></param>
         /// <param name="modelState"></param>
+        /// <param name="isValid"></param>
         /// <returns></returns>
         public static string GenerateModelValidateErrMessage(this Controller controller, ModelStateDictionary modelState, out bool isValid)
         {
