@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Common", "01-Common", "{9716E64F-E165-4CE2-95BB-F9F46BC4A92E}"
 EndProject
@@ -36,6 +36,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Common.Core.Exception", "Common\CPSS.Common.Core.Exception\CPSS.Common.Core.Exception.csproj", "{1BA135E5-7027-43F0-80C5-1637E9A31666}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Web", "WWW\CPSS.Web\CPSS.Web.csproj", "{46348D35-0413-45BF-8604-3E11EEFC0838}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Common.Core.Mvc", "Common\CPSS.Common.Core.Mvc\CPSS.Common.Core.Mvc.csproj", "{10BEFE5A-108D-44E0-8715-E42B814C75A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,6 +97,10 @@ Global
 		{46348D35-0413-45BF-8604-3E11EEFC0838}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{46348D35-0413-45BF-8604-3E11EEFC0838}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{46348D35-0413-45BF-8604-3E11EEFC0838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10BEFE5A-108D-44E0-8715-E42B814C75A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10BEFE5A-108D-44E0-8715-E42B814C75A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10BEFE5A-108D-44E0-8715-E42B814C75A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10BEFE5A-108D-44E0-8715-E42B814C75A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -113,5 +119,6 @@ Global
 		{BBF0EFFC-813A-41D1-B78E-0D32B27DE630} = {9716E64F-E165-4CE2-95BB-F9F46BC4A92E}
 		{1BA135E5-7027-43F0-80C5-1637E9A31666} = {9716E64F-E165-4CE2-95BB-F9F46BC4A92E}
 		{46348D35-0413-45BF-8604-3E11EEFC0838} = {EC8522FA-4A86-462E-8D99-B5D93E1743F8}
+		{10BEFE5A-108D-44E0-8715-E42B814C75A5} = {9716E64F-E165-4CE2-95BB-F9F46BC4A92E}
 	EndGlobalSection
 EndGlobal

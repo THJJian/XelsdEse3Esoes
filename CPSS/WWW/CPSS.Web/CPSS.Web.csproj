@@ -95,6 +95,7 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Sign\Login.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <None Include="Web.Debug.config">
@@ -106,6 +107,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\CPSS.Common.Core.Mvc\CPSS.Common.Core.Mvc.csproj">
+      <Project>{10befe5a-108d-44e0-8715-e42b814c75a5}</Project>
+      <Name>CPSS.Common.Core.Mvc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\CPSS.Common.Helper\CPSS.Common.Helper.csproj">
       <Project>{52AA19B4-E29E-4237-95F0-58C7E1EAA46D}</Project>
       <Name>CPSS.Common.Helper</Name>

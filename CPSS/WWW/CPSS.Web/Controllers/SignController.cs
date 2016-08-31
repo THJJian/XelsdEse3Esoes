@@ -1,11 +1,14 @@
 ﻿using System.Web.Mvc;
+using CPSS.Common.Core.Mvc.Filters;
 using CPSS.Common.Helper.Extension;
 using CPSS.Web.Models;
 
 namespace CPSS.Web.Controllers
 {
+    [HaveToLogin]
     public class SignController : Controller
     {
+        [OperateRight(OperateRightIDs = "")]
         public ViewResult Login()
         {
             return View();
