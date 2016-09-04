@@ -51,9 +51,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CPSS.Common.Helper\CPSS.Common.Helper.csproj">
+    <ProjectReference Include="..\CPSS.Common.Helper\A-CPSS.Common.Helper.csproj">
       <Project>{52AA19B4-E29E-4237-95F0-58C7E1EAA46D}</Project>
-      <Name>CPSS.Common.Helper</Name>
+      <Name>A-CPSS.Common.Helper</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

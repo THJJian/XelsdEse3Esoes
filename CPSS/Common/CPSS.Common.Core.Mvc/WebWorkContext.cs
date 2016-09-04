@@ -1,9 +1,12 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Routing;
+using Autofac.Features.OwnedInstances;
+using CPSS.Common.Core.Mvc.Ioc;
 
 namespace CPSS.Common.Core.Mvc
 {

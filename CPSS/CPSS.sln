@@ -5,11 +5,11 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Common", "01-Common", "{9716E64F-E165-4CE2-95BB-F9F46BC4A92E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Common.Core.Type", "Common\CPSS.Common.Core.Type\CPSS.Common.Core.Type.csproj", "{D136F3C8-F518-4071-90CF-26FB8B8E296A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A-CPSS.Common.Core.Type", "Common\CPSS.Common.Core.Type\A-CPSS.Common.Core.Type.csproj", "{D136F3C8-F518-4071-90CF-26FB8B8E296A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Common.Helper", "Common\CPSS.Common.Helper\CPSS.Common.Helper.csproj", "{52AA19B4-E29E-4237-95F0-58C7E1EAA46D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A-CPSS.Common.Helper", "Common\CPSS.Common.Helper\A-CPSS.Common.Helper.csproj", "{52AA19B4-E29E-4237-95F0-58C7E1EAA46D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Common.HTTP", "Common\CPSS.Common.HTTP\CPSS.Common.HTTP.csproj", "{D23E364C-26D0-4409-AE2D-9DB5AF4FA572}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B-CPSS.Common.HTTP", "Common\CPSS.Common.HTTP\B-CPSS.Common.HTTP.csproj", "{D23E364C-26D0-4409-AE2D-9DB5AF4FA572}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-Data", "02-Data", "{18475F7A-6F23-400C-BD35-02AC93BA8BF9}"
 EndProject
@@ -31,13 +31,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Service.ViewService.Vi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Service.ViewService", "Service\CPSS.Service.ViewService\CPSS.Service.ViewService.csproj", "{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Common.Core.Validation", "Common\CPSS.Common.Core.Validation\CPSS.Common.Core.Validation.csproj", "{BBF0EFFC-813A-41D1-B78E-0D32B27DE630}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A-CPSS.Common.Core.Validation", "Common\CPSS.Common.Core.Validation\A-CPSS.Common.Core.Validation.csproj", "{BBF0EFFC-813A-41D1-B78E-0D32B27DE630}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Common.Core.Exception", "Common\CPSS.Common.Core.Exception\CPSS.Common.Core.Exception.csproj", "{1BA135E5-7027-43F0-80C5-1637E9A31666}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A-CPSS.Common.Core.Exception", "Common\CPSS.Common.Core.Exception\A-CPSS.Common.Core.Exception.csproj", "{1BA135E5-7027-43F0-80C5-1637E9A31666}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Web", "WWW\CPSS.Web\CPSS.Web.csproj", "{46348D35-0413-45BF-8604-3E11EEFC0838}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Common.Core.Mvc", "Common\CPSS.Common.Core.Mvc\CPSS.Common.Core.Mvc.csproj", "{10BEFE5A-108D-44E0-8715-E42B814C75A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A-CPSS.Common.Core.Mvc", "Common\CPSS.Common.Core.Mvc\A-CPSS.Common.Core.Mvc.csproj", "{10BEFE5A-108D-44E0-8715-E42B814C75A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

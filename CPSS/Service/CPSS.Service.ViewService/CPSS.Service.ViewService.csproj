@@ -43,9 +43,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\CPSS.Common.Helper\CPSS.Common.Helper.csproj">
+    <ProjectReference Include="..\..\Common\CPSS.Common.Helper\A-CPSS.Common.Helper.csproj">
       <Project>{52aa19b4-e29e-4237-95f0-58c7e1eaa46d}</Project>
-      <Name>CPSS.Common.Helper</Name>
+      <Name>A-CPSS.Common.Helper</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\CPSS.Data.DataAccess.Interfaces\CPSS.Data.DataAccess.Interfaces.csproj">
       <Project>{b95a4ce0-b75a-41fe-91a1-c6a69e6a9ac7}</Project>
