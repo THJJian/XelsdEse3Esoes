@@ -49,6 +49,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\CurrentDbConnection.cs" />
+    <Compile Include="DataAccess\DataAccessBase.cs" />
+    <Compile Include="DataAccess\DataAccessHelper.cs" />
+    <Compile Include="DataAccess\DbConnectionConfig.cs" />
+    <Compile Include="DataAccess\DbConnectionExtension.cs" />
+    <Compile Include="DataAccess\GenericDataAccessBase.cs" />
+    <Compile Include="DataAccess\OwnSqlDbConnection.cs" />
+    <Compile Include="MongoDB\BsonValueType.cs" />
+    <Compile Include="MongoDB\ConstraintDataEntity.cs" />
+    <Compile Include="MongoDB\DataAccess\MongoDbDataAccess.cs" />
+    <Compile Include="MongoDB\Interface\IMongoDbDataAccess.cs" />
+    <Compile Include="MongoDB\MongoDbConfig.cs" />
+    <Compile Include="MongoDB\SpecialField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -57,6 +70,7 @@
       <Name>CPSS.Common.Core.Helper</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
