@@ -7,8 +7,8 @@
     <ProjectGuid>{D23E364C-26D0-4409-AE2D-9DB5AF4FA572}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CPSS.Common.HTTP</RootNamespace>
-    <AssemblyName>CPSS.Common.HTTP</AssemblyName>
+    <RootNamespace>CPSS.Common.Core.HTTP</RootNamespace>
+    <AssemblyName>CPSS.Common.Core.HTTP</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -51,9 +51,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CPSS.Common.Helper\A-CPSS.Common.Helper.csproj">
+    <ProjectReference Include="..\CPSS.Common.Helper\CPSS.Common.Core.Helper.csproj">
       <Project>{52AA19B4-E29E-4237-95F0-58C7E1EAA46D}</Project>
-      <Name>A-CPSS.Common.Helper</Name>
+      <Name>CPSS.Common.Core.Helper</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

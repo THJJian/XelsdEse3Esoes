@@ -1,10 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.Security.Cryptography;
-using CPSS.Common.Helper.Extension;
+using CPSS.Common.Core.Helper.Extension;
 using Newtonsoft.Json.Linq;
 
-namespace CPSS.Common.HTTP
+namespace CPSS.Common.Core.HTTP
 {
     /// <summary>
     ///     解密数据包

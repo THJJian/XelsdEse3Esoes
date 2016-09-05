@@ -2,13 +2,13 @@
 using System.Configuration;
 using System.IO;
 using System.Net;
-using CPSS.Common.Helper.Config;
-using CPSS.Common.Helper.Extension;
-using CPSS.Common.Helper.GZip;
+using CPSS.Common.Core.Helper.Config;
+using CPSS.Common.Core.Helper.Extension;
+using CPSS.Common.Core.Helper.GZip;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace CPSS.Common.HTTP
+namespace CPSS.Common.Core.HTTP
 {
     /// <summary>
     /// 模拟HttpWebRequest请求

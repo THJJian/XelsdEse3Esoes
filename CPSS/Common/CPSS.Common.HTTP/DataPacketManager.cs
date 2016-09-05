@@ -1,8 +1,8 @@
 ﻿using System;
-using CPSS.Common.Helper.Config;
+using CPSS.Common.Core.Helper.Config;
 using Newtonsoft.Json.Linq;
 
-namespace CPSS.Common.HTTP
+namespace CPSS.Common.Core.HTTP
 {
     /// <summary>
     /// 数据包管理类
