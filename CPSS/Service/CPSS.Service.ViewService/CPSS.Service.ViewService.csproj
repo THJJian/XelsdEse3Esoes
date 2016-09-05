@@ -41,15 +41,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\SigninUserViewService.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\CPSS.Common.Helper\A-CPSS.Common.Helper.csproj">
+    <ProjectReference Include="..\..\Common\CPSS.Common.Helper\CPSS.Common.Core.Helper.csproj">
       <Project>{52aa19b4-e29e-4237-95f0-58c7e1eaa46d}</Project>
-      <Name>A-CPSS.Common.Helper</Name>
+      <Name>CPSS.Common.Core.Helper</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Data\CPSS.Data.DataAccess.Interfaces\CPSS.Data.DataAccess.Interfaces.csproj">
       <Project>{b95a4ce0-b75a-41fe-91a1-c6a69e6a9ac7}</Project>
       <Name>CPSS.Data.DataAccess.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\CPSS.Data.DataAcess.DataModels\CPSS.Data.DataAcess.DataModels.csproj">
+      <Project>{4D260557-883D-4DAC-B1FC-E2F4D031F106}</Project>
+      <Name>CPSS.Data.DataAcess.DataModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\CPSS.Service.ViewService.Interfaces\CPSS.Service.ViewService.Interfaces.csproj">
       <Project>{2eb1a678-f426-4ec9-bbe0-f6312f985784}</Project>

@@ -17,7 +17,7 @@ bool allMetadataLoaded =loader.TryLoadAllMetadata(inputFile, out metadataWorkspa
 EdmItemCollection ItemCollection = (EdmItemCollection)metadataWorkspace.GetItemCollection(DataSpace.CSpace);
 string namespaceName = code.VsNamespaceSuggestion();
 EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
-Type typeAsssembly=typeof(CPSS.Data.DataAcess.DataModels.AccountDataModel);
+Type typeAsssembly=typeof(CPSS.Data.DataAcess.DataModels.User.SigninUserDataModel);
 Assembly assembly=typeAsssembly.Assembly;
 Type[] customerTypes = assembly.GetTypes();	
 foreach (Type type in customerTypes)
@@ -128,7 +128,7 @@ namespace CPSS.Data.DataAccess
 {
 	using System.Collections.Generic;
     using System.Data;
-    using CPSS.Common.Helper.DataAccess;
+    using CPSS.Common.Core.DataAccess;
 
     #region DataReaderMapHelper
 

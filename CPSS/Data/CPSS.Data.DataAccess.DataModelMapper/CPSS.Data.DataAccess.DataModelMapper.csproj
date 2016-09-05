@@ -65,6 +65,9 @@
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SigninUserDataModelMapper.generated.cs">
+      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="DataReaderToDataModelMapperTemplate.tt">
@@ -76,9 +79,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\CPSS.Common.Helper\A-CPSS.Common.Helper.csproj">
-      <Project>{52AA19B4-E29E-4237-95F0-58C7E1EAA46D}</Project>
-      <Name>A-CPSS.Common.Helper</Name>
+    <ProjectReference Include="..\..\Common\CPSS.Common.Core.DataAccess\CPSS.Common.Core.DataAccess.csproj">
+      <Project>{6700B0A7-1099-45E9-B496-EF01A3DE5960}</Project>
+      <Name>CPSS.Common.Core.DataAccess</Name>
     </ProjectReference>
     <ProjectReference Include="..\CPSS.Data.DataAcess.DataModels\CPSS.Data.DataAcess.DataModels.csproj">
       <Project>{4d260557-883d-4dac-b1fc-e2f4d031f106}</Project>

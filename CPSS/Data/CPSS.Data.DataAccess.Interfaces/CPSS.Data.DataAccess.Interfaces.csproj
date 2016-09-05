@@ -64,6 +64,8 @@
       <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\ISiginUserDataAccess.cs" />
+    <Compile Include="User\Parameters\SigninUserParameter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="IDataAccessTextTemplate.tt">
@@ -75,9 +77,9 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\CPSS.Common.Helper\A-CPSS.Common.Helper.csproj">
+    <ProjectReference Include="..\..\Common\CPSS.Common.Helper\CPSS.Common.Core.Helper.csproj">
       <Project>{52AA19B4-E29E-4237-95F0-58C7E1EAA46D}</Project>
-      <Name>A-CPSS.Common.Helper</Name>
+      <Name>CPSS.Common.Core.Helper</Name>
     </ProjectReference>
     <ProjectReference Include="..\CPSS.Data.DataAcess.DataModels\CPSS.Data.DataAcess.DataModels.csproj">
       <Project>{4d260557-883d-4dac-b1fc-e2f4d031f106}</Project>

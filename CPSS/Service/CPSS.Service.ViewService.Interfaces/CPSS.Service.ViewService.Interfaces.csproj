@@ -41,6 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\ISigninUserViewService.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\CPSS.Service.ViewService.ViewModels\CPSS.Service.ViewService.ViewModels.csproj">
+      <Project>{DC83CBE0-F68C-4B4C-90E4-4131C729B80A}</Project>
+      <Name>CPSS.Service.ViewService.ViewModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
