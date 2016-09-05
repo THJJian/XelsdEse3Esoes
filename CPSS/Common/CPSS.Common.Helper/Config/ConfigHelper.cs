@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Web;
 using System.Xml.Serialization;
-using CPSS.Common.Helper.Cached;
-using CPSS.Common.Helper.MD5;
+using CPSS.Common.Core.Helper.Cached;
+using CPSS.Common.Core.Helper.MD5;
 
-namespace CPSS.Common.Helper.Config
+namespace CPSS.Common.Core.Helper.Config
 {
     /// <summary>
     /// 配置文件帮助类(使用Redis缓存，Redis缓存还未完成)

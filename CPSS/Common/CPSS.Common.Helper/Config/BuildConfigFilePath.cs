@@ -1,4 +1,4 @@
-﻿namespace CPSS.Common.Helper.Config
+﻿namespace CPSS.Common.Core.Helper.Config
 {
     /// <summary>
     /// 生成配置文件的路径

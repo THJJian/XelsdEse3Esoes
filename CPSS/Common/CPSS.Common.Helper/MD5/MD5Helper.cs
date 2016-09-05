@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using CPSS.Common.Helper.Extension;
+using CPSS.Common.Core.Helper.Extension;
 
-namespace CPSS.Common.Helper.MD5
+namespace CPSS.Common.Core.Helper.MD5
 {
     public class MD5Helper
     {

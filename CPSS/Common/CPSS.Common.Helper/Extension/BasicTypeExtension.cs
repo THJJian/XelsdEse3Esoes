@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace CPSS.Common.Helper.Extension
+namespace CPSS.Common.Core.Helper.Extension
 {
 
     /// <summary>

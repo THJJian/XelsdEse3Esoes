@@ -1,4 +1,4 @@
-﻿namespace CPSS.Common.Helper.Config
+﻿namespace CPSS.Common.Core.Helper.Config
 {
     public class RSASecretConfig
     {

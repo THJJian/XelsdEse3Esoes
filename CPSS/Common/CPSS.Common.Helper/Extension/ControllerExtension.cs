@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 
-namespace CPSS.Common.Helper.Extension
+namespace CPSS.Common.Core.Helper.Extension
 {
     public static class ControllerExtension
     {

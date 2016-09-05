@@ -2,7 +2,7 @@
 using Enyim.Caching;
 using Enyim.Caching.Memcached;
 
-namespace CPSS.Common.Helper.Cached
+namespace CPSS.Common.Core.Helper.Cached
 {
     public class MemcacheHelper
     {

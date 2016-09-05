@@ -1,10 +1,10 @@
 ﻿using System.Security.Cryptography;
-using CPSS.Common.Helper.Extension;
+using CPSS.Common.Core.Helper.Extension;
 using System;
-using CPSS.Common.Helper.Config;
+using CPSS.Common.Core.Helper.Config;
 using Newtonsoft.Json.Linq;
 
-namespace CPSS.Common.Helper.Signature
+namespace CPSS.Common.Core.Helper.Signature
 {
     public class SignatureHelper
     {

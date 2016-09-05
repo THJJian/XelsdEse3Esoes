@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CPSS.Common.Helper.Signature
+namespace CPSS.Common.Core.Helper.Signature
 {
     public class SignatureKeyConfig
     {

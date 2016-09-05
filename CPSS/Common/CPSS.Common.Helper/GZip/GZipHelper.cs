@@ -1,7 +1,7 @@
 ﻿using System.IO;
 using System.IO.Compression;
 
-namespace CPSS.Common.Helper.GZip
+namespace CPSS.Common.Core.Helper.GZip
 {
     /// <summary>
     /// GZipHelper压缩/解压缩帮助类

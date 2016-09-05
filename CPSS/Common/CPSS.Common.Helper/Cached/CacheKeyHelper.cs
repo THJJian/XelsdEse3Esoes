@@ -1,7 +1,7 @@
 ﻿using System.Linq;
-using CPSS.Common.Helper.Extension;
+using CPSS.Common.Core.Helper.Extension;
 
-namespace CPSS.Common.Helper.Cached
+namespace CPSS.Common.Core.Helper.Cached
 {
     public class CacheKeyHelper
     {
