@@ -32,10 +32,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MongoDB.Bson">
-      <HintPath>..\..\WWW\CPSS.Web\Bin\MongoDB.Bson.dll</HintPath>
+      <HintPath>..\..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Bson.dll</HintPath>
     </Reference>
     <Reference Include="MongoDB.Driver">
-      <HintPath>..\..\WWW\CPSS.Web\Bin\MongoDB.Driver.dll</HintPath>
+      <HintPath>..\..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -52,7 +52,6 @@
     <Compile Include="DataAccess\CurrentDbConnection.cs" />
     <Compile Include="DataAccess\DataAccessBase.cs" />
     <Compile Include="DataAccess\DataAccessHelper.cs" />
-    <Compile Include="DataAccess\DbConnectionConfig.cs" />
     <Compile Include="DataAccess\DbConnectionExtension.cs" />
     <Compile Include="DataAccess\GenericDataAccessBase.cs" />
     <Compile Include="DataAccess\OwnSqlDbConnection.cs" />
@@ -65,6 +64,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CPSS.Common.Core\CPSS.Common.Core.csproj">
+      <Project>{0FACB83C-5540-401C-A87D-B06FAE50ABED}</Project>
+      <Name>CPSS.Common.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CPSS.Common.Helper\CPSS.Common.Core.Helper.csproj">
       <Project>{52AA19B4-E29E-4237-95F0-58C7E1EAA46D}</Project>
       <Name>CPSS.Common.Core.Helper</Name>
