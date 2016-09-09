@@ -24,5 +24,9 @@ namespace CPSS.Web
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+
+        protected void Application_AuthenticateRequest(object sender, EventArgs e)
+        {
+        }
     }
 }

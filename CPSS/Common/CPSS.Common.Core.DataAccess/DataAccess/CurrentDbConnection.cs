@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using CPSS.Common.Core.Authenticate;
 using CPSS.Common.Core.Helper.Config;
 
 namespace CPSS.Common.Core.DataAccess
@@ -15,7 +16,10 @@ namespace CPSS.Common.Core.DataAccess
         private DbConnectionConfig ConnectionConfig {
             get
             {
-                var config = ConfigHelper.GetConfig<DbConnectionConfig>("~/config/connection.config");
+                var connectFilePath = "~/config/connection.config";
+                var user = CPSSAuthenticate.GetCurrentUser();
+                if (user != null && user.UserID > 0) connectFilePath = string.Format("~/config/{0}/connection.config", user.CompanySerialNum);
+                var config = ConfigHelper.GetConfig<DbConnectionConfig>(connectFilePath);
                 return config;
             }
         }

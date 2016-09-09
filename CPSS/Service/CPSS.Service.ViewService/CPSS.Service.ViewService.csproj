@@ -31,8 +31,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,6 +49,10 @@
     <Compile Include="User\SigninUserViewService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\CPSS.Common.Core\CPSS.Common.Core.csproj">
+      <Project>{0FACB83C-5540-401C-A87D-B06FAE50ABED}</Project>
+      <Name>CPSS.Common.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\CPSS.Common.Helper\CPSS.Common.Core.Helper.csproj">
       <Project>{52aa19b4-e29e-4237-95f0-58c7e1eaa46d}</Project>
       <Name>CPSS.Common.Core.Helper</Name>
@@ -64,6 +73,9 @@
       <Project>{dc83cbe0-f68c-4b4c-90e4-4131c729b80a}</Project>
       <Name>CPSS.Service.ViewService.ViewModels</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

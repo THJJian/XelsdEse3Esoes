@@ -1,9 +1,14 @@
 ﻿using System;
+using System.Web;
+using System.Web.Security;
+using CPSS.Common.Core;
+using CPSS.Common.Core.Helper.Config;
 using CPSS.Data.DataAccess.Interfaces.User;
 using CPSS.Data.DataAccess.Interfaces.User.Parameters;
 using CPSS.Service.ViewService.Interfaces.User;
 using CPSS.Service.ViewService.ViewModels.User.Request;
 using CPSS.Service.ViewService.ViewModels.User.Respond;
+using Newtonsoft.Json.Linq;
 
 namespace CPSS.Service.ViewService.User
 {
@@ -16,7 +21,27 @@ namespace CPSS.Service.ViewService.User
             this.mSiginUserDataAccess = _siginUserDataAccess;
         }
 
-        private void Create
+        /// <summary>
+        /// 创建身份票据
+        /// </summary>
+        /// <param name="user"></param>
+        private void CreateFormsAuthentication(SigninUser user)
+        {
+            DateTime now = DateTime.Now;
+            var userData = JObject.FromObject(user).ToString();
+            var formsAuthenticationTicket = new FormsAuthenticationTicket(2, user.User_g.ToString(), now, now.Add(FormsAuthentication.Timeout) , false, userData, FormsAuthentication.FormsCookiePath);
+
+            var value = FormsAuthentication.Encrypt(formsAuthenticationTicket);
+            var httpCookie = new HttpCookie(FormsAuthentication.FormsCookieName, value)
+            {
+                Expires = formsAuthenticationTicket.Expiration,
+                Path = formsAuthenticationTicket.CookiePath,
+                HttpOnly = true,
+                Secure = false,
+                Domain = FormsAuthentication.CookieDomain
+            };
+            HttpContext.Current.Response.Cookies.Add(httpCookie);
+        }
 
         public RespondSigninUserViewModel QuerySigninUserViewModel(RequestSigninUserViewModel request)
         {
@@ -32,12 +57,17 @@ namespace CPSS.Service.ViewService.User
             if(dataModel == null) throw new Exception("登录名或密码错误。");
             var respond = new RespondSigninUserViewModel
             {
-                UserID = dataModel.UserID,
-                CompanyName = dataModel.CompanyName,
-                UserID_g = Guid.NewGuid(),
-                UserName = dataModel.UserName
+                CurrentUser = new SigninUser
+                {
+                    CompanySerialNum = dataModel.CompanySerialNum,
+                    User_g = Guid.NewGuid(),
+                    UserID = dataModel.UserID,
+                    UserName = dataModel.UserName,
+                    AddressIP = UserIPAddressTool.GetRealUserIPAddress(),
+                    ConnectionConfig = new DbConnectionConfig()
+                }
             };
-
+            this.CreateFormsAuthentication(respond.CurrentUser);
             return respond;
         }
     }

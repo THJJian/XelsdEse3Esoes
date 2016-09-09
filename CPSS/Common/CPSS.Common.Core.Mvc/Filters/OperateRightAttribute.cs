@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace CPSS.Common.Core.Mvc.Filters
 {
-    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Method, AllowMultiple = true)]
     public class OperateRightAttribute : AuthorizeAttribute
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)

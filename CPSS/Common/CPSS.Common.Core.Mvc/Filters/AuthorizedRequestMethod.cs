@@ -20,7 +20,6 @@ namespace CPSS.Common.Core.Mvc.Filters
             var reg = new Regex(@"\{(\w+)\}");
             var mc = reg.Matches(loginUrl);
             loginUrl = mc.Cast<Match>().Aggregate(loginUrl, (current, m) => current.Replace(m.Value, filterContext.RouteData.Values[m.Result("$1")].ToString()));
-            //var context = filterContext.HttpContext;
             filterContext.Result = new RedirectResult(loginUrl);
         }
     }

@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace CPSS.Common.Core.Mvc.Filters
 {
-    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = true)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class HaveToLoginAttribute : AuthorizeAttribute
     {
         protected override bool AuthorizeCore(HttpContextBase httpContext)
