@@ -64,6 +64,9 @@
     <Compile Include="EmployeesDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="OnlineSigninUserDataModelMapper.generated.cs">
+      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SigninUserDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>

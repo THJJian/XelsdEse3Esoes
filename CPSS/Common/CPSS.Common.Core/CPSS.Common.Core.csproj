@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Authenticate\CPSSAuthenticate.cs" />
+    <Compile Include="Authenticate\FormsAuthenticationTicketManage.cs" />
     <Compile Include="Authenticate\RestoreUserIdentity.cs" />
     <Compile Include="DbConnectionConfig.cs" />
     <Compile Include="SigninUser.cs" />
@@ -53,6 +54,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CPSS.Common.Helper\CPSS.Common.Core.Helper.csproj">
+      <Project>{52aa19b4-e29e-4237-95f0-58c7e1eaa46d}</Project>
+      <Name>CPSS.Common.Core.Helper</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

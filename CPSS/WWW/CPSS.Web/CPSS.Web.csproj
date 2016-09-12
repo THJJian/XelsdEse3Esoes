@@ -20,6 +20,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,13 +40,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Autofac.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Autofac.Configuration, Version=3.3.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Autofac.Configuration.3.3.0\lib\net40\Autofac.Configuration.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -138,9 +139,21 @@
       <Project>{10befe5a-108d-44e0-8715-e42b814c75a5}</Project>
       <Name>CPSS.Common.Core.Mvc</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\CPSS.Common.Core\CPSS.Common.Core.csproj">
+      <Project>{0FACB83C-5540-401C-A87D-B06FAE50ABED}</Project>
+      <Name>CPSS.Common.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\CPSS.Common.Helper\CPSS.Common.Core.Helper.csproj">
       <Project>{52AA19B4-E29E-4237-95F0-58C7E1EAA46D}</Project>
       <Name>CPSS.Common.Core.Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Service\CPSS.Service.ViewService.Interfaces\CPSS.Service.ViewService.Interfaces.csproj">
+      <Project>{2eb1a678-f426-4ec9-bbe0-f6312f985784}</Project>
+      <Name>CPSS.Service.ViewService.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Service\CPSS.Service.ViewService.ViewModels\CPSS.Service.ViewService.ViewModels.csproj">
+      <Project>{dc83cbe0-f68c-4b4c-90e4-4131c729b80a}</Project>
+      <Name>CPSS.Service.ViewService.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

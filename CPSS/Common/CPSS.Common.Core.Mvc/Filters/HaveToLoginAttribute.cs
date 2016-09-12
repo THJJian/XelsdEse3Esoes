@@ -10,9 +10,8 @@ namespace CPSS.Common.Core.Mvc.Filters
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             if (httpContext == null) throw new Exception("服务器异常(httpContext)");
-            var user = httpContext.User;
-            var loginUser = httpContext.Items["__LoginUser"];
-            return user.Identity.IsAuthenticated && loginUser.UserID > 0;
+            var user = httpContext.Items["__Login__User__"] as SigninUser;
+            return user.UserID > 0;
         }
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)

@@ -16,7 +16,7 @@ namespace CPSS.Common.Core.Mvc
         protected override void OnResultExecuted(ResultExecutedContext filterContext)
         {
             base.OnResultExecuted(filterContext);
-            if (!filterContext.IsChildAction && this.WorkContext != null) this.WorkContext.Dispose();
+            if (!filterContext.IsChildAction) WorkContext?.Dispose();
         }
     }
 }

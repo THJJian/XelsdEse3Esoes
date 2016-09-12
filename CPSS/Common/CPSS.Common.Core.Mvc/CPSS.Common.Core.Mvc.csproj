@@ -97,6 +97,12 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CPSS.Common.Core\CPSS.Common.Core.csproj">
+      <Project>{0facb83c-5540-401c-a87d-b06fae50abed}</Project>
+      <Name>CPSS.Common.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

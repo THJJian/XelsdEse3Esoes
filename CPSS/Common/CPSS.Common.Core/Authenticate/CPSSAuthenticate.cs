@@ -8,9 +8,10 @@ namespace CPSS.Common.Core.Authenticate
         /// 获取当前登录用户信息
         /// </summary>
         /// <returns></returns>
-        public static SigninUser GetCurrentUser()
+        public static SigninUser GetCurrentUser(HttpContext context = null)
         {
-            var user = HttpContext.Current.Items["__Login__User__"] as SigninUser;
+            if(context == null) context = HttpContext.Current;
+            var user = context.Items["__Login__User__"] as SigninUser;
             return user;
         }
     }

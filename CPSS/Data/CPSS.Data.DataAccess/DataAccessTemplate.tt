@@ -33,13 +33,10 @@ foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e =>
 //     重新生成代码，则所做更改将丢失。
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using System.Data.SqlClient;
-using CPSS.Common.Helper.Cached;
-using CPSS.Common.Helper.DataAccess;
+using CPSS.Common.Core.DataAccess;
 using CPSS.Data.DataAccess.Interfaces;
 using CPSS.Data.DataAcess.DataModels;
 

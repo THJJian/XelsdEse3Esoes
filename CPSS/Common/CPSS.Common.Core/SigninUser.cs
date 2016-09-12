@@ -1,14 +1,23 @@
 ﻿using System;
-using System.Security.Principal;
 
 namespace CPSS.Common.Core
 {
     [Serializable]
     public class SigninUser
     {
+        public SigninUser()
+        {
+            this.UserID = 0;
+            this.UserID_g = Guid.Empty;
+            this.UserName = string.Empty;
+            this.CompanySerialNum = string.Empty;
+            this.AddressIP = string.Empty;
+            this.ConnectionConfig = null;
+        }
+
         public int UserID { set; get; }
 
-        public Guid User_g { set; get; }
+        public Guid UserID_g { set; get; }
 
         public string UserName { set; get; }
 
@@ -17,25 +26,5 @@ namespace CPSS.Common.Core
         public string AddressIP { set; get; }
 
         public DbConnectionConfig ConnectionConfig { set; get; }
-    }
-
-    [Serializable]
-    public class Identity : IIdentity
-    {
-
-        public string AuthenticationType
-        {
-            get { return "Forms"; }
-        }
-
-        public bool IsAuthenticated
-        {
-            get { throw new NotImplementedException(); }
-        }
-
-        public string Name
-        {
-            get { throw new NotImplementedException(); }
-        }
     }
 }
