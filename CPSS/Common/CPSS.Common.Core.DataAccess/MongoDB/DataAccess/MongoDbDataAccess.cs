@@ -27,7 +27,6 @@ namespace CPSS.Common.Core.Helper.MongoDB.DataAccess
             foreach (var property in properties)
             {
                 var attribute = property.GetCustomAttribute(typeof(SpecialField));
-                if (attribute == null) continue;
                 var specialField = attribute as SpecialField;
                 if (specialField == null) continue;
                 var bsonValueType = specialField.BsonValueType;
