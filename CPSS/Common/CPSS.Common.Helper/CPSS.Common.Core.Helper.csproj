@@ -75,6 +75,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BuildFilePath\BuildConnectionFilePath.cs" />
+    <Compile Include="BuildFilePath\ExistsFileHelper.cs" />
     <Compile Include="Cached\CacheKeyHelper.cs" />
     <Compile Include="Cached\MemcacheHelper.cs" />
     <Compile Include="Config\BuildConfigFilePath.cs" />

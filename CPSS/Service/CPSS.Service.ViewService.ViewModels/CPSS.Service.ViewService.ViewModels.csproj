@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\Request\RequestCompanyInfoViewModel.cs" />
     <Compile Include="User\Request\RequestSigninUserViewModel.cs" />
+    <Compile Include="User\Respond\RespondCompanyInfoViewModel.cs" />
     <Compile Include="User\Respond\RespondSigninUserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

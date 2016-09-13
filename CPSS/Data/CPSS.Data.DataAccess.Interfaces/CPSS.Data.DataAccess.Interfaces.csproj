@@ -64,7 +64,9 @@
       <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\ICompanyInfoDataAccess.cs" />
     <Compile Include="User\ISiginUserDataAccess.cs" />
+    <Compile Include="User\Parameters\CompanyInfoParameter.cs" />
     <Compile Include="User\Parameters\OnlineSigninUserParameter.cs" />
     <Compile Include="User\Parameters\SigninUserParameter.cs" />
   </ItemGroup>

@@ -53,6 +53,9 @@
     <Compile Include="CompanyDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="CompanyInfoDataModelMapper.generated.cs">
+      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataReaderToDataModelMapperTemplate.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

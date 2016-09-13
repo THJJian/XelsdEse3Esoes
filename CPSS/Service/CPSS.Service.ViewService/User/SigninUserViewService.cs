@@ -15,10 +15,12 @@ namespace CPSS.Service.ViewService.User
     public class SigninUserViewService : ISigninUserViewService
     {
         private readonly ISiginUserDataAccess mSiginUserDataAccess;
+        private readonly ICompanyInfoViewService mCompanyInfoViewService;
 
-        public SigninUserViewService(ISiginUserDataAccess _siginUserDataAccess)
+        public SigninUserViewService(ISiginUserDataAccess _siginUserDataAccess, ICompanyInfoViewService _companyInfoViewService)
         {
             this.mSiginUserDataAccess = _siginUserDataAccess;
+            this.mCompanyInfoViewService = _companyInfoViewService;
         }
 
         public RespondSigninUserViewModel QuerySigninUserViewModel(RequestSigninUserViewModel request)
@@ -36,6 +38,19 @@ namespace CPSS.Service.ViewService.User
                 };
                 var dataModel = this.mSiginUserDataAccess.QuerySigninUserDataModel(parameter);
                 if (dataModel == null) throw new Exception("登录名或密码错误。");
+                var companyInfoRequest = new RequestCompanyInfoViewModel
+                {
+                    CompanyID = dataModel.CompanySerialNum.ToInt32()
+                };
+                var companyInfo = this.mCompanyInfoViewService.GetCompanyInfoViewModel(companyInfoRequest);
+                var connectionConfig = new DbConnectionConfig
+                {
+                    ConnectTimeout = companyInfo.ConnectTimeout,
+                    Database = companyInfo.Database,
+                    Password = companyInfo.Password,
+                    Server = companyInfo.Server,
+                    UserID = companyInfo.UserID
+                };
                 var _respond = new RespondSigninUserViewModel
                 {
                     CurrentUser = new SigninUser
@@ -45,7 +60,7 @@ namespace CPSS.Service.ViewService.User
                         UserID = dataModel.UserID,
                         UserName = dataModel.UserName,
                         AddressIP = UserIPAddressTool.GetRealUserIPAddress(),
-                        ConnectionConfig = new DbConnectionConfig()
+                        ConnectionConfig = connectionConfig
                     }
                 };
                 return _respond;
