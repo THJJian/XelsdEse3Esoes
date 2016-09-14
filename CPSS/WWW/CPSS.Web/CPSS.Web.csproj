@@ -106,6 +106,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Config\Ioc\AutofacConfigBuilderTemplate.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AutofacConfigBuilderTemplate.config</LastGenOutput>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -114,6 +118,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\SignController.cs" />
+    <Compile Include="Controllers\SigninController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -124,8 +129,16 @@
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <None Include="Views\Sign\Login.cshtml" />
+    <Content Include="Config\connection.config" />
+    <Content Include="Config\Ioc\AutofacComponents.config" />
+    <Content Include="Config\Ioc\AutofacConfigBuilderTemplate.config">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AutofacConfigBuilderTemplate.tt</DependentUpon>
+    </Content>
+    <Content Include="Views\Signin\Login.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Sign\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -133,7 +146,9 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\CPSS.Common.Core.Mvc\CPSS.Common.Core.Mvc.csproj">
       <Project>{10befe5a-108d-44e0-8715-e42b814c75a5}</Project>
@@ -156,6 +171,7 @@
       <Name>CPSS.Service.ViewService.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
