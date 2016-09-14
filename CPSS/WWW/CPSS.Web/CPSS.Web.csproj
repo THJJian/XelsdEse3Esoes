@@ -117,7 +117,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\SignController.cs" />
     <Compile Include="Controllers\SigninController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -138,7 +137,6 @@
     </Content>
     <Content Include="Views\Signin\Login.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Sign\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
