@@ -27,5 +27,16 @@ namespace CPSS.Common.Core.Authenticate
             HttpContext.Current.Response.Cookies.Add(httpCookie);
         }
 
+        /// <summary>
+        /// 条件地更新 System.Web.Security.FormsAuthenticationTicket 的发出日期和时间以及过期日期和时间。
+        /// </summary>
+        /// <param name="userID_g"></param>
+        public static void RenewTicketIfOld(Guid userID_g)
+        {
+            HttpCookie userCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
+            if (string.IsNullOrEmpty(userCookie?.Value)) CreateFormsAuthentication(userID_g);
+            var authenticationTicket = FormsAuthentication.Decrypt(userCookie.Value);
+            FormsAuthentication.RenewTicketIfOld(authenticationTicket);
+        }
     }
 }

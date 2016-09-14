@@ -85,7 +85,7 @@ namespace CPSS.Common.Core.Helper.Extension
         }
 
         /// <summary>
-        /// 将一个日期格式的祝福串转换成日期
+        /// 将一个日期格式的字符串转换成日期
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
@@ -94,6 +94,19 @@ namespace CPSS.Common.Core.Helper.Extension
             DateTime outVal;
             var defaultVal = DateTime.Now;
             if (DateTime.TryParse(source, out outVal)) defaultVal = outVal;
+            return defaultVal;
+        }
+
+        /// <summary>
+        /// 讲一个GUID格式的字符串转换成GUID
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static Guid ToGuid(this string source)
+        {
+            Guid outVal;
+            var defaultVal = Guid.Empty;
+            if (Guid.TryParse(source, out outVal)) defaultVal = outVal;
             return defaultVal;
         }
 

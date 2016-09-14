@@ -97,7 +97,7 @@ namespace CPSS.Common.Core.Helper.Cached
 #if DEBUG
             var success = EnyimMemcachedClient.ExecuteStore(mode, cacheKey, value, expiresAt);
             if (success.Success) return;
-            var message = success.Exception == null ? success.Message : success.Exception.Message;
+            var message = success.Exception?.Message ?? success.Message;
             throw new Exception(string.Concat("写入缓存失败", cacheKey, " ", message));
 #else
             EnyimMemcachedClient.Store(mode, cacheKey, value, expiresAt);
