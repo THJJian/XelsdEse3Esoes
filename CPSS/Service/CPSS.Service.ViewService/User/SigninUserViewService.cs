@@ -65,23 +65,93 @@ namespace CPSS.Service.ViewService.User
                 };
                 return _respond;
             }, userID_g.ToString());
+            this.SaveLoginUserToOnline(new RequestSigninUserViewModel
+            {
+                UserID = respond.CurrentUser.UserID,
+                UserName = respond.CurrentUser.UserName,
+                UserID_g= respond.CurrentUser.UserID_g
+            });
+            FormsAuthenticationTicketManage.CreateFormsAuthentication(userID_g);
+            HttpContext.Current.Items.Add("__Login__User__", respond.CurrentUser);
+            return respond;
+        }
 
+        /// <summary>
+        /// 将登陆用户保存至在线列表内
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        public bool SaveLoginUserToOnline(RequestSigninUserViewModel request)
+        {
             var context = HttpContext.Current;
             var now = DateTime.Now;
             var expTime = now.ToShortDateString().ToDateTime().AddDays(1).AddSeconds(-1);//当日23:59:59
             var _parameter = new OnlineSigninUserParameter
             {
-                  UserID = respond.CurrentUser.UserID,
-                  Browser = context.Request.Browser.Browser,
-                  ExpTime = expTime,
-                  LoginName = respond.CurrentUser.UserName,
-                  LoginTime = now,
-                  OverTime = expTime,
-                  SGuid = userID_g,
-                  UserIP = UserIPAddressTool.GetRealUserIPAddress()
+                UserID = request.UserID,
+                Browser = context.Request.Browser.Browser,
+                ExpTime = expTime,
+                LoginName = request.UserName,
+                LoginTime = now,
+                OverTime = expTime,
+                SGuid = request.UserID_g,
+                UserIP = UserIPAddressTool.GetRealUserIPAddress()
             };
-            this.mSiginUserDataAccess.SaveLoginUserToOnline(_parameter);
-            FormsAuthenticationTicketManage.CreateFormsAuthentication(userID_g);
+            return this.mSiginUserDataAccess.SaveLoginUserToOnline(_parameter);
+        }
+
+        public RespondOnlineSigninUserViewModel GetOnlineSigninUserByUserID_g(RequestOnlineSigninUserViewModel request)
+        {
+            var parameter = new OnlineSigninUserParameter
+            {
+                SGuid = request.SGuid
+            };
+            var dataModel = this.mSiginUserDataAccess.GetOnlineSigninUserByUserID_g(parameter);
+            if(dataModel == null) return null;
+            return new RespondOnlineSigninUserViewModel
+            {
+                UserID = dataModel.UserID,
+                LoginName = dataModel.LoginName,
+                SGuid = dataModel.SGuid,
+                ExpTime = dataModel.ExpTime,
+                UserIP = dataModel.UserIP
+            };
+        }
+
+        public RespondSigninUserViewModel FindSininUserDataModelByUserID(RequestOnlineSigninUserViewModel request)
+        {
+            var parameter = new OnlineSigninUserParameter
+            {
+                UserID = request.UserID
+            };
+            var dataModel = this.mSiginUserDataAccess.FindSininUserDataModelByUserID(parameter);
+            if(dataModel==null)return null;
+            var companyInfoRequest = new RequestCompanyInfoViewModel
+            {
+                CompanyID = dataModel.CompanySerialNum.ToInt32()
+            };
+            var companyInfo = this.mCompanyInfoViewService.GetCompanyInfoViewModel(companyInfoRequest);
+            var connectionConfig = new DbConnectionConfig
+            {
+                ConnectTimeout = companyInfo.ConnectTimeout,
+                Database = companyInfo.Database,
+                Password = companyInfo.Password,
+                Server = companyInfo.Server,
+                UserID = companyInfo.UserID
+            };
+            FormsAuthenticationTicketManage.RenewTicketIfOld(request.SGuid);
+            var respond = new RespondSigninUserViewModel
+            {
+                CurrentUser = new SigninUser
+                {
+                    CompanySerialNum = dataModel.CompanySerialNum,
+                    UserID_g = request.SGuid,
+                    UserID = dataModel.UserID,
+                    UserName = dataModel.UserName,
+                    AddressIP = UserIPAddressTool.GetRealUserIPAddress(),
+                    ConnectionConfig = connectionConfig
+                }
+            };
             HttpContext.Current.Items.Add("__Login__User__", respond.CurrentUser);
             return respond;
         }

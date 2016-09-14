@@ -46,6 +46,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\CPSS.Data.DataAccess.Interfaces\CPSS.Data.DataAccess.Interfaces.csproj">
+      <Project>{B95A4CE0-B75A-41FE-91A1-C6A69E6A9AC7}</Project>
+      <Name>CPSS.Data.DataAccess.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CPSS.Service.ViewService.ViewModels\CPSS.Service.ViewService.ViewModels.csproj">
       <Project>{DC83CBE0-F68C-4B4C-90E4-4131C729B80A}</Project>
       <Name>CPSS.Service.ViewService.ViewModels</Name>
