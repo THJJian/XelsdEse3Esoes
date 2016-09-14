@@ -1,0 +1,101 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Reflection" #>
+<#@ assembly name="System.ServiceModel" #>
+<#@ output extension=".config" #>
+<#@ Assembly name="$(TargetDir)CPSS.Common.Core.DataAccess.dll" #>
+<#@ Assembly name="$(TargetDir)CPSS.Data.DataAccess.Interfaces.dll" #>
+<#@ Assembly name="$(TargetDir)CPSS.Data.DataAccess.dll" #>
+<#@ Assembly name="$(TargetDir)CPSS.Service.ViewService.Interfaces.dll" #>
+<#@ Assembly name="$(TargetDir)CPSS.Service.ViewService.dll" #>
+<?xml version="1.0" encoding="utf-8"?>
+<autofac defaultAssembly="CPSS.Service.ViewService">
+  <components>
+<#
+	//所有DataAccess接口
+	Type interfaceDataAccessAsssembly=typeof(CPSS.Data.DataAccess.Interfaces.User.ISiginUserDataAccess);
+	Assembly assemblyInterfaceDataAccess=interfaceDataAccessAsssembly.Assembly;
+	Type[] interfaceDataAccessTypes = assemblyInterfaceDataAccess.GetTypes();
+
+	//所有DataAccess实现
+	Type dataAccessAsssembly=typeof(CPSS.Data.DataAccess.User.SigninUserDataAccess);
+	Assembly assemblyDataAccess=dataAccessAsssembly.Assembly;
+	Type[] dataAccessTypes = assemblyDataAccess.GetTypes();
+
+	//所有View接口
+	Type interfaceAsssembly=typeof(CPSS.Service.ViewService.Interfaces.User.ISigninUserViewService);
+	Assembly assemblyInterface=interfaceAsssembly.Assembly;
+	Type[] interfaceTypes = assemblyInterface.GetTypes();
+	
+	//所有Service实现
+	Type serviceAsssembly=typeof(CPSS.Service.ViewService.User.SigninUserViewService);
+	Assembly assemblyService=serviceAsssembly.Assembly;
+	Type[] serviceTypes = assemblyService.GetTypes();
+#>
+		<!--DataAccess-->
+<#
+	foreach (Type type in interfaceDataAccessTypes)
+	{
+		string interfaceName = type.Name;
+		ArrayList serviceMutiTypes=new ArrayList();
+		foreach (var t in dataAccessTypes)  
+		{  
+			if (t.GetInterface(interfaceName) != null)  //实现了该接口
+			{  
+				serviceMutiTypes.Add(t);
+			}
+		}
+		foreach(var item in serviceMutiTypes)
+        {							
+			if(serviceMutiTypes.Count>1)
+			{
+#>
+		<component type="<#=((Type)item).FullName#>, <#=((Type)item).Assembly.GetName().Name#>" service="<#=type.FullName#>,<#=type.Assembly.GetName().Name#>" name="<#=((Type)item).Name#>" />    
+<#
+			}
+			else
+            {
+#>
+		<component type="<#=((Type)item).FullName#>, <#=((Type)item).Assembly.GetName().Name#>" service="<#=type.FullName#>,<#=type.Assembly.GetName().Name#>" />
+<#
+			}
+		}
+    }
+	#>
+
+		<!--View Service-->
+<#		
+	foreach (Type type in interfaceTypes)
+	{
+		string interfaceName = type.FullName;
+		ArrayList serviceMutiTypes=new ArrayList();
+		foreach (var t in serviceTypes)  
+		{  
+			if (t.GetInterface(interfaceName) != null && !t.Namespace.Contains(".WebProxy."))  //实现了该接口
+			{  
+				serviceMutiTypes.Add(t);
+			}  
+		}  		
+		foreach(var item in serviceMutiTypes)
+        {					
+			if(serviceMutiTypes.Count>1)
+			{
+#>
+		<component type="<#=((Type)item).FullName#>, <#=((Type)item).Assembly.GetName().Name#>" service="<#=type.FullName#>,<#=type.Assembly.GetName().Name#>" name="<#=((Type)item).Name#>" />    
+<#
+			}
+			else
+            {
+#>
+		<component type="<#=((Type)item).FullName#>, <#=((Type)item).Assembly.GetName().Name#>" service="<#=type.FullName#>,<#=type.Assembly.GetName().Name#>" />
+<#
+			}
+		}
+    }
+#>
+	</components>
+</autofac>
