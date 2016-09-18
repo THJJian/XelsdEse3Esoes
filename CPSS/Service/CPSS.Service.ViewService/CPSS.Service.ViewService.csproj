@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CPSS.Service.ViewService</RootNamespace>
+    <AssemblyName>CPSS.Service.ViewService</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User\CompanyInfoViewService.cs" />
+    <Compile Include="User\SigninUserViewService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\CPSS.Common.Core\CPSS.Common.Core.csproj">
+      <Project>{0FACB83C-5540-401C-A87D-B06FAE50ABED}</Project>
+      <Name>CPSS.Common.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Common\CPSS.Common.Helper\CPSS.Common.Core.Helper.csproj">
+      <Project>{52aa19b4-e29e-4237-95f0-58c7e1eaa46d}</Project>
+      <Name>CPSS.Common.Core.Helper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\CPSS.Data.DataAccess.Interfaces\CPSS.Data.DataAccess.Interfaces.csproj">
+      <Project>{b95a4ce0-b75a-41fe-91a1-c6a69e6a9ac7}</Project>
+      <Name>CPSS.Data.DataAccess.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Data\CPSS.Data.DataAcess.DataModels\CPSS.Data.DataAcess.DataModels.csproj">
+      <Project>{4D260557-883D-4DAC-B1FC-E2F4D031F106}</Project>
+      <Name>CPSS.Data.DataAcess.DataModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CPSS.Service.ViewService.Interfaces\CPSS.Service.ViewService.Interfaces.csproj">
+      <Project>{2eb1a678-f426-4ec9-bbe0-f6312f985784}</Project>
+      <Name>CPSS.Service.ViewService.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CPSS.Service.ViewService.ViewModels\CPSS.Service.ViewService.ViewModels.csproj">
+      <Project>{dc83cbe0-f68c-4b4c-90e4-4131c729b80a}</Project>
+      <Name>CPSS.Service.ViewService.ViewModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,592 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="CPSS.Data.DataAccess.DataModels.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="account_id" />
+          </Key>
+          <Property Name="account_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="class_id" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="parent_id" Type="varchar" MaxLength="54" Nullable="false" />
+          <Property Name="child_number" Type="int" Nullable="false" />
+          <Property Name="child_count" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="deleted" Type="bit" Nullable="false" />
+          <Property Name="alias" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="serial_number" Type="varchar" MaxLength="26" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="256" Nullable="false" />
+          <Property Name="cur_total" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="ini_total" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="sysflag" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="sysrow" Type="bit" Nullable="false" />
+          <Property Name="PinYin" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="total_01" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_02" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_03" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_04" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_05" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_06" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_07" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_08" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_09" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_10" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_11" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_12" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="bqtotal" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="sumtotal" Type="numeric" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="cashaudit" Type="bit" Nullable="false" />
+          <Property Name="direction" Type="bit" Nullable="false" />
+          <Property Name="ModifyDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="class_id" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="parent_id" Type="varchar" MaxLength="54" />
+          <Property Name="child_number" Type="int" Nullable="false" />
+          <Property Name="child_count" Type="int" Nullable="false" />
+          <Property Name="serial_number" Type="varchar" MaxLength="26" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="alias" Type="varchar" MaxLength="30" />
+          <Property Name="region_id" Type="int" />
+          <Property Name="phone_number" Type="varchar" MaxLength="100" />
+          <Property Name="address" Type="varchar" MaxLength="80" />
+          <Property Name="zipcode" Type="varchar" MaxLength="10" />
+          <Property Name="contact_personal" Type="varchar" MaxLength="20" />
+          <Property Name="tax_number" Type="varchar" MaxLength="50" />
+          <Property Name="acount_number" Type="varchar" MaxLength="80" />
+          <Property Name="credit_total" Type="float" />
+          <Property Name="pinyin" Type="varchar" MaxLength="80" />
+          <Property Name="pricemode" Type="smallint" />
+          <Property Name="sklimit" Type="smallint" />
+          <Property Name="artotal" Type="float" />
+          <Property Name="artotal_ini" Type="float" />
+          <Property Name="aptotal" Type="float" />
+          <Property Name="aptotal_ini" Type="float" />
+          <Property Name="pre_artotal" Type="float" />
+          <Property Name="pre_artotal_ini" Type="float" />
+          <Property Name="pre_aptotal" Type="float" />
+          <Property Name="pre_aptotal_ini" Type="float" />
+          <Property Name="firstcheck" Type="bit" />
+          <Property Name="comment" Type="varchar" MaxLength="256" />
+          <Property Name="csflag" Type="char" MaxLength="1" />
+          <Property Name="deleted" Type="bit" />
+          <Property Name="ProtocolDate" Type="datetime" />
+          <Property Name="ModifyDate" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="GMPNo" Type="varchar" MaxLength="30" />
+          <Property Name="GSPNo" Type="varchar" MaxLength="30" />
+          <Property Name="Cetype" Type="tinyint" />
+          <Property Name="property" Type="int" Nullable="false" />
+          <Property Name="comment1" Type="varchar" MaxLength="250" />
+          <Property Name="comment2" Type="varchar" MaxLength="250" />
+          <Property Name="comment3" Type="varchar" MaxLength="250" />
+          <Property Name="comment4" Type="varchar" MaxLength="250" />
+          <Property Name="comment5" Type="varchar" MaxLength="250" />
+          <Property Name="RowIndex" Type="int" Nullable="false" />
+          <Property Name="e_id" Type="int" Nullable="false" />
+          <Property Name="StopUse" Type="bit" />
+          <Property Name="incrate" Type="decimal" Precision="23" Scale="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="company_id" />
+          </Key>
+          <Property Name="company_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="class_id" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="parent_id" Type="varchar" MaxLength="54" />
+          <Property Name="child_number" Type="int" Nullable="false" />
+          <Property Name="child_count" Type="int" Nullable="false" />
+          <Property Name="serial_number" Type="varchar" MaxLength="26" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="deleted" Type="bit" Nullable="false" />
+          <Property Name="bank" Type="varchar" MaxLength="50" />
+          <Property Name="opaddress" Type="varchar" MaxLength="100" />
+          <Property Name="communicateaddr" Type="varchar" MaxLength="100" />
+          <Property Name="postcode" Type="char" MaxLength="10" />
+          <Property Name="tel" Type="varchar" MaxLength="20" />
+          <Property Name="manager" Type="varchar" MaxLength="10" />
+          <Property Name="email" Type="varchar" MaxLength="30" />
+          <Property Name="comment" Type="varchar" MaxLength="100" />
+          <Property Name="StartUse" Type="bit" Nullable="false" />
+          <Property Name="prefix" Type="varchar" MaxLength="3" />
+          <Property Name="sklimit" Type="smallint" Nullable="false" />
+          <Property Name="pricemode" Type="smallint" Nullable="false" />
+          <Property Name="pinyin" Type="varchar" MaxLength="80" />
+          <Property Name="ModifyDate" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="RowIndex" Type="int" Nullable="false" />
+          <Property Name="Area_ID" Type="int" />
+          <Property Name="businessStyle" Type="int" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="department_Id" />
+          </Key>
+          <Property Name="department_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="class_id" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="parent_id" Type="varchar" MaxLength="54" />
+          <Property Name="child_number" Type="int" Nullable="false" />
+          <Property Name="child_count" Type="int" Nullable="false" />
+          <Property Name="serial_number" Type="varchar" MaxLength="26" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="comment" Type="varchar" MaxLength="50" />
+          <Property Name="deleted" Type="bit" Nullable="false" />
+          <Property Name="ModifyDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="pinyin" Type="varchar" MaxLength="80" />
+          <Property Name="Flag" Type="bit" Nullable="false" />
+          <Property Name="RowIndex" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="class_id" Type="varchar" MaxLength="60" Nullable="false" />
+          <Property Name="parent_id" Type="varchar" MaxLength="54" Nullable="false" />
+          <Property Name="child_number" Type="int" Nullable="false" />
+          <Property Name="child_count" Type="int" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="80" />
+          <Property Name="alias" Type="varchar" MaxLength="30" />
+          <Property Name="serial_number" Type="varchar" MaxLength="26" />
+          <Property Name="d_id" Type="int" />
+          <Property Name="deleted" Type="bit" />
+          <Property Name="phone" Type="varchar" MaxLength="60" />
+          <Property Name="address" Type="varchar" MaxLength="66" />
+          <Property Name="comment" Type="varchar" MaxLength="256" />
+          <Property Name="aplimit" Type="float" />
+          <Property Name="arlimit" Type="float" />
+          <Property Name="aptotal" Type="float" />
+          <Property Name="artotal" Type="float" />
+          <Property Name="discountlimit" Type="numeric" Precision="5" Scale="2" />
+          <Property Name="ls" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="th" Type="numeric" Precision="4" Scale="0" />
+          <Property Name="pinyin" Type="varchar" MaxLength="80" />
+          <Property Name="LowPrice" Type="float" />
+          <Property Name="HighPrice" Type="float" />
+          <Property Name="SNCount" Type="int" />
+          <Property Name="GSPSNCount" Type="int" />
+          <Property Name="ModifyDate" Type="timestamp" StoreGeneratedPattern="Computed" />
+          <Property Name="Study" Type="varchar" MaxLength="20" />
+          <Property Name="Duty" Type="varchar" MaxLength="20" />
+          <Property Name="GraduateDate" Type="datetime" />
+          <Property Name="szWork" Type="varchar" MaxLength="20" />
+          <Property Name="InDate" Type="datetime" />
+          <Property Name="Teach" Type="varchar" MaxLength="20" />
+          <Property Name="deduct" Type="float" />
+          <Property Name="lim" Type="binary" MaxLength="800" />
+          <Property Name="Tp_ID" Type="int" Nullable="false" />
+          <Property Name="RowIndex" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="CPSSDataDataAccessDataModelsStoreContainer">
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Company" EntityType="Self.Company" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CPSS.Data.DataAccess.DataModels" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="account_id" />
+          </Key>
+          <Property Name="account_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="class_id" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parent_id" Type="String" MaxLength="54" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="child_number" Type="Int32" Nullable="false" />
+          <Property Name="child_count" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="deleted" Type="Boolean" Nullable="false" />
+          <Property Name="alias" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="serial_number" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cur_total" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="ini_total" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="sysflag" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="sysrow" Type="Boolean" Nullable="false" />
+          <Property Name="PinYin" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="total_01" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_02" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_03" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_04" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_05" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_06" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_07" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_08" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_09" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_10" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_11" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="total_12" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="bqtotal" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="sumtotal" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+          <Property Name="cashaudit" Type="Boolean" Nullable="false" />
+          <Property Name="direction" Type="Boolean" Nullable="false" />
+          <Property Name="ModifyDate" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="client_id" />
+          </Key>
+          <Property Name="client_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="class_id" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parent_id" Type="String" MaxLength="54" FixedLength="false" Unicode="false" />
+          <Property Name="child_number" Type="Int32" Nullable="false" />
+          <Property Name="child_count" Type="Int32" Nullable="false" />
+          <Property Name="serial_number" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="alias" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="region_id" Type="Int32" />
+          <Property Name="phone_number" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="zipcode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="contact_personal" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="tax_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="acount_number" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="credit_total" Type="Double" />
+          <Property Name="pinyin" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="pricemode" Type="Int16" />
+          <Property Name="sklimit" Type="Int16" />
+          <Property Name="artotal" Type="Double" />
+          <Property Name="artotal_ini" Type="Double" />
+          <Property Name="aptotal" Type="Double" />
+          <Property Name="aptotal_ini" Type="Double" />
+          <Property Name="pre_artotal" Type="Double" />
+          <Property Name="pre_artotal_ini" Type="Double" />
+          <Property Name="pre_aptotal" Type="Double" />
+          <Property Name="pre_aptotal_ini" Type="Double" />
+          <Property Name="firstcheck" Type="Boolean" />
+          <Property Name="comment" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="csflag" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="deleted" Type="Boolean" />
+          <Property Name="ProtocolDate" Type="DateTime" Precision="3" />
+          <Property Name="ModifyDate" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="GMPNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="GSPNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="Cetype" Type="Byte" />
+          <Property Name="property" Type="Int32" Nullable="false" />
+          <Property Name="comment1" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="comment2" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="comment3" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="comment4" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="comment5" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="RowIndex" Type="Int32" Nullable="false" />
+          <Property Name="e_id" Type="Int32" Nullable="false" />
+          <Property Name="StopUse" Type="Boolean" />
+          <Property Name="incrate" Type="Decimal" Precision="23" Scale="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Company">
+          <Key>
+            <PropertyRef Name="company_id" />
+          </Key>
+          <Property Name="company_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="class_id" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parent_id" Type="String" MaxLength="54" FixedLength="false" Unicode="false" />
+          <Property Name="child_number" Type="Int32" Nullable="false" />
+          <Property Name="child_count" Type="Int32" Nullable="false" />
+          <Property Name="serial_number" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="deleted" Type="Boolean" Nullable="false" />
+          <Property Name="bank" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="opaddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="communicateaddr" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="postcode" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="tel" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="manager" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="StartUse" Type="Boolean" Nullable="false" />
+          <Property Name="prefix" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="sklimit" Type="Int16" Nullable="false" />
+          <Property Name="pricemode" Type="Int16" Nullable="false" />
+          <Property Name="pinyin" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyDate" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="RowIndex" Type="Int32" Nullable="false" />
+          <Property Name="Area_ID" Type="Int32" />
+          <Property Name="businessStyle" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="department_Id" />
+          </Key>
+          <Property Name="department_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="class_id" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parent_id" Type="String" MaxLength="54" FixedLength="false" Unicode="false" />
+          <Property Name="child_number" Type="Int32" Nullable="false" />
+          <Property Name="child_count" Type="Int32" Nullable="false" />
+          <Property Name="serial_number" Type="String" MaxLength="26" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deleted" Type="Boolean" Nullable="false" />
+          <Property Name="ModifyDate" Type="Binary" MaxLength="8" FixedLength="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="pinyin" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Flag" Type="Boolean" Nullable="false" />
+          <Property Name="RowIndex" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="emp_id" />
+          </Key>
+          <Property Name="emp_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="class_id" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="parent_id" Type="String" MaxLength="54" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="child_number" Type="Int32" Nullable="false" />
+          <Property Name="child_count" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="alias" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="serial_number" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="d_id" Type="Int32" />
+          <Property Name="deleted" Type="Boolean" />
+          <Property Name="phone" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="66" FixedLength="false" Unicode="false" />
+          <Property Name="comment" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="aplimit" Type="Double" />
+          <Property Name="arlimit" Type="Double" />
+          <Property Name="aptotal" Type="Double" />
+          <Property Name="artotal" Type="Double" />
+          <Property Name="discountlimit" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="ls" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="th" Type="Decimal" Precision="4" Scale="0" />
+          <Property Name="pinyin" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="LowPrice" Type="Double" />
+          <Property Name="HighPrice" Type="Double" />
+          <Property Name="SNCount" Type="Int32" />
+          <Property Name="GSPSNCount" Type="Int32" />
+          <Property Name="ModifyDate" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" />
+          <Property Name="Study" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Duty" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="GraduateDate" Type="DateTime" Precision="3" />
+          <Property Name="szWork" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="InDate" Type="DateTime" Precision="3" />
+          <Property Name="Teach" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="deduct" Type="Double" />
+          <Property Name="lim" Type="Binary" MaxLength="800" FixedLength="true" />
+          <Property Name="Tp_ID" Type="Int32" Nullable="false" />
+          <Property Name="RowIndex" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
+          <EntitySet Name="Account" EntityType="Self.Account" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" />
+          <EntitySet Name="Company" EntityType="Self.Company" />
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CPSSDataDataAccessDataModelsStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Account">
+            <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="account_id" ColumnName="account_id" />
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="child_number" ColumnName="child_number" />
+                <ScalarProperty Name="child_count" ColumnName="child_count" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="alias" ColumnName="alias" />
+                <ScalarProperty Name="serial_number" ColumnName="serial_number" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="cur_total" ColumnName="cur_total" />
+                <ScalarProperty Name="ini_total" ColumnName="ini_total" />
+                <ScalarProperty Name="sysflag" ColumnName="sysflag" />
+                <ScalarProperty Name="sysrow" ColumnName="sysrow" />
+                <ScalarProperty Name="PinYin" ColumnName="PinYin" />
+                <ScalarProperty Name="total_01" ColumnName="total_01" />
+                <ScalarProperty Name="total_02" ColumnName="total_02" />
+                <ScalarProperty Name="total_03" ColumnName="total_03" />
+                <ScalarProperty Name="total_04" ColumnName="total_04" />
+                <ScalarProperty Name="total_05" ColumnName="total_05" />
+                <ScalarProperty Name="total_06" ColumnName="total_06" />
+                <ScalarProperty Name="total_07" ColumnName="total_07" />
+                <ScalarProperty Name="total_08" ColumnName="total_08" />
+                <ScalarProperty Name="total_09" ColumnName="total_09" />
+                <ScalarProperty Name="total_10" ColumnName="total_10" />
+                <ScalarProperty Name="total_11" ColumnName="total_11" />
+                <ScalarProperty Name="total_12" ColumnName="total_12" />
+                <ScalarProperty Name="bqtotal" ColumnName="bqtotal" />
+                <ScalarProperty Name="sumtotal" ColumnName="sumtotal" />
+                <ScalarProperty Name="cashaudit" ColumnName="cashaudit" />
+                <ScalarProperty Name="direction" ColumnName="direction" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.Clients">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="client_id" ColumnName="client_id" />
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="child_number" ColumnName="child_number" />
+                <ScalarProperty Name="child_count" ColumnName="child_count" />
+                <ScalarProperty Name="serial_number" ColumnName="serial_number" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="alias" ColumnName="alias" />
+                <ScalarProperty Name="region_id" ColumnName="region_id" />
+                <ScalarProperty Name="phone_number" ColumnName="phone_number" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="contact_personal" ColumnName="contact_personal" />
+                <ScalarProperty Name="tax_number" ColumnName="tax_number" />
+                <ScalarProperty Name="acount_number" ColumnName="acount_number" />
+                <ScalarProperty Name="credit_total" ColumnName="credit_total" />
+                <ScalarProperty Name="pinyin" ColumnName="pinyin" />
+                <ScalarProperty Name="pricemode" ColumnName="pricemode" />
+                <ScalarProperty Name="sklimit" ColumnName="sklimit" />
+                <ScalarProperty Name="artotal" ColumnName="artotal" />
+                <ScalarProperty Name="artotal_ini" ColumnName="artotal_ini" />
+                <ScalarProperty Name="aptotal" ColumnName="aptotal" />
+                <ScalarProperty Name="aptotal_ini" ColumnName="aptotal_ini" />
+                <ScalarProperty Name="pre_artotal" ColumnName="pre_artotal" />
+                <ScalarProperty Name="pre_artotal_ini" ColumnName="pre_artotal_ini" />
+                <ScalarProperty Name="pre_aptotal" ColumnName="pre_aptotal" />
+                <ScalarProperty Name="pre_aptotal_ini" ColumnName="pre_aptotal_ini" />
+                <ScalarProperty Name="firstcheck" ColumnName="firstcheck" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="csflag" ColumnName="csflag" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="ProtocolDate" ColumnName="ProtocolDate" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="GMPNo" ColumnName="GMPNo" />
+                <ScalarProperty Name="GSPNo" ColumnName="GSPNo" />
+                <ScalarProperty Name="Cetype" ColumnName="Cetype" />
+                <ScalarProperty Name="property" ColumnName="property" />
+                <ScalarProperty Name="comment1" ColumnName="comment1" />
+                <ScalarProperty Name="comment2" ColumnName="comment2" />
+                <ScalarProperty Name="comment3" ColumnName="comment3" />
+                <ScalarProperty Name="comment4" ColumnName="comment4" />
+                <ScalarProperty Name="comment5" ColumnName="comment5" />
+                <ScalarProperty Name="RowIndex" ColumnName="RowIndex" />
+                <ScalarProperty Name="e_id" ColumnName="e_id" />
+                <ScalarProperty Name="StopUse" ColumnName="StopUse" />
+                <ScalarProperty Name="incrate" ColumnName="incrate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Company">
+            <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.Company">
+              <MappingFragment StoreEntitySet="Company">
+                <ScalarProperty Name="company_id" ColumnName="company_id" />
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="child_number" ColumnName="child_number" />
+                <ScalarProperty Name="child_count" ColumnName="child_count" />
+                <ScalarProperty Name="serial_number" ColumnName="serial_number" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="bank" ColumnName="bank" />
+                <ScalarProperty Name="opaddress" ColumnName="opaddress" />
+                <ScalarProperty Name="communicateaddr" ColumnName="communicateaddr" />
+                <ScalarProperty Name="postcode" ColumnName="postcode" />
+                <ScalarProperty Name="tel" ColumnName="tel" />
+                <ScalarProperty Name="manager" ColumnName="manager" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="StartUse" ColumnName="StartUse" />
+                <ScalarProperty Name="prefix" ColumnName="prefix" />
+                <ScalarProperty Name="sklimit" ColumnName="sklimit" />
+                <ScalarProperty Name="pricemode" ColumnName="pricemode" />
+                <ScalarProperty Name="pinyin" ColumnName="pinyin" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="RowIndex" ColumnName="RowIndex" />
+                <ScalarProperty Name="Area_ID" ColumnName="Area_ID" />
+                <ScalarProperty Name="businessStyle" ColumnName="businessStyle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="department_Id" ColumnName="department_Id" />
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="child_number" ColumnName="child_number" />
+                <ScalarProperty Name="child_count" ColumnName="child_count" />
+                <ScalarProperty Name="serial_number" ColumnName="serial_number" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="pinyin" ColumnName="pinyin" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="RowIndex" ColumnName="RowIndex" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.Employees">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="emp_id" ColumnName="emp_id" />
+                <ScalarProperty Name="class_id" ColumnName="class_id" />
+                <ScalarProperty Name="parent_id" ColumnName="parent_id" />
+                <ScalarProperty Name="child_number" ColumnName="child_number" />
+                <ScalarProperty Name="child_count" ColumnName="child_count" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="alias" ColumnName="alias" />
+                <ScalarProperty Name="serial_number" ColumnName="serial_number" />
+                <ScalarProperty Name="d_id" ColumnName="d_id" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="aplimit" ColumnName="aplimit" />
+                <ScalarProperty Name="arlimit" ColumnName="arlimit" />
+                <ScalarProperty Name="aptotal" ColumnName="aptotal" />
+                <ScalarProperty Name="artotal" ColumnName="artotal" />
+                <ScalarProperty Name="discountlimit" ColumnName="discountlimit" />
+                <ScalarProperty Name="ls" ColumnName="ls" />
+                <ScalarProperty Name="th" ColumnName="th" />
+                <ScalarProperty Name="pinyin" ColumnName="pinyin" />
+                <ScalarProperty Name="LowPrice" ColumnName="LowPrice" />
+                <ScalarProperty Name="HighPrice" ColumnName="HighPrice" />
+                <ScalarProperty Name="SNCount" ColumnName="SNCount" />
+                <ScalarProperty Name="GSPSNCount" ColumnName="GSPSNCount" />
+                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
+                <ScalarProperty Name="Study" ColumnName="Study" />
+                <ScalarProperty Name="Duty" ColumnName="Duty" />
+                <ScalarProperty Name="GraduateDate" ColumnName="GraduateDate" />
+                <ScalarProperty Name="szWork" ColumnName="szWork" />
+                <ScalarProperty Name="InDate" ColumnName="InDate" />
+                <ScalarProperty Name="Teach" ColumnName="Teach" />
+                <ScalarProperty Name="deduct" ColumnName="deduct" />
+                <ScalarProperty Name="lim" ColumnName="lim" />
+                <ScalarProperty Name="Tp_ID" ColumnName="Tp_ID" />
+                <ScalarProperty Name="RowIndex" ColumnName="RowIndex" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams />
+  </Designer>
+</edmx:Edmx>
