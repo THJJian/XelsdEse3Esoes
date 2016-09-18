@@ -1,4 +1,5 @@
-﻿using CPSS.Service.ViewService.ViewModels.User.Request;
+﻿using CPSS.Common.Core.Exception;
+using CPSS.Service.ViewService.ViewModels.User.Request;
 using CPSS.Service.ViewService.ViewModels.User.Respond;
 
 namespace CPSS.Service.ViewService.Interfaces.User
@@ -10,7 +11,7 @@ namespace CPSS.Service.ViewService.Interfaces.User
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondSigninUserViewModel QuerySigninUserViewModel(RequestSigninUserViewModel request);
+        RespondWebViewData<RespondSigninUserViewModel> QuerySigninUserViewModel(RequestSigninUserViewModel request);
 
         /// <summary>
         /// 将登陆用户保存至在线列表内
@@ -24,13 +25,13 @@ namespace CPSS.Service.ViewService.Interfaces.User
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondOnlineSigninUserViewModel GetOnlineSigninUserByUserID_g(RequestOnlineSigninUserViewModel request);
+        RespondWebViewData<RespondOnlineSigninUserViewModel> GetOnlineSigninUserByUserID_g(RequestOnlineSigninUserViewModel request);
 
         /// <summary>
         /// 根据UserID获取用户信息
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondSigninUserViewModel FindSininUserDataModelByUserID(RequestOnlineSigninUserViewModel request);
+        RespondWebViewData<RespondSigninUserViewModel> FindSininUserDataModelByUserID(RequestOnlineSigninUserViewModel request);
     }
 }

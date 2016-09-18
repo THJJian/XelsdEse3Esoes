@@ -50,6 +50,10 @@
     <Compile Include="User\SigninUserViewService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\CPSS.Common.Core.Exception\CPSS.Common.Core.Exception.csproj">
+      <Project>{1BA135E5-7027-43F0-80C5-1637E9A31666}</Project>
+      <Name>CPSS.Common.Core.Exception</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\CPSS.Common.Core\CPSS.Common.Core.csproj">
       <Project>{0FACB83C-5540-401C-A87D-B06FAE50ABED}</Project>
       <Name>CPSS.Common.Core</Name>

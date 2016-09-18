@@ -2,6 +2,7 @@
 using System.Web;
 using CPSS.Common.Core;
 using CPSS.Common.Core.Authenticate;
+using CPSS.Common.Core.Exception;
 using CPSS.Common.Core.Helper.Cached;
 using CPSS.Common.Core.Helper.Extension;
 using CPSS.Data.DataAccess.Interfaces.User;
@@ -23,13 +24,13 @@ namespace CPSS.Service.ViewService.User
             this.mCompanyInfoViewService = _companyInfoViewService;
         }
 
-        public RespondSigninUserViewModel QuerySigninUserViewModel(RequestSigninUserViewModel request)
+        public RespondWebViewData<RespondSigninUserViewModel> QuerySigninUserViewModel(RequestSigninUserViewModel request)
         {
             var userID_g = Guid.NewGuid();
             var respond = MemcacheHelper.Get(() =>
             {
                 var _tmp = request.UserName.Split(':');
-                if (_tmp.Length != 2) throw new Exception("登录名格式错误，必须为公司编号:用户名。如->ABC公司:张三");
+                if (_tmp.Length != 2) return  new RespondWebViewData<RespondSigninUserViewModel>(WebViewErrorCode.SigninInfoError);
                 var parameter = new SigninUserParameter
                 {
                     UserName = _tmp[1],
@@ -37,7 +38,7 @@ namespace CPSS.Service.ViewService.User
                     CompanySerialNum = _tmp[0]
                 };
                 var dataModel = this.mSiginUserDataAccess.QuerySigninUserDataModel(parameter);
-                if (dataModel == null) throw new Exception("登录名或密码错误。");
+                if (dataModel == null) return new RespondWebViewData<RespondSigninUserViewModel>(WebViewErrorCode.UserNameOrPwdError);
                 var companyInfoRequest = new RequestCompanyInfoViewModel
                 {
                     CompanyID = dataModel.CompanySerialNum.ToInt32()
@@ -51,28 +52,31 @@ namespace CPSS.Service.ViewService.User
                     Server = companyInfo.Server,
                     UserID = companyInfo.UserID
                 };
-                var _respond = new RespondSigninUserViewModel
+                var _respond = new RespondWebViewData<RespondSigninUserViewModel>
                 {
-                    CurrentUser = new SigninUser
+                    Data = new RespondSigninUserViewModel
                     {
-                        CompanySerialNum = dataModel.CompanySerialNum,
-                        UserID_g = userID_g,
-                        UserID = dataModel.UserID,
-                        UserName = dataModel.UserName,
-                        AddressIP = UserIPAddressTool.GetRealUserIPAddress(),
-                        ConnectionConfig = connectionConfig
+                        CurrentUser = new SigninUser
+                        {
+                            CompanySerialNum = dataModel.CompanySerialNum,
+                            UserID_g = userID_g,
+                            UserID = dataModel.UserID,
+                            UserName = dataModel.UserName,
+                            AddressIP = UserIPAddressTool.GetRealUserIPAddress(),
+                            ConnectionConfig = connectionConfig
+                        }
                     }
                 };
                 return _respond;
             }, userID_g.ToString());
             this.SaveLoginUserToOnline(new RequestSigninUserViewModel
             {
-                UserID = respond.CurrentUser.UserID,
-                UserName = respond.CurrentUser.UserName,
-                UserID_g= respond.CurrentUser.UserID_g
+                UserID = respond.Data.CurrentUser.UserID,
+                UserName = respond.Data.CurrentUser.UserName,
+                UserID_g= respond.Data.CurrentUser.UserID_g
             });
             FormsAuthenticationTicketManage.CreateFormsAuthentication(userID_g);
-            HttpContext.Current.Items.Add("__Login__User__", respond.CurrentUser);
+            HttpContext.Current.Items.Add("__Login__User__", respond.Data.CurrentUser);
             return respond;
         }
 
@@ -100,32 +104,35 @@ namespace CPSS.Service.ViewService.User
             return this.mSiginUserDataAccess.SaveLoginUserToOnline(_parameter);
         }
 
-        public RespondOnlineSigninUserViewModel GetOnlineSigninUserByUserID_g(RequestOnlineSigninUserViewModel request)
+        public RespondWebViewData<RespondOnlineSigninUserViewModel> GetOnlineSigninUserByUserID_g(RequestOnlineSigninUserViewModel request)
         {
             var parameter = new OnlineSigninUserParameter
             {
                 SGuid = request.SGuid
             };
             var dataModel = this.mSiginUserDataAccess.GetOnlineSigninUserByUserID_g(parameter);
-            if(dataModel == null) return null;
-            return new RespondOnlineSigninUserViewModel
+            if(dataModel == null) return new RespondWebViewData<RespondOnlineSigninUserViewModel>(WebViewErrorCode.LoginRequired);
+            return new RespondWebViewData<RespondOnlineSigninUserViewModel>
             {
-                UserID = dataModel.UserID,
-                LoginName = dataModel.LoginName,
-                SGuid = dataModel.SGuid,
-                ExpTime = dataModel.ExpTime,
-                UserIP = dataModel.UserIP
+                Data =  new RespondOnlineSigninUserViewModel
+                {
+                    UserID = dataModel.UserID,
+                    LoginName = dataModel.LoginName,
+                    SGuid = dataModel.SGuid,
+                    ExpTime = dataModel.ExpTime,
+                    UserIP = dataModel.UserIP
+                }
             };
         }
 
-        public RespondSigninUserViewModel FindSininUserDataModelByUserID(RequestOnlineSigninUserViewModel request)
+        public RespondWebViewData<RespondSigninUserViewModel> FindSininUserDataModelByUserID(RequestOnlineSigninUserViewModel request)
         {
             var parameter = new OnlineSigninUserParameter
             {
                 UserID = request.UserID
             };
             var dataModel = this.mSiginUserDataAccess.FindSininUserDataModelByUserID(parameter);
-            if(dataModel==null)return null;
+            if(dataModel==null) return new RespondWebViewData<RespondSigninUserViewModel>(WebViewErrorCode.NotExistUserInfo);
             var companyInfoRequest = new RequestCompanyInfoViewModel
             {
                 CompanyID = dataModel.CompanySerialNum.ToInt32()
@@ -140,19 +147,22 @@ namespace CPSS.Service.ViewService.User
                 UserID = companyInfo.UserID
             };
             FormsAuthenticationTicketManage.RenewTicketIfOld(request.SGuid);
-            var respond = new RespondSigninUserViewModel
+            var respond = new RespondWebViewData<RespondSigninUserViewModel>
             {
-                CurrentUser = new SigninUser
+                Data = new RespondSigninUserViewModel
                 {
-                    CompanySerialNum = dataModel.CompanySerialNum,
-                    UserID_g = request.SGuid,
-                    UserID = dataModel.UserID,
-                    UserName = dataModel.UserName,
-                    AddressIP = UserIPAddressTool.GetRealUserIPAddress(),
-                    ConnectionConfig = connectionConfig
+                    CurrentUser = new SigninUser
+                    {
+                        CompanySerialNum = dataModel.CompanySerialNum,
+                        UserID_g = request.SGuid,
+                        UserID = dataModel.UserID,
+                        UserName = dataModel.UserName,
+                        AddressIP = UserIPAddressTool.GetRealUserIPAddress(),
+                        ConnectionConfig = connectionConfig
+                    }
                 }
             };
-            HttpContext.Current.Items.Add("__Login__User__", respond.CurrentUser);
+            HttpContext.Current.Items.Add("__Login__User__", respond.Data.CurrentUser);
             return respond;
         }
     }

@@ -53,8 +53,8 @@ namespace CPSS.Web
                 if (online == null) return;
                 service.FindSininUserDataModelByUserID(new RequestOnlineSigninUserViewModel
                 {
-                    SGuid = online.SGuid,
-                    UserID = online.UserID
+                    SGuid = online.Data.SGuid,
+                    UserID = online.Data.UserID
                 });
             }
             catch

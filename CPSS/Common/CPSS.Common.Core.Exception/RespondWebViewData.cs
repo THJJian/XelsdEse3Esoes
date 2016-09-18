@@ -9,6 +9,10 @@ namespace CPSS.Common.Core.Exception
     [Serializable]
     public class RespondWebViewData<T> : RespondWebViewDataBase where T : class ,new ()
     {
+        public RespondWebViewData() : base(WebViewErrorCode.Success)
+        {
+        }
+
         public RespondWebViewData(int errorCode, string errorMessage) : base(errorCode, errorMessage)
         {
         }
