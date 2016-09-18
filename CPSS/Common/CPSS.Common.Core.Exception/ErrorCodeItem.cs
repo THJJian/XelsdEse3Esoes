@@ -1,10 +1,14 @@
 ﻿// #region << 版 本 注 释 >>
 // /*
+
+using System;
+
 namespace CPSS.Common.Core.Exception
 {
     /// <summary>
     /// 错误信息项
     /// </summary>
+    [Serializable]
     public class ErrorCodeItem
     {
         /// <summary>

@@ -15,8 +15,10 @@
 
         public static ErrorCodeItem SigninFailed = new ErrorCodeItem(4, "登录失败");
 
-        public static ErrorCodeItem SigninInfoError = new ErrorCodeItem(5, "登录名格式错误，必须为公司编号:用户名。如->ABC公司:张三");
+        public static ErrorCodeItem SigninInfoError = new ErrorCodeItem(5, "用户名格式错误，必须为公司编号:用户名。如->ABC公司:张三");
 
-        public static ErrorCodeItem UserNameOrPwdError = new ErrorCodeItem(6, "登录名或密码错误");
+        public static ErrorCodeItem UserNameOrPwdError = new ErrorCodeItem(6, "用户名或密码错误");
+
+        public static ErrorCodeItem ModelValidateError = new ErrorCodeItem(7, "实体验证出错");
     }
 }

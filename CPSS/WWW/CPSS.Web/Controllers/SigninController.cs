@@ -1,8 +1,12 @@
-﻿using System.Web.Mvc;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
+using CPSS.Common.Core.Exception;
 using CPSS.Common.Core.Helper.Extension;
 using CPSS.Common.Core.Mvc;
 using CPSS.Service.ViewService.Interfaces.User;
 using CPSS.Service.ViewService.ViewModels.User.Request;
+using CPSS.Service.ViewService.ViewModels.User.Respond;
+//using Newtonsoft.Json.Linq;
 
 namespace CPSS.Web.Controllers
 {
@@ -25,15 +29,28 @@ namespace CPSS.Web.Controllers
         {
             bool isValid;
             var errorMessage = this.GenerateModelValidateErrMessage(ModelState, out isValid);
-            if (!isValid) return Json(errorMessage);
+            RespondWebViewData<RespondSigninUserViewModel> respond;
+            if (!isValid)
+            {
+                respond = new RespondWebViewData<RespondSigninUserViewModel>(WebViewErrorCode.ModelValidateError.ErrorCode, errorMessage);
+                //var result = JObject.FromObject(respond);
+                return Json(respond);
+            }
 
             //TODO 验证通过将执行的操作
-            var respond = this.mSigninUserViewService.QuerySigninUserViewModel(request);
+            respond = this.mSigninUserViewService.QuerySigninUserViewModel(request);
             if (respond.Data.CurrentUser.UserID > 0)
             {
 
             }
             return Json(errorMessage);
         }
+        
+    }
+
+    public class dasd
+    {
+        [Required]
+        public string UserName { set; get; }
     }
 }
