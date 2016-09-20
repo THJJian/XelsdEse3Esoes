@@ -47,10 +47,4 @@ namespace CPSS.Web.Controllers
         }
         
     }
-
-    public class dasd
-    {
-        [Required]
-        public string UserName { set; get; }
-    }
 }
