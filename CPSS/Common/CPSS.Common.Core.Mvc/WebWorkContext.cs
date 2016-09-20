@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Routing;
 using Autofac.Features.OwnedInstances;
+using CPSS.Common.Core.Helper.WebConfig;
 using CPSS.Common.Core.Mvc.Ioc;
 
 namespace CPSS.Common.Core.Mvc
@@ -165,7 +166,7 @@ namespace CPSS.Common.Core.Mvc
             {
                 this.JavaScript = new List<string>();
             }
-            foreach (var realurl in urls.Select(url => string.Concat("/Scripts/",url, ".js")).Where(realurl => !this.JavaScript.Exists(p => p.Equals(realurl, StringComparison.CurrentCultureIgnoreCase))))
+            foreach (var realurl in urls.Select(url => string.Concat(WebConfigHelper.ResourceDomain(), "/Scripts/",url, ".js")).Where(realurl => !this.JavaScript.Exists(p => p.Equals(realurl, StringComparison.CurrentCultureIgnoreCase))))
             {
                 this.JavaScript.Add(realurl);
             }
@@ -178,7 +179,7 @@ namespace CPSS.Common.Core.Mvc
             {
                 this.Css = new List<string>();
             }
-            foreach (var realurl in urls.Select(url => string.Concat("/Css/", url, ".css")).Where(realurl => !this.Css.Exists(p => p.Equals(realurl, StringComparison.CurrentCultureIgnoreCase))))
+            foreach (var realurl in urls.Select(url => string.Concat(WebConfigHelper.ResourceDomain(), "/Css/", url, ".css")).Where(realurl => !this.Css.Exists(p => p.Equals(realurl, StringComparison.CurrentCultureIgnoreCase))))
             {
                 this.Css.Add(realurl);
             }

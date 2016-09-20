@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @foreach (var css in WorkContext.Resource.Css)
+    {
+        <link href="@css" type="text/css" rel="stylesheet">
+    }
+</head>
+<body>
+    <div> 
+    </div>
+    @foreach (var script in WorkContext.Resource.JavaScript)
+    {
+        <script type="text/javascript" src="@script"></script>
+    }
+</body>
+</html>
