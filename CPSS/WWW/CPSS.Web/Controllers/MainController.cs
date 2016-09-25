@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using CPSS.Common.Core.Mvc;
 
-namespace CPSS.Web.Controllers.Main
+namespace CPSS.Web.Controllers
 {
     public class MainController : WebBaseController
     {

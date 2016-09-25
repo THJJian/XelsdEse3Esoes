@@ -471,6 +471,7 @@
     <Content Include="Scripts\easyui-1.5\plugins\jquery.validatebox.js" />
     <Content Include="Scripts\easyui-1.5\plugins\jquery.window.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\Main\MainHelper.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

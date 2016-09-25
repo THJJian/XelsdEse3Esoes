@@ -31,13 +31,15 @@ namespace CPSS.Web
 
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
-            var context = (sender as HttpApplication).Context;
+            var httpApplication = sender as HttpApplication;
+            if (httpApplication == null) return;
+            var context = httpApplication.Context;
             var user = context.Items["__Login__User__"] as SigninUser;
             if (user != null) return;
 
             var autofac = AutofacServiceContainer.CurrentServiceContainer.BeginLifetimeScope(new object());
             var service = autofac.Resolve<ISigninUserViewService>();
-            HttpCookie userCookie = context.Request.Cookies[FormsAuthentication.FormsCookieName];
+            var userCookie = context.Request.Cookies[FormsAuthentication.FormsCookieName];
             if (string.IsNullOrEmpty(userCookie?.Value)) return;
             try
             {

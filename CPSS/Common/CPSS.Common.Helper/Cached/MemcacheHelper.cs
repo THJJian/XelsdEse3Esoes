@@ -111,7 +111,7 @@ namespace CPSS.Common.Core.Helper.Cached
         /// <returns></returns>
         private static object GetLockObject(string key)
         {
-            var cacheKey = string.Format("$SynchronizedCacheHelperLockObject${0}", key);
+            var cacheKey = $"$SynchronizedCacheHelperLockObject${key}";
             var result = GetCache(cacheKey);
             if (result != null)
             {
