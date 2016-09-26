@@ -421,6 +421,7 @@
     <Content Include="Css\easyui-1.5\themes\metro\validatebox.css" />
     <Content Include="Css\easyui-1.5\themes\metro\window.css" />
     <Content Include="Css\easyui-1.5\themes\mobile.css" />
+    <Content Include="Css\Main\left-nav.css" />
     <Content Include="Scripts\cspplib.js" />
     <Content Include="Scripts\easyui-1.5\easyloader.js" />
     <Content Include="Scripts\easyui-1.5\jquery.easyui.min.js" />

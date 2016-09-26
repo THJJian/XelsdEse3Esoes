@@ -4,7 +4,7 @@
     CSPPLib.RegNameSpace(ns).TabsHelper = (function() {
         var self,
             tab_container_id = "#main_tabs";
-        var tabContent = "<iframe scrolling=\"auto\" frameborder=\"0\"  src=\"{0}\" style=\"width:100%; height:99%;\"></iframe>";
+        var tabContent = "<iframe scrolling=\"no\" frameborder=\"0\"  src=\"{0}\" style=\"width:100%; height:99%;\"></iframe>";
 
         var __init = function() {
             self = this;
@@ -73,4 +73,27 @@
             setPanelHeight: _setPanelHeight
         };
     })();
+
+    $(document.body).ready(function() {
+        //初始化左边菜单的事件
+        $(".easyui-accordion li a")
+            .on("click", function() {
+                var _self = $(this),
+                    _title = _self.attr("sub-title"),
+                    _url = _self.attr("url"),
+                    _icons = _self.attr("icons");
+                if (_icons === "") _icons = null;
+                CSPPLib.Main.TabsHelper.addTab(_title, _url, _icons);
+
+                $(".easyui-accordion li div").removeClass("selected");
+                $(this).parent().addClass("selected");
+            })
+            .hover(function () {
+                $(this).parent().addClass("hover");
+            }, function () {
+                $(this).parent().removeClass("hover");
+            });
+
+    });
+
 })("Main");

@@ -110,7 +110,7 @@ var CSPPLib = (function () {
             var ___fun = (typeof __fun === "function") ? __fun : function(isOk) {
                 _alert("系统提示", isOk);
             };
-            $.messager.confirm(__getTitle(__title), __msgContent, __fun);
+            $.messager.confirm(__getTitle(__title), __msgContent, ___fun);
         };
 
         var _prompt = function (__title, __msgContent, __fun) {
@@ -137,6 +137,7 @@ var CSPPLib = (function () {
 
 })("Utils");
 
+/*
 (function(ns) {
     CSPPLib.RegNameSpace(ns).Accordion = (function () {
         var self;
@@ -220,5 +221,6 @@ var CSPPLib = (function () {
 
 
 })("Main");
+*/
 
 var MsgBox = CSPPLib.Utils.MsgBox;
