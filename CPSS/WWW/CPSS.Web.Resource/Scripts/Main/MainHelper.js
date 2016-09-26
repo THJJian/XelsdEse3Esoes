@@ -2,9 +2,9 @@
 (function (ns) {
     //主页的Tab标签设置
     CSPPLib.RegNameSpace(ns).TabsHelper = (function() {
-        var self;
-        var tab_container_id = "#main_tabs";
-        var tabContent = "<iframe scrolling=\"auto\" frameborder=\"0\"  src=\"{0}\" style=\"width:100%;height:100%;\"></iframe>";
+        var self,
+            tab_container_id = "#main_tabs";
+        var tabContent = "<iframe scrolling=\"auto\" frameborder=\"0\"  src=\"{0}\" style=\"width:100%; height:{1}px;\"></iframe>";
 
         var __init = function() {
             self = this;
@@ -20,9 +20,14 @@
 
         var _addTab = function (_title, _url, _icon) {
             if (!$(tab_container_id).tabs("exists", _title)) {
+                var __tab_0_panel_height = $(tab_container_id).tabs("tabs")[0].panel("options").height - 3;
+
+                var builder = CSPPLib.Utils.StringBuilder;
+                builder.appendFrt(tabContent, [_url, __tab_0_panel_height]);
+                var _content = builder.toString();
                 $(tab_container_id).tabs("add", {
                     title: _title,
-                    content: CSPPLib.Utils.StringBuilder.AppendFrt(tabContent, _url),
+                    content: _content,
                     closable: true,
                     icon: _icon
                 });

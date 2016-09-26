@@ -31,12 +31,13 @@ var CSPPLib = (function () {
             self.stringBuilder = [];
         }
 
-        var append = function (_str) {
+        var _append = function (_str) {
             if (_str === "") return;
             self.stringBuilder.push(_str);
         }
 
-        var appendFrt = function (_str, _arr) {
+        var _appendFrt = function (_str, _arr) {
+            if (_arr === null || typeof _arr !== "object") throw "appendFrt函数的_arr参数错误，应为数组。";
             if (_str === "") return;
             var isNotEnd = true;
             var reg = new RegExp(/\{(\d+)\}/g);
@@ -54,10 +55,10 @@ var CSPPLib = (function () {
                     console.log(e);
                 }
             } while (isNotEnd)
-            append(_tmp_str);
+            _append(_tmp_str);
         }
 
-        var toString = function () {
+        var _toString = function () {
             var _result = self.stringBuilder.join("");
             self.stringBuilder = [];
             return _result;
@@ -66,9 +67,9 @@ var CSPPLib = (function () {
         init();
 
         return {
-            Append: append,
-            AppendFrt: appendFrt,
-            ToString: toString
+            append: _append,
+            appendFrt: _appendFrt,
+            toString: _toString
         };
     })();
 
@@ -144,7 +145,7 @@ var CSPPLib = (function () {
             $(self.ctrlId).accordion({ animate: false });
             $.each(_data, function (_i, _item) {
                 var builder = CSPPLib.RegNameSpace("Utils").StringBuilder;
-                builder.Append("<ul>");
+                builder.append("<ul>");
                 var menu_item = "<li><div><a ref=\"{0}\" href=\"javascript:void(0)\" onclick=\"{1}\" ><span class=\"icon {2}\" >&nbsp;</span><span class=\"nav\">{3}</span></a></div></li>";
                 $.each(_item.menus, function (__i, __item) {
                     var __data = [
@@ -153,9 +154,9 @@ var CSPPLib = (function () {
                         _item.icon,
                         __item.menuName
                     ];
-                    builder.AppendFrt(menu_item, __data);
+                    builder.appendFrt(menu_item, __data);
                 });
-                builder.Append("</ul>");
+                builder.append("</ul>");
 
                 $(self.ctrlId).accordion("add", {
                     title: _item.title,
