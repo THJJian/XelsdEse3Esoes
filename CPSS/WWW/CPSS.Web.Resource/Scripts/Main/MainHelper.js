@@ -4,7 +4,7 @@
     CSPPLib.RegNameSpace(ns).TabsHelper = (function() {
         var self,
             tab_container_id = "#main_tabs";
-        var tabContent = "<iframe scrolling=\"auto\" frameborder=\"0\"  src=\"{0}\" style=\"width:100%; height:{1}px;\"></iframe>";
+        var tabContent = "<iframe scrolling=\"auto\" frameborder=\"0\"  src=\"{0}\" style=\"width:100%; height:99%;\"></iframe>";
 
         var __init = function() {
             self = this;
@@ -20,10 +20,8 @@
 
         var _addTab = function (_title, _url, _icon) {
             if (!$(tab_container_id).tabs("exists", _title)) {
-                var __tab_0_panel_height = $(tab_container_id).tabs("tabs")[0].panel("options").height - 3;
-
                 var builder = CSPPLib.Utils.StringBuilder;
-                builder.appendFrt(tabContent, [_url, __tab_0_panel_height]);
+                builder.appendFrt(tabContent, [_url]);
                 var _content = builder.toString();
                 $(tab_container_id).tabs("add", {
                     title: _title,
