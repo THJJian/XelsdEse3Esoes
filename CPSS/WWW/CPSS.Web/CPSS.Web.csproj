@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CommonPartialController.cs" />
     <Compile Include="Controllers\InformationController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\SigninController.cs" />
@@ -138,6 +139,7 @@
     </Content>
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\Information\PolicyLaw.cshtml" />
+    <Content Include="Views\Shared\CommonPartial\LeftNavMenu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

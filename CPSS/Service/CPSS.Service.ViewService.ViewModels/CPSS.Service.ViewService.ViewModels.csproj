@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainPage\Respond\RespondMenuViewModel.cs" />
+    <Compile Include="MainPage\Respond\RespondPanelViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\Request\RequestCompanyInfoViewModel.cs" />
     <Compile Include="User\Request\RequestOnlineSigninUserViewModel.cs" />
@@ -55,6 +57,7 @@
       <Name>CPSS.Common.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

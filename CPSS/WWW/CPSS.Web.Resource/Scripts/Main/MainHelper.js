@@ -1,10 +1,12 @@
 ﻿;
 (function (ns) {
+    var tab_container_id = "#main_tabs",
+        zoomRate = 0.9976;
+
     //主页的Tab标签设置
     CSPPLib.RegNameSpace(ns).TabsHelper = (function() {
-        var self,
-            tab_container_id = "#main_tabs";
-        var tabContent = "<iframe scrolling=\"no\" frameborder=\"0\"  src=\"{0}\" style=\"width:100%; height:99%;\"></iframe>";
+        var self;
+        var tabContent = "<iframe scrolling=\"no\" frameborder=\"0\"  src=\"{0}\" style=\"width:100%; height: {1}px;\"></iframe>";
 
         var __init = function() {
             self = this;
@@ -21,7 +23,8 @@
         var _addTab = function (_title, _url, _icon) {
             if (!$(tab_container_id).tabs("exists", _title)) {
                 var builder = CSPPLib.Utils.StringBuilder;
-                builder.appendFrt(tabContent, [_url]);
+                var panel_0_height = $(tab_container_id).tabs("tabs")[0].panel("options").height;
+                builder.appendFrt(tabContent, [_url, zoomRate * panel_0_height]);
                 var _content = builder.toString();
                 $(tab_container_id).tabs("add", {
                     title: _title,
@@ -74,7 +77,23 @@
         };
     })();
 
-    $(document.body).ready(function() {
+    $(document.body).ready(function () {
+        var height = $(window).height();
+        $("#main_layout").attr("style", "width:100%; height:" + height + "px");
+        $("#main_layout")
+            .layout("resize",
+            {
+                width: "100%",
+                height: height + "px"
+            });
+
+        //初始化Accordion的Panel默认高度
+        CSPPLib.Main.PanelHelper.setPanelHeight();
+
+        //初始化第一个tab里面的panel的内容的高度
+        var panel_0_height = $(tab_container_id).tabs("tabs")[0].panel("options").height;
+        $("#frm_about").css("height", [(zoomRate * panel_0_height), "px"].join(""));
+
         //初始化左边菜单的事件
         $(".easyui-accordion li a")
             .on("click", function() {

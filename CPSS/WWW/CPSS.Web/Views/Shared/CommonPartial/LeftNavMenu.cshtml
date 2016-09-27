@@ -1,0 +1,290 @@
+﻿@model List<CPSS.Service.ViewService.ViewModels.MainPage.Respond.RespondPanelViewModel>
+@{
+    var isFirst = true;
+}
+
+@foreach (var _model in Model)
+{
+    <div class="easyui-panel" data-options="title:'@_model.Title', minWidth: '173px', maxWidth: '173px', iconCls: '@_model.IconCls'" style="border: 0;">
+        <ul style="display: @Html.Raw(isFirst ? "block" : "none")">
+            @foreach (var _menu in _model.Menus)
+            {
+                <li>
+                    <div>
+                        <a href="javascript:void(0);" sub-title="@_menu.Title" url="@_menu.Url">
+                            <span class="icon icon-word @_menu.IconCls">&nbsp;</span><span class="nav">@_menu.Title</span>
+                        </a>
+                    </div>
+                </li>
+            }
+        </ul>
+    </div>
+    isFirst = false;
+}
+@*
+*@
+    <div class="easyui-panel" data-options="title:'行业动态', minWidth: '173px', maxWidth: '173px', iconCls: ''" style="border: 0;">
+        <ul>
+            <li>
+                <div>
+                    <a href="javascript:void(0);" sub-title="政策法规" url="/Information/PolicyLaw">
+                        <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
+                        <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
+                        <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>@*
+    <div class="easyui-panel" data-options="title:'行业动态1', minWidth: '173px', maxWidth: '173px'" style="border: 0;">
+        <ul>
+            <li>
+                <div>
+                    <a ref="3fc759db-d740-4938-baf9-350a66cfdf5b" href="#" rel="/Information/PolicyLaw">
+                        <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
+                        <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
+                        <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="3fc759db-d740-4938-baf9-350a66cfdf5b" href="#" rel="/Information/PolicyLaw">
+                        <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
+                        <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
+                        <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="3fc759db-d740-4938-baf9-350a66cfdf5b" href="#" rel="/Information/PolicyLaw">
+                        <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
+                        <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
+                        <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="3fc759db-d740-4938-baf9-350a66cfdf5b" href="#" rel="/Information/PolicyLaw">
+                        <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
+                        <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
+                        <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="3fc759db-d740-4938-baf9-350a66cfdf5b" href="#" rel="/Information/PolicyLaw">
+                        <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
+                        <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告1</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
+                        <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息1</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="easyui-panel" data-options="title:'行业动态2', minWidth: '173px', maxWidth: '173px'" style="border: 0;">
+        <ul>
+            <li>
+                <div>
+                    <a ref="3fc759db-d740-4938-baf9-350a66cfdf5b" href="#" rel="/Information/PolicyLaw">
+                        <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
+                        <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
+                        <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="3fc759db-d740-4938-baf9-350a66cfdf5b" href="#" rel="/Information/PolicyLaw">
+                        <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
+                        <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
+                        <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="3fc759db-d740-4938-baf9-350a66cfdf5b" href="#" rel="/Information/PolicyLaw">
+                        <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
+                        <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
+                        <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="3fc759db-d740-4938-baf9-350a66cfdf5b" href="#" rel="/Information/PolicyLaw">
+                        <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
+                        <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
+                        <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="3fc759db-d740-4938-baf9-350a66cfdf5b" href="#" rel="/Information/PolicyLaw">
+                        <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
+                        <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
+                        <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="3fc759db-d740-4938-baf9-350a66cfdf5b" href="#" rel="/Information/PolicyLaw">
+                        <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
+                        <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告2</span>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
+                        <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息2</span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+    </div>
+    *@
