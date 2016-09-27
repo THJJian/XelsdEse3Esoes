@@ -8,8 +8,8 @@ namespace CPSS.Common.Core.Mvc
         {
             base.Initialize(requestContext);
             this.WorkContext.Resource
-                .AddPageCss("easyui-1.5/themes/default/easyui", "easyui-1.5/themes/icon")
-                .AddPageScripts("jquery-1.11.3.min", "cspplib", "easyui-1.5/jquery.easyui.min");
+                .AddPageCss("ligerUI-1.3.3/skins/Aqua/css/ligerui-all", "ligerUI-1.3.3/skins/ligerui-icons")
+                .AddPageScripts("jquery-1.11.3.min", "ligerUI-1.3.3/js/core/base", "cspplib");
         }
     }
 }

@@ -1,5 +1,29 @@
 ﻿;
 (function (ns) {
+
+    CSPPLib.RegNameSpace(ns).initLayout = (function() {
+        var _self;
+        var _main_container_layout_id = "#main_container_layout";
+        var _init = function() {
+            _self = this;
+            var __options = {
+                space: 0,
+                allowLeftCollapse: false,
+                allowLeftResize: false,
+                allowRightResize: false,
+                allowTopResize: false,
+                allowBottomResize: false,
+                topHeight: 90,
+                bottomHeight: 40,
+                leftWidth: 180
+            };
+            $(_main_container_layout_id).ligerLayout(__options);
+        }
+
+        _init();
+    })();
+
+    /*
     //主页的Tab标签设置
     CSPPLib.RegNameSpace(ns).TabsHelper = (function() {
         var self,
@@ -11,7 +35,6 @@
         };
 
         var __tabClose = function() {
-            /*双击关闭TAB选项卡*/
             $(".tabs-inner").dblclick(function() {
                 var subtitle = $(this).children(".tabs-closable").text();
                 $(tab_container_id).tabs("close", subtitle);
@@ -95,5 +118,6 @@
             });
 
     });
+    */
 
 })("Main");

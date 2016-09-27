@@ -34,15 +34,15 @@
     };
 
     //dialog 图片文件夹的路径 预加载
-    $.ligerui.DialogImagePath = "../../lib/ligerUI/skins/Aqua/images/win/";
+    $.ligerui.DialogImagePath = "../../css/ligerUI-1.3.3/skins/Aqua/images/win/";
 
-    function prevImage(paths)
-    {
-        for (var i in paths)
-        {
-            $('<img />').attr('src', l.DialogImagePath + paths[i]);
-        }
-    }
+    //function prevImage(paths)
+    //{
+    //    for (var i in paths)
+    //    {
+    //        $('<img />').attr('src', l.DialogImagePath + paths[i]);
+    //    }
+    //}
     //prevImage(['dialog.gif', 'dialog-winbtns.gif', 'dialog-bc.gif', 'dialog-tc.gif']);
 
     $.ligerDefaults.Dialog = {
@@ -1164,7 +1164,7 @@
         {
             target = $('<textarea class="l-dialog-textarea"></textarea>');
         }
-        if (typeof (value) == "string" || typeof (value) == "int")
+        if (typeof (value) == "string" || typeof (value) == "number")
         {
             target.val(value);
         }

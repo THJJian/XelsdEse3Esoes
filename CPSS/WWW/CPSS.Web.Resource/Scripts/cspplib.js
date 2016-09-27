@@ -73,63 +73,61 @@ var CSPPLib = (function () {
         };
     })();
 
-    CSPPLib.RegNameSpace(ns).MsgBox = (function() {
+    CSPPLib.RegNameSpace(ns).MessageBox = (function() {
+
+        var __default_options = { allowClose: false };
 
         var __getTitle = function(_title) {
             var __title = (typeof _title === "undefined" || _title === "") ? "系统提示" : _title;
             return __title;
         }
 
-        var _alert = function (__title, __msgContent) {
-            $.messager.alert(__getTitle(__title), __msgContent);
+        var __msg = function (__title, __msgContent, __callback) {
+            var ___fun = (typeof __callback === "function") ? __callback : null;
+            if (___fun === null) return $.ligerDialog.alert(__msgContent, __title, "none", null, __default_options);
+            else return $.ligerDialog.alert(__msgContent, __title, "none", ___fun, __default_options);
         };
 
-        var __msg = function (__title, __msgContent, __icon, __fun) {
-            var ___fun = (typeof __fun === "function") ? __fun : null;
-            if (___fun === null) $.messager.alert(__getTitle(__title), __msgContent, __icon);
-            else $.messager.alert(__getTitle(__title), __msgContent, __icon, ___fun);
+        var _alert = function (__title, __msgContent, __callback) {
+            return __msg(__getTitle(__title), __msgContent, __callback);
         };
 
-        var _info = function (__title, __msgContent, __fun) {
-            __msg(__title, __msgContent, "info", __fun);
+        var _success = function (__title, __msgContent, __callback) {
+            return $.ligerDialog.success(__msgContent, __getTitle(__title), __callback, __default_options);
         }
 
-        var _warning = function (__title, __msgContent, __fun) {
-            __msg(__title, __msgContent, "warning", __fun);
+        var _warn = function (__title, __msgContent, __callback) {
+            return $.ligerDialog.warn(__msgContent, __getTitle(__title), __callback, __default_options);
         }
 
-        var _error = function (__title, __msgContent, __fun) {
-            __msg(__title, __msgContent, "error", __fun);
+        var _error = function (__title, __msgContent, __callback) {
+            return $.ligerDialog.error(__msgContent, __getTitle(__title), __callback, __default_options);
         }
 
-        var _question = function (__title, __msgContent, __fun) {
-            __msg(__title, __msgContent, "question", __fun);
+        var _question = function (__title, __msgContent) {
+            return $.ligerDialog.question(__msgContent, __getTitle(__title));
         }
 
-        var _confirm = function (__title, __msgContent, __fun) {
-            var ___fun = (typeof __fun === "function") ? __fun : function(isOk) {
-                _alert("系统提示", isOk);
-            };
-            $.messager.confirm(__getTitle(__title), __msgContent, ___fun);
+        var _confirm = function (__title, __msgContent, __callback) {
+            return $.ligerDialog.confirm(__msgContent, __getTitle(__title), __callback, __default_options);
         };
 
-        var _prompt = function (__title, __msgContent, __fun) {
-            var ___fun = (typeof __fun === "function") ? __fun : function(__result) {
-                if (__result) {
-                    _alert("系统提示", ["您输入的内容是:", result, "；请自行处理输入内容。"].join(""));
-                };
-            }
-            var ___msgContent = (typeof __msgContent === "undefined" || __msgContent === "") ? "请在下面文本框内输入内容：" : __msgContent;
-            $.messager.prompt(__getTitle(__title), ___msgContent, ___fun);
+        var _prompt_m = function (__title, __msgContent, __ismulti, __callback) {
+            return $.ligerDialog.prompt(__getTitle(__title), __msgContent, __ismulti, __callback);
+        }
+
+        var _prompt = function (__title, __msgContent, __callback) {
+            return _prompt_m(__title, __msgContent, false, __callback);
         }
 
         return {
+            success: _success,
             alert: _alert,
-            info: _info,
-            warning: _warning,
+            warn: _warn,
             error: _error,
             question: _question,
             confirm: _confirm,
+            promptm:_prompt_m,
             prompt: _prompt
         };
 
@@ -137,4 +135,4 @@ var CSPPLib = (function () {
 
 })("Utils");
 
-var MsgBox = CSPPLib.Utils.MsgBox;
+var msgbox = CSPPLib.Utils.MessageBox;
