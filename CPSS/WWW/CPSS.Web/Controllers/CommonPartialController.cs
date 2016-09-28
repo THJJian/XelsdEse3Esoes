@@ -7,7 +7,7 @@ using CPSS.Service.ViewService.Interfaces.MainPage;
 
 namespace CPSS.Web.Controllers
 {
-    [HaveToLogin]
+    //[HaveToLogin]
     public class CommonPartialController : WebBaseController
     {
         private readonly ILeftNavMenuViewService mLeftNavMenuViewService;
