@@ -106,27 +106,30 @@
         $.each(_left_nav_accordion_panels, function(__index, __panel) {
             __panel.panel({
                 onExpand: function () {
-                    var __self = $(this),
-                        __easyui_panel = $(__self).find(".easyui-panel"),
-                        //菜单panel的高度
-                        __left_nav_panel_height = __self.panel("options").height,
-                        //菜单panel的header高度
-                        __left_nav_panel_header_height = __self.panel("header").height(),
-                        //菜单panel的header的border-top
-                        __left_nav_panel_header_border_top_width = parseInt($(__self.panel("header")).css("border-top-width")),
-                        //菜单panel的haeder的border-bottom
-                        __left_nav_panel_header_border_bottom_width = parseInt($(__self.panel("header")).css("border-bottom-width")),
-                        //菜单panel的header的padding-top
-                        __left_nav_panel_header_padding_top = parseInt($(__self.panel("header")).css("padding-top")),
-                        //菜单panel的header的padding-bottom
-                        __left_nav_panel_header_padding_bottom = parseInt($(__self.panel("header")).css("padding-bottom")),
-                        //菜单panel的header总高度
-                        __left_nav_panel_heder_sum_height = __left_nav_panel_header_height + __left_nav_panel_header_border_top_width + __left_nav_panel_header_border_bottom_width + __left_nav_panel_header_padding_top + __left_nav_panel_header_padding_bottom,
-                        //菜单accordion除所有panel的header高度后的净余高度
-                        __left_nav_accordion_residue_height = _left_nav_accordion_height - (_left_nav_panel_count * __left_nav_panel_heder_sum_height);
+                    var __self = $(this);
+                    __self.find("ul").slideDown(500, function() {
+                        var __easyui_panel = $(__self).find(".easyui-panel"),
+                            //菜单panel的高度
+                            __left_nav_panel_height = __easyui_panel.height(),
+                            __left_nav_panel_header = __self.panel("header"),
+                            //菜单panel的header高度
+                            __left_nav_panel_header_height = __left_nav_panel_header.height(),
+                            //菜单panel的header的border-top
+                            __left_nav_panel_header_border_top_width = parseInt($(__left_nav_panel_header).css("border-top-width")),
+                            //菜单panel的haeder的border-bottom
+                            __left_nav_panel_header_border_bottom_width = parseInt($(__left_nav_panel_header).css("border-bottom-width")),
+                            //菜单panel的header的padding-top
+                            __left_nav_panel_header_padding_top = parseInt($(__left_nav_panel_header).css("padding-top")),
+                            //菜单panel的header的padding-bottom
+                            __left_nav_panel_header_padding_bottom = parseInt($(__left_nav_panel_header).css("padding-bottom")),
+                            //菜单panel的header总高度
+                            __left_nav_panel_heder_sum_height = __left_nav_panel_header_height + __left_nav_panel_header_border_top_width + __left_nav_panel_header_border_bottom_width + __left_nav_panel_header_padding_top + __left_nav_panel_header_padding_bottom,
+                            //菜单accordion除所有panel的header高度后的净余高度
+                            __left_nav_accordion_residue_height = _left_nav_accordion_height - (_left_nav_panel_count * __left_nav_panel_heder_sum_height + 1);
 
-                    if (__left_nav_panel_height > __left_nav_accordion_residue_height) __easyui_panel.css({ width: "156px" });
-                    __self.find("ul").slideDown(500);
+                        if ((__left_nav_panel_height - __left_nav_panel_heder_sum_height) > __left_nav_accordion_residue_height) __easyui_panel.css({ width: "156px" });
+                        else __easyui_panel.css({ width: "173px" });
+                    });
                 }
             });
         });
