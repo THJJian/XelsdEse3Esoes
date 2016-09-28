@@ -79,6 +79,7 @@
     <Compile Include="EmployeesDataModel.cs">
       <DependentUpon>CPSSDataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="MainPage\LeftNavMenuDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\CompanyInfoDataModel.cs" />
     <Compile Include="User\OnlineSigninUserDataModel.cs" />

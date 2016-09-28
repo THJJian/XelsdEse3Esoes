@@ -60,6 +60,7 @@
     <Compile Include="EmployeesDataAccess.generated.cs">
       <DependentUpon>DataAccessTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="MainPage\LeftNavMenuDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\CompanyInfoDataAccess.cs" />
     <Compile Include="User\SigninUserDataAccess.cs" />

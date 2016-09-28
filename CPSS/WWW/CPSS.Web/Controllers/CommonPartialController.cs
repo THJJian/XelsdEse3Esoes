@@ -2,13 +2,25 @@
 using CPSS.Common.Core.Mvc;
 using CPSS.Service.ViewService.ViewModels.MainPage.Respond;
 using System.Collections.Generic;
+using CPSS.Common.Core.Mvc.Filters;
+using CPSS.Service.ViewService.Interfaces.MainPage;
 
 namespace CPSS.Web.Controllers
 {
+    [HaveToLogin]
     public class CommonPartialController : WebBaseController
     {
+        private readonly ILeftNavMenuViewService mLeftNavMenuViewService;
+
+        public CommonPartialController(ILeftNavMenuViewService _leftNavMenuViewService)
+        {
+            this.mLeftNavMenuViewService = _leftNavMenuViewService;
+        }
+
         public PartialViewResult LeftNavMenu()
         {
+            #region 事例
+
             var model = new List<RespondPanelViewModel>
             {
                 new RespondPanelViewModel
@@ -314,6 +326,11 @@ namespace CPSS.Web.Controllers
                     }
                 }
             };
+
+            #endregion
+
+            model.AddRange(this.mLeftNavMenuViewService.GetLeftNavMenuDataModels(0));
+
             return PartialView("~/Views/Shared/CommonPartial/LeftNavMenu.cshtml", model);
         }
     }
