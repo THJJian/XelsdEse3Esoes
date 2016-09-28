@@ -1,7 +1,8 @@
 ﻿;
 (function (ns) {
     var tab_container_id = "#main_tabs",
-        zoomRate = 0.9976;
+        zoomRate = 0.996,
+        left_nav_container_id = "#left_nav";
 
     //主页的Tab标签设置
     CSPPLib.RegNameSpace(ns).TabsHelper = (function() {
@@ -47,8 +48,7 @@
 
     //初始化Accordion的Panel默认高度
     CSPPLib.RegNameSpace(ns).PanelHelper = (function() {
-        var self,
-            left_nav_container_id = "#left_nav";
+        var self;
 
         var __init = function() {
             self = this;
@@ -70,10 +70,15 @@
             });
         }
 
+        var _onExpand = function() {
+            alert("_onExpand");
+        }
+
         __init();
 
         return {
-            setPanelHeight: _setPanelHeight
+            setPanelHeight: _setPanelHeight,
+            onExpand: _onExpand
         };
     })();
 
@@ -93,6 +98,38 @@
         //初始化第一个tab里面的panel的内容的高度
         var panel_0_height = $(tab_container_id).tabs("tabs")[0].panel("options").height;
         $("#frm_about").css("height", [(zoomRate * panel_0_height), "px"].join(""));
+
+        var _left_nav_accordion_panels = $(left_nav_container_id).accordion("panels"),
+            //菜单accordion的高度
+            _left_nav_accordion_height = $(left_nav_container_id).accordion("options").height,
+            _left_nav_panel_count = _left_nav_accordion_panels.length;
+        $.each(_left_nav_accordion_panels, function(__index, __panel) {
+            __panel.panel({
+                onExpand: function () {
+                    var __self = $(this),
+                        __easyui_panel = $(__self).find(".easyui-panel"),
+                        //菜单panel的高度
+                        __left_nav_panel_height = __self.panel("options").height,
+                        //菜单panel的header高度
+                        __left_nav_panel_header_height = __self.panel("header").height(),
+                        //菜单panel的header的border-top
+                        __left_nav_panel_header_border_top_width = parseInt($(__self.panel("header")).css("border-top-width")),
+                        //菜单panel的haeder的border-bottom
+                        __left_nav_panel_header_border_bottom_width = parseInt($(__self.panel("header")).css("border-bottom-width")),
+                        //菜单panel的header的padding-top
+                        __left_nav_panel_header_padding_top = parseInt($(__self.panel("header")).css("padding-top")),
+                        //菜单panel的header的padding-bottom
+                        __left_nav_panel_header_padding_bottom = parseInt($(__self.panel("header")).css("padding-bottom")),
+                        //菜单panel的header总高度
+                        __left_nav_panel_heder_sum_height = __left_nav_panel_header_height + __left_nav_panel_header_border_top_width + __left_nav_panel_header_border_bottom_width + __left_nav_panel_header_padding_top + __left_nav_panel_header_padding_bottom,
+                        //菜单accordion除所有panel的header高度后的净余高度
+                        __left_nav_accordion_residue_height = _left_nav_accordion_height - (_left_nav_panel_count * __left_nav_panel_heder_sum_height);
+
+                    if (__left_nav_panel_height > __left_nav_accordion_residue_height) __easyui_panel.css({ width: "156px" });
+                    __self.find("ul").slideDown(500);
+                }
+            });
+        });
 
         //初始化左边菜单的事件
         $(".easyui-accordion li a")
