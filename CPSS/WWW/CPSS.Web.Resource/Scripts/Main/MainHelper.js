@@ -103,7 +103,9 @@
             //菜单accordion的高度
             _left_nav_accordion_height = $(left_nav_container_id).accordion("options").height,
             _left_nav_panel_count = _left_nav_accordion_panels.length;
-        $.each(_left_nav_accordion_panels, function(__index, __panel) {
+        
+        $.each(_left_nav_accordion_panels, function (__index, __panel) {
+            $(__panel).css("height", __panel.height() - 9);
             __panel.panel({
                 onExpand: function () {
                     var __self = $(this);

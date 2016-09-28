@@ -130,7 +130,9 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Signin\Login.cshtml" />
-    <Content Include="config\connection.config" />
+    <Content Include="config\connection.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="config\IOC\AutofacComponents.config" />
     <Content Include="config\IOC\AutofacConfigBuilderTemplate.config">
       <AutoGen>True</AutoGen>

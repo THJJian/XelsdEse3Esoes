@@ -17,7 +17,7 @@ namespace CPSS.Data.DataAccess.MainPage
         public List<LeftNavMenuDataModel> GetLeftNavMenuDataModels(LeftNavMenuParameter parameter)
         {
             //需要联查权限表
-            this.ExecuteSQL = "SELECT * FROM sys_meus WHERE UserID=@UserID";
+            this.ExecuteSQL = "SELECT * FROM sys_menus WHERE IsEnabled=1 /*AND UserID=@UserID*/";
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@UserID", parameter.UserID)

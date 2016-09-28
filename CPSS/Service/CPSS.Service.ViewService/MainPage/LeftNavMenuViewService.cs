@@ -24,7 +24,7 @@ namespace CPSS.Service.ViewService.MainPage
             };
             var dataModels = this.mLeftNavMenuDataAccess.GetLeftNavMenuDataModels(parameter);
             var viewModels = dataModels
-                .Where(dataModel => string.IsNullOrEmpty(dataModel.ParentClassID))
+                .Where(dataModel => dataModel.ParentClassID == "000001")
                 .Select(dataModel => new RespondPanelViewModel
                 {
                     IconCls = dataModel.IconCls,
