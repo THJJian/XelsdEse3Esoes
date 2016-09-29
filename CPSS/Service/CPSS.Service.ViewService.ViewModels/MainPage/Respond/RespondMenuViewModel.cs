@@ -16,5 +16,15 @@
         /// 链接地址
         /// </summary>
         public string Url { set; get; }
+
+        /// <summary>
+        /// menuid
+        /// </summary>
+        public int MenuID { set; get; }
+
+        /// <summary>
+        /// 按钮ID
+        /// </summary>
+        public string ButtonID { set; get; }
     }
 }

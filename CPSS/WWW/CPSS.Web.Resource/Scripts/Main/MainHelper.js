@@ -105,7 +105,7 @@
             _left_nav_panel_count = _left_nav_accordion_panels.length;
         
         $.each(_left_nav_accordion_panels, function (__index, __panel) {
-            $(__panel).css("height", __panel.height() - 9);
+            $(__panel).css("height", __panel.height() - _left_nav_panel_count);
             __panel.panel({
                 onExpand: function () {
                     var __self = $(this);

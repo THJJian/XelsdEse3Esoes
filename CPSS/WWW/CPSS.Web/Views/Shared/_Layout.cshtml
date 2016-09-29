@@ -2,15 +2,38 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link rel="shortcut icon" href="" type="image/x-icon"/>
     <title>CPSS</title>
+    <meta name="description" content="ss">
+    <meta name="keywords" content="dd">
+
     <style>
         body {
-            margin: 0 0;
+            margin: 0;
+            padding: 0;
         }
+
+        @RenderSection("style", false)
     </style>
+    @foreach (var css in WorkContext.Resource.Css)
+    {
+        <link href="@css" type="text/css" rel="stylesheet">
+    }
 </head>
 <body>
-@RenderBody()
+    @RenderSection("buttons", false)
+
+    @RenderBody()
+
+    @RenderSection("grid", false)
+
+@foreach (var script in WorkContext.Resource.JavaScript)
+{
+    <script type="text/javascript" src="@script"></script>
+}
+
+@RenderSection("scripts", false)
 </body>
 </html>

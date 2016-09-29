@@ -149,5 +149,20 @@ namespace CPSS.Common.Core.Helper.Extension
 
         #endregion
 
+        #region Bool Converter Object
+
+        /// <summary>
+        /// 将bool值转换为其等效字符串表示形式（小写“true”或“false”）。
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static string ToLowerString(this bool source)
+        {
+            var result = source.ToString().ToLower();
+            return result;
+        }
+
+        #endregion
+
     }
 }

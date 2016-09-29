@@ -1,0 +1,15 @@
+﻿@using CPSS.Common.Core.Helper.Extension
+
+@helper textBox(string _textBoxID, string _labelName, string _labelPosition = "before", string _labelAlign = "right", int _labelWidth = 80, int _width = 260, int _height = 30, string _buttonText = "")
+{
+    <div style="padding-top: 5px; float: left;">
+        <input class="easyui-textbox" id="@_textBoxID"
+               data-options="label:'@_labelName', labelPosition: '@_labelPosition', labelAlign: '@_labelAlign', labelWidth: '@string.Concat(_labelWidth, "px")',
+           width: '@string.Concat(_width, "px")', height: '@string.Concat(_height, "px")', buttonText:'@_buttonText'" style="padding-top: 5px;">
+    </div>
+}
+
+@helper linkButton(string _buttonText, string _buttonID, bool _disabled = false, string _iconCls = "")
+{
+    <a href="javascript:void(0);" id="@_buttonID" class="easyui-linkbutton" data-options="iconCls:'@_iconCls', disabled: @_disabled.ToLowerString()">@_buttonText</a>
+}

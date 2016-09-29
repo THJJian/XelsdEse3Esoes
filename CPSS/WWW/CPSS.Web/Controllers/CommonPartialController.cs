@@ -1,8 +1,10 @@
 ﻿using System.Web.Mvc;
 using CPSS.Common.Core.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using CPSS.Common.Core.Mvc.Filters;
 using CPSS.Service.ViewService.Interfaces.MainPage;
+using CPSS.Service.ViewService.ViewModels.MainPage.Respond;
 
 namespace CPSS.Web.Controllers
 {
@@ -16,6 +18,10 @@ namespace CPSS.Web.Controllers
             this.mLeftNavMenuViewService = _leftNavMenuViewService;
         }
 
+        /// <summary>
+        /// 主页左边导航栏
+        /// </summary>
+        /// <returns></returns>
         public PartialViewResult LeftNavMenu()
         {
             #region 事例
@@ -330,6 +336,17 @@ namespace CPSS.Web.Controllers
             var model = this.mLeftNavMenuViewService.GetLeftNavMenuDataModels(0);
 
             return PartialView("~/Views/Shared/CommonPartial/LeftNavMenu.cshtml", model);
+        }
+
+        /// <summary>
+        /// 页面按钮
+        /// </summary>
+        /// <returns></returns>
+        public PartialViewResult BillButtons()
+        {
+
+            //var model = this.mLeftNavMenuViewService.GetBillButtonDataModels(0, billType);
+            return PartialView("~/Views/Shared/CommonPartial/BillButtons.cshtml"/*, model*/);
         }
     }
 }

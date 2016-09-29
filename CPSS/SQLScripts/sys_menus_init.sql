@@ -1,3 +1,5 @@
+USE testdb
+GO
 
 TRUNCATE table sys_menus
 GO

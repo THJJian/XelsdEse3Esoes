@@ -30,7 +30,8 @@ namespace CPSS.Data.DataAccess
             entity.Title = (string)dataReader["Title"];
             entity.IconCls = (string)dataReader["IconCls"];
             entity.Url = (string)dataReader["Url"];
-	    }
+            entity.ButtonID = (string)dataReader["ButtonID"];
+        }
 
 		/// <summary>
         /// 映射
@@ -46,7 +47,8 @@ namespace CPSS.Data.DataAccess
             result.Title = (string)dataReader["Title"];
             result.IconCls = (string)dataReader["IconCls"];
             result.Url = (string)dataReader["Url"];
-			return result;
+            result.ButtonID = (string)dataReader["ButtonID"];
+            return result;
 	    }
 
 		/// <summary>

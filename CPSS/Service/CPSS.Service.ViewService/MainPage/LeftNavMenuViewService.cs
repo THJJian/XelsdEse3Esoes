@@ -35,7 +35,9 @@ namespace CPSS.Service.ViewService.MainPage
                         {
                             IconCls = _dataModel.IconCls,
                             Title = _dataModel.Title,
-                            Url = _dataModel.Url
+                            Url = _dataModel.Url,
+                            ButtonID = _dataModel.ButtonID,
+                            MenuID = _dataModel.MenuID
                         })
                         .ToList()
                 }).ToList();

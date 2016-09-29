@@ -21,6 +21,7 @@ CREATE TABLE [dbo].[sys_menus](
 	[menuid] [int] NOT NULL identity(1,1),
 	[ClassID] [varchar](60) NOT NULL,
 	[ParentClassID] [varchar](54) NOT NULL,
+	[ButtonID] [varchar](50) NOT NULL,
 	[Title] [varchar](50) NOT NULL,
 	[IconCls] [varchar](60) NULL,
 	[Url] [varchar](256) NOT NULL,
