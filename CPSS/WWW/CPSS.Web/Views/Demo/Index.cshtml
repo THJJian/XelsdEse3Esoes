@@ -33,7 +33,20 @@
                 linkButtonHelper.init(function() {
                     var _self = $(this),
                         _id = _self.attr("id");
-                    console.log(["id", _id].join(""));
+                    $.ajax("/demo/demo",
+                    {
+                        type: "post",
+                        dataType: "json",
+                        success: function (result) {
+                            debugger;
+                        },
+                        error: function (_error) {
+                            debugger;
+                        },
+                        complete: function() {
+                            debugger;
+                        }
+                    });
                 });
 
                 textBoxHelper.init(function() {

@@ -348,5 +348,14 @@ namespace CPSS.Web.Controllers
             //var model = this.mLeftNavMenuViewService.GetBillButtonDataModels(0, billType);
             return PartialView("~/Views/Shared/CommonPartial/BillButtons.cshtml"/*, model*/);
         }
+
+        /// <summary>
+        /// 无权访问的内容
+        /// </summary>
+        /// <returns></returns>
+        public PartialViewResult UnAuthorizedVisit()
+        {
+            return PartialView("~/Views/Shared/CommonPartial/UnAuthorizedVisit.cshtml");
+        }
     }
 }

@@ -16,8 +16,7 @@ namespace CPSS.Common.Core.Mvc.Filters
 
         protected override void HandleUnauthorizedRequest(AuthorizationContext filterContext)
         {
-            AuthorizedRequestMethod.HandleUnauthorizedRequest(filterContext,
-                filter => base.HandleUnauthorizedRequest(filter));
+            AuthorizedRequestMethod.HandleUnauthorizedRequest(filterContext, ValidateTypeFilter.LogonValidateType,  filter => base.HandleUnauthorizedRequest(filter));
         }
     }
 }

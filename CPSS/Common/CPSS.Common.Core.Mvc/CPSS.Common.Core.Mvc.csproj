@@ -83,7 +83,7 @@
   <ItemGroup>
     <Compile Include="Filters\AuthorizedRequestMethod.cs" />
     <Compile Include="Filters\HaveToLoginAttribute.cs" />
-    <Compile Include="Filters\OperateRightAttribute.cs" />
+    <Compile Include="Filters\ValidateTypeFilter.cs" />
     <Compile Include="IOC\AutofacContainer.cs" />
     <Compile Include="IOC\AutofacServiceLocator.cs" />
     <Compile Include="RazorBaseController.cs" />

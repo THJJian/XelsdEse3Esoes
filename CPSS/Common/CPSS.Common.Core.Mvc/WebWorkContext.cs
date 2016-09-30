@@ -82,7 +82,7 @@ namespace CPSS.Common.Core.Mvc
             {
                 if (this._autofacScope == null)
                 {
-                    this._autofacScope = AutofacServiceContainer.CurrentServiceContainer.BeginLifetimeScope(new Object());
+                    this._autofacScope = AutofacServiceContainer.CurrentServiceContainer.BeginLifetimeScope(new object());
                 }
                 service = this._autofacScope.Resolve<Owned<T>>();
                 this._dicContainers.Add(key, service);

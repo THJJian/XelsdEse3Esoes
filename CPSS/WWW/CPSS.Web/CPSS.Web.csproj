@@ -117,6 +117,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CommonPartialController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
+    <Compile Include="Controllers\Filters\OperateRightAttribute.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\SigninController.cs" />
     <Compile Include="Global.asax.cs">
@@ -145,6 +146,7 @@
     <Content Include="Views\Demo\Index.cshtml" />
     <Content Include="Views\Shared\CommonPartial\BillButtons.cshtml" />
     <Content Include="App_Code\UIHelper.cshtml" />
+    <Content Include="Views\Shared\CommonPartial\UnAuthorizedVisit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

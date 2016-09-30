@@ -7,12 +7,7 @@ namespace CPSS.Common.Core.Mvc.Ioc
     /// </summary>
     public class AutofacContainerBuilder
     {
-        private static readonly ContainerBuilder SysContainerBuilder = new ContainerBuilder();
-
-        public static ContainerBuilder CurrentContainerBuilder
-        {
-            get { return SysContainerBuilder; }
-        }
+        public static ContainerBuilder CurrentContainerBuilder { get; } = new ContainerBuilder();
     }
 
     /// <summary>
@@ -20,11 +15,6 @@ namespace CPSS.Common.Core.Mvc.Ioc
     /// </summary>
     public class AutofacServiceContainer
     {
-        private static readonly IContainer SysServiceContainer = AutofacContainerBuilder.CurrentContainerBuilder.Build();
-
-        public static IContainer CurrentServiceContainer
-        {
-            get { return SysServiceContainer; }
-        }
+        public static IContainer CurrentServiceContainer { get; } = AutofacContainerBuilder.CurrentContainerBuilder.Build();
     }
 }
