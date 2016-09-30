@@ -38,13 +38,12 @@
                         type: "post",
                         dataType: "json",
                         success: function (result) {
-                            debugger;
+                            MsgBox.success("", "success");
                         },
                         error: function (_error) {
-                            debugger;
+                            MsgBox.error("", _error.responseText);
                         },
                         complete: function() {
-                            debugger;
                         }
                     });
                 });
