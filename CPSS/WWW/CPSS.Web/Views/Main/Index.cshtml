@@ -24,21 +24,19 @@
 <div class="easyui-layout" id="main_layout" data-options="minWidth: '1024px', minHeight:'700px'">
     <div data-options="region:'north', minHeight: '100px', maxHeight:'100px'"></div>
     
-    <div data-options="region:'west', title: '导航菜单', split: true, minWidth: '180px', maxWidth:'180px', collapsible: false">
+    <div data-options="region:'west', title: '导航菜单', split: true, minWidth: '190px', maxWidth:'190px', collapsible: false">
         <div id="left_nav" class="easyui-accordion" data-options="fit:true, border:false">
             @{
-                Html.RenderAction("LeftNavMenu", "CommonPartial");
+                Html.RenderAction("leftnavmenu", "commonpartial");
             }
         </div>
     </div>
     
-    <div data-options="region:'center', minHeight: '566px', minWidth: '844px'">
+    <div data-options="region:'center', minHeight: '566px', minWidth: '834px'">
         <div id="main_tabs" class="easyui-tabs" data-options="fit:true, border:false">
-            <div title="About">
-                <iframe id="frm_about" scrolling="no" frameborder="0" src="/demo/index" style="width:100%;"></iframe>
+            <div title="首页">
+                <iframe id="frm_about" scrolling="no" frameborder="0" src="/main/defaulthome" style="width:100%;"></iframe>
             </div>
-            @*<div title="DataGrid" data-options="closable:true">
-            </div>*@
         </div>
     </div>
 
@@ -51,6 +49,7 @@
 }
 
 <script type="text/javascript">
+    var contentWidth;// = $($("#main_layout").layout("panel", "center")).css("width");
 
     $(window)
         .resize(function() {
@@ -62,31 +61,8 @@
                     width: "100%",
                     height: height + "px"
                 });
+            contentWidth = $($("#main_layout").layout("panel", "center")).css("width");
         });
-
-    //CSPPLib.Main.Accordion.InitAccordion({
-    //    id: "left_nav",
-    //    data: [
-    //        {
-    //            title: "行业动态",
-    //            menus: [
-    //                { menuid: 1, onClick: "alter('1');", icon: "icon-table", menuName: "菜单菜单1" },
-    //                { menuid: 2, onClick: "alter('2');", icon: "icon-table", menuName: "菜单菜单2" },
-    //                { menuid: 3, onClick: "alter('3');", icon: "icon-table", menuName: "菜单菜单3" }
-    //            ],
-    //            icon: ""
-    //        },
-    //        {
-    //            title: "行业标准",
-    //            menus: [
-    //                { menuid: 4, onClick: "alter('4');", icon: "icon-table", menuName: "菜单菜单4" },
-    //                { menuid: 5, onClick: "alter('5');", icon: "icon-table", menuName: "菜单菜单5" },
-    //                { menuid: 6, onClick: "alter('6');", icon: "icon-table", menuName: "菜单菜单6" }
-    //            ],
-    //            icon: ""
-    //        }
-    //    ]
-    //});
 </script>
 </body>
 </html>

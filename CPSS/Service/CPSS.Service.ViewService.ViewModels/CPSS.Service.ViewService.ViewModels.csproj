@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HeadButtons\Request\RequestHeadButtonsViewModel.cs" />
+    <Compile Include="HeadButtons\Respond\RespondHeadButtonsViewModel.cs" />
     <Compile Include="MainPage\Respond\RespondMenuViewModel.cs" />
     <Compile Include="MainPage\Respond\RespondPanelViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

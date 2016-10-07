@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HeadButtons\IHeadButtonsDataAccess.cs" />
+    <Compile Include="HeadButtons\Parameters\HeadButtonsParameter.cs" />
     <Compile Include="IAccountDataAccess.generated.cs">
       <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
     </Compile>
@@ -91,6 +93,7 @@
       <Name>CPSS.Data.DataAcess.DataModels</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

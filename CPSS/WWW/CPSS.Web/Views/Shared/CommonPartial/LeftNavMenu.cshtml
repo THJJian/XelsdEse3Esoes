@@ -5,7 +5,7 @@
 
 @foreach (var _model in Model)
 {
-    <div class="easyui-panel" data-options="title:'@_model.Title', minWidth: '156px', maxWidth: '173px', iconCls: '@_model.IconCls',width: '173px'" 
+    <div class="easyui-panel" data-options="title:'@_model.Title', minWidth: '166px', maxWidth: '183px', iconCls: '@_model.IconCls',width: '183px'" 
          style="border: 0;">
         <ul style="display: @Html.Raw(isFirst ? "block" : "none");">
             @foreach (var _menu in _model.Menus)
@@ -22,31 +22,6 @@
     </div>
     isFirst = false;
 }
-<div class="easyui-panel" data-options="title:'行业动态', minWidth: '156px', maxWidth: '173px', iconCls: ''" style="border: 0;">
-    <ul>
-        <li>
-            <div>
-                <a href="javascript:void(0);" sub-title="政策法规" url="/demo/index">
-                    <span class="icon icon-word">&nbsp;</span><span class="nav">政策法规</span>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div>
-                <a ref="28878102-5426-470f-8aca-aac374612e62" href="#" rel="/Information/Information">
-                    <span class="icon icon-house">&nbsp;</span><span class="nav">通知公告</span>
-                </a>
-            </div>
-        </li>
-        <li>
-            <div>
-                <a ref="0fceb065-7548-476f-882a-ec043f81e4c1" href="#" rel="/Information/IndustryNews">
-                    <span class="icon icon-view">&nbsp;</span><span class="nav">动态信息</span>
-                </a>
-            </div>
-        </li>
-    </ul>
-</div>
 
 @*
     <div class="easyui-panel" data-options="title:'行业动态', minWidth: '173px', maxWidth: '173px', iconCls: ''" style="border: 0;">

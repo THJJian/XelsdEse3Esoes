@@ -95,10 +95,12 @@
         //初始化Accordion的Panel默认高度
         CSPPLib.Main.PanelHelper.setPanelHeight();
 
+        contentWidth = $($("#main_layout").layout("panel", "center")).css("width");
+
         //初始化第一个tab里面的panel的内容的高度
         var panel_0_height = $(tab_container_id).tabs("tabs")[0].panel("options").height;
         $("#frm_about").css("height", [(zoomRate * panel_0_height), "px"].join(""));
-
+        
         var _left_nav_accordion_panels = $(left_nav_container_id).accordion("panels"),
             //菜单accordion的高度
             _left_nav_accordion_height = $(left_nav_container_id).accordion("options").height,
@@ -129,8 +131,8 @@
                             //菜单accordion除所有panel的header高度后的净余高度
                             __left_nav_accordion_residue_height = _left_nav_accordion_height - (_left_nav_panel_count * __left_nav_panel_heder_sum_height + 1);
 
-                        if ((__left_nav_panel_height - __left_nav_panel_heder_sum_height) > __left_nav_accordion_residue_height) __easyui_panel.css({ width: "156px" });
-                        else __easyui_panel.css({ width: "173px" });
+                        if ((__left_nav_panel_height - __left_nav_panel_heder_sum_height) > __left_nav_accordion_residue_height) __easyui_panel.css({ width: "166px" });
+                        else __easyui_panel.css({ width: "183px" });
                     });
                 }
             });

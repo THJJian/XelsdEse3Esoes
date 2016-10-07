@@ -25,9 +25,12 @@ CREATE TABLE [dbo].[sys_menus](
 	[Title] [varchar](50) NOT NULL,
 	[IconCls] [varchar](60) NULL,
 	[Url] [varchar](256) NOT NULL,
-	[IsButton] [bit] NULL,
-	[IsRoot] [bit] NULL,
-	[IsEnabled] [bit] NULL
+	[IsButton] [bit] NULL DEFAULT(0),
+	[IsRoot] [bit] NULL DEFAULT(0),
+	[IsEnabled] [bit] NULL DEFAULT(0),
+	[IsBeginSplit] [BIT] NULL DEFAULT(0),
+	[IsEndSplit] [BIT] NULL DEFAULT(0),
+	[Sort] [INT] NULL DEFAULT 0
  CONSTRAINT [PK_sys_menus_menuid] PRIMARY KEY CLUSTERED 
 (
 	[menuid] ASC

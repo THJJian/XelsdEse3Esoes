@@ -34,6 +34,22 @@
     <script type="text/javascript" src="@script"></script>
 }
 
+<script type="text/javascript">
+    $(document.body)
+        .ready(function() {
+            var _width = parseInt(parent.contentWidth);
+            $("#billbutton, #billhead, #billgrid").panel({ width: _width });
+        });
+
+    $(window)
+        .resize(function () {
+            var _width = parent.contentWidth,
+                _endWidth;
+            if (_width <= 824) _endWidth = _width - 14;
+            else _endWidth = _width;
+            $("#billbutton, #billhead, #billgrid").panel({ width: _endWidth });
+        });
+</script>
 @RenderSection("scripts", false)
 </body>
 </html>

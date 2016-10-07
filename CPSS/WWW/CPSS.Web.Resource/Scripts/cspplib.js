@@ -94,6 +94,10 @@ var CSPPLib = (function () {
             __msg(__title, __msgContent, "info", __fun);
         }
 
+        var _success = function() {
+            
+        }
+
         var _warning = function (__title, __msgContent, __fun) {
             __msg(__title, __msgContent, "warning", __fun);
         }
@@ -126,6 +130,7 @@ var CSPPLib = (function () {
         return {
             alert: _alert,
             info: _info,
+            success: _success,
             warning: _warning,
             error: _error,
             question: _question,

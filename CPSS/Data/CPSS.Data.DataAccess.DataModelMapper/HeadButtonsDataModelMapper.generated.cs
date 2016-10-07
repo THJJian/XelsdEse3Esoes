@@ -13,23 +13,21 @@ using System.Collections.Generic;
 namespace CPSS.Data.DataAccess
 {
 	/// <summary>
-    /// 手动映射DataReader到LeftNavMenuDataModel
+    /// 手动映射DataReader到HeadButtonsDataModel
     /// </summary>
-    public partial class DataReaderToLeftNavMenuDataModelMapper
+    public partial class DataReaderToHeadButtonsDataModelMapper
     {
 		/// <summary>
         /// 映射
         /// </summary>
         /// <param name="dataReader"></param>
         /// <param name="entity"></param>
-		public void Map(IDataReader dataReader, CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel entity)
+		public void Map(IDataReader dataReader, CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel entity)
 	    {            
-            entity.MenuID = (int)dataReader["MenuID"];
-            entity.ClassID = (string)dataReader["ClassID"];
-            entity.ParentClassID = (string)dataReader["ParentClassID"];
-            entity.Title = (string)dataReader["Title"];
-            entity.IconCls = (string)dataReader["IconCls"];
-            entity.Url = (string)dataReader["Url"];
+            entity.ButtonText = (string)dataReader["ButtonText"];
+            entity.ButtonName = (string)dataReader["ButtonName"];
+            entity.ButtonDisabled = (bool)dataReader["ButtonDisabled"];
+            entity.ButtonIconCls = (string)dataReader["ButtonIconCls"];
 	    }
 
 		/// <summary>
@@ -37,15 +35,13 @@ namespace CPSS.Data.DataAccess
         /// </summary>
         /// <param name="dataReader"></param>
         /// <returns></returns>
-	    public CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel Map(IDataReader dataReader)
+	    public CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel Map(IDataReader dataReader)
 	    {
-			var result = new CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel();
-            result.MenuID = (int)dataReader["MenuID"];
-            result.ClassID = (string)dataReader["ClassID"];
-            result.ParentClassID = (string)dataReader["ParentClassID"];
-            result.Title = (string)dataReader["Title"];
-            result.IconCls = (string)dataReader["IconCls"];
-            result.Url = (string)dataReader["Url"];
+			var result = new CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel();
+            result.ButtonText = (string)dataReader["ButtonText"];
+            result.ButtonName = (string)dataReader["ButtonName"];
+            result.ButtonDisabled = (bool)dataReader["ButtonDisabled"];
+            result.ButtonIconCls = (string)dataReader["ButtonIconCls"];
 			return result;
 	    }
 
@@ -56,7 +52,7 @@ namespace CPSS.Data.DataAccess
         /// <param name="entity"></param>
 		public void MapObject(IDataReader dataReader, object entity)
 	    {
-	        this.Map(dataReader, entity as CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel);
+	        this.Map(dataReader, entity as CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel);
 	    }
 
 		/// <summary>

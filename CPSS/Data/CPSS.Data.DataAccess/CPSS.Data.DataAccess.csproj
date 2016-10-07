@@ -60,6 +60,7 @@
     <Compile Include="EmployeesDataAccess.generated.cs">
       <DependentUpon>DataAccessTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="HeadButtons\HeadButtonsDataAccess.cs" />
     <Compile Include="MainPage\LeftNavMenuDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\CompanyInfoDataAccess.cs" />
@@ -96,6 +97,7 @@
       <LastGenOutput>DataAccessTemplate.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

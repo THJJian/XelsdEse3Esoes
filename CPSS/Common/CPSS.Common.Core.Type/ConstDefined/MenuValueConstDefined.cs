@@ -5,6 +5,6 @@
         /// <summary>
         /// buy order
         /// </summary>
-        public const int rtBuyOrderBill = 12;
+        public const int rtBuyOrderBill = 11;
     }
 }

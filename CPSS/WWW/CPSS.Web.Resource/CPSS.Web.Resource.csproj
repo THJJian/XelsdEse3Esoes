@@ -425,6 +425,7 @@
     <Content Include="Scripts\easyui-1.5\easyloader.js" />
     <Content Include="Scripts\easyui-1.5\jquery.easyui.min.js" />
     <Content Include="Scripts\easyui-1.5\locale\easyui-lang-zh_CN.js" />
+    <Content Include="Scripts\easyui-1.5\plugins\jquery.datagrid.cellediting.js" />
     <Content Include="Scripts\easyui-1.5\plugins\jquery.accordion.js" />
     <Content Include="Scripts\easyui-1.5\plugins\jquery.calendar.js" />
     <Content Include="Scripts\easyui-1.5\plugins\jquery.combo.js" />
@@ -470,6 +471,7 @@
     <Content Include="Scripts\easyui-1.5\plugins\jquery.treegrid.js" />
     <Content Include="Scripts\easyui-1.5\plugins\jquery.validatebox.js" />
     <Content Include="Scripts\easyui-1.5\plugins\jquery.window.js" />
+    <Content Include="Scripts\Grid\TableGrid.js" />
     <Content Include="Scripts\jquery-1.11.3.min.js" />
     <Content Include="Scripts\Main\MainHelper.js" />
     <Content Include="Scripts\controlshelper.js" />

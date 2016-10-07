@@ -3,7 +3,9 @@ using CPSS.Common.Core.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 using CPSS.Common.Core.Mvc.Filters;
+using CPSS.Service.ViewService.Interfaces.HeadButtons;
 using CPSS.Service.ViewService.Interfaces.MainPage;
+using CPSS.Service.ViewService.ViewModels.HeadButtons.Request;
 using CPSS.Service.ViewService.ViewModels.MainPage.Respond;
 
 namespace CPSS.Web.Controllers
@@ -12,10 +14,12 @@ namespace CPSS.Web.Controllers
     public class CommonPartialController : WebBaseController
     {
         private readonly ILeftNavMenuViewService mLeftNavMenuViewService;
+        private readonly IHeadButtonsViewService mHeadButtonsViewService;
 
-        public CommonPartialController(ILeftNavMenuViewService _leftNavMenuViewService)
+        public CommonPartialController(ILeftNavMenuViewService _leftNavMenuViewService, IHeadButtonsViewService _headButtonsViewService)
         {
             this.mLeftNavMenuViewService = _leftNavMenuViewService;
+            this.mHeadButtonsViewService = _headButtonsViewService;
         }
 
         /// <summary>
@@ -342,11 +346,10 @@ namespace CPSS.Web.Controllers
         /// 页面按钮
         /// </summary>
         /// <returns></returns>
-        public PartialViewResult BillButtons()
+        public PartialViewResult HeadButtons(RequestHeadButtonsViewModel request)
         {
-
-            //var model = this.mLeftNavMenuViewService.GetBillButtonDataModels(0, billType);
-            return PartialView("~/Views/Shared/CommonPartial/BillButtons.cshtml"/*, model*/);
+            var model = this.mHeadButtonsViewService.QueryHeadButtonsViewModelsByMenuID(request);
+            return PartialView("~/Views/Shared/CommonPartial/HeadButtons.cshtml", model);
         }
 
         /// <summary>

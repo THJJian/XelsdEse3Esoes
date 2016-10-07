@@ -10,5 +10,10 @@ namespace CPSS.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult DefaultHome()
+        {
+            return View();
+        }
     }
 }

@@ -144,9 +144,10 @@
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\Shared\CommonPartial\LeftNavMenu.cshtml" />
     <Content Include="Views\Demo\Index.cshtml" />
-    <Content Include="Views\Shared\CommonPartial\BillButtons.cshtml" />
     <Content Include="App_Code\UIHelper.cshtml" />
     <Content Include="Views\Shared\CommonPartial\UnAuthorizedVisit.cshtml" />
+    <Content Include="Views\Main\DefaultHome.cshtml" />
+    <Content Include="Views\Shared\CommonPartial\HeadButtons.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
