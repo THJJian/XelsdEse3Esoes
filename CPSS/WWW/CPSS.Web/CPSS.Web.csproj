@@ -148,6 +148,7 @@
     <Content Include="Views\Shared\CommonPartial\UnAuthorizedVisit.cshtml" />
     <Content Include="Views\Main\DefaultHome.cshtml" />
     <Content Include="Views\Shared\CommonPartial\HeadButtons.cshtml" />
+    <Content Include="Views\Main\Window.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

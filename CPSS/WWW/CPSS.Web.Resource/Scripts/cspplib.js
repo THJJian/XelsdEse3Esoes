@@ -140,92 +140,49 @@ var CSPPLib = (function () {
 
     })();
 
-})("Utils");
+    CSPPLib.RegNameSpace(ns).Window = (function () {
+        var _win,
+            _strBuilder = CSPPLib.Utils.StringBuilder,
+            _win_html = "<div id=\"{0}\" class=\"easyui-window\" title=\"{1}\" style=\"width:{2}px; height: {3}px; display: none;\" ><iframe frameborder=\"0\" style=\"width:100%; height: {4}px;\" src=\"{5}\" scrolling=\"no\"></iframe></div>";
 
-/*
-(function(ns) {
-    CSPPLib.RegNameSpace(ns).Accordion = (function () {
-        var self;
-
-        var __init__accordion = function(_data) {
-            $(self.ctrlId).accordion({ animate: false });
-            $.each(_data, function (_i, _item) {
-                var builder = CSPPLib.RegNameSpace("Utils").StringBuilder;
-                builder.append("<ul>");
-                var menu_item = "<li><div><a ref=\"{0}\" href=\"javascript:void(0)\" onclick=\"{1}\" ><span class=\"icon {2}\" >&nbsp;</span><span class=\"nav\">{3}</span></a></div></li>";
-                $.each(_item.menus, function (__i, __item) {
-                    var __data = [
-                        __item.menuid,
-                        __item.onClick,
-                        _item.icon,
-                        __item.menuName
-                    ];
-                    builder.appendFrt(menu_item, __data);
-                });
-                builder.append("</ul>");
-
-                $(self.ctrlId).accordion("add", {
-                    title: _item.title,
-                    content: builder.ToString(),
-                    iconCls: _item.icon
-                });
-            });
-
-            $(".easyui-accordion li a").click(function () {
-                var title = $(this).children(".nav").text();
-
-                var url = $(this).attr("rel");
-                var menuid = $(this).attr("ref");
-                var icon = getIcon2(self.data, menuid);
-
-                var exist = $("#tabs").tabs("exists", title);//返回false或true
-                if (url) {
-                    if (!exist) {
-                        addTab(title, url, icon);
+        var _open = function (_win_id_, _win_title_, _win_width_, _win_height_, _win_src_) {
+            var __win_id_ = "#" + _win_id_;
+            _strBuilder.appendFrt(_win_html, [_win_id_, _win_title_, _win_width_, _win_height_, _win_height_ - 39, _win_src_]);
+            var _html = _strBuilder.toString();
+            $(document.body).append($(_html));
+            _win = $(__win_id_).window({
+                //iconCls: "icon-save",
+                modal: true,
+                closed: true,
+                minimizable: false,
+                maximizable: false,
+                collapsible: false,
+                onClose: function() {
+                    var _13 = $.data(this, "window");
+                    if (_13.shadow) {
+                        _13.shadow.remove();
                     }
-                    else {
-                        $("#tabs").tabs("select", title);
+                    if (_13.mask) {
+                        _13.mask.remove();
                     }
+                    _13.window.remove();
                 }
-                $(".easyui-accordion li div").removeClass("selected");
-                $(this).parent().addClass("selected");
-            }).hover(function () {
-                $(this).parent().addClass("hover");
-            }, function () {
-                $(this).parent().removeClass("hover");
             });
-
-            //选中第一个
-            var panels = $("#nav").accordion("panels");
-            var t = panels[0].panel("options").title;
-            $("#nav").accordion("select", t);
+            _win.window("open");
         }
 
-        var init = function(_settings) {
-            self = this;
-            self.ctrlId = "#" + _settings.id;
-            //self.title = _settings.title;
-
-            __init__accordion(_settings.data);
-        };
-
-        var remove = function() {
-            
+        var _close = function () {
+            if (_win)
+                _win.window("close");
         }
-
-        var update = function (_data) {
-            remove();
-            __init__accordion(_data);
-        };
 
         return {
-            InitAccordion: init,
-            Update: update
+            open: _open,
+            close: _close
         };
     })();
 
+})("Utils");
 
-})("Main");
-*/
-
-var MsgBox = CSPPLib.Utils.MsgBox;
+var _msgbox = CSPPLib.Utils.MsgBox;
+var _window = CSPPLib.Utils.Window;

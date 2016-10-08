@@ -35,7 +35,7 @@
                                 case 13:
                                     if (_value === null || _value === "") {
                                         //TODO 弹出选择窗口
-                                        MsgBox.alert("", "弹出选择窗口");
+                                        _msgbox.alert("", "弹出选择窗口");
                                         break;
                                     }
                                     var _next_tabindex = _tabIndex + 1;

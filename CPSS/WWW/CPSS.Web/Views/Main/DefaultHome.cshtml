@@ -3,5 +3,25 @@
     ViewBag.Title = "DefaultHome";
 }
 
-<h2>DefaultHome</h2>
+<input type="button" value="open" id="btnOpenWin"/>
+<input type="button" value="close" id="btnCloseWin" />
 
+@section scripts{
+    <script type="text/javascript">
+        $(document.body)
+            .ready(function() {
+                //var _win_html =
+                //    "<div id=\"win\" class=\"easyui-window\" title=\"My Window\" style=\"width:600px; height: 400px; display: none;\" ><iframe frameborder=\"0\" style=\"width:100%; height: 100%;\" src=\"/main/window\" scrolling=\"no\"></iframe></div>";
+
+                $("#btnOpenWin")
+                    .on("click",
+                        function() {
+                            _window.open("win", "My Window", 600, 450, "/main/window");
+                        });
+
+                $("#btnCloseWin").on("click", function() {
+                    _window.close();
+                });
+            });
+    </script>
+}

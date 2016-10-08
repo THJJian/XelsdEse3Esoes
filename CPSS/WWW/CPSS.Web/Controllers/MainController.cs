@@ -15,5 +15,10 @@ namespace CPSS.Web.Controllers
         {
             return View();
         }
+
+        public ActionResult Window()
+        {
+            return View();
+        }
     }
 }

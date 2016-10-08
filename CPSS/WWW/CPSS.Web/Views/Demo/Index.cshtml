@@ -47,10 +47,10 @@
                         type: "post",
                         dataType: "json",
                         success: function(result) {
-                            MsgBox.alert("", "success");
+                            _msgbox.alert("", "success");
                         },
                         error: function(_error) {
-                            MsgBox.error("", _error.responseText);
+                            _msgbox.error("", _error.responseText);
                         },
                         complete: function() {
                         }
