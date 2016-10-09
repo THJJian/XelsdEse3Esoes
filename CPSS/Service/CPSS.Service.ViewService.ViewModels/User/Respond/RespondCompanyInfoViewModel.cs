@@ -1,5 +1,8 @@
-﻿namespace CPSS.Service.ViewService.ViewModels.User.Respond
+﻿using System;
+
+namespace CPSS.Service.ViewService.ViewModels.User.Respond
 {
+    [Serializable]
     public class RespondCompanyInfoViewModel
     {
         /// <summary>

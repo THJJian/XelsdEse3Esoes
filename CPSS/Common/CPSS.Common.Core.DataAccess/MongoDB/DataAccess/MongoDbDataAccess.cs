@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using CPSS.Common.Core.DataAccess.MongoDB;
 using CPSS.Common.Core.DataAccess.MongoDB.Interface;
 using MongoDB.Bson;
 using MongoDB.Driver;
@@ -9,7 +8,7 @@ using MongoDB.Driver.Builders;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace CPSS.Common.Core.Helper.MongoDB.DataAccess
+namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
 {
     public class MongoDbDataAccess : IMongoDbDataAccess
     {

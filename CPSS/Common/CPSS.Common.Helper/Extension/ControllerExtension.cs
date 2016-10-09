@@ -20,7 +20,7 @@ namespace CPSS.Common.Core.Helper.Extension
             foreach (var error in modelState.Values.SelectMany(value => value.Errors))
             {
                 if (string.IsNullOrEmpty(errorMessages)) errorMessages = error.ErrorMessage;
-                else errorMessages += string.Concat(error.ErrorMessage, "<br/>");
+                else errorMessages += string.Concat("<br/>", error.ErrorMessage);
             }
             return errorMessages;
         }

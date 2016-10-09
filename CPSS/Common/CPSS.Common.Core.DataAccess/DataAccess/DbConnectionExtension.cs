@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace CPSS.Common.Core.DataAccess
+namespace CPSS.Common.Core.DataAccess.DataAccess
 {
     public static class DbConnectionExtension
     {

@@ -96,7 +96,12 @@
                     UserName: _user_name,
                     UserPwd: _user_pwd,
                     ValidCode: _valid_code
-                }, function () { }, function () { });
+                }, function(result) {
+                    debugger;
+                    _msgbox.alert("", result.ErrorMessage);
+                }, function(result) {
+                    debugger;
+                });
             }
         });
 

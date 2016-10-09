@@ -3,7 +3,7 @@ namespace CPSS.Data.DataAccess
 {
 	using System.Collections.Generic;
     using System.Data;
-    using CPSS.Common.Core.DataAccess;
+	using CPSS.Common.Core.DataAccess.DataAccess;
 
     #region DataReaderMapHelper
 

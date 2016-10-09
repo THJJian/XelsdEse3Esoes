@@ -26,7 +26,7 @@ namespace CPSS.Data.DataAccess
 	    {            
             entity.UserID = (int)dataReader["UserID"];
             entity.UserName = (string)dataReader["UserName"];
-            entity.CompanySerialNum = (string)dataReader["CompanySerialNum"];
+            entity.CompanySerialNum = (int)dataReader["CompanySerialNum"];
             entity.CompanyName = (string)dataReader["CompanyName"];
 	    }
 
@@ -40,7 +40,7 @@ namespace CPSS.Data.DataAccess
 			var result = new CPSS.Data.DataAcess.DataModels.User.SigninUserDataModel();
             result.UserID = (int)dataReader["UserID"];
             result.UserName = (string)dataReader["UserName"];
-            result.CompanySerialNum = (string)dataReader["CompanySerialNum"];
+            result.CompanySerialNum = (int)dataReader["CompanySerialNum"];
             result.CompanyName = (string)dataReader["CompanyName"];
 			return result;
 	    }

@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using CPSS.Common.Core.Authenticate;
 using CPSS.Common.Core.Helper.Config;
 
-namespace CPSS.Common.Core.DataAccess
+namespace CPSS.Common.Core.DataAccess.DataAccess
 {
     public class CurrentDbConnection
     {

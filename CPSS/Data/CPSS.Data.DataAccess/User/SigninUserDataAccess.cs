@@ -1,6 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
-using CPSS.Common.Core.DataAccess;
+using CPSS.Common.Core.DataAccess.DataAccess;
 using CPSS.Data.DataAccess.Interfaces.User;
 using CPSS.Data.DataAcess.DataModels.User;
 using CPSS.Data.DataAccess.Interfaces.User.Parameters;
@@ -15,7 +15,7 @@ namespace CPSS.Data.DataAccess.User
 
         public SigninUserDataModel QuerySigninUserDataModel(SigninUserParameter parameter)
         {
-            this.ExecuteSQL = "SELECT * FROM Users WHERE UserName=@UserName AND UserPwd=@UserPwd AND CompanySerialNum=@CompanySerialNum";
+            this.ExecuteSQL = "SELECT * FROM sys_users WHERE UserName=@UserName AND ISNULL(UserPwd,'')=@UserPwd AND CompanySerialNum=@CompanySerialNum";
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@UserName", parameter.UserName), 

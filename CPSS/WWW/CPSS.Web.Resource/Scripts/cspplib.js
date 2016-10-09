@@ -117,7 +117,7 @@ var CSPPLib = (function () {
             $.post(_url_, _data_,
                 function (jsonResult) {
                     if (_onSuccess_ && typeof _onSuccess_ === "function")
-                        _onSuccess_.call(jsonResult);
+                        _onSuccess_(jsonResult);
                     else __success(jsonResult);
                 }, "json")
                 .error(function (XMLHttpRequest) {
@@ -128,12 +128,12 @@ var CSPPLib = (function () {
                     //3 － （交互）正在解析响应内容 
                     //4 － （完成）响应内容解析完成，可以在客户端调用了
                     if (_onError_ && typeof _onError_ === "function")
-                        _onError_.call(XMLHttpRequest);
+                        _onError_(XMLHttpRequest);
                     else __error(XMLHttpRequest);
                 })
                 .complete(function () {
                     if (_onComplete_ && typeof _onComplete_ === "function")
-                        _onComplete_.call();
+                        _onComplete_();
                 });
         };
 

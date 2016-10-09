@@ -45,16 +45,25 @@ namespace CPSS.Service.ViewService.User
                     CompanyID = request.CompanyID
                 };
                 var dataModel = this.mCompanyInfoDataAccess.GetCompanyInfoDataModelByID(parameter);
-                if (dataModel != null)
-                    _respond = new RespondCompanyInfoViewModel
-                    {
-                        CompanyID = dataModel.CompanyID,
+                if (dataModel == null) return _respond;
+                _respond = new RespondCompanyInfoViewModel
+                {
+                    CompanyID = dataModel.CompanyID,
+                    ConnectTimeout = dataModel.ConnectTimeout,
+                    Database = dataModel.Database,
+                    Password = dataModel.Password,
+                    Server = dataModel.Server,
+                    UserID = dataModel.UserID
+                };
+                var _DbconnectionConfig = new DbConnectionConfig
+                {
                         ConnectTimeout = dataModel.ConnectTimeout,
                         Database = dataModel.Database,
                         Password = dataModel.Password,
                         Server = dataModel.Server,
                         UserID = dataModel.UserID
-                    };
+                };
+                ConfigHelper.Save(_DbconnectionConfig, filePath);
                 return _respond;
             }, string.Format(preCachedKey, "GetCompanyInfoViewModel"), request.CompanyID);
             return respond;

@@ -33,7 +33,6 @@ namespace CPSS.Web.Controllers
             if (!isValid)
             {
                 respond = new RespondWebViewData<RespondSigninUserViewModel>(WebViewErrorCode.ModelValidateError.ErrorCode, errorMessage);
-                //var result = JObject.FromObject(respond);
                 return Json(respond);
             }
 

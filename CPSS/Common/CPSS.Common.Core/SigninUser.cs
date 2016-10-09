@@ -10,7 +10,6 @@ namespace CPSS.Common.Core
             this.UserID = 0;
             this.UserID_g = Guid.Empty;
             this.UserName = string.Empty;
-            this.CompanySerialNum = string.Empty;
             this.AddressIP = string.Empty;
             this.ConnectionConfig = null;
         }
@@ -21,7 +20,7 @@ namespace CPSS.Common.Core
 
         public string UserName { set; get; }
 
-        public string CompanySerialNum { set; get; }
+        public int CompanySerialNum { set; get; }
 
         public string AddressIP { set; get; }
 

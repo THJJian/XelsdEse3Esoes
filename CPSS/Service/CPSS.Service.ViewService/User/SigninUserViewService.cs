@@ -41,7 +41,7 @@ namespace CPSS.Service.ViewService.User
                 if (dataModel == null) return new RespondWebViewData<RespondSigninUserViewModel>(WebViewErrorCode.UserNameOrPwdError);
                 var companyInfoRequest = new RequestCompanyInfoViewModel
                 {
-                    CompanyID = dataModel.CompanySerialNum.ToInt32()
+                    CompanyID = dataModel.CompanySerialNum
                 };
                 var companyInfo = this.mCompanyInfoViewService.GetCompanyInfoViewModel(companyInfoRequest);
                 var connectionConfig = new DbConnectionConfig
@@ -135,7 +135,7 @@ namespace CPSS.Service.ViewService.User
             if(dataModel==null) return new RespondWebViewData<RespondSigninUserViewModel>(WebViewErrorCode.NotExistUserInfo);
             var companyInfoRequest = new RequestCompanyInfoViewModel
             {
-                CompanyID = dataModel.CompanySerialNum.ToInt32()
+                CompanyID = dataModel.CompanySerialNum
             };
             var companyInfo = this.mCompanyInfoViewService.GetCompanyInfoViewModel(companyInfoRequest);
             var connectionConfig = new DbConnectionConfig

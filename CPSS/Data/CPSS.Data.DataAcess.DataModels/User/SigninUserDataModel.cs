@@ -6,7 +6,7 @@
 
         public string UserName { set; get; }
 
-        public string CompanySerialNum { set; get; }
+        public int CompanySerialNum { set; get; }
 
         public string CompanyName { set; get; }
     }

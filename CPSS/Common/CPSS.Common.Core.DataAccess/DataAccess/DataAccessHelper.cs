@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace CPSS.Common.Core.DataAccess
+namespace CPSS.Common.Core.DataAccess.DataAccess
 {
     public class DataAccessHelper
     {

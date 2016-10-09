@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using CPSS.Common.Core.DataAccess;
+using CPSS.Common.Core.DataAccess.DataAccess;
 using CPSS.Data.DataAccess.Interfaces.HeadButtons;
 using CPSS.Data.DataAccess.Interfaces.HeadButtons.Parameters;
 using CPSS.Data.DataAcess.DataModels.HeadButtons;
