@@ -4,11 +4,126 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <link rel="shortcut icon" href="" type="image/x-icon"/>
+    <title>Signin</title>
+
+    @foreach (var css in WorkContext.Resource.Css)
+    {
+        <link href="@css" type="text/css" rel="stylesheet">
+    }
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-    <div>
+<div class="easyui-panel" id="main_signin_container" data-options="fit:true, border: false">
+    <div id="signin_container" class="easyui-panel" title="Signin" style="width: 500px; padding: 30px 60px;">
+        <div style="margin-bottom:10px">
+            <input class="easyui-textbox" id="txt_user_name" style="width:100%;height:40px;padding:12px" 
+                   data-options="prompt:'Username',iconCls:'icon-man',iconWidth:38">
+        </div>
+        <div style="margin-bottom:20px">
+            <input class="easyui-textbox" id="txt_user_pwd" type="password" style="width:100%;height:40px;padding:12px" 
+                   data-options="prompt:'Password',iconCls:'icon-lock',iconWidth:38">
+        </div>
+        <div style="margin-bottom:20px">
+            <input class="easyui-textbox" id="txt_valid_code" style="width:100%;height:40px;padding:12px"
+                   data-options="prompt:'验证码',iconCls:'icon-large-picture',iconWidth:38">
+        </div>
+        <div style="margin-bottom:20px">
+            <input type="checkbox" id="chkRememberme">
+            <span>Remember me</span>
+        </div>
+        <div>
+            <a href="javascript:void(0);" class="easyui-linkbutton" id="btnLogin" data-options="iconCls:'icon-ok'" style="padding:5px 0;width:100%;">
+                <span style="font-size:14px;">Login</span>
+            </a>
+        </div>
     </div>
+</div>
+    
+    @foreach (var script in WorkContext.Resource.JavaScript)
+    {
+        <script type="text/javascript" src="@script"></script>
+    }
+<script type="text/javascript">
+    function resize() {
+        var _panel = $("#main_signin_container").panel(),
+            _options = _panel.panel("options"),
+            _width = $("#signin_container").width(),
+            _height = $("#signin_container").height(),
+            _padding_left = parseInt($("#signin_container").css("padding-left")),
+            _padding_right = parseInt($("#signin_container").css("padding-right")),
+            _padding_top = parseInt($("#signin_container").css("padding-top")),
+            _padding_bottom = parseInt($("#signin_container").css("padding-bottom"));
+
+        $("#signin_container").panel({
+            style: {
+                position: "fixed",
+                left: (_options.width - _width - _padding_left - _padding_right) / 2,
+                top: (_options.height - _height - _padding_top - _padding_bottom) / 2
+            }
+        });
+    }
+
+    $(document.body).ready(function () {
+        var remember = CSPPLib.Utils.LocalStorage.getCookie("user_login_name_remember");
+        if (remember && remember.length > 0) {
+            var _checked = remember.split(",")[0],
+                _user_name_ = remember.split(",")[1];
+            if (_checked === "true") $("#chkRememberme").prop("checked", true);
+            $("#txt_user_name").textbox("setValue", _user_name_);
+        }
+        resize();
+
+        $("#btnLogin").linkbutton({
+            onClick: function() {
+                var _user_name = $("#txt_user_name").textbox("getValue"),
+                    _user_pwd = $("#txt_user_pwd").textbox("getValue"),
+                    _valid_code = $("#txt_valid_code").textbox("getValue"),
+                    _chk_remember_me = $("#chkRememberme").prop("checked");
+                if (_chk_remember_me) {
+                    CSPPLib.Utils.LocalStorage.setCookie("user_login_name_remember", [_chk_remember_me, _user_name].join(","));
+                }
+                CSPPLib.Utils.AjaxRequest.postData("/signin/login",
+                {
+                    UserName: _user_name,
+                    UserPwd: _user_pwd,
+                    ValidCode: _valid_code
+                }, function () { }, function () { });
+            }
+        });
+
+        var _tooltip;
+        $("#txt_valid_code").textbox({
+            events: {
+                focus: function() {
+                    _tooltip = $(this)
+                        .tooltip({
+                            position: "bottom",
+                            content: '<img src="/verifycodeimage/index?rnd=' + Math.random() + '" alt=""/>',
+                            showDelay: 50,
+                            deltaX: -100
+                        });
+                    _tooltip.tooltip("show");
+                },
+                blur: function() {
+                    _tooltip.tooltip("destroy");
+                }
+            }
+        });
+
+    });
+
+    $(window).resize(function () {
+        resize();
+    });
+</script>
 </body>
 </html>

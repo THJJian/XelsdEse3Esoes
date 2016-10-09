@@ -23,6 +23,125 @@ var CSPPLib = (function () {
 
 (function (ns) {
 
+    CSPPLib.RegNameSpace(ns).LocalStorage = (function () {
+        var __isLocalStorage = window.localStorage ? true : false;
+
+        function _setCookie(key, value, seconds) {
+            var argv = arguments;
+            var argc = argv.length;
+            var expires;
+            if (seconds == null) {
+                expires = new Date(2100, 11, 31);
+            } else {
+                expires = new Date();
+                expires.setTime(expires.getTime() + seconds * 1000);
+            }
+            var path = (3 < argc) ? argv[3] : "/";
+            var domain = (4 < argc) ? argv[4] : null;
+            if (!domain) {
+                domain = document.domain;
+                domain = domain.substring(domain.lastIndexOf(".", domain.lastIndexOf(".") - 1) + 1);
+            }
+            var secure = (5 < argc) ? argv[5] : false;
+            document.cookie = key + "=" + escape(value) + ";expires=" + expires.toGMTString() + (path == null ? "" : ";path=" + path) + (domain == "" ? "" : ";domain=" + domain) + (secure == null ? ";secure" : "");
+        }
+
+        function _removeCookie(key) {
+            _setCookie(key, "", -1);
+        }
+
+        function _getCookie(key, nounescape) {
+            var p = key + "=";
+            var start = document.cookie.indexOf(p);
+            if (start == -1) return null;
+            var end = document.cookie.indexOf(";", start);
+            var v = document.cookie.substring(start + p.length, (end > start ? end : document.cookie.length));
+            return !nounescape ? unescape(v) : v;
+        }
+
+        var _set = function (key, value) {
+            if (__isLocalStorage) {
+                window.localStorage.setItem(key, value);
+            } else {
+                _setCookie(key, value);
+            }
+        };
+
+        var _get = function (key) {
+            if (__isLocalStorage) {
+                return window.localStorage.getItem(key);
+            } else {
+                return _getCookie(key, false);
+            }
+        };
+
+        var _remove = function (key) {
+            if (__isLocalStorage) {
+                localStorage.removeItem(key);
+            } else {
+                _removeCookie(key);
+            }
+        };
+
+        return {
+            get: function (key) {
+                return _get("__localStorage__" + key);
+            },
+            set: function (key, value) {
+                _set("__localStorage__" + key, value);
+            },
+            remove: function (key) {
+                _remove("__localStorage__" + key);
+            },
+            getCookie: _getCookie,
+            setCookie: _setCookie,
+            removeCookie: _removeCookie
+        };
+
+    })();
+
+    CSPPLib.RegNameSpace(ns).AjaxRequest = (function() {
+
+        var __success = function(jsonResult) {
+            _msgbox.success("", jsonResult.Data.ErrorMessage);
+        }
+
+        var __error = function (xmlHttpRequest) {
+            if (xmlHttpRequest.readyState != 0 && xmlHttpRequest.readyState != 0) {
+                _msgbox.error("", "执行过程中错误。");
+            }
+        }
+
+        ///<summary>后台的请求参数必须包含在RequestWebViewData里面</summary>
+        var _postData = function(_url_, _data_, _onSuccess_, _onComplete_, _onError_) {
+            $.post(_url_, _data_,
+                function (jsonResult) {
+                    if (_onSuccess_ && typeof _onSuccess_ === "function")
+                        _onSuccess_.call(jsonResult);
+                    else __success(jsonResult);
+                }, "json")
+                .error(function (XMLHttpRequest) {
+                    //状态码 
+                    //0 － （未初始化）还没有调用send()方法 
+                    //1 － （载入）已调用send()方法，正在发送请求 
+                    //2 － （载入完成）send()方法执行完成，已经接收到全部响应内容 
+                    //3 － （交互）正在解析响应内容 
+                    //4 － （完成）响应内容解析完成，可以在客户端调用了
+                    if (_onError_ && typeof _onError_ === "function")
+                        _onError_.call(XMLHttpRequest);
+                    else __error(XMLHttpRequest);
+                })
+                .complete(function () {
+                    if (_onComplete_ && typeof _onComplete_ === "function")
+                        _onComplete_.call();
+                });
+        };
+
+        return {
+            postData: _postData
+        }
+    })();
+
     CSPPLib.RegNameSpace(ns).StringBuilder = (function () {
         var self;
 

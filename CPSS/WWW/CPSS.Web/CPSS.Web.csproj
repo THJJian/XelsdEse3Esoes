@@ -120,6 +120,8 @@
     <Compile Include="Controllers\Filters\OperateRightAttribute.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\SigninController.cs" />
+    <Compile Include="Controllers\SystemParameterConfigController.cs" />
+    <Compile Include="Controllers\VerifyCodeImageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -149,6 +151,8 @@
     <Content Include="Views\Main\DefaultHome.cshtml" />
     <Content Include="Views\Shared\CommonPartial\HeadButtons.cshtml" />
     <Content Include="Views\Main\Window.cshtml" />
+    <Content Include="Views\SystemParameterConfig\Index.cshtml" />
+    <Content Include="Views\VerifyCodeImage\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
