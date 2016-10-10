@@ -29,7 +29,7 @@ CREATE TABLE [dbo].[sys_users](
 
 GO
 INSERT INTO dbo.sys_users(UserID ,CompanySerialNum ,[CompanyName], UserName ,UserPwd ,Manager ,isSystem ,Deleted)
-	VALUES(1, 12110, '系统测试公司', 'Admin', NULL, 1, 1,0)
+	VALUES(1, 12110, '系统测试公司', 'Admin', '670b14728ad9902aecba32e22fa4f6bd', 1, 1,0)
 GO
 
 IF EXISTS(SELECT 1 FROM sysobjects WHERE id=OBJECT_ID(N'[dbo].[Online]') AND OBJECTPROPERTY(id,N'IsUserTable')=1)

@@ -24,8 +24,9 @@ namespace CPSS.Data.DataAccess
         /// <param name="entity"></param>
 		public void Map(IDataReader dataReader, CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel entity)
 	    {            
+            entity.UserID = (int)dataReader["UserID"];
+            entity.UserIP = (string)dataReader["UserIP"];
             entity.LoginName = (string)dataReader["LoginName"];
-            entity.UserFrom = (string)dataReader["UserFrom"];
             entity.Browser = (string)dataReader["Browser"];
             entity.LoginTime = (DateTime)dataReader["LoginTime"];
             entity.OverTime = (DateTime)dataReader["OverTime"];
@@ -41,8 +42,9 @@ namespace CPSS.Data.DataAccess
 	    public CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel Map(IDataReader dataReader)
 	    {
 			var result = new CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel();
+            result.UserID = (int)dataReader["UserID"];
+            result.UserIP = (string)dataReader["UserIP"];
             result.LoginName = (string)dataReader["LoginName"];
-            result.UserFrom = (string)dataReader["UserFrom"];
             result.Browser = (string)dataReader["Browser"];
             result.LoginTime = (DateTime)dataReader["LoginTime"];
             result.OverTime = (DateTime)dataReader["OverTime"];

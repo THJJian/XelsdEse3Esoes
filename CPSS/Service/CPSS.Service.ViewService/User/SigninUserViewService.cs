@@ -5,6 +5,7 @@ using CPSS.Common.Core.Authenticate;
 using CPSS.Common.Core.Exception;
 using CPSS.Common.Core.Helper.Cached;
 using CPSS.Common.Core.Helper.Extension;
+using CPSS.Common.Core.Helper.MD5;
 using CPSS.Data.DataAccess.Interfaces.User;
 using CPSS.Data.DataAccess.Interfaces.User.Parameters;
 using CPSS.Service.ViewService.Interfaces.User;
@@ -15,6 +16,7 @@ namespace CPSS.Service.ViewService.User
 {
     public class SigninUserViewService : ISigninUserViewService
     {
+        private const string preCacheKey = "CPSS.Service.ViewService.User.SigninUserViewService.{0}";
         private readonly ISiginUserDataAccess mSiginUserDataAccess;
         private readonly ICompanyInfoViewService mCompanyInfoViewService;
 
@@ -34,7 +36,7 @@ namespace CPSS.Service.ViewService.User
                 var parameter = new SigninUserParameter
                 {
                     UserName = _tmp[1],
-                    UserPwd = request.UserPwd,
+                    UserPwd = MD5Helper.GetMD5HashCode(request.UserPwd),
                     CompanySerialNum = _tmp[0]
                 };
                 var dataModel = this.mSiginUserDataAccess.QuerySigninUserDataModel(parameter);
@@ -61,9 +63,7 @@ namespace CPSS.Service.ViewService.User
                             CompanySerialNum = dataModel.CompanySerialNum,
                             UserID_g = userID_g,
                             UserID = dataModel.UserID,
-                            UserName = dataModel.UserName,
-                            AddressIP = UserIPAddressTool.GetRealUserIPAddress(),
-                            ConnectionConfig = connectionConfig
+                            UserName = dataModel.UserName
                         }
                     }
                 };
@@ -106,23 +106,28 @@ namespace CPSS.Service.ViewService.User
 
         public RespondWebViewData<RespondOnlineSigninUserViewModel> GetOnlineSigninUserByUserID_g(RequestOnlineSigninUserViewModel request)
         {
-            var parameter = new OnlineSigninUserParameter
+            return MemcacheHelper.Get(() =>
             {
-                SGuid = request.SGuid
-            };
-            var dataModel = this.mSiginUserDataAccess.GetOnlineSigninUserByUserID_g(parameter);
-            if(dataModel == null) return new RespondWebViewData<RespondOnlineSigninUserViewModel>(WebViewErrorCode.LoginRequired);
-            return new RespondWebViewData<RespondOnlineSigninUserViewModel>
-            {
-                Data =  new RespondOnlineSigninUserViewModel
+                var parameter = new OnlineSigninUserParameter
                 {
-                    UserID = dataModel.UserID,
-                    LoginName = dataModel.LoginName,
-                    SGuid = dataModel.SGuid,
-                    ExpTime = dataModel.ExpTime,
-                    UserIP = dataModel.UserIP
-                }
-            };
+                    SGuid = request.SGuid,
+                    UserIP = request.AddressIP
+                };
+                var dataModel = this.mSiginUserDataAccess.GetOnlineSigninUserByUserID_g(parameter);
+                if (dataModel == null)
+                    return new RespondWebViewData<RespondOnlineSigninUserViewModel>(WebViewErrorCode.LoginRequired);
+                return new RespondWebViewData<RespondOnlineSigninUserViewModel>
+                {
+                    Data = new RespondOnlineSigninUserViewModel
+                    {
+                        UserID = dataModel.UserID,
+                        LoginName = dataModel.LoginName,
+                        SGuid = dataModel.SGuid,
+                        ExpTime = dataModel.ExpTime,
+                        UserIP = dataModel.UserIP
+                    }
+                };
+            }, string.Format(preCacheKey, "GetOnlineSigninUserByUserID_g"), DateTime.Now.AddMinutes(30), request.SGuid, request.AddressIP);
         }
 
         public RespondWebViewData<RespondSigninUserViewModel> FindSininUserDataModelByUserID(RequestOnlineSigninUserViewModel request)

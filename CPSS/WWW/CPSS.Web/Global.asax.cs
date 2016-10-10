@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
@@ -33,6 +35,9 @@ namespace CPSS.Web
         {
             var httpApplication = sender as HttpApplication;
             if (httpApplication == null) return;
+            var _notAuthenticateList = new List<string> {"/verifycodeimage/index", "/signin/login"};
+            if(_notAuthenticateList.Any(item=>item == httpApplication.Context.Request.FilePath)) return;
+
             var context = httpApplication.Context;
             var user = context.Items["__Login__User__"] as SigninUser;
             if (user != null) return;
@@ -46,10 +51,11 @@ namespace CPSS.Web
                 var authenticationTicket = FormsAuthentication.Decrypt(userCookie.Value);
                 if (authenticationTicket == null || authenticationTicket.Expired) return;
                 var userID_g = authenticationTicket.UserData;
-                if (!user.AddressIP.Equals(UserIPAddressTool.GetRealUserIPAddress())) return;
+                //if (!user.AddressIP.Equals(UserIPAddressTool.GetRealUserIPAddress())) return;
                 var request = new RequestOnlineSigninUserViewModel
                 {
-                    SGuid = userID_g.ToGuid()
+                    SGuid = userID_g.ToGuid(),
+                    AddressIP = UserIPAddressTool.GetRealUserIPAddress()
                 };
                 var online = service.GetOnlineSigninUserByUserID_g(request);
                 if (online == null) return;

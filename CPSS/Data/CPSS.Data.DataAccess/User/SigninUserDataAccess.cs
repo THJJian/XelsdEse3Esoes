@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using CPSS.Common.Core.DataAccess.DataAccess;
 using CPSS.Data.DataAccess.Interfaces.User;
@@ -44,17 +45,20 @@ namespace CPSS.Data.DataAccess.User
 
         public OnlineSigninUserDataModel GetOnlineSigninUserByUserID_g(OnlineSigninUserParameter parameter)
         {
-            this.ExecuteSQL = "SELECT * FROM Online WHERE SGuid=@SGuid";
+            var nowDate = DateTime.Now;
+            this.ExecuteSQL = "SELECT * FROM [Online] WHERE SGuid=@SGuid AND UserIP=@UserIP AND OverTime<@OverTime AND StateID=0";
             this.DataParameter = new IDbDataParameter[]
             {
-                new SqlParameter("@SGuid", parameter.SGuid), 
+                new SqlParameter("@SGuid", parameter.SGuid),
+                new SqlParameter("@UserIP", parameter.UserIP),
+                new SqlParameter("@OverTime", new DateTime(nowDate.Year, nowDate.Month, nowDate.Day).AddDays(1))
             };
             return this.ExecuteReadSqlToOnlineSigninUserDataModel();
         }
 
         public SigninUserDataModel FindSininUserDataModelByUserID(OnlineSigninUserParameter parameter)
         {
-            this.ExecuteSQL = "SELECT * FROM Users WHERE UserID=@UserID";
+            this.ExecuteSQL = "SELECT * FROM sys_users WHERE UserID=@UserID";
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@UserID", parameter.UserID)

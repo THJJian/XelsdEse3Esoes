@@ -20,5 +20,7 @@
         public static ErrorCodeItem UserNameOrPwdError = new ErrorCodeItem(6, "用户名或密码错误");
 
         public static ErrorCodeItem ModelValidateError = new ErrorCodeItem(7, "实体验证出错");
+
+        public static ErrorCodeItem VerifyCodeError = new ErrorCodeItem(8, "验证码错误");
     }
 }

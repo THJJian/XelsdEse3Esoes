@@ -10,7 +10,7 @@ namespace CPSS.Web.Controllers
         {
             VerifyCode vCode = new VerifyCode();
             string code = vCode.CreateValidateCode(5);
-            Session["ValidateCode"] = code;
+            Session["login_img_verify_code"] = code;
             byte[] bytes = vCode.CreateValidateGraphic(code);
             return File(bytes, @"image/jpeg");
         }

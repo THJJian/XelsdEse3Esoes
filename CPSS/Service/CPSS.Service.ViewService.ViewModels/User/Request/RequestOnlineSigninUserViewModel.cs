@@ -8,5 +8,7 @@ namespace CPSS.Service.ViewService.ViewModels.User.Request
         public Guid SGuid { set; get; }
 
         public int UserID { set; get; }
+
+        public string AddressIP { set; get; }
     }
 }

@@ -31,7 +31,7 @@ namespace CPSS.Common.Core.Helper.Signature
                 SignaturePrivateKey = rsaCryptoServiceProvider.ToXmlString(true)
             };
 
-            int companyId = jsonSignature["CompanyID"].Value<int>(),
+            int companyId = jsonSignature["CompanySerialNum"].Value<int>(),
                 userId = jsonSignature["UserID"].Value<int>();
             var signatureFilePath = BuildConfigFilePath.BuildSignatureConfigFilePath(companyId, userId);
             ConfigHelper.Save(JObject.FromObject(obj).ToString(), signatureFilePath);
@@ -47,7 +47,7 @@ namespace CPSS.Common.Core.Helper.Signature
         /// <returns></returns>
         public static bool VerifySignature(JObject jsonSignature, string signatureText)
         {
-            int companyId = jsonSignature["CompanyID"].Value<int>(),
+            int companyId = jsonSignature["CompanySerialNum"].Value<int>(),
                 userId = jsonSignature["UserID"].Value<int>();
             var signatureFilePath = BuildConfigFilePath.BuildSignatureConfigFilePath(companyId, userId);
 
