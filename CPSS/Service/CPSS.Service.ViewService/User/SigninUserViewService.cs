@@ -41,19 +41,19 @@ namespace CPSS.Service.ViewService.User
                 };
                 var dataModel = this.mSiginUserDataAccess.QuerySigninUserDataModel(parameter);
                 if (dataModel == null) return new RespondWebViewData<RespondSigninUserViewModel>(WebViewErrorCode.UserNameOrPwdError);
-                var companyInfoRequest = new RequestCompanyInfoViewModel
-                {
-                    CompanyID = dataModel.CompanySerialNum
-                };
-                var companyInfo = this.mCompanyInfoViewService.GetCompanyInfoViewModel(companyInfoRequest);
-                var connectionConfig = new DbConnectionConfig
-                {
-                    ConnectTimeout = companyInfo.ConnectTimeout,
-                    Database = companyInfo.Database,
-                    Password = companyInfo.Password,
-                    Server = companyInfo.Server,
-                    UserID = companyInfo.UserID
-                };
+                //var companyInfoRequest = new RequestCompanyInfoViewModel
+                //{
+                //    CompanyID = dataModel.CompanySerialNum
+                //};
+                //var companyInfo = this.mCompanyInfoViewService.GetCompanyInfoViewModel(companyInfoRequest);
+                //var connectionConfig = new DbConnectionConfig
+                //{
+                //    ConnectTimeout = companyInfo.ConnectTimeout,
+                //    Database = companyInfo.Database,
+                //    Password = companyInfo.Password,
+                //    Server = companyInfo.Server,
+                //    UserID = companyInfo.UserID
+                //};
                 var _respond = new RespondWebViewData<RespondSigninUserViewModel>
                 {
                     Data = new RespondSigninUserViewModel
