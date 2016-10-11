@@ -29,7 +29,7 @@ namespace CPSS.Service.ViewService.User
         public RespondWebViewData<RespondSigninUserViewModel> QuerySigninUserViewModel(RequestSigninUserViewModel request)
         {
             var userID_g = Guid.NewGuid();
-            var respond = MemcacheHelper.Get(() =>
+            return MemcacheHelper.Get(() =>
             {
                 var _tmp = request.UserName.Split(':');
                 if (_tmp.Length != 2) return  new RespondWebViewData<RespondSigninUserViewModel>(WebViewErrorCode.SigninInfoError);
@@ -67,17 +67,16 @@ namespace CPSS.Service.ViewService.User
                         }
                     }
                 };
+                this.SaveLoginUserToOnline(new RequestSigninUserViewModel
+                {
+                    UserID = dataModel.UserID,
+                    UserName = dataModel.UserName,
+                    UserID_g= userID_g
+                });
+                FormsAuthenticationTicketManage.CreateFormsAuthentication(userID_g);
+                HttpContext.Current.Items.Add("__Login__User__", _respond.Data.CurrentUser);
                 return _respond;
             }, userID_g.ToString());
-            this.SaveLoginUserToOnline(new RequestSigninUserViewModel
-            {
-                UserID = respond.Data.CurrentUser.UserID,
-                UserName = respond.Data.CurrentUser.UserName,
-                UserID_g= respond.Data.CurrentUser.UserID_g
-            });
-            FormsAuthenticationTicketManage.CreateFormsAuthentication(userID_g);
-            HttpContext.Current.Items.Add("__Login__User__", respond.Data.CurrentUser);
-            return respond;
         }
 
         /// <summary>

@@ -1,5 +1,8 @@
-﻿namespace CPSS.Service.ViewService.ViewModels.MainPage.Respond
+﻿using System;
+
+namespace CPSS.Service.ViewService.ViewModels.MainPage.Respond
 {
+    [Serializable]
     public class RespondMenuViewModel
     {
         /// <summary>

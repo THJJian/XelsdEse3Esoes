@@ -115,6 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BuyController.cs" />
     <Compile Include="Controllers\CommonPartialController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\Filters\OperateRightAttribute.cs" />
@@ -153,6 +154,7 @@
     <Content Include="Views\Main\Window.cshtml" />
     <Content Include="Views\SystemParameterConfig\Index.cshtml" />
     <Content Include="Views\VerifyCodeImage\Index.cshtml" />
+    <Content Include="Views\Buy\BuyOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

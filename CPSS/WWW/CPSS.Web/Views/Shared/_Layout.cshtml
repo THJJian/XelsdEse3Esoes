@@ -9,14 +9,13 @@
     <meta name="description" content="ss">
     <meta name="keywords" content="dd">
 
-    <style>
+    <style type="text/css">
         body {
             margin: 0;
             padding: 0;
         }
-
-        @RenderSection("style", false)
     </style>
+    @RenderSection("style", false)
     @foreach (var css in WorkContext.Resource.Css)
     {
         <link href="@css" type="text/css" rel="stylesheet">

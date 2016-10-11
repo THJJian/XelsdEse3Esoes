@@ -1,5 +1,8 @@
-﻿namespace CPSS.Service.ViewService.ViewModels.HeadButtons.Respond
+﻿using System;
+
+namespace CPSS.Service.ViewService.ViewModels.HeadButtons.Respond
 {
+    [Serializable]
     public class RespondHeadButtonsViewModel
     {
         /// <summary>

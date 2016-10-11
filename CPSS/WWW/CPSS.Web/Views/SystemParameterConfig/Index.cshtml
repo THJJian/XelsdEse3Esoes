@@ -2,11 +2,90 @@
     ViewBag.Title = "Index";
 }
 
-<div id="sadfalsdkfasdl" class="easyui-tabs" data-options="fit:true, border:false, tabPosition: 'bottom', plain: true">
-    <div title="demo1">
-        asdfalsdkfasdlf
+@section style{
+    <style type="text/css">
+        #use_same_tax_rate,#price_set_panel .switchbutton {
+            margin: 0 0 0 -6px;
+        }
+    </style>
+}
+<div id="container" style="width: 100%;">
+    <div id="basic_set_panel" title="基本设置" class="easyui-panel">
+        <div style="width: 100%; padding: 5px 0">
+            <input id="QtyScale" class="easyui-numberbox" data-options="min: 0, max: 7, label:'数量保留小数位数(0-7)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px',
+           width: '200px', height: '26px', value: 2" />
+        </div>
+        <div style="width: 100%; padding: 5px 0">
+            <input id="UnitPriceScale" class="easyui-numberbox" data-options="min: 0, max: 7, label:'单价保留小数位数(0-7)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px',
+           width: '200px', height: '26px', value: 2" />
+        </div>
+        <div style="width: 100%; padding: 5px 0">
+            <input id="TotalScale" class="easyui-numberbox" data-options="min: 0, max: 4, label:'金额保留小数位数(0-4)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px',
+            width: '200px', height: '26px', value: 2" />
+        </div>
+        <div style="width: 100%; padding: 5px 0">
+            <input id="DiscountRateScale" class="easyui-numberbox" data-options="min: 0, max: 7, label:'扣率保留小数位数(0-7)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px',
+               width: '200px', height: '26px', value: 2" />
+        </div>
+        <div style="width: 100%; padding: 5px 0">
+            <input id="TaxRate" class="easyui-numberbox" data-options="min: 0, max: 100, label:'默认税率(%)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px',
+               width: '200px', height: '26px', value: 0" />
+        </div>
+        <div id="use_same_tax_rate" style="width: 100%; padding: 5px 0">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">统一使用默认税率(%)：</label>
+            <input id="UseSameTaxRate" class="easyui-switchbutton" checked>
+        </div>
     </div>
-    <div title="demo1">
-        asdlkfawlekrwalkds
+
+    <div id="price_set_panel" title="价格设置" class="easyui-panel">
+        <div id="use_sell_price_trace" style="width: 100%; padding: 5px 0">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 95px; height: 26px; line-height: 26px;">启用售价跟踪：</label>
+            <input id="UseSaleTrace" class="easyui-switchbutton">
+        </div>
+        <div id="use_buy_price_trace" style="width: 100%; padding: 5px 0">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 95px; height: 26px; line-height: 26px;">启用售价跟踪：</label>
+            <input id="UseBuyTrace" class="easyui-switchbutton">
+        </div>
+        <div style="width: 100%; padding: 5px 0">
+            <select class="easyui-combobox" data-options="label:'价格跟踪方式：', labelPosition: 'before', labelAlign: 'right', labelWidth: '100px',
+               width: '200px', height: '26px', panelHeight: 65">
+                <option value="0" selected="selected">折后价</option>
+                <option value="1">单价</option>
+                <option value="2">含税价</option>
+            </select>
+        </div>
     </div>
 </div>
+@section scripts{
+    <script type="text/javascript">
+        $(document.body)
+            .ready(function () {
+
+                $("#container").css({ height: $(window).height() });
+                $(".panel").css({ float: "left", padding: "1px 1px 0 1px" });
+                $("#basic_set_panel,#price_set_panel")
+                    .panel({
+                        width: 220,
+                        tools: [
+                            {
+                                iconCls: "icon-save",
+                                handler: function () {
+                                    //debugger;
+                                    var panel_id = $(this).parents("div.panel-header").next().attr("id").toLowerCase();
+                                    switch (panel_id) {
+                                        case "basic_set_panel":
+                                            //TODO 保存相应更改
+                                            _msgbox.alert("", panel_id);
+                                            break;
+                                        case "price_set_panel":
+                                            //TODO 保存相应更改
+                                            _msgbox.alert("", panel_id);
+                                            break;
+                                    }
+                                }
+                            }
+                        ]
+                    });
+            });
+    </script>
+}
