@@ -9,5 +9,7 @@
         public int CompanySerialNum { set; get; }
 
         public string CompanyName { set; get; }
+
+        public bool IsSysManager { get; set; }
     }
 }

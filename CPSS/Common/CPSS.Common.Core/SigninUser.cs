@@ -12,6 +12,7 @@ namespace CPSS.Common.Core
             this.UserName = string.Empty;
             this.AddressIP = string.Empty;
             this.ConnectionConfig = null;
+            this.IsSysManager = false;
         }
 
         public int UserID { set; get; }
@@ -25,5 +26,10 @@ namespace CPSS.Common.Core
         public string AddressIP { set; get; }
 
         public DbConnectionConfig ConnectionConfig { set; get; }
+
+        /// <summary>
+        /// 是否为超级管理员
+        /// </summary>
+        public bool IsSysManager { get; set; }
     }
 }

@@ -1,12 +1,8 @@
 ﻿using System.Web.Mvc;
 using CPSS.Common.Core.Mvc;
-using System.Collections.Generic;
-using System.Linq;
-using CPSS.Common.Core.Mvc.Filters;
 using CPSS.Service.ViewService.Interfaces.HeadButtons;
 using CPSS.Service.ViewService.Interfaces.MainPage;
 using CPSS.Service.ViewService.ViewModels.HeadButtons.Request;
-using CPSS.Service.ViewService.ViewModels.MainPage.Respond;
 
 namespace CPSS.Web.Controllers
 {

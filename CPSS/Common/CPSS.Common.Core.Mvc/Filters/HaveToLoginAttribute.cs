@@ -8,6 +8,7 @@ namespace CPSS.Common.Core.Mvc.Filters
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = true)]
     public class HaveToLoginAttribute : AuthorizeAttribute
     {
+
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             if (httpContext == null) throw new Exception("服务器异常(httpContext)");

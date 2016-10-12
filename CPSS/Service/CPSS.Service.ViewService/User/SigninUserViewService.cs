@@ -6,6 +6,7 @@ using CPSS.Common.Core.Exception;
 using CPSS.Common.Core.Helper.Cached;
 using CPSS.Common.Core.Helper.Extension;
 using CPSS.Common.Core.Helper.MD5;
+using CPSS.Common.Core.Helper.WebConfig;
 using CPSS.Common.Core.Type;
 using CPSS.Data.DataAccess.Interfaces.User;
 using CPSS.Data.DataAccess.Interfaces.User.Parameters;
@@ -64,7 +65,8 @@ namespace CPSS.Service.ViewService.User
                             CompanySerialNum = dataModel.CompanySerialNum,
                             UserID_g = userID_g,
                             UserID = dataModel.UserID,
-                            UserName = dataModel.UserName
+                            UserName = dataModel.UserName,
+                            IsSysManager = dataModel.IsSysManager
                         }
                     }
                 };
@@ -127,7 +129,10 @@ namespace CPSS.Service.ViewService.User
                         UserIP = dataModel.UserIP
                     }
                 };
-            }, string.Format(preCacheKey, "GetOnlineSigninUserByUserID_g"), DateTime.Now.AddMinutes(30), request.SGuid, request.AddressIP);
+            }, string.Format(preCacheKey, "GetOnlineSigninUserByUserID_g"), 
+            DateTime.Now.AddMinutes(WebConfigHelper.MemCachedExpTime()), 
+            request.SGuid, 
+            request.AddressIP);
         }
 
         public RespondWebViewData<RespondSigninUserViewModel> FindSininUserDataModelByUserID(RequestOnlineSigninUserViewModel request)

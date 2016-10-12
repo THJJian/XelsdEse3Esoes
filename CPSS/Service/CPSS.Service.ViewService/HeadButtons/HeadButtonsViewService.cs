@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using CPSS.Common.Core.Helper.Cached;
+using CPSS.Common.Core.Helper.WebConfig;
 using CPSS.Data.DataAccess.Interfaces.HeadButtons;
 using CPSS.Data.DataAccess.Interfaces.HeadButtons.Parameters;
 using CPSS.Service.ViewService.Interfaces.HeadButtons;
@@ -36,7 +37,11 @@ namespace CPSS.Service.ViewService.HeadButtons
                     ButtonText = model.ButtonText
                 }).ToList();
                 return viewModels;
-            }, string.Format(preCacheKey, "QueryHeadButtonsViewModelsByMenuID"), DateTime.Now.AddMinutes(10), request.MenuID, request.ClassID);
+            }, 
+            string.Format(preCacheKey, "QueryHeadButtonsViewModelsByMenuID"), 
+            DateTime.Now.AddMinutes(WebConfigHelper.MemCachedExpTime()), 
+            request.MenuID, 
+            request.ClassID);
         }
     }
 }

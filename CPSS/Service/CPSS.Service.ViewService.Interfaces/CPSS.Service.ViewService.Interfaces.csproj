@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="HeadButtons\IHeadButtonsViewService.cs" />
     <Compile Include="MainPage\ILeftNavMenuViewService.cs" />
+    <Compile Include="MenuRight\IMenuRightCheckViewService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\ICompanyInfoViewService.cs" />
     <Compile Include="User\ISigninUserViewService.cs" />

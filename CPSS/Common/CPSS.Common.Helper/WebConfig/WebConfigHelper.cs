@@ -1,4 +1,5 @@
 ﻿using System.Configuration;
+using CPSS.Common.Core.Helper.Extension;
 
 namespace CPSS.Common.Core.Helper.WebConfig
 {
@@ -16,5 +17,17 @@ namespace CPSS.Common.Core.Helper.WebConfig
             return value;
         }
 
+        /// <summary>
+        /// 获取系统配置的缓存过期时间(单位为[分])，默认为10分钟过期
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static int MemCachedExpTime(string key = "CSPP.MemCached.ExpTime")
+        {
+            var _value = 10;
+            var value = ConfigurationManager.AppSettings[key];
+            if (!string.IsNullOrEmpty(value)) _value = value.ToInt32();
+            return _value;
+        }
     }
 }

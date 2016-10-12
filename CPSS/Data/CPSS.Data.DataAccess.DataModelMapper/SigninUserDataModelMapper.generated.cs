@@ -28,7 +28,8 @@ namespace CPSS.Data.DataAccess
             entity.UserName = (string)dataReader["UserName"];
             entity.CompanySerialNum = (int)dataReader["CompanySerialNum"];
             entity.CompanyName = (string)dataReader["CompanyName"];
-	    }
+            entity.IsSysManager = (bool)dataReader["IsSysManager"];
+        }
 
 		/// <summary>
         /// 映射
@@ -42,7 +43,8 @@ namespace CPSS.Data.DataAccess
             result.UserName = (string)dataReader["UserName"];
             result.CompanySerialNum = (int)dataReader["CompanySerialNum"];
             result.CompanyName = (string)dataReader["CompanyName"];
-			return result;
+            result.IsSysManager = (bool)dataReader["IsSysManager"];
+            return result;
 	    }
 
 		/// <summary>

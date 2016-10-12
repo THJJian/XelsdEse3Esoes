@@ -5,7 +5,8 @@ using Autofac;
 using Autofac.Features.OwnedInstances;
 using CPSS.Common.Core.Mvc.Filters;
 using CPSS.Common.Core.Mvc.Ioc;
-using CPSS.Service.ViewService.Interfaces.MainPage;
+using CPSS.Service.ViewService.Interfaces.MenuRight;
+using CPSS.Service.ViewService.ViewModels.MenuRight.Request;
 
 namespace CPSS.Web.Controllers.Filters
 {
@@ -28,11 +29,15 @@ namespace CPSS.Web.Controllers.Filters
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             var _autofacScope = AutofacServiceContainer.CurrentServiceContainer.BeginLifetimeScope(new object());
-            var _service = _autofacScope.Resolve<Owned<ILeftNavMenuViewService>>();
-            var model = _service.Value.GetLeftNavMenuDataModels();
+            var _service = _autofacScope.Resolve<Owned<IMenuRightCheckViewService>>();
+            var request = new RequestMenuRightCheckViewModel
+            {
+                MenuID = this.MenuID
+            };
+            var model = _service.Value.CheckMenuRightByMenuID(request);
 
-            //TODO 验证权限 有相应权限 返回true，否则返回false
-            return model.Count > 0;
+            //验证权限 有相应权限 返回true，否则返回false
+            return model;
         }
 
         /// <summary>

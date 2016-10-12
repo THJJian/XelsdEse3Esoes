@@ -67,6 +67,8 @@
     </Compile>
     <Compile Include="MainPage\ILeftNavMenuDataAccess.cs" />
     <Compile Include="MainPage\Parameters\LeftNavMenuParameter.cs" />
+    <Compile Include="MenuRight\IMenuRightCheckDataAccess.cs" />
+    <Compile Include="MenuRight\Parameters\MenuRightCheckParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\ICompanyInfoDataAccess.cs" />
     <Compile Include="User\ISiginUserDataAccess.cs" />

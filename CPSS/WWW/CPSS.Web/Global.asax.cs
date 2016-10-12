@@ -36,17 +36,32 @@ namespace CPSS.Web
         {
             var httpApplication = sender as HttpApplication;
             if (httpApplication == null) return;
+
+            #region 跳过不需要恢复身份的页面的身份恢复操作
+
             var _notAuthenticatePageList = new List<string> {"/verifycodeimage/index", "/signin/login", "/commonpartial/unauthorizedvisit" };
             var _request_file_path = httpApplication.Context.Request.FilePath.ToLower();
             if(_notAuthenticatePageList.Any(item=>item == _request_file_path)) return;
+
+            #endregion
+
+            #region 身份未丢失的不需要执行恢复身份操作
 
             var context = httpApplication.Context;
             var user = context.Items[BeforeCompileConstDefined.HttpContext_Login_User] as SigninUser;
             if (user != null) return;
 
+            #endregion
+
+            #region 设置需要使用主库连接字符串的页面
+
             var _useMainConnectionPageList = new List<string> { "/main/index" };
             if (_useMainConnectionPageList.Any(item => item == _request_file_path))
                 context.Items[BeforeCompileConstDefined.HttpContext_Not_Use_Main_Connection] = false;
+
+            #endregion
+
+            #region 身份恢复操作
 
             var autofac = AutofacServiceContainer.CurrentServiceContainer.BeginLifetimeScope(new object());
             var service = autofac.Resolve<ISigninUserViewService>();
@@ -74,6 +89,8 @@ namespace CPSS.Web
             catch
             {
             }
+            
+            #endregion
         }
     }
 }

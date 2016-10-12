@@ -4,7 +4,7 @@ using CPSS.Common.Core.Mvc.Filters;
 
 namespace CPSS.Web.Controllers
 {
-    //[HaveToLogin]
+    [HaveToLogin]
     public class SystemParameterConfigController : WebBaseController
     {
         // GET: SystemParameterConfig
