@@ -2,6 +2,7 @@
 using CPSS.Common.Core.Exception;
 using CPSS.Common.Core.Helper.Extension;
 using CPSS.Common.Core.Mvc;
+using CPSS.Common.Core.Type;
 using CPSS.Service.ViewService.Interfaces.User;
 using CPSS.Service.ViewService.ViewModels.User.Request;
 using CPSS.Service.ViewService.ViewModels.User.Respond;
@@ -33,7 +34,7 @@ namespace CPSS.Web.Controllers
                 respond = new RespondWebViewData<RespondSigninUserViewModel>(WebViewErrorCode.ModelValidateError.ErrorCode, errorMessage);
                 return Json(respond);
             }
-            var _sessionVerifyCode = HttpContext.Session["login_img_verify_code"].ToString().ToLower();
+            var _sessionVerifyCode = HttpContext.Session[BeforeCompileConstDefined.HttpContext_Login_Img_Verify_Code].ToString().ToLower();
             if (_sessionVerifyCode != request.ValidCode.ToLower())
             {
                 respond = new RespondWebViewData<RespondSigninUserViewModel>(WebViewErrorCode.VerifyCodeError);
@@ -41,7 +42,7 @@ namespace CPSS.Web.Controllers
             }
             
             respond = this.mSigninUserViewService.QuerySigninUserViewModel(request);
-            HttpContext.Session["login_img_verify_code"] = string.Empty;
+            HttpContext.Session[BeforeCompileConstDefined.HttpContext_Login_Img_Verify_Code] = string.Empty;
             if (respond.Data.CurrentUser.UserID > 0)
             {
                 //var _signature_text = SignatureHelper.BuildSignature(JObject.FromObject(respond.Data.CurrentUser));

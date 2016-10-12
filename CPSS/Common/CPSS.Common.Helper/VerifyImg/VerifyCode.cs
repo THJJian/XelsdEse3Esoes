@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Linq;
 
 namespace CPSS.Common.Core.Helper.VerifyImg
 {
@@ -44,8 +45,15 @@ namespace CPSS.Common.Core.Helper.VerifyImg
             {
                 Random rand = new Random(seeks[i]);
                 int pownum = 1 * (int)Math.Pow(10, length);
-                randMembers[i] = rand.Next(pownum, Int32.MaxValue);
+                var _rand_num = rand.Next(pownum, int.MaxValue);
+                if (randMembers.Any(item => item == pownum))
+                {
+                    i--;
+                    continue;
+                }
+                randMembers[i] = _rand_num;
             }
+
             //抽取随机数字
             for (int i = 0; i < length; i++)
             {
@@ -53,7 +61,7 @@ namespace CPSS.Common.Core.Helper.VerifyImg
                 int numLength = numStr.Length;
                 Random rand = new Random();
                 int numPosition = rand.Next(0, numLength - 1);
-                validateNums[i] = Int32.Parse(numStr.Substring(numPosition, 1));
+                validateNums[i] = int.Parse(numStr.Substring(numPosition, 1));
             }
             //生成验证码
             for (int i = 0; i < length; i++)

@@ -1,5 +1,6 @@
 ﻿using System.Web.Mvc;
 using CPSS.Common.Core.Helper.VerifyImg;
+using CPSS.Common.Core.Type;
 
 namespace CPSS.Web.Controllers
 {
@@ -10,7 +11,7 @@ namespace CPSS.Web.Controllers
         {
             VerifyCode vCode = new VerifyCode();
             string code = vCode.CreateValidateCode(5);
-            Session["login_img_verify_code"] = code;
+            Session[BeforeCompileConstDefined.HttpContext_Login_Img_Verify_Code] = code;
             byte[] bytes = vCode.CreateValidateGraphic(code);
             return File(bytes, @"image/jpeg");
         }
