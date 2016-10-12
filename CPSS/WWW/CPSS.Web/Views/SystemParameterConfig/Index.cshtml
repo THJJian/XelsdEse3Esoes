@@ -4,13 +4,19 @@
 
 @section style{
     <style type="text/css">
-        #use_same_tax_rate,#price_set_panel .switchbutton {
+        #use_same_tax_rate, #price_set_panel .switchbutton {
+            margin: 0 0 0 -6px;
+        }
+        #bill_set_panel .switchbutton {
+            margin: 0 0 0 -6px;
+        }
+        #other_set_panel .switchbutton {
             margin: 0 0 0 -6px;
         }
     </style>
 }
 <div id="container" style="width: 100%;">
-    <div id="basic_set_panel" title="基本设置" class="easyui-panel">
+    <div id="basic_set_panel" title="基本设置" class="easyui-panel" data-options="width:220">
         <div style="width: 100%; padding: 5px 0">
             <input id="QtyScale" class="easyui-numberbox" data-options="min: 0, max: 7, label:'数量保留小数位数(0-7)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px',
            width: '200px', height: '26px', value: 2" />
@@ -33,11 +39,11 @@
         </div>
         <div id="use_same_tax_rate" style="width: 100%; padding: 5px 0">
             <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">统一使用默认税率(%)：</label>
-            <input id="UseSameTaxRate" class="easyui-switchbutton" checked>
+            <input id="UseSameTaxRate" class="easyui-switchbutton">
         </div>
     </div>
 
-    <div id="price_set_panel" title="价格设置" class="easyui-panel">
+    <div id="price_set_panel" title="价格设置" class="easyui-panel" data-options="width:220">
         <div id="use_sell_price_trace" style="width: 100%; padding: 5px 0">
             <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 95px; height: 26px; line-height: 26px;">启用售价跟踪：</label>
             <input id="UseSaleTrace" class="easyui-switchbutton">
@@ -55,6 +61,85 @@
             </select>
         </div>
     </div>
+    
+    <div id="bill_set_panel" title="单据设置" class="easyui-panel" data-options="width:440">
+        <div id="use_recent_buy_price_2_cost_price" style="width: 50%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">使用最近进价作为成本价：</label>
+            <input id="UseRecentBuyPrice2CostPrice" class="easyui-switchbutton">
+        </div>
+        <div id="auto_generate_bill_number" style="width: 50%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="AutoGenerateBillNumber" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">自动生成单据编号：</label>
+            <input id="AutoGenerateBillNumber" class="easyui-switchbutton">
+        </div>
+
+        <div id="print_add_count" style="width: 50%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">单据打印占单据编号：</label>
+            <input id="PrintAddCount" class="easyui-switchbutton">
+        </div>
+        <div id="not_modify_bill_date" style="width: 50%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">不允许修改单据日期：</label>
+            <input id="NotModifyBillDate" class="easyui-switchbutton">
+        </div>
+
+        <div id="sn_print_style" style="width: 50%; padding: 5px 0; float: left;">
+            <input id="SNPrintStyle" class="easyui-numberbox" data-options="min: 0, max: 100, label:'序列号打印，每行打印：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px',
+           width: '200px', height: '26px', value: 2" />
+        </div>
+        <div id="keep_orignal_input_man" style="width: 50%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">保留原始制单人：</label>
+            <input id="KeepOrignalInputMan" class="easyui-switchbutton">
+        </div>
+
+        <div id="retail_use_pos" style="width: 50%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">零售单启用POS：</label>
+            <input id="RetailUsePos" class="easyui-switchbutton">
+        </div>
+        <div id="retail_can_make_balance" style="width: 50%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">允许零售单欠款：</label>
+            <input id="RetailCanMakeBalance" class="easyui-switchbutton">
+        </div>
+
+        <div id="product_repeat_alert" style="width: 50%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">开单商品有重复行时提示：</label>
+            <input id="ProductRepeatAlert" class="easyui-switchbutton">
+        </div>
+        <div id="checke_sn_is_sell" style="width: 50%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">保存检查序列号是否可开：</label>
+            <input id="CheckeSNIsSell" class="easyui-switchbutton">
+        </div>
+
+        <div id="filter_zero_product" style="width: 100%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 363px; height: 26px; line-height: 26px;">开单过滤库存数量小于等于零的商品：</label>
+            <input id="FilterZeroProduct" class="easyui-switchbutton">
+        </div>
+
+        <div id="less_than_storage_qty_alert" style="width: 100%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 363px; height: 26px; line-height: 26px;">开单保存检查是否小于可开票数量：</label>
+            <input id="LessThanStorageQtyAlert" class="easyui-switchbutton">
+        </div>
+
+        <div id="not_check_sn_for_save" style="width: 100%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 363px; height: 26px; line-height: 26px;">在单据保存时不检查强制序列号数量：</label>
+            <input id="NotCheckSNForSave" class="easyui-switchbutton">
+        </div>
+
+        <div id="quick_input_display_with_rows" style="width: 100%; padding: 5px 0; float: left;">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 363px; height: 26px; line-height: 26px;">出入库类单据商品重复时自动合并商品行，该商品数量+1：</label>
+            <input id="QuickInputDisplayWithRows" class="easyui-switchbutton">
+        </div>
+    </div>
+
+    <div id="other_set_panel" title="其它设置" class="easyui-panel" data-options="width:310">
+        <div id="allow_cash_blance_less_than_zero" style="width: 100%; padding: 5px 0">
+            <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 230px; height: 26px; line-height: 26px;">不允许现金银行、预收预付科目余额为负：</label>
+            <input id="AllowCashBlanceLessThanZero" class="easyui-switchbutton">
+        </div>
+        <div id="data_select_page_size" style="width: 100%; padding: 5px 0">
+            <input id="DataSelectPageSize" class="easyui-numberbox" data-options="min: 10, max: 500, label:'基础数据选择和报表每页显示行数：', labelPosition: 'before', labelAlign: 'right', labelWidth: '235px',
+                   width: '285px', height: '26px', value: 2" />
+        </div>
+    </div>
+
 </div>
 @section scripts{
     <script type="text/javascript">
@@ -63,9 +148,9 @@
 
                 $("#container").css({ height: $(window).height() });
                 $(".panel").css({ float: "left", padding: "1px 1px 0 1px" });
-                $("#basic_set_panel,#price_set_panel")
+                $("#basic_set_panel,#price_set_panel,#bill_set_panel,#other_set_panel")
                     .panel({
-                        width: 220,
+                        //width: 220,
                         tools: [
                             {
                                 iconCls: "icon-save",

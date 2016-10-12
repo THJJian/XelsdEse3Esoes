@@ -66,7 +66,7 @@ namespace CPSS.Service.ViewService.User
                             UserID_g = userID_g,
                             UserID = dataModel.UserID,
                             UserName = dataModel.UserName,
-                            IsSysManager = dataModel.IsSysManager
+                            IsSysManager = dataModel.Manager && dataModel.isSystem
                         }
                     }
                 };

@@ -16,7 +16,7 @@ namespace CPSS.Data.DataAccess.User
 
         public SigninUserDataModel QuerySigninUserDataModel(SigninUserParameter parameter)
         {
-            this.ExecuteSQL = "SELECT UserID,CompanySerialNum,CompanyName,UserName,CASE WHEN Manager=1 AND isSystem=1 THEN 1 ELSE 0 END IsSysManager FROM sys_users WHERE UserName=@UserName AND ISNULL(UserPwd,'')=@UserPwd AND CompanySerialNum=@CompanySerialNum AND Deleted = 0";
+            this.ExecuteSQL = "SELECT UserID,CompanySerialNum,CompanyName,UserName,Manager,isSystem FROM sys_users WHERE UserName=@UserName AND ISNULL(UserPwd,'')=@UserPwd AND CompanySerialNum=@CompanySerialNum AND Deleted = 0";
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@UserName", parameter.UserName), 

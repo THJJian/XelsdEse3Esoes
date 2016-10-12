@@ -10,6 +10,8 @@
 
         public string CompanyName { set; get; }
 
-        public bool IsSysManager { get; set; }
+        public bool Manager { get; set; }
+
+        public bool isSystem { set; get; }
     }
 }
