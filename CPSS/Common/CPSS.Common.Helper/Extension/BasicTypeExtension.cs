@@ -98,7 +98,7 @@ namespace CPSS.Common.Core.Helper.Extension
         }
 
         /// <summary>
-        /// 讲一个GUID格式的字符串转换成GUID
+        /// 将一个GUID格式的字符串转换成GUID
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
@@ -107,6 +107,19 @@ namespace CPSS.Common.Core.Helper.Extension
             Guid outVal;
             var defaultVal = Guid.Empty;
             if (Guid.TryParse(source, out outVal)) defaultVal = outVal;
+            return defaultVal;
+        }
+
+        /// <summary>
+        /// 将字符串转换成bool数据类型
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static bool ToBool(this string source)
+        {
+            bool outVal;
+            var defaultVal = false;
+            if (bool.TryParse(source, out outVal)) defaultVal = outVal;
             return defaultVal;
         }
 
@@ -163,6 +176,6 @@ namespace CPSS.Common.Core.Helper.Extension
         }
 
         #endregion
-
+        
     }
 }

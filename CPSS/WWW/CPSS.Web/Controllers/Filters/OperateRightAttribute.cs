@@ -29,7 +29,7 @@ namespace CPSS.Web.Controllers.Filters
         {
             var _autofacScope = AutofacServiceContainer.CurrentServiceContainer.BeginLifetimeScope(new object());
             var _service = _autofacScope.Resolve<Owned<ILeftNavMenuViewService>>();
-            var model = _service.Value.GetLeftNavMenuDataModels(this.MenuID);
+            var model = _service.Value.GetLeftNavMenuDataModels();
 
             //TODO 验证权限 有相应权限 返回true，否则返回false
             return model.Count > 0;

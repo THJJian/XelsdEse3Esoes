@@ -337,7 +337,7 @@ namespace CPSS.Web.Controllers
             //};
 
             #endregion
-            var model = this.mLeftNavMenuViewService.GetLeftNavMenuDataModels(0);
+            var model = this.mLeftNavMenuViewService.GetLeftNavMenuDataModels();
 
             return PartialView("~/Views/Shared/CommonPartial/LeftNavMenu.cshtml", model);
         }

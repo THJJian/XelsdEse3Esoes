@@ -9,8 +9,7 @@ namespace CPSS.Service.ViewService.Interfaces.MainPage
         /// <summary>
         /// 获取用户菜单列表
         /// </summary>
-        /// <param name="_userID"></param>
         /// <returns></returns>
-        IList<RespondPanelViewModel> GetLeftNavMenuDataModels(int _userID);
+        IList<RespondPanelViewModel> GetLeftNavMenuDataModels();
     }
 }

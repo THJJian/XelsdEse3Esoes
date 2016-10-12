@@ -12,6 +12,7 @@ using Autofac.Integration.Mvc;
 using CPSS.Common.Core;
 using CPSS.Common.Core.Helper.Extension;
 using CPSS.Common.Core.Mvc.Ioc;
+using CPSS.Common.Core.Type;
 using CPSS.Service.ViewService.Interfaces.User;
 using CPSS.Service.ViewService.ViewModels.User.Request;
 
@@ -35,12 +36,17 @@ namespace CPSS.Web
         {
             var httpApplication = sender as HttpApplication;
             if (httpApplication == null) return;
-            var _notAuthenticateList = new List<string> {"/verifycodeimage/index", "/signin/login"};
-            if(_notAuthenticateList.Any(item=>item == httpApplication.Context.Request.FilePath)) return;
+            var _notAuthenticatePageList = new List<string> {"/verifycodeimage/index", "/signin/login", "/commonpartial/unauthorizedvisit" };
+            var _request_file_path = httpApplication.Context.Request.FilePath.ToLower();
+            if(_notAuthenticatePageList.Any(item=>item == _request_file_path)) return;
 
             var context = httpApplication.Context;
-            var user = context.Items["__Login__User__"] as SigninUser;
+            var user = context.Items[BeforeCompileConstDefined.HttpContext_Login_User] as SigninUser;
             if (user != null) return;
+
+            var _useMainConnectionPageList = new List<string> { "/main/index" };
+            if (_useMainConnectionPageList.Any(item => item == _request_file_path))
+                context.Items[BeforeCompileConstDefined.HttpContext_Not_Use_Main_Connection] = false;
 
             var autofac = AutofacServiceContainer.CurrentServiceContainer.BeginLifetimeScope(new object());
             var service = autofac.Resolve<ISigninUserViewService>();

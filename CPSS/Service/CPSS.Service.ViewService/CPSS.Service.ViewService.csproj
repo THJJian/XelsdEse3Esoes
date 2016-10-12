@@ -56,6 +56,10 @@
       <Project>{1BA135E5-7027-43F0-80C5-1637E9A31666}</Project>
       <Name>CPSS.Common.Core.Exception</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\CPSS.Common.Core.Type\CPSS.Common.Core.Type.csproj">
+      <Project>{D136F3C8-F518-4071-90CF-26FB8B8E296A}</Project>
+      <Name>CPSS.Common.Core.Type</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\CPSS.Common.Core\CPSS.Common.Core.csproj">
       <Project>{0FACB83C-5540-401C-A87D-B06FAE50ABED}</Project>
       <Name>CPSS.Common.Core</Name>

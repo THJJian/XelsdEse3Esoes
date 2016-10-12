@@ -55,6 +55,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CPSS.Common.Core.Type\CPSS.Common.Core.Type.csproj">
+      <Project>{D136F3C8-F518-4071-90CF-26FB8B8E296A}</Project>
+      <Name>CPSS.Common.Core.Type</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CPSS.Common.Helper\CPSS.Common.Core.Helper.csproj">
       <Project>{52aa19b4-e29e-4237-95f0-58c7e1eaa46d}</Project>
       <Name>CPSS.Common.Core.Helper</Name>

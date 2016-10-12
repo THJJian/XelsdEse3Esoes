@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using CPSS.Common.Core.Authenticate;
 using CPSS.Data.DataAccess.Interfaces.MainPage;
 using CPSS.Data.DataAccess.Interfaces.MainPage.Parameters;
 using CPSS.Service.ViewService.Interfaces.MainPage;
@@ -16,11 +17,12 @@ namespace CPSS.Service.ViewService.MainPage
             this.mLeftNavMenuDataAccess = _leftNavMenuDataAccess;
         }
 
-        public IList<RespondPanelViewModel> GetLeftNavMenuDataModels(int _userID)
+        public IList<RespondPanelViewModel> GetLeftNavMenuDataModels()
         {
+            var user = CPSSAuthenticate.GetCurrentUser();
             var parameter = new LeftNavMenuParameter
             {
-                UserID = _userID
+                UserID = user.UserID
             };
             var dataModels = this.mLeftNavMenuDataAccess.GetLeftNavMenuDataModels(parameter);
             var viewModels = dataModels

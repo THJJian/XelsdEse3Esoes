@@ -6,6 +6,7 @@ using CPSS.Common.Core.Exception;
 using CPSS.Common.Core.Helper.Cached;
 using CPSS.Common.Core.Helper.Extension;
 using CPSS.Common.Core.Helper.MD5;
+using CPSS.Common.Core.Type;
 using CPSS.Data.DataAccess.Interfaces.User;
 using CPSS.Data.DataAccess.Interfaces.User.Parameters;
 using CPSS.Service.ViewService.Interfaces.User;
@@ -74,7 +75,7 @@ namespace CPSS.Service.ViewService.User
                     UserID_g= userID_g
                 });
                 FormsAuthenticationTicketManage.CreateFormsAuthentication(userID_g);
-                HttpContext.Current.Items.Add("__Login__User__", _respond.Data.CurrentUser);
+                HttpContext.Current.Items.Add(BeforeCompileConstDefined.HttpContext_Login_User, _respond.Data.CurrentUser);
                 return _respond;
             }, userID_g.ToString());
         }
@@ -166,7 +167,7 @@ namespace CPSS.Service.ViewService.User
                     }
                 }
             };
-            HttpContext.Current.Items.Add("__Login__User__", respond.Data.CurrentUser);
+            HttpContext.Current.Items.Add(BeforeCompileConstDefined.HttpContext_Login_User, respond.Data.CurrentUser);
             return respond;
         }
     }

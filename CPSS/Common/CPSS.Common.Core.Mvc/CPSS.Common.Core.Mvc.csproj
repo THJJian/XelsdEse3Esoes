@@ -98,6 +98,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CPSS.Common.Core.Type\CPSS.Common.Core.Type.csproj">
+      <Project>{D136F3C8-F518-4071-90CF-26FB8B8E296A}</Project>
+      <Name>CPSS.Common.Core.Type</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CPSS.Common.Core\CPSS.Common.Core.csproj">
       <Project>{0facb83c-5540-401c-a87d-b06fae50abed}</Project>
       <Name>CPSS.Common.Core</Name>

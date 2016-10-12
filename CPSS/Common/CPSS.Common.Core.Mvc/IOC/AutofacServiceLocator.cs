@@ -32,7 +32,7 @@ namespace CPSS.Common.Core.Mvc.Ioc
         /// <param name="serviceType">实例类型</param>
         /// <param name="key">注册的名字，可为null</param>
         /// <returns> 返回请求的实例 </returns>
-        protected override object DoGetInstance(Type serviceType, string key)
+        protected override object DoGetInstance(System.Type serviceType, string key)
         {
             if (serviceType == null)
                 throw new ArgumentNullException("serviceType");
@@ -44,14 +44,11 @@ namespace CPSS.Common.Core.Mvc.Ioc
         /// </summary>
         /// <param name="serviceType">实例类型</param>
         /// <returns> 实例集合 </returns>
-        protected override IEnumerable<object> DoGetAllInstances(Type serviceType)
+        protected override IEnumerable<object> DoGetAllInstances(System.Type serviceType)
         {
             if (serviceType == null)
                 throw new ArgumentNullException("serviceType");
-            return ((IEnumerable) _container.Resolve(typeof (IEnumerable<>).MakeGenericType(new[]
-            {
-                serviceType
-            }))).Cast<object>();
+            return ((IEnumerable) _container.Resolve(typeof (IEnumerable<>).MakeGenericType(serviceType))).Cast<object>();
         }
     }
 }

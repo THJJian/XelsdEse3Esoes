@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Web;
 using System.Web.Mvc;
+using CPSS.Common.Core.Type;
 
 namespace CPSS.Common.Core.Mvc.Filters
 {
@@ -10,7 +11,7 @@ namespace CPSS.Common.Core.Mvc.Filters
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
             if (httpContext == null) throw new Exception("服务器异常(httpContext)");
-            var user = httpContext.Items["__Login__User__"] as SigninUser;
+            var user = httpContext.Items[BeforeCompileConstDefined.HttpContext_Login_User] as SigninUser;
             return user?.UserID > 0;
         }
 
