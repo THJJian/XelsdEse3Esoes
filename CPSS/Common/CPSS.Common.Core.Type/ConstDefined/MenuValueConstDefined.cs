@@ -419,5 +419,14 @@
         #endregion
 
         #endregion
+
+        #region system
+
+        /// <summary>
+        /// 系统参数
+        /// </summary>
+        public const int rtSystemParameter = 569;
+
+        #endregion
     }
 }

@@ -6,7 +6,7 @@ namespace CPSS.Common.Core.Helper.BuildFilePath
     public class ExistsFileHelper
     {
         /// <summary>
-        /// 
+        /// 确定指定文件是否存在。
         /// </summary>
         /// <param name="filePath"></param>
         /// <returns></returns>

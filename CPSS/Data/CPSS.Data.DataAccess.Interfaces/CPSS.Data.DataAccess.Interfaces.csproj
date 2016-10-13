@@ -31,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MongoDB.Bson, Version=1.10.1.73, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\mongocsharpdriver.1.10.1\lib\net35\MongoDB.Bson.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=1.10.1.73, Culture=neutral, PublicKeyToken=f686731cfb9cc103, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\mongocsharpdriver.1.10.1\lib\net35\MongoDB.Driver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -69,7 +77,10 @@
     <Compile Include="MainPage\Parameters\LeftNavMenuParameter.cs" />
     <Compile Include="MenuRight\IMenuRightCheckDataAccess.cs" />
     <Compile Include="MenuRight\Parameters\MenuRightCheckParameter.cs" />
+    <Compile Include="MongoDB\IMongoDbDataAccess.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemParameterConfig\ISystemParameterConfigDataAccess.cs" />
+    <Compile Include="SystemParameterConfig\Parameters\SystemParameterConfigParameter.cs" />
     <Compile Include="User\ICompanyInfoDataAccess.cs" />
     <Compile Include="User\ISiginUserDataAccess.cs" />
     <Compile Include="User\Parameters\CompanyInfoParameter.cs" />
@@ -81,11 +92,16 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>IDataAccessTextTemplate.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\CPSS.Common.Core.DataAccess\CPSS.Common.Core.DataAccess.csproj">
+      <Project>{6700B0A7-1099-45E9-B496-EF01A3DE5960}</Project>
+      <Name>CPSS.Common.Core.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Common\CPSS.Common.Helper\CPSS.Common.Core.Helper.csproj">
       <Project>{52AA19B4-E29E-4237-95F0-58C7E1EAA46D}</Project>
       <Name>CPSS.Common.Core.Helper</Name>

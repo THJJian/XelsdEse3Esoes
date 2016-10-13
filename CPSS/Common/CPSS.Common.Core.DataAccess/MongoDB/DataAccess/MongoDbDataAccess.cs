@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
+using CPSS.Common.Core.Authenticate;
 using CPSS.Common.Core.DataAccess.MongoDB.Interface;
+using CPSS.Common.Core.Helper.BuildFilePath;
+using CPSS.Common.Core.Helper.Config;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -12,7 +15,17 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
 {
     public class MongoDbDataAccess : IMongoDbDataAccess
     {
+        private MongoDatabase mMongoDatabase;
         private MongoCollection mMongoCollection;
+
+        public MongoDbDataAccess()
+        {
+            var user = CPSSAuthenticate.GetCurrentUser();
+            var filePath = $"~/config/{user.CompanySerialNum}/mongodbconfig.config";
+            if (!ExistsFileHelper.ExistsFile(filePath)) throw new Exception("MongoDb库连接配置文件不存在。");
+            var mongoDbConfig = ConfigHelper.GetConfig<MongoDbConfig>(filePath);
+            this.InitMongoDataBase(mongoDbConfig.Server, mongoDbConfig.Database);
+        }
 
         /// <summary>
         /// 更新含有特殊元数据属性的字段的值(非string类型)
@@ -72,20 +85,33 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
             }
         }
 
-        public void InitMongoCollection<T>(string connection, string databaseName) where T : ConstraintDataEntity, new()
+        /// <summary>
+        /// 初始化数据库MongoDatabase
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <param name="databaseName"></param>
+        private void InitMongoDataBase(string connection, string databaseName)
         {
-            if (string.IsNullOrEmpty(databaseName)) throw new Exception("mongoDb数据名称不允许为空。");
-            var mongoClient = string.IsNullOrEmpty(connection) ? new MongoClient() : new MongoClient(connection);//如果没有传入连接字符串默认为本地mongoDb服务器
+            var mongoClient = new MongoClient(connection);
             var mongoServer = mongoClient.GetServer();
+            this.mMongoDatabase = mongoServer.GetDatabase(databaseName);
+        }
+
+        /// <summary>
+        /// 初始化数据库MongoCollection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        private void InitMongoCollection<T>() where T : ConstraintDataEntity, new()
+        {
             var tableName = typeof(T).FullName;
-            var mongoDatabase = mongoServer.GetDatabase(databaseName);
-            this.mMongoCollection = mongoDatabase.GetCollection(tableName);
+            this.mMongoCollection = this.mMongoDatabase.GetCollection(tableName);
         }
 
         public bool Save<T>(T data) where T : ConstraintDataEntity, new()
         {
             try
             {
+                this.InitMongoCollection<T>();
                 var json = JObject.FromObject(data).ToString(Formatting.None);
                 var document = BsonDocument.Parse(json);
                 document.Add(new BsonElement("_id", ObjectId.GenerateNewId()));
@@ -99,8 +125,9 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
             }
         }
 
-        public BsonDocument GetDataById(string id)
+        public BsonDocument GetDataById<T>(string id) where T : ConstraintDataEntity, new()
         {
+            this.InitMongoCollection<T>();
             var query = Query.And(
                 Query.EQ("_id", new ObjectId(id))
                 );
@@ -109,14 +136,16 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
 
         public bool Update<T>(T data) where T : ConstraintDataEntity, new()
         {
-            var document = this.GetDataById(data._id);
+            this.InitMongoCollection<T>();
+            var document = this.GetDataById<T>(data._id);
             UpdateAllFieldOfValue(document, data);
             var result = this.mMongoCollection.Save(document);
             return result.Ok;
         }
 
-        public bool Delete(string id)
+        public bool Delete<T>(string id) where T : ConstraintDataEntity, new()
         {
+            this.InitMongoCollection<T>();
             var result = this.mMongoCollection.Remove(Query.EQ("_id", new ObjectId(id)), RemoveFlags.None);
             return result.Ok;
         }

@@ -49,6 +49,7 @@
     <Compile Include="MainPage\LeftNavMenuViewService.cs" />
     <Compile Include="MenuRight\MenuRightCheckViewService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemParameterConfig\SystemParameterConfigViewService.cs" />
     <Compile Include="User\CompanyInfoViewService.cs" />
     <Compile Include="User\SigninUserViewService.cs" />
   </ItemGroup>

@@ -1,6 +1,7 @@
-﻿using MongoDB.Bson;
+﻿using CPSS.Common.Core.DataAccess.MongoDB;
+using MongoDB.Bson;
 
-namespace CPSS.Common.Core.DataAccess.MongoDB.Interface
+namespace CPSS.Data.DataAccess.Interfaces.MongoDB
 {
     public interface IMongoDbDataAccess
     {
@@ -16,7 +17,7 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.Interface
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        BsonDocument GetDataById<T>(string id) where T : ConstraintDataEntity, new();
+        BsonDocument GetDataById(string id);
 
         /// <summary>
         ///     更新
@@ -28,6 +29,6 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.Interface
         ///     删除
         /// </summary>
         /// <param name="id"></param>
-        bool Delete<T>(string id) where T : ConstraintDataEntity, new();
+        bool Delete(string id);
     }
 }

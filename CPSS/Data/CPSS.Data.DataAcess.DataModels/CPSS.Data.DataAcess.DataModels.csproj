@@ -83,6 +83,7 @@
     <Compile Include="MainPage\LeftNavMenuDataModel.cs" />
     <Compile Include="MenuRight\MenuRightCheckDataModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SystemParameterConfig\SystemParameterConfigDataModel.cs" />
     <Compile Include="User\CompanyInfoDataModel.cs" />
     <Compile Include="User\OnlineSigninUserDataModel.cs" />
     <Compile Include="User\SigninUserDataModel.cs" />

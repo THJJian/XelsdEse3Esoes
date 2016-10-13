@@ -83,6 +83,9 @@
     <Compile Include="SigninUserDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="SystemParameterConfigDataModelMapper.generated.cs">
+      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="DataReaderToDataModelMapperTemplate.tt">

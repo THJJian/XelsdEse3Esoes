@@ -1,10 +1,14 @@
-﻿@{
+﻿@model List<CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Respond.RespondSystemParameterConfigViewModel>
+@{
     ViewBag.Title = "Index";
 }
 
 @section style{
     <style type="text/css">
-        #use_same_tax_rate, #price_set_panel .switchbutton {
+        #use_same_tax_rate .switchbutton {
+            margin: 0 0 0 -6px;
+        }
+        #price_set_panel .switchbutton {
             margin: 0 0 0 -6px;
         }
         #bill_set_panel .switchbutton {
@@ -150,7 +154,6 @@
                 $(".panel").css({ float: "left", padding: "1px 1px 0 1px" });
                 $("#basic_set_panel,#price_set_panel,#bill_set_panel,#other_set_panel")
                     .panel({
-                        //width: 220,
                         tools: [
                             {
                                 iconCls: "icon-save",
@@ -166,11 +169,20 @@
                                             //TODO 保存相应更改
                                             _msgbox.alert("", panel_id);
                                             break;
+                                        case "bill_set_panel":
+                                            //TODO 保存相应更改
+                                            _msgbox.alert("", panel_id);
+                                            break;
+                                        case "other_set_panel":
+                                            //TODO 保存相应更改
+                                            _msgbox.alert("", panel_id);
+                                            break;
                                     }
                                 }
                             }
                         ]
                     });
+
             });
     </script>
 }
