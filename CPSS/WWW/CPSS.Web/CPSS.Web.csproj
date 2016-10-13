@@ -155,6 +155,7 @@
     <Content Include="Views\SystemParameterConfig\Index.cshtml" />
     <Content Include="Views\VerifyCodeImage\Index.cshtml" />
     <Content Include="Views\Buy\BuyOrder.cshtml" />
+    <Content Include="config\mongodbconfig.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

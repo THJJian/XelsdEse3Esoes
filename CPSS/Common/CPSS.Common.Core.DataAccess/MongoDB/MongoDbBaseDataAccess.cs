@@ -5,24 +5,39 @@ using CPSS.Common.Core.Authenticate;
 using CPSS.Common.Core.DataAccess.MongoDB.Interface;
 using CPSS.Common.Core.Helper.BuildFilePath;
 using CPSS.Common.Core.Helper.Config;
+using CPSS.Common.Core.Helper.WebConfig;
+using CPSS.Common.Core.MongoDb;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
+namespace CPSS.Common.Core.DataAccess.MongoDB
 {
-    public class MongoDbDataAccess : IMongoDbDataAccess
+    public class MongoDbBaseDataAccess : IMongoBaseDbDataAccess
     {
         private MongoDatabase mMongoDatabase;
         private MongoCollection mMongoCollection;
 
-        public MongoDbDataAccess()
+        public MongoDbBaseDataAccess()
         {
             var user = CPSSAuthenticate.GetCurrentUser();
-            var filePath = $"~/config/{user.CompanySerialNum}/mongodbconfig.config";
-            if (!ExistsFileHelper.ExistsFile(filePath)) throw new Exception("MongoDb库连接配置文件不存在。");
+            var filePath = "~/config/mongodbconfig.config";
+            if (user != null)
+            {
+                filePath = $"~/config/{user.CompanySerialNum}/mongodbconfig.config";
+                if (!ExistsFileHelper.ExistsFile(filePath))
+                {
+                    var config = new MongoDbConfig
+                    {
+                        Server = WebConfigHelper.GetMongoDbServer(),
+                        Database = $"MongoDbLog_{user.CompanySerialNum}"
+                    };
+                    ConfigHelper.Save(config, filePath);
+                }
+            }
+            //if (!ExistsFileHelper.ExistsFile(filePath)) throw new Exception("MongoDb库连接配置文件不存在。");
             var mongoDbConfig = ConfigHelper.GetConfig<MongoDbConfig>(filePath);
             this.InitMongoDataBase(mongoDbConfig.Server, mongoDbConfig.Database);
         }
@@ -33,7 +48,7 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
         /// <typeparam name="T"></typeparam>
         /// <param name="document"></param>
         /// <param name="data"></param>
-        private static void SetSpecialFieldOfValue<T>(BsonDocument document, T data) where T: ConstraintDataEntity, new ()
+        private static void SetSpecialFieldOfValue<T>(BsonDocument document, T data) where T: MogoDbDataEntityConstraint, new ()
         {
             var properties = data.GetType().GetProperties().Where(property => property.GetCustomAttribute(typeof(SpecialField)) != null);
             foreach (var property in properties)
@@ -61,7 +76,7 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
         /// <typeparam name="T"></typeparam>
         /// <param name="document"></param>
         /// <param name="data"></param>
-        private static void UpdateAllFieldOfValue<T>(BsonDocument document, T data) where T : ConstraintDataEntity, new()
+        private static void UpdateAllFieldOfValue<T>(BsonDocument document, T data) where T : MogoDbDataEntityConstraint, new()
         {
             var properties = data.GetType().GetProperties().Where(property => (property.GetValue(data) != null && property.Name.ToLower() != "_id")).ToList();
             foreach (var property in properties)
@@ -71,9 +86,9 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
                 var bsonValue = document.GetElement(name).Value;
                 var typeName = bsonValue.GetType().Name;
                 if (typeName == BsonValueType.BsonInt32.ToString())
-                    document.SetElement(new BsonElement(name, new BsonInt32(Int32.Parse(value))));
+                    document.SetElement(new BsonElement(name, new BsonInt32(int.Parse(value))));
                 else if (typeName == BsonValueType.BsonInt64.ToString())
-                    document.SetElement(new BsonElement(name, new BsonInt64(Int64.Parse(value))));
+                    document.SetElement(new BsonElement(name, new BsonInt64(long.Parse(value))));
                 else if (typeName == BsonValueType.BsonDateTime.ToString())
                     document.SetElement(new BsonElement(name, new BsonDateTime(DateTime.Parse(value))));
                 else if (typeName == BsonValueType.BsonDouble.ToString())
@@ -101,13 +116,13 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
         /// 初始化数据库MongoCollection
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        private void InitMongoCollection<T>() where T : ConstraintDataEntity, new()
+        private void InitMongoCollection<T>() where T : MogoDbDataEntityConstraint, new()
         {
             var tableName = typeof(T).FullName;
             this.mMongoCollection = this.mMongoDatabase.GetCollection(tableName);
         }
 
-        public bool Save<T>(T data) where T : ConstraintDataEntity, new()
+        public bool Save<T>(T data) where T : MogoDbDataEntityConstraint, new()
         {
             try
             {
@@ -125,7 +140,7 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
             }
         }
 
-        public BsonDocument GetDataById<T>(string id) where T : ConstraintDataEntity, new()
+        public BsonDocument GetDataById<T>(string id) where T : MogoDbDataEntityConstraint, new()
         {
             this.InitMongoCollection<T>();
             var query = Query.And(
@@ -134,7 +149,7 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
             return this.mMongoCollection.FindAs<BsonDocument>(query).FirstOrDefault();
         }
 
-        public bool Update<T>(T data) where T : ConstraintDataEntity, new()
+        public bool Update<T>(T data) where T : MogoDbDataEntityConstraint, new()
         {
             this.InitMongoCollection<T>();
             var document = this.GetDataById<T>(data._id);
@@ -143,7 +158,7 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.DataAccess
             return result.Ok;
         }
 
-        public bool Delete<T>(string id) where T : ConstraintDataEntity, new()
+        public bool Delete<T>(string id) where T : MogoDbDataEntityConstraint, new()
         {
             this.InitMongoCollection<T>();
             var result = this.mMongoCollection.Remove(Query.EQ("_id", new ObjectId(id)), RemoveFlags.None);

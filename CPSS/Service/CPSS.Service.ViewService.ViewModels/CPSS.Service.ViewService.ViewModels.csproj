@@ -47,6 +47,8 @@
     <Compile Include="MainPage\Respond\RespondPanelViewModel.cs" />
     <Compile Include="MenuRight\Request\RequestMenuRightCheckViewModel.cs" />
     <Compile Include="MenuRight\Respond\RespondMenuRightCheckViewModel.cs" />
+    <Compile Include="MongoDb\Request\RequestMongoDbViewModel.cs" />
+    <Compile Include="MongoDb\Respond\RespondMongoDbViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemParameterConfig\Request\RequestSystemParameterConfigViewModel.cs" />
     <Compile Include="SystemParameterConfig\Respond\RespondSystemParameterConfigViewModel.cs" />

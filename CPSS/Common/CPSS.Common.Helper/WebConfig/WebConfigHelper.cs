@@ -29,5 +29,17 @@ namespace CPSS.Common.Core.Helper.WebConfig
             if (!string.IsNullOrEmpty(value)) _value = value.ToInt32();
             return _value;
         }
+
+        /// <summary>
+        /// 获取MongoDb配置的服务器地址
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
+        public static string GetMongoDbServer(string key = "CSPP.MongoDb.Server.Address")
+        {
+            var value = ConfigurationManager.AppSettings[key];
+            if (string.IsNullOrEmpty(value)) value = "mongodb://127.0.0.1";
+            return value;
+        }
     }
 }

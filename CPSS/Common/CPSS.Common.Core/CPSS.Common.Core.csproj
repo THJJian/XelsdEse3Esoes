@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Authenticate\CPSSAuthenticate.cs" />
     <Compile Include="Authenticate\FormsAuthenticationTicketManage.cs" />
+    <Compile Include="MongoDb\MogoDbDataEntityConstraint.cs" />
     <Compile Include="DbConnectionConfig.cs" />
     <Compile Include="SigninUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -8,11 +8,15 @@ using CPSS.Common.Core.Helper.Extension;
 using CPSS.Common.Core.Helper.MD5;
 using CPSS.Common.Core.Helper.WebConfig;
 using CPSS.Common.Core.Type;
+using CPSS.Data.DataAccess.Interfaces.MongoDB;
 using CPSS.Data.DataAccess.Interfaces.User;
 using CPSS.Data.DataAccess.Interfaces.User.Parameters;
 using CPSS.Service.ViewService.Interfaces.User;
+using CPSS.Service.ViewService.ViewModels.MongoDb.Request;
 using CPSS.Service.ViewService.ViewModels.User.Request;
 using CPSS.Service.ViewService.ViewModels.User.Respond;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace CPSS.Service.ViewService.User
 {
@@ -21,11 +25,13 @@ namespace CPSS.Service.ViewService.User
         private const string preCacheKey = "CPSS.Service.ViewService.User.SigninUserViewService.{0}";
         private readonly ISiginUserDataAccess mSiginUserDataAccess;
         private readonly ICompanyInfoViewService mCompanyInfoViewService;
+        private readonly IMongoDbDataAccess mMongoDbDataAccess;
 
-        public SigninUserViewService(ISiginUserDataAccess _siginUserDataAccess, ICompanyInfoViewService _companyInfoViewService)
+        public SigninUserViewService(ISiginUserDataAccess _siginUserDataAccess, ICompanyInfoViewService _companyInfoViewService, IMongoDbDataAccess _mongoDbDataAccess)
         {
             this.mSiginUserDataAccess = _siginUserDataAccess;
             this.mCompanyInfoViewService = _companyInfoViewService;
+            this.mMongoDbDataAccess = _mongoDbDataAccess;
         }
 
         public RespondWebViewData<RespondSigninUserViewModel> QuerySigninUserViewModel(RequestSigninUserViewModel request)
@@ -78,6 +84,13 @@ namespace CPSS.Service.ViewService.User
                 });
                 FormsAuthenticationTicketManage.CreateFormsAuthentication(userID_g);
                 HttpContext.Current.Items.Add(BeforeCompileConstDefined.HttpContext_Login_User, _respond.Data.CurrentUser);
+                var _mongo_db_request = new RequestMongoDbViewModel
+                {
+                    LogName = "登录操作",
+                    LogData =  JObject.FromObject(_respond).ToString(Formatting.None),
+                    LogTime = DateTime.Now
+                };
+                this.mMongoDbDataAccess.Save(_mongo_db_request);
                 return _respond;
             }, userID_g.ToString());
         }
