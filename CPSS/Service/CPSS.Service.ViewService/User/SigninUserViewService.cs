@@ -88,7 +88,8 @@ namespace CPSS.Service.ViewService.User
                 {
                     LogName = "登录操作",
                     LogData =  JObject.FromObject(_respond).ToString(Formatting.None),
-                    LogTime = DateTime.Now
+                    LogTime = DateTime.Now,
+                    SpecialType = _respond.Data.GetType()
                 };
                 this.mMongoDbDataAccess.Save(_mongo_db_request);
                 return _respond;

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CPSS.Common.Core.DataAccess.MongoDB
+namespace CPSS.Common.Core.MongoDB
 {
     public class SpecialField : Attribute
     {

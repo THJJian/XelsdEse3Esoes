@@ -7,6 +7,7 @@ using CPSS.Common.Core.Helper.BuildFilePath;
 using CPSS.Common.Core.Helper.Config;
 using CPSS.Common.Core.Helper.WebConfig;
 using CPSS.Common.Core.MongoDb;
+using CPSS.Common.Core.MongoDB;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
@@ -116,9 +117,16 @@ namespace CPSS.Common.Core.DataAccess.MongoDB
         /// 初始化数据库MongoCollection
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        private void InitMongoCollection<T>() where T : MogoDbDataEntityConstraint, new()
+        private void InitMongoCollection<T>(T data) where T : MogoDbDataEntityConstraint, new()
         {
-            var tableName = typeof(T).FullName;
+            var tableName = data.GetType().FullName;
+            if(data.SpecialType != null)
+                tableName = data.SpecialType.FullName;
+            else
+            {
+                if (!string.IsNullOrEmpty(data.TableName))
+                    tableName = data.TableName;
+            }
             this.mMongoCollection = this.mMongoDatabase.GetCollection(tableName);
         }
 
@@ -126,13 +134,15 @@ namespace CPSS.Common.Core.DataAccess.MongoDB
         {
             try
             {
-                this.InitMongoCollection<T>();
+                this.InitMongoCollection(data);
                 var json = JObject.FromObject(data).ToString(Formatting.None);
                 var document = BsonDocument.Parse(json);
                 document.Add(new BsonElement("_id", ObjectId.GenerateNewId()));
                 SetSpecialFieldOfValue(document, data);
-                var result = this.mMongoCollection.Save(document);
-                return result.Ok;
+                //var result = this.mMongoCollection.Save(document);
+                //return result.Ok;
+                var result = this.mMongoCollection.Insert(document);
+                return result != null && result.DocumentsAffected > 0;
             }
             catch (Exception exception)
             {
@@ -140,28 +150,28 @@ namespace CPSS.Common.Core.DataAccess.MongoDB
             }
         }
 
-        public BsonDocument GetDataById<T>(string id) where T : MogoDbDataEntityConstraint, new()
+        public BsonDocument GetDataById<T>(T data) where T : MogoDbDataEntityConstraint, new()
         {
-            this.InitMongoCollection<T>();
+            this.InitMongoCollection(data);
             var query = Query.And(
-                Query.EQ("_id", new ObjectId(id))
+                Query.EQ("_id", new ObjectId(data._id))
                 );
             return this.mMongoCollection.FindAs<BsonDocument>(query).FirstOrDefault();
         }
 
         public bool Update<T>(T data) where T : MogoDbDataEntityConstraint, new()
         {
-            this.InitMongoCollection<T>();
-            var document = this.GetDataById<T>(data._id);
+            this.InitMongoCollection(data);
+            var document = this.GetDataById(data);
             UpdateAllFieldOfValue(document, data);
             var result = this.mMongoCollection.Save(document);
             return result.Ok;
         }
 
-        public bool Delete<T>(string id) where T : MogoDbDataEntityConstraint, new()
+        public bool Delete<T>(T data) where T : MogoDbDataEntityConstraint, new()
         {
-            this.InitMongoCollection<T>();
-            var result = this.mMongoCollection.Remove(Query.EQ("_id", new ObjectId(id)), RemoveFlags.None);
+            this.InitMongoCollection(new T());
+            var result = this.mMongoCollection.Remove(Query.EQ("_id", new ObjectId(data._id)), RemoveFlags.None);
             return result.Ok;
         }
     }

@@ -15,9 +15,9 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.Interface
         /// <summary>
         /// 根据ID获取数据
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="data"></param>
         /// <returns></returns>
-        BsonDocument GetDataById<T>(string id) where T : MogoDbDataEntityConstraint, new();
+        BsonDocument GetDataById<T>(T data) where T : MogoDbDataEntityConstraint, new();
 
         /// <summary>
         ///     更新
@@ -28,7 +28,7 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.Interface
         /// <summary>
         ///     删除
         /// </summary>
-        /// <param name="id"></param>
-        bool Delete<T>(string id) where T : MogoDbDataEntityConstraint, new();
+        /// <param name="data"></param>
+        bool Delete<T>(T data) where T : MogoDbDataEntityConstraint, new();
     }
 }

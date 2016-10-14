@@ -1,4 +1,4 @@
-﻿namespace CPSS.Common.Core.DataAccess.MongoDB
+﻿namespace CPSS.Common.Core.MongoDB
 {
     public enum BsonValueType : ushort
     {

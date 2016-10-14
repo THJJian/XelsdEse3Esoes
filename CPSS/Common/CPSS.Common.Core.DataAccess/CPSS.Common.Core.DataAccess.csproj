@@ -58,11 +58,9 @@
     <Compile Include="DataAccess\DbConnectionExtension.cs" />
     <Compile Include="DataAccess\GenericDataAccessBase.cs" />
     <Compile Include="DataAccess\OwnSqlDbConnection.cs" />
-    <Compile Include="MongoDB\BsonValueType.cs" />
     <Compile Include="MongoDB\Interface\IMongoBaseDbDataAccess.cs" />
     <Compile Include="MongoDB\MongoDbBaseDataAccess.cs" />
     <Compile Include="MongoDB\MongoDbConfig.cs" />
-    <Compile Include="MongoDB\SpecialField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
