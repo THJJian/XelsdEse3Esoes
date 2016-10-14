@@ -1,5 +1,7 @@
 ﻿using System;
 using CPSS.Common.Core.MongoDB;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Serializers;
 using Newtonsoft.Json;
 
 namespace CPSS.Common.Core.MongoDb
@@ -7,11 +9,12 @@ namespace CPSS.Common.Core.MongoDb
     /// <summary>
     /// MongoDb数据实体约束类，即所有要存放到MongoDb的实体类必须继承自该类
     /// </summary>
+    [Serializable]
     public class MogoDbDataEntityConstraint
     {
         public MogoDbDataEntityConstraint()
         {
-            this._id = string.Empty;
+            this.QueryId = string.Empty;
             this.SpecialType = null;
             this.TableName = string.Empty;
             this.LogName = "系统日志";
@@ -22,8 +25,10 @@ namespace CPSS.Common.Core.MongoDb
         /// <summary>
         /// MongoDb默认主键字段
         /// </summary>
+        public BsonObjectId _id { set; get; }
+
         [JsonIgnore]
-        public string _id { set; get; }
+        public string QueryId { set; get; }
 
         /// <summary>
         /// 日志数据存放类。 mongodb的表名优先取值为该值，如果没有指定该值，则取TableName的值；
@@ -54,5 +59,6 @@ namespace CPSS.Common.Core.MongoDb
         /// </summary>
         [SpecialField(BsonValueType = BsonValueType.BsonDateTime)]
         public DateTime LogTime { set; get; }
+
     }
 }

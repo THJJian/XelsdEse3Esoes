@@ -9,6 +9,7 @@ using CPSS.Common.Core.Helper.WebConfig;
 using CPSS.Common.Core.MongoDb;
 using CPSS.Common.Core.MongoDB;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using Newtonsoft.Json;
@@ -137,12 +138,10 @@ namespace CPSS.Common.Core.DataAccess.MongoDB
                 this.InitMongoCollection(data);
                 var json = JObject.FromObject(data).ToString(Formatting.None);
                 var document = BsonDocument.Parse(json);
-                document.Add(new BsonElement("_id", ObjectId.GenerateNewId()));
+                document.SetElement(new BsonElement("_id", ObjectId.GenerateNewId()));
                 SetSpecialFieldOfValue(document, data);
-                //var result = this.mMongoCollection.Save(document);
-                //return result.Ok;
-                var result = this.mMongoCollection.Insert(document);
-                return result != null && result.DocumentsAffected > 0;
+                var result = this.mMongoCollection.Save(document);
+                return result.Ok;
             }
             catch (Exception exception)
             {
@@ -150,19 +149,45 @@ namespace CPSS.Common.Core.DataAccess.MongoDB
             }
         }
 
-        public BsonDocument GetDataById<T>(T data) where T : MogoDbDataEntityConstraint, new()
+        public bool Insert<T>(T data) where T : MogoDbDataEntityConstraint, new()
+        {
+            try
+            {
+                this.InitMongoCollection(data);
+                var json = JObject.FromObject(data).ToString(Formatting.None);
+                var document = BsonDocument.Parse(json);
+                document.SetElement(new BsonElement("_id", ObjectId.GenerateNewId()));
+                SetSpecialFieldOfValue(document, data);
+                var result = this.mMongoCollection.Insert(document);
+                return result.Ok;
+            }
+            catch (Exception exception)
+            {
+                throw new Exception(string.Concat("请先初始化服务器连接(调用InitMongoCollection方法),若已调用InitMongoCollection请检查系统异常。系统异常为：", exception.Message));
+            }
+        }
+
+        private BsonDocument GetDataById1<T>(T data) where T : MogoDbDataEntityConstraint, new()
         {
             this.InitMongoCollection(data);
             var query = Query.And(
-                Query.EQ("_id", new ObjectId(data._id))
+                Query.EQ("_id", new ObjectId(data.QueryId))
                 );
-            return this.mMongoCollection.FindAs<BsonDocument>(query).FirstOrDefault();
+            var document = this.mMongoCollection.FindAs<BsonDocument>(query).FirstOrDefault();
+            return document;
+        }
+
+        public T GetDataById<T>(T data) where T : MogoDbDataEntityConstraint, new()
+        {
+            var document = this.GetDataById1(data);
+            var result = BsonSerializer.Deserialize<T>(document);
+            return result;
         }
 
         public bool Update<T>(T data) where T : MogoDbDataEntityConstraint, new()
         {
             this.InitMongoCollection(data);
-            var document = this.GetDataById(data);
+            var document = this.GetDataById1(data);
             UpdateAllFieldOfValue(document, data);
             var result = this.mMongoCollection.Save(document);
             return result.Ok;
@@ -171,7 +196,7 @@ namespace CPSS.Common.Core.DataAccess.MongoDB
         public bool Delete<T>(T data) where T : MogoDbDataEntityConstraint, new()
         {
             this.InitMongoCollection(new T());
-            var result = this.mMongoCollection.Remove(Query.EQ("_id", new ObjectId(data._id)), RemoveFlags.None);
+            var result = this.mMongoCollection.Remove(Query.EQ("_id", new ObjectId(data.QueryId)), RemoveFlags.None);
             return result.Ok;
         }
     }

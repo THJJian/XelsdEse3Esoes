@@ -17,7 +17,7 @@ namespace CPSS.Common.Core.DataAccess.MongoDB.Interface
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        BsonDocument GetDataById<T>(T data) where T : MogoDbDataEntityConstraint, new();
+        T GetDataById<T>(T data) where T : MogoDbDataEntityConstraint, new();
 
         /// <summary>
         ///     更新
