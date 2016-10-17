@@ -59,6 +59,7 @@
     <Compile Include="DataAccess\GenericDataAccessBase.cs" />
     <Compile Include="DataAccess\OwnSqlDbConnection.cs" />
     <Compile Include="MongoDB\Interface\IMongoBaseDbDataAccess.cs" />
+    <Compile Include="MongoDB\Interface\Parameters\MongoDbParameter.cs" />
     <Compile Include="MongoDB\MongoDbBaseDataAccess.cs" />
     <Compile Include="MongoDB\MongoDbConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

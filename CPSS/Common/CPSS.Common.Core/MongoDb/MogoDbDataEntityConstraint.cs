@@ -31,7 +31,7 @@ namespace CPSS.Common.Core.MongoDb
         public string QueryId { set; get; }
 
         /// <summary>
-        /// 日志数据存放类。 mongodb的表名优先取值为该值，如果没有指定该值，则取TableName的值；
+        /// 日志数据存放类(即：LogData字段的数据类)。 mongodb的表名优先取值为该值，如果没有指定该值，则取TableName的值；
         /// 如果两者都没有值则取继承自该类的类型的全名称
         /// </summary>
         [JsonIgnore]

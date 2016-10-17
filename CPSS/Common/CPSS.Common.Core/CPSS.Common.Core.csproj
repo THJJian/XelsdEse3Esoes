@@ -58,6 +58,8 @@
     <Compile Include="MongoDb\MogoDbDataEntityConstraint.cs" />
     <Compile Include="DbConnectionConfig.cs" />
     <Compile Include="MongoDb\SpecialField.cs" />
+    <Compile Include="Paging\Interface\IPageData.cs" />
+    <Compile Include="Paging\PageData.cs" />
     <Compile Include="SigninUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserIPAddressTool.cs" />

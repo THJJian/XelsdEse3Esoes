@@ -3,11 +3,13 @@ using System.Linq;
 using System.Reflection;
 using CPSS.Common.Core.Authenticate;
 using CPSS.Common.Core.DataAccess.MongoDB.Interface;
+using CPSS.Common.Core.DataAccess.MongoDB.Interface.Parameters;
 using CPSS.Common.Core.Helper.BuildFilePath;
 using CPSS.Common.Core.Helper.Config;
 using CPSS.Common.Core.Helper.WebConfig;
 using CPSS.Common.Core.MongoDb;
 using CPSS.Common.Core.MongoDB;
+using CPSS.Common.Core.Paging;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
@@ -19,8 +21,14 @@ namespace CPSS.Common.Core.DataAccess.MongoDB
 {
     public class MongoDbBaseDataAccess : IMongoBaseDbDataAccess
     {
+        #region Private Field
+
         private MongoDatabase mMongoDatabase;
         private MongoCollection mMongoCollection;
+
+        #endregion
+
+        #region constructor
 
         public MongoDbBaseDataAccess()
         {
@@ -44,13 +52,46 @@ namespace CPSS.Common.Core.DataAccess.MongoDB
             this.InitMongoDataBase(mongoDbConfig.Server, mongoDbConfig.Database);
         }
 
+        #endregion
+        
+        #region Private Method
+
+        /// <summary>
+        /// 初始化数据库MongoDatabase
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <param name="databaseName"></param>
+        private void InitMongoDataBase(string connection, string databaseName)
+        {
+            var mongoClient = new MongoClient(connection);
+            var mongoServer = mongoClient.GetServer();
+            this.mMongoDatabase = mongoServer.GetDatabase(databaseName);
+        }
+
+        /// <summary>
+        /// 初始化数据库MongoCollection
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        private void InitMongoCollection<T>(T data) where T : MogoDbDataEntityConstraint, new()
+        {
+            var tableName = data.GetType().FullName;
+            if (data.SpecialType != null)
+                tableName = data.SpecialType.FullName;
+            else
+            {
+                if (!string.IsNullOrEmpty(data.TableName))
+                    tableName = data.TableName;
+            }
+            this.mMongoCollection = this.mMongoDatabase.GetCollection(tableName);
+        }
+
         /// <summary>
         /// 更新含有特殊元数据属性的字段的值(非string类型)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="document"></param>
         /// <param name="data"></param>
-        private static void SetSpecialFieldOfValue<T>(BsonDocument document, T data) where T: MogoDbDataEntityConstraint, new ()
+        private static void SetSpecialFieldOfValue<T>(BsonDocument document, T data) where T : MogoDbDataEntityConstraint, new()
         {
             var properties = data.GetType().GetProperties().Where(property => property.GetCustomAttribute(typeof(SpecialField)) != null);
             foreach (var property in properties)
@@ -102,34 +143,9 @@ namespace CPSS.Common.Core.DataAccess.MongoDB
             }
         }
 
-        /// <summary>
-        /// 初始化数据库MongoDatabase
-        /// </summary>
-        /// <param name="connection"></param>
-        /// <param name="databaseName"></param>
-        private void InitMongoDataBase(string connection, string databaseName)
-        {
-            var mongoClient = new MongoClient(connection);
-            var mongoServer = mongoClient.GetServer();
-            this.mMongoDatabase = mongoServer.GetDatabase(databaseName);
-        }
+        #endregion
 
-        /// <summary>
-        /// 初始化数据库MongoCollection
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        private void InitMongoCollection<T>(T data) where T : MogoDbDataEntityConstraint, new()
-        {
-            var tableName = data.GetType().FullName;
-            if(data.SpecialType != null)
-                tableName = data.SpecialType.FullName;
-            else
-            {
-                if (!string.IsNullOrEmpty(data.TableName))
-                    tableName = data.TableName;
-            }
-            this.mMongoCollection = this.mMongoDatabase.GetCollection(tableName);
-        }
+        #region Public Method
 
         public bool Save<T>(T data) where T : MogoDbDataEntityConstraint, new()
         {
@@ -199,5 +215,54 @@ namespace CPSS.Common.Core.DataAccess.MongoDB
             var result = this.mMongoCollection.Remove(Query.EQ("_id", new ObjectId(data.QueryId)), RemoveFlags.None);
             return result.Ok;
         }
+        
+        public PageData<BsonDocument> GetPageData(MongoDbParameter parameter)
+        {
+            var recordCount = this.mMongoCollection.Count();
+            var resultList =
+                this.mMongoCollection.FindAs<BsonDocument>(null)
+                    .SetSkip((parameter.PageIndex - 1) * parameter.PageSize)
+                    .SetLimit(parameter.PageSize)
+                    .Select(document =>
+                    {
+                        document.Remove("_id");
+                        return document;
+                    }).ToList();
+            var result = new PageData<BsonDocument>(resultList, (int)recordCount);
+            return result;
+        }
+
+        public PageData<BsonDocument> GetPageDataByCondition(MongoDbParameter parameter)
+        {
+            if(parameter.MongoQuery == null)
+                throw new NotImplementedException("MongoDbParameter的MongoQuery必须使用MongoDb的规定查询条件格式。");
+
+            var cursor = this.mMongoCollection.FindAs<BsonDocument>(parameter.MongoQuery);
+            var recordCount = cursor.Count();
+            var resultList = cursor.SetSkip((parameter.PageIndex - 1)*parameter.PageSize)
+                .SetLimit(parameter.PageSize)
+                .Select(document =>
+                {
+                    document.Remove("_id");
+                    return document;
+                }).ToList();
+            
+            var result = new PageData<BsonDocument>(resultList, (int)recordCount);
+            return result;
+        }
+
+        public PageData<BsonDocument> GetPageDataByConditionHaveID(MongoDbParameter parameter)
+        {
+            if (parameter.MongoQuery == null)
+                throw new NotImplementedException("MongoDbParameter的MongoQuery必须使用MongoDb的规定查询条件格式。");
+
+            var cursor = this.mMongoCollection.FindAs<BsonDocument>(parameter.MongoQuery);
+            var resultList = cursor.SetSkip((parameter.PageIndex - 1) * parameter.PageSize)
+                .SetLimit(parameter.PageSize)
+                .ToList();
+            return new PageData<BsonDocument>(resultList, (int)cursor.Count());
+        }
+
+        #endregion
     }
 }
