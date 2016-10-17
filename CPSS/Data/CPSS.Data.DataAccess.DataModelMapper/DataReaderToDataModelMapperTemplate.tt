@@ -129,6 +129,7 @@ namespace CPSS.Data.DataAccess
 	using System.Collections.Generic;
     using System.Data;
 	using CPSS.Common.Core.DataAccess.DataAccess;
+	using CPSS.Common.Core.Paging;
 
     #region DataReaderMapHelper
 
@@ -170,6 +171,7 @@ foreach (Type typeitem in customerTypes)
 {
         if(typeitem.Name.ToLower() == "entities") continue;
 #>
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -232,30 +234,30 @@ foreach (Type typeitem in customerTypes)
 		///// </summary>
 		//public static PageData<<#= typeitem.FullName #>> ExecuteReadSqlTo<#= typeitem.Name #>PageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<<#= typeitem.FullName #>>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<<#= typeitem.FullName #>>();
-				//while(reader.Read())
-				//{
-					//var entity = new <#= typeitem.FullName #>();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<<#= typeitem.FullName #>>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<<#= typeitem.FullName #>>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new <#= typeitem.FullName #>();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
 <#
 }
 #>

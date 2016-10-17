@@ -4,6 +4,7 @@ namespace CPSS.Data.DataAccess
 	using System.Collections.Generic;
     using System.Data;
 	using CPSS.Common.Core.DataAccess.DataAccess;
+	using CPSS.Common.Core.Paging;
 
     #region DataReaderMapHelper
 
@@ -155,6 +156,7 @@ namespace CPSS.Data.DataAccess
     /// </summary>
 	public static class DataAccessExecuteReaderExtentions
     {
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -217,30 +219,31 @@ namespace CPSS.Data.DataAccess
 		///// </summary>
 		//public static PageData<CPSS.Data.DataAcess.DataModels.AccountDataModel> ExecuteReadSqlToAccountDataModelPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.AccountDataModel>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.AccountDataModel>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.AccountDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<CPSS.Data.DataAcess.DataModels.AccountDataModel>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<CPSS.Data.DataAcess.DataModels.AccountDataModel>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new CPSS.Data.DataAcess.DataModels.AccountDataModel();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -303,30 +306,31 @@ namespace CPSS.Data.DataAccess
 		///// </summary>
 		//public static PageData<CPSS.Data.DataAcess.DataModels.ClientsDataModel> ExecuteReadSqlToClientsDataModelPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.ClientsDataModel>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.ClientsDataModel>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.ClientsDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<CPSS.Data.DataAcess.DataModels.ClientsDataModel>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<CPSS.Data.DataAcess.DataModels.ClientsDataModel>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new CPSS.Data.DataAcess.DataModels.ClientsDataModel();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -389,30 +393,31 @@ namespace CPSS.Data.DataAccess
 		///// </summary>
 		//public static PageData<CPSS.Data.DataAcess.DataModels.CompanyDataModel> ExecuteReadSqlToCompanyDataModelPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.CompanyDataModel>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.CompanyDataModel>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.CompanyDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<CPSS.Data.DataAcess.DataModels.CompanyDataModel>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<CPSS.Data.DataAcess.DataModels.CompanyDataModel>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new CPSS.Data.DataAcess.DataModels.CompanyDataModel();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -475,30 +480,31 @@ namespace CPSS.Data.DataAccess
 		///// </summary>
 		//public static PageData<CPSS.Data.DataAcess.DataModels.DepartmentDataModel> ExecuteReadSqlToDepartmentDataModelPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.DepartmentDataModel>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.DepartmentDataModel>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.DepartmentDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<CPSS.Data.DataAcess.DataModels.DepartmentDataModel>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<CPSS.Data.DataAcess.DataModels.DepartmentDataModel>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new CPSS.Data.DataAcess.DataModels.DepartmentDataModel();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -561,30 +567,31 @@ namespace CPSS.Data.DataAccess
 		///// </summary>
 		//public static PageData<CPSS.Data.DataAcess.DataModels.EmployeesDataModel> ExecuteReadSqlToEmployeesDataModelPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.EmployeesDataModel>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.EmployeesDataModel>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.EmployeesDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<CPSS.Data.DataAcess.DataModels.EmployeesDataModel>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<CPSS.Data.DataAcess.DataModels.EmployeesDataModel>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new CPSS.Data.DataAcess.DataModels.EmployeesDataModel();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -647,30 +654,31 @@ namespace CPSS.Data.DataAccess
 		///// </summary>
 		//public static PageData<CPSS.Data.DataAcess.DataModels.User.CompanyInfoDataModel> ExecuteReadSqlToCompanyInfoDataModelPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.User.CompanyInfoDataModel>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.User.CompanyInfoDataModel>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.User.CompanyInfoDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<CPSS.Data.DataAcess.DataModels.User.CompanyInfoDataModel>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<CPSS.Data.DataAcess.DataModels.User.CompanyInfoDataModel>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new CPSS.Data.DataAcess.DataModels.User.CompanyInfoDataModel();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -733,30 +741,31 @@ namespace CPSS.Data.DataAccess
 		///// </summary>
 		//public static PageData<CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel> ExecuteReadSqlToOnlineSigninUserDataModelPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -819,30 +828,31 @@ namespace CPSS.Data.DataAccess
 		///// </summary>
 		//public static PageData<CPSS.Data.DataAcess.DataModels.User.SigninUserDataModel> ExecuteReadSqlToSigninUserDataModelPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.User.SigninUserDataModel>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.User.SigninUserDataModel>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.User.SigninUserDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<CPSS.Data.DataAcess.DataModels.User.SigninUserDataModel>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<CPSS.Data.DataAcess.DataModels.User.SigninUserDataModel>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new CPSS.Data.DataAcess.DataModels.User.SigninUserDataModel();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -905,30 +915,31 @@ namespace CPSS.Data.DataAccess
 		///// </summary>
 		//public static PageData<CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel> ExecuteReadSqlToSystemParameterConfigDataModelPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -991,30 +1002,31 @@ namespace CPSS.Data.DataAccess
 		///// </summary>
 		//public static PageData<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel> ExecuteReadSqlToMenuRightCheckDataModelPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -1077,30 +1089,31 @@ namespace CPSS.Data.DataAccess
 		///// </summary>
 		//public static PageData<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel> ExecuteReadSqlToLeftNavMenuDataModelPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
+
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
@@ -1163,30 +1176,30 @@ namespace CPSS.Data.DataAccess
 		///// </summary>
 		//public static PageData<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel> ExecuteReadSqlToHeadButtonsDataModelPageData(this DataAccessBase dataAccessBase,  string sqlString, int pageIndex, int pageSize, string primaryKey, string pageSort, bool isReturnTotalCount)
         //{			
-			//var result = new  PageData<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel>();
-            //using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
-			//{
-				//var listData = new List<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel>();
-				//while(reader.Read())
-				//{
-					//var entity = new CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel();
-					//DataReaderMapHelper.Map(reader, entity);
-					//listData.Add(entity);
-				//}
-				//result.Datas = listData;
-				//result.PageIndex = pageIndex;
-			    //result.PageSize = pageSize;
-				//if (isReturnTotalCount)
-                //{
-                    //reader.NextResult();
-                    //if (reader.Read())
-                    //{
-                        //result.DataCount = (int) reader[0];
-                    //}
-                //}
-			//}
-			//return result;
-        //}
+		//	var result = new  PageData<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel>();
+       //     using(var reader = DataAccessHelper.GetPageList(dataAccessBase.Connection, sqlString, pageIndex, pageSize, primaryKey, pageSort, isReturnTotalCount))
+		//	{
+		//		var listData = new List<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel>();
+	//			while(reader.Read())
+	//			{
+	//				var entity = new CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel();
+	//				DataReaderMapHelper.Map(reader, entity);
+	//				listData.Add(entity);
+	//			}
+	//			result.Datas = listData;
+	//			result.PageIndex = pageIndex;
+	//		    result.PageSize = pageSize;
+	//			if (isReturnTotalCount)
+   //             {
+   //                 reader.NextResult();
+   //                 if (reader.Read())
+    //                {
+     //                  result.DataCount = (int) reader[0];
+    //               }
+    //          }
+	//		}
+	//		return result;
+    //    }
 	}
     #endregion
 }

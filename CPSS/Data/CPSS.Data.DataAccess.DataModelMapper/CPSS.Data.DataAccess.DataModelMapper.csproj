@@ -101,6 +101,10 @@
       <Project>{6700B0A7-1099-45E9-B496-EF01A3DE5960}</Project>
       <Name>CPSS.Common.Core.DataAccess</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Common\CPSS.Common.Core\CPSS.Common.Core.csproj">
+      <Project>{0FACB83C-5540-401C-A87D-B06FAE50ABED}</Project>
+      <Name>CPSS.Common.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CPSS.Data.DataAcess.DataModels\CPSS.Data.DataAcess.DataModels.csproj">
       <Project>{4d260557-883d-4dac-b1fc-e2f4d031f106}</Project>
       <Name>CPSS.Data.DataAcess.DataModels</Name>
