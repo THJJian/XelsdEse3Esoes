@@ -315,7 +315,70 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
             return command.ExecuteReader(CommandBehavior.Default);
         }
 
+        /// <summary>
+        ///     获取分页数据
+        /// </summary>
+        /// <param name="connect">数据库连接</param>
+        /// <param name="executeSql">SQL</param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">页记录数</param>
+        /// <param name="primKey">主键</param>
+        /// <param name="pageSort">排序</param>
+        /// <param name="isReturnRowCount">是否返回总记录数</param>
+        /// <returns>DataReader</returns>
+        public static IDataReader GetPagingList(IDbConnection connect, string executeSql, int pageIndex, int pageSize, string primKey, string pageSort, bool isReturnRowCount)
+        {
+            if (connect.State == ConnectionState.Closed)
+            {
+                connect.Open();
+            }
+            var command = connect.CreateCommand();
+            command.CommandType = CommandType.StoredProcedure;
+            command.CommandText = "do_common_paging";
+            
+            var paramSQL = command.CreateParameter();
+            paramSQL.DbType = DbType.AnsiString;
+            paramSQL.ParameterName = "@chvSQL";
+            paramSQL.Size = 7700;
+            paramSQL.Value = executeSql;
+            command.Parameters.Add(paramSQL);
+
+            var paramPageIndex = command.CreateParameter();
+            paramPageIndex.DbType = DbType.Int32;
+            paramPageIndex.ParameterName = "@intPageIndex";
+            paramPageIndex.Value = pageIndex;
+            command.Parameters.Add(paramPageIndex);
+
+            var paramPageSize = command.CreateParameter();
+            paramPageSize.DbType = DbType.Int32;
+            paramPageSize.ParameterName = "@intPageSize";
+            paramPageSize.Value = pageSize;
+            command.Parameters.Add(paramPageSize);
+
+            var paramKey = command.CreateParameter();
+            paramKey.DbType = DbType.AnsiString;
+            paramKey.ParameterName = "@chvPrimKey";
+            paramKey.Size = 100;
+            paramKey.Value = primKey;
+            command.Parameters.Add(paramKey);
+
+            var paramSort = command.CreateParameter();
+            paramSort.DbType = DbType.AnsiString;
+            paramSort.ParameterName = "@chvSort";
+            paramSort.Size = 255;
+            paramSort.Value = pageSort;
+            command.Parameters.Add(paramSort);
+
+            var paramCount = command.CreateParameter();
+            paramCount.DbType = DbType.Boolean;
+            paramCount.ParameterName = "@bitReturnCount";
+            paramCount.Value = isReturnRowCount;
+            command.Parameters.Add(paramCount);
+            
+            return command.ExecuteReader(CommandBehavior.CloseConnection);
+        }
+
         #endregion
-         
+
     }
 }

@@ -6,12 +6,6 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
 {
     public class DataAccessBase
     {
-        #region Fields
-
-        private readonly IDbConnection mConnection;
-
-        #endregion
-
         #region Constructors and Destructors
 
         /// <summary>
@@ -20,7 +14,7 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
         /// <param name="_connection">数据库连接</param>
         public DataAccessBase(IDbConnection _connection)
         {
-            this.mConnection = _connection;
+            this.Connection = _connection;
         }
         
         #endregion
@@ -30,10 +24,7 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
         /// <summary>
         ///     连接器
         /// </summary>
-        public IDbConnection Connection
-        {
-            get { return this.mConnection; }
-        }
+        public IDbConnection Connection { get; }
 
         /// <summary>
         ///     参数集合
@@ -246,10 +237,10 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
         /// <param name="action">需要执行的委托函数(需要在同一个事务内执行的代码写在此委托函数内)</param>
         public void ExecuteTransaction(Action<IDbTransaction> action)
         {
-            if (this.mConnection.State == ConnectionState.Closed)
-                this.mConnection.Open();
+            if (this.Connection.State == ConnectionState.Closed)
+                this.Connection.Open();
 
-            var transaction = this.mConnection.BeginTransaction();
+            var transaction = this.Connection.BeginTransaction();
             try
             {
                 action(transaction);
@@ -262,8 +253,23 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
             }
             finally
             {
-                this.mConnection.Close();
+                this.Connection.Close();
             }
+        }
+
+        /// <summary>
+        ///     获取分页数据
+        /// </summary>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">页记录数</param>
+        /// <param name="primaryKey">主键</param>
+        /// <param name="pageSort">排序</param>
+        /// <param name="isReturnRowCount">是否返回总记录数</param>
+        /// <returns>DataReader</returns>
+        public IDataReader GetPagingList(string primaryKey, int pageIndex, int pageSize, string pageSort, bool isReturnRowCount)
+        {
+            var result = DataAccessHelper.GetPagingList(this.Connection, this.ExecuteSQL, pageIndex, pageSize, primaryKey, pageSort, isReturnRowCount);
+            return result;
         }
 
         #endregion

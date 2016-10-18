@@ -1,5 +1,5 @@
 
-USE [testdb]
+--USE [testdb]
 GO
 
 IF EXISTS(SELECT 1 FROM sysobjects WHERE id=OBJECT_ID(N'sys_users') AND OBJECTPROPERTY(id,N'IsUserTable')=1)

@@ -1,5 +1,5 @@
 
-USE [testdb]
+--USE [testdb]
 GO
 
 IF exists(SELECT 1 FROM sysobjects WHERE id=object_id(N'[sys_menus]') AND objectproperty(id,N'IsUserTable')=1)

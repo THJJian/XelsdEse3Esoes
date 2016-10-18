@@ -1,4 +1,5 @@
 --BEGIN TRAN
+--USE testdb
 GO
 TRUNCATE TABLE dbo.sys_menus
 GO
