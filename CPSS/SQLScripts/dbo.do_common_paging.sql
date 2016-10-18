@@ -34,7 +34,7 @@ BEGIN
 	END
 END
 
-IF @intPageIndex = 0 
+IF @intPageIndex = 0
 BEGIN 
 	SELECT @intPageIndex = 1 
 END
