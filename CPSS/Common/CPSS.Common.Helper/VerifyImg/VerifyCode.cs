@@ -13,12 +13,12 @@ namespace CPSS.Common.Core.Helper.VerifyImg
         /// <summary>
         /// 验证码的最大长度
         /// </summary>
-        public int MaxLength => 10;
+        public int MaxLength = 10;
 
         /// <summary>
         /// 验证码的最小长度
         /// </summary>
-        public int MinLength => 1;
+        public int MinLength = 4;
 
         /// <summary>
         /// 生成验证码

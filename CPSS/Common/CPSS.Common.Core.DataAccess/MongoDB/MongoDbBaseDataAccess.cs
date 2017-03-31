@@ -36,13 +36,13 @@ namespace CPSS.Common.Core.DataAccess.MongoDB
             var filePath = "~/config/mongodbconfig.config";
             if (user != null)
             {
-                filePath = $"~/config/{user.CompanySerialNum}/mongodbconfig.config";
+                filePath = string.Format("~/config/{0}/mongodbconfig.config",user.CompanySerialNum);
                 if (!ExistsFileHelper.ExistsFile(filePath))
                 {
                     var config = new MongoDbConfig
                     {
                         Server = WebConfigHelper.GetMongoDbServer(),
-                        Database = $"MongoDbLog_{user.CompanySerialNum}"
+                        Database = string.Format("MongoDbLog_{0}", user.CompanySerialNum)
                     };
                     ConfigHelper.Save(config, filePath);
                 }

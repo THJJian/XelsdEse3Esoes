@@ -34,7 +34,7 @@ namespace CPSS.Common.Core.Authenticate
         public static void RenewTicketIfOld(Guid userID_g)
         {
             HttpCookie userCookie = HttpContext.Current.Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (string.IsNullOrEmpty(userCookie?.Value)) CreateFormsAuthentication(userID_g);
+            if (userCookie != null && string.IsNullOrEmpty(userCookie.Value)) CreateFormsAuthentication(userID_g);
             var authenticationTicket = FormsAuthentication.Decrypt(userCookie.Value);
             FormsAuthentication.RenewTicketIfOld(authenticationTicket);
         }

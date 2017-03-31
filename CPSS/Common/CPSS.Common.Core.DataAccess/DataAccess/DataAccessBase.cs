@@ -24,7 +24,7 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
         /// <summary>
         ///     连接器
         /// </summary>
-        public IDbConnection Connection { get; }
+        public IDbConnection Connection { get; private set; }
 
         /// <summary>
         ///     参数集合

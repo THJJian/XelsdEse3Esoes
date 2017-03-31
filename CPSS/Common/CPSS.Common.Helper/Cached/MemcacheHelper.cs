@@ -97,7 +97,7 @@ namespace CPSS.Common.Core.Helper.Cached
 #if DEBUG
             var success = EnyimMemcachedClient.ExecuteStore(mode, cacheKey, value, expiresAt);
             if (success.Success) return;
-            var message = success.Exception?.Message ?? success.Message;
+            var message = success.Exception != null ? success.Exception.Message : success.Message;
             throw new Exception(string.Concat("写入缓存失败", cacheKey, " ", message));
 #else
             EnyimMemcachedClient.Store(mode, cacheKey, value, expiresAt);
@@ -111,7 +111,7 @@ namespace CPSS.Common.Core.Helper.Cached
         /// <returns></returns>
         private static object GetLockObject(string key)
         {
-            var cacheKey = $"$SynchronizedCacheHelperLockObject${key}";
+            var cacheKey = string.Format("$SynchronizedCacheHelperLockObject${0}", key);
             var result = GetCache(cacheKey);
             if (result != null)
             {

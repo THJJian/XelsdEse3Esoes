@@ -83,7 +83,13 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
         /// <summary>
         /// 获取在尝试建立连接时终止尝试并生成错误之前所等待的时间。
         /// </summary>
-        public int ConnectionTimeout => this.sqlDbConnection.ConnectionTimeout;
+        public int ConnectionTimeout
+        {
+            get
+            {
+                return this.sqlDbConnection.ConnectionTimeout;
+            }
+        } 
 
         /// <summary>
         /// 创建并返回一个与该连接相关联的 Command 对象。
@@ -97,7 +103,13 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
         /// <summary>
         /// 获取当前数据库或连接打开后要使用的数据库的名称。
         /// </summary>
-        public string Database => this.sqlDbConnection.Database;
+        public string Database
+        {
+            get
+            {
+                return  this.sqlDbConnection.Database;
+            }
+        }
 
         /// <summary>
         ///  打开一个数据库连接，其设置由提供程序特定的 Connection 对象的 ConnectionString 属性指定。
@@ -110,7 +122,10 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
         /// <summary>
         /// 获取连接的当前状态。
         /// </summary>
-        public ConnectionState State => this.sqlDbConnection.State;
+        public ConnectionState State
+        {
+            get { return this.sqlDbConnection.State;}
+        }
 
         public void Dispose()
         {

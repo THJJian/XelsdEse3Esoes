@@ -21,7 +21,7 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
                 {
                     var user = CPSSAuthenticate.GetCurrentUser();
                     if (user != null && user.UserID > 0)
-                        connectFilePath = $"~/config/{user.CompanySerialNum}/connection.config";
+                        connectFilePath = string.Format("~/config/{0}/connection.config", user.CompanySerialNum);
                 }
                 var config = ConfigHelper.GetConfig<DbConnectionConfig>(connectFilePath);
                 return config;
