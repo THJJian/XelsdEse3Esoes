@@ -24,12 +24,12 @@ namespace CPSS.Data.DataAccess
         /// <param name="entity"></param>
 		public void Map(IDataReader dataReader, CPSS.Data.DataAcess.DataModels.User.SigninUserDataModel entity)
 	    {            
-            entity.UserID = (int)dataReader["UserID"];
-            entity.UserName = (string)dataReader["UserName"];
-            entity.CompanySerialNum = (int)dataReader["CompanySerialNum"];
-            entity.CompanyName = (string)dataReader["CompanyName"];
-            entity.Manager = (bool)dataReader["Manager"];
-            entity.isSystem = (bool)dataReader["isSystem"];
+            entity.userid = (int)dataReader["userid"];
+            entity.username = (string)dataReader["username"];
+            entity.comid = (int)dataReader["comid"];
+            entity.comname = (string)dataReader["comname"];
+            entity.ismanager = (bool)dataReader["ismanager"];
+            entity.issystem = (bool)dataReader["issystem"];
 	    }
 
 		/// <summary>
@@ -40,12 +40,12 @@ namespace CPSS.Data.DataAccess
 	    public CPSS.Data.DataAcess.DataModels.User.SigninUserDataModel Map(IDataReader dataReader)
 	    {
 			var result = new CPSS.Data.DataAcess.DataModels.User.SigninUserDataModel();
-            result.UserID = (int)dataReader["UserID"];
-            result.UserName = (string)dataReader["UserName"];
-            result.CompanySerialNum = (int)dataReader["CompanySerialNum"];
-            result.CompanyName = (string)dataReader["CompanyName"];
-            result.Manager = (bool)dataReader["Manager"];
-            result.isSystem = (bool)dataReader["isSystem"];
+            result.userid = (int)dataReader["userid"];
+            result.username = (string)dataReader["username"];
+            result.comid = (int)dataReader["comid"];
+            result.comname = (string)dataReader["comname"];
+            result.ismanager = (bool)dataReader["ismanager"];
+            result.issystem = (bool)dataReader["issystem"];
 			return result;
 	    }
 

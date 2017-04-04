@@ -35,6 +35,7 @@
         <div style="margin-bottom:20px">
             <input class="easyui-textbox" id="txt_valid_code" style="width:100%;height:40px;padding:12px"
                    data-options="prompt:'验证码', iconWidth:38, icons:[{iconCls:'icon-large-picture'}]">
+            <img alt="" id="imgvalidcode" src="/verifycodeimage/index" style="display: none;"/>
         </div>
         <div style="margin-bottom:20px">
             <input type="checkbox" id="chkRememberme">
@@ -119,7 +120,7 @@
                         }
                         tmpForm.submit();
                         */
-                        window.location.href = "/main/index";
+                        window.location.href = "/main/index?userid=" + result.Data.CurrentUser.UserID_g;
                     } else
                         _msgbox.error("", result.ErrorMessage);
                 }, function(result) {
@@ -127,22 +128,20 @@
             }
         });
 
-        var _tooltip,
-            isFirstGet = true;
+        var _tooltip;
         $("#txt_valid_code").textbox({
             events: {
                 focus: function () {
-                    if (!isFirstGet) return;
-                    isFirstGet = false;
                     _tooltip = $(this)
                         .tooltip({
                             position: "bottom",
-                            content: '<img src="/verifycodeimage/index?rnd=' + Math.random() + '" alt=""/>',
+                            content: $("#imgvalidcode"),// '<img src="/verifycodeimage/index?rnd=' + Math.random() + '" alt=""/>',
                             showDelay: 50,
                             deltaX: -100
                             //,trackMouse: true //设置该属性tooltip将跟随鼠标在控件内移动而移动
                         });
                     _tooltip.tooltip("show");
+                    $("#imgvalidcode").show();
                 }
             },
             onClickIcon: function () {

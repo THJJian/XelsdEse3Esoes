@@ -95,7 +95,7 @@
         //初始化Accordion的Panel默认高度
         CSPPLib.Main.PanelHelper.setPanelHeight();
 
-        contentWidth = $($("#main_layout").layout("panel", "center")).css("width");
+        //contentWidth = $($("#main_layout").layout("panel", "center")).css("width");
 
         //初始化第一个tab里面的panel的内容的高度
         var panel_0_height = $(tab_container_id).tabs("tabs")[0].panel("options").height;

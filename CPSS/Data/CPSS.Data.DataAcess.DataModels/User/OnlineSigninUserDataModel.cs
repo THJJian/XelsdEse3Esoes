@@ -4,13 +4,20 @@ namespace CPSS.Data.DataAcess.DataModels.User
 {
     public class OnlineSigninUserDataModel
     {
-        public int UserID { get; set; }
-        public string UserIP { get; set; }
-        public string LoginName { get; set; }
-        public string Browser { get; set; }
-        public DateTime LoginTime { get; set; }
-        public DateTime OverTime { get; set; }
-        public DateTime ExpTime { get; set; }
-        public Guid SGuid { get; set; }
+        public int userid { get; set; }
+
+        public string username { get; set; }
+
+        public string userip { get; set; }
+
+        public string browser { get; set; }
+
+        public DateTime logintime { get; set; }
+
+        public DateTime overtime { get; set; }
+
+        public DateTime exptime { get; set; }
+
+        public Guid sguid { get; set; }
     }
 }

@@ -16,29 +16,29 @@ namespace CPSS.Data.DataAccess.User
 
         public SigninUserDataModel QuerySigninUserDataModel(SigninUserParameter parameter)
         {
-            this.ExecuteSQL = "SELECT UserID,CompanySerialNum,CompanyName,UserName,Manager,isSystem FROM sys_users WHERE UserName=@UserName AND ISNULL(UserPwd,'')=@UserPwd AND CompanySerialNum=@CompanySerialNum AND Deleted = 0";
+            this.ExecuteSQL = "SELECT userid, username, userpwd, comid, comname,issystem,ismanager FROM sysuser WHERE comid=@comid AND username=@username AND userpwd=@userpwd";
             this.DataParameter = new IDbDataParameter[]
             {
-                new SqlParameter("@UserName", parameter.UserName), 
-                new SqlParameter("@UserPwd", parameter.UserPwd), 
-                new SqlParameter("@CompanySerialNum", parameter.CompanySerialNum)
+                new SqlParameter("@username", parameter.UserName), 
+                new SqlParameter("@userpwd", parameter.UserPwd), 
+                new SqlParameter("@comid", parameter.CompanySerialNum)
             };
             return this.ExecuteReadSqlToSigninUserDataModel();
         }
 
         public bool SaveLoginUserToOnline(OnlineSigninUserParameter parameter)
         {
-            this.ExecuteSQL = "INSERT INTO dbo.Online(UserID, LoginName, UserIP, Browser, LoginTime, OverTime, ExpTime, StateID, SGuid) VALUES (@UserID, @LoginName, @UserIP, @Browser, @LoginTime, @OverTime, @ExpTime, 0, @SGuid)";
+            this.ExecuteSQL = "INSERT INTO dbo.Online(userid, username, userip, browser, logintime, overtime, exptime, status, sguid) VALUES (@userid, @username, @userip, @browser, @logintime, @overtime, @exptime, 0, @sguid)";
             this.DataParameter = new IDbDataParameter[]
             {
-                new SqlParameter("@UserID", parameter.UserID),
-                new SqlParameter("@LoginName", parameter.LoginName), 
-                new SqlParameter("@UserIP", parameter.UserIP),
-                new SqlParameter("@Browser", parameter.Browser),
-                new SqlParameter("@LoginTime", parameter.LoginTime),
-                new SqlParameter("@OverTime", parameter.OverTime),
-                new SqlParameter("@ExpTime", parameter.ExpTime),
-                new SqlParameter("@SGuid", parameter.SGuid)
+                new SqlParameter("@userid", parameter.UserID),
+                new SqlParameter("@username", parameter.LoginName), 
+                new SqlParameter("@userip", parameter.UserIP),
+                new SqlParameter("@browser", parameter.Browser),
+                new SqlParameter("@logintime", parameter.LoginTime),
+                new SqlParameter("@overtime", parameter.OverTime),
+                new SqlParameter("@exptime", parameter.ExpTime),
+                new SqlParameter("@sguid", parameter.SGuid)
             };
             return this.ExecuteNonQuery() > 0;
         }
@@ -46,19 +46,19 @@ namespace CPSS.Data.DataAccess.User
         public OnlineSigninUserDataModel GetOnlineSigninUserByUserID_g(OnlineSigninUserParameter parameter)
         {
             var nowDate = DateTime.Now;
-            this.ExecuteSQL = "SELECT * FROM [Online] WHERE SGuid=@SGuid AND UserIP=@UserIP AND OverTime<@OverTime AND StateID=0";
+            this.ExecuteSQL = "SELECT * FROM [online] WHERE sguid=@sguid AND userip=@userip AND overtime<@overtime AND status=0";
             this.DataParameter = new IDbDataParameter[]
             {
-                new SqlParameter("@SGuid", parameter.SGuid),
-                new SqlParameter("@UserIP", parameter.UserIP),
-                new SqlParameter("@OverTime", new DateTime(nowDate.Year, nowDate.Month, nowDate.Day).AddDays(1))
+                new SqlParameter("@sguid", parameter.SGuid),
+                new SqlParameter("@userip", parameter.UserIP),
+                new SqlParameter("@overtime", new DateTime(nowDate.Year, nowDate.Month, nowDate.Day).AddDays(1))
             };
             return this.ExecuteReadSqlToOnlineSigninUserDataModel();
         }
 
         public SigninUserDataModel FindSininUserDataModelByUserID(OnlineSigninUserParameter parameter)
         {
-            this.ExecuteSQL = "SELECT * FROM sys_users WHERE UserID=@UserID";
+            this.ExecuteSQL = "SELECT * FROM sysuser WHERE UserID=@UserID";
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@UserID", parameter.UserID)

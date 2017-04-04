@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using CPSS.Common.Core.Authenticate;
+using CPSS.Common.Core.Helper.Cached;
 using CPSS.Common.Core.Helper.Config;
 
 namespace CPSS.Common.Core.DataAccess.DataAccess
@@ -13,18 +14,22 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
         /// 获取SqlConnection对象的配置文件对SqlConnection对象进行实例化。
         /// 写死在程序里面，默认路径("~/config/connection.config")。如需修改就改此处的路径即可
         /// </summary>
-        private DbConnectionConfig ConnectionConfig {
+        private static DbConnectionConfig ConnectionConfig {
             get
             {
                 var connectFilePath = "~/config/connection.config";
-                if (CPSSAuthenticate.NotUseMainConnection())
+                var notUserMainConnection = CPSSAuthenticate.NotUseMainConnection();
+                var user = CPSSAuthenticate.GetCurrentUser() == null ? new SigninUser() : CPSSAuthenticate.GetCurrentUser();
+                return MemcacheHelper.Get(() =>
                 {
-                    var user = CPSSAuthenticate.GetCurrentUser();
-                    if (user != null && user.UserID > 0)
-                        connectFilePath = string.Format("~/config/{0}/connection.config", user.CompanySerialNum);
-                }
-                var config = ConfigHelper.GetConfig<DbConnectionConfig>(connectFilePath);
-                return config;
+                    if (notUserMainConnection)
+                    {   
+                        if (user.UserID > 0)
+                            connectFilePath = string.Format("~/config/{0}/connection.config", user.CompanySerialNum);
+                    }
+                    var config = ConfigHelper.GetConfig<DbConnectionConfig>(connectFilePath);
+                    return config;
+                }, "CPSS.Common.Core.DataAccess.DataAccess.CurrentDbConnection.ConnectionConfig", connectFilePath, notUserMainConnection.ToString(), user.UserID);
             }
         }
 

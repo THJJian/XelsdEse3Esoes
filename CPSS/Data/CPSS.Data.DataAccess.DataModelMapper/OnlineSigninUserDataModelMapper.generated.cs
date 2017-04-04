@@ -24,14 +24,14 @@ namespace CPSS.Data.DataAccess
         /// <param name="entity"></param>
 		public void Map(IDataReader dataReader, CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel entity)
 	    {            
-            entity.UserID = (int)dataReader["UserID"];
-            entity.UserIP = (string)dataReader["UserIP"];
-            entity.LoginName = (string)dataReader["LoginName"];
-            entity.Browser = (string)dataReader["Browser"];
-            entity.LoginTime = (DateTime)dataReader["LoginTime"];
-            entity.OverTime = (DateTime)dataReader["OverTime"];
-            entity.ExpTime = (DateTime)dataReader["ExpTime"];
-            entity.SGuid = (Guid)dataReader["SGuid"];
+            entity.userid = (int)dataReader["userid"];
+            entity.userip = (string)dataReader["userip"];
+            entity.username = (string)dataReader["username"];
+            entity.browser = (string)dataReader["browser"];
+            entity.logintime = (DateTime)dataReader["logintime"];
+            entity.overtime = (DateTime)dataReader["overtime"];
+            entity.exptime = (DateTime)dataReader["exptime"];
+            entity.sguid = (Guid)dataReader["sguid"];
 	    }
 
 		/// <summary>
@@ -42,14 +42,14 @@ namespace CPSS.Data.DataAccess
 	    public CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel Map(IDataReader dataReader)
 	    {
 			var result = new CPSS.Data.DataAcess.DataModels.User.OnlineSigninUserDataModel();
-            result.UserID = (int)dataReader["UserID"];
-            result.UserIP = (string)dataReader["UserIP"];
-            result.LoginName = (string)dataReader["LoginName"];
-            result.Browser = (string)dataReader["Browser"];
-            result.LoginTime = (DateTime)dataReader["LoginTime"];
-            result.OverTime = (DateTime)dataReader["OverTime"];
-            result.ExpTime = (DateTime)dataReader["ExpTime"];
-            result.SGuid = (Guid)dataReader["SGuid"];
+            result.userid = (int)dataReader["userid"];
+            result.userip = (string)dataReader["userip"];
+            result.username = (string)dataReader["username"];
+            result.browser = (string)dataReader["browser"];
+            result.logintime = (DateTime)dataReader["logintime"];
+            result.overtime = (DateTime)dataReader["overtime"];
+            result.exptime = (DateTime)dataReader["exptime"];
+            result.sguid = (Guid)dataReader["sguid"];
 			return result;
 	    }
 

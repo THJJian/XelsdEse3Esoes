@@ -55,7 +55,7 @@ namespace CPSS.Web
 
             #region 设置需要使用主库连接字符串的页面
 
-            var _useMainConnectionPageList = new List<string> { "/main/index" };
+            var _useMainConnectionPageList = new List<string> { "/signin/login" };
             if (_useMainConnectionPageList.Any(item => item == _request_file_path))
                 context.Items[BeforeCompileConstDefined.HttpContext_Not_Use_Main_Connection] = false;
 

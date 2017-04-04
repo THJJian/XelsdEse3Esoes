@@ -26,20 +26,21 @@ namespace CPSS.Service.ViewService.MainPage
             };
             var dataModels = this.mLeftNavMenuDataAccess.GetLeftNavMenuDataModels(parameter);
             var viewModels = dataModels
-                .Where(dataModel => dataModel.ParentClassID == "000001")
+                .Where(dataModel => dataModel.parentid == "000001")
                 .Select(dataModel => new RespondPanelViewModel
                 {
-                    IconCls = dataModel.IconCls,
-                    Title = dataModel.Title,
+                    IconCls = dataModel.iconcls,
+                    Title = dataModel.title,
                     Menus = dataModels
-                        .Where(_dataModel=>_dataModel.ParentClassID == dataModel.ClassID)
+                        .Where(_dataModel=>_dataModel.parentid == dataModel.classid)
                         .Select(_dataModel=>new RespondMenuViewModel
                         {
-                            IconCls = _dataModel.IconCls,
-                            Title = _dataModel.Title,
-                            Url = _dataModel.Url,
-                            ButtonID = _dataModel.ButtonID,
-                            MenuID = _dataModel.MenuID
+                            IconCls = _dataModel.iconcls,
+                            Title = _dataModel.title,
+                            Url = _dataModel.url,
+                            ButtonID = _dataModel.buttonid,
+                            MenuID = _dataModel.menuid,
+                            ClassID = _dataModel.classid,
                         })
                         .ToList()
                 }).ToList();

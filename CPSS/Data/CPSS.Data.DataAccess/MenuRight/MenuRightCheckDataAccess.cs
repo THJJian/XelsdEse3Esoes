@@ -15,7 +15,7 @@ namespace CPSS.Data.DataAccess.MenuRight
 
         public MenuRightCheckDataModel CheckMenuRightByMenuID(MenuRightCheckParameter parameter)
         {
-            this.ExecuteSQL = "SELECT CASE WHEN COUNT(1)>0 THEN TRUE ELSE FALSE END HaveRight FROM sys_userright WHERE menu_id=@MenuID AND user_id=@UserID";
+            this.ExecuteSQL = "SELECT CASE WHEN COUNT(1)>0 THEN TRUE ELSE FALSE END HaveRight FROM userright WHERE menuid=@MenuID AND userid=@UserID";
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@UserID", parameter.UserID), 

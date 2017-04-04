@@ -48,20 +48,20 @@ namespace CPSS.Service.ViewService.User
                 if (dataModel == null) return _respond;
                 _respond = new RespondCompanyInfoViewModel
                 {
-                    CompanyID = dataModel.CompanyID,
-                    ConnectTimeout = dataModel.ConnectTimeout,
-                    Database = dataModel.Database,
-                    Password = dataModel.Password,
-                    Server = dataModel.Server,
-                    UserID = dataModel.UserID
+                    CompanyID = dataModel.comid,
+                    ConnectTimeout = dataModel.timeout,
+                    Database = dataModel.dbase,
+                    Password = dataModel.pwd,
+                    Server = dataModel.dbserver,
+                    UserID = dataModel.uid
                 };
                 var _DbconnectionConfig = new DbConnectionConfig
                 {
-                        ConnectTimeout = dataModel.ConnectTimeout,
-                        Database = dataModel.Database,
-                        Password = dataModel.Password,
-                        Server = dataModel.Server,
-                        UserID = dataModel.UserID
+                        ConnectTimeout = dataModel.timeout,
+                        Database = dataModel.dbase,
+                        Password = dataModel.pwd,
+                        Server = dataModel.dbserver,
+                        UserID = dataModel.uid
                 };
                 ConfigHelper.Save(_DbconnectionConfig, filePath);
                 return _respond;

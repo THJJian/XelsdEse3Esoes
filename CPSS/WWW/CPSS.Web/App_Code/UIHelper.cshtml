@@ -16,6 +16,6 @@
 
 @helper linkButton(string _buttonText, string _buttonID, bool _disabled = false, string _iconCls = "")
 {
-    <a href="javascript:void(0);" id="@_buttonID" class="easyui-linkbutton" 
+    <a href="javascript:void(0);" id="@_buttonID" class="easyui-linkbutton" onclick="HeadButtonClick('@_buttonID');"
        data-options="iconCls:'@_iconCls', disabled: @_disabled.ToLowerString()">@_buttonText</a>
 }

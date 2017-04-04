@@ -2,34 +2,35 @@
 {
     public class CompanyInfoDataModel
     {
+        //comid,dbserver,dbase,timeout,uid,pwd
         /// <summary>
         /// 用户公司ID
         /// </summary>
-        public int CompanyID { set; get; }
+        public int comid { set; get; }
 
         /// <summary>
         /// 数据库服务器
         /// </summary>
-        public string Server { set; get; }
+        public string dbserver { set; get; }
 
         /// <summary>
         /// 数据库名称
         /// </summary>
-        public string Database { set; get; }
+        public string dbase { set; get; }
 
         /// <summary>
         /// 连接超时时间(毫秒)
         /// </summary>
-        public int ConnectTimeout { set; get; }
+        public int timeout { set; get; }
 
         /// <summary>
         /// 连接数据库服务的数据库的账户ID
         /// </summary>
-        public string UserID { set; get; }
+        public string uid { set; get; }
 
         /// <summary>
         /// 连接数据库服务的数据库的账户密码
         /// </summary>
-        public string Password { set; get; }
+        public string pwd { set; get; }
     }
 }

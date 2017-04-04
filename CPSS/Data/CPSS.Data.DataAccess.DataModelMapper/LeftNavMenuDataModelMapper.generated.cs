@@ -24,12 +24,13 @@ namespace CPSS.Data.DataAccess
         /// <param name="entity"></param>
 		public void Map(IDataReader dataReader, CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel entity)
 	    {            
-            entity.MenuID = (int)dataReader["MenuID"];
-            entity.ClassID = (string)dataReader["ClassID"];
-            entity.ParentClassID = (string)dataReader["ParentClassID"];
-            entity.Title = (string)dataReader["Title"];
-            entity.IconCls = (string)dataReader["IconCls"];
-            entity.Url = (string)dataReader["Url"];
+            entity.menuid = (int)dataReader["menuid"];
+            entity.classid = (string)dataReader["classid"];
+            entity.parentid = (string)dataReader["parentid"];
+            entity.title = (string)dataReader["title"];
+            entity.iconcls = (string)dataReader["iconcls"];
+            entity.url = (string)dataReader["url"];
+	        entity.buttonid = (string) dataReader["buttonid"];
 	    }
 
 		/// <summary>
@@ -40,13 +41,14 @@ namespace CPSS.Data.DataAccess
 	    public CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel Map(IDataReader dataReader)
 	    {
 			var result = new CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel();
-            result.MenuID = (int)dataReader["MenuID"];
-            result.ClassID = (string)dataReader["ClassID"];
-            result.ParentClassID = (string)dataReader["ParentClassID"];
-            result.Title = (string)dataReader["Title"];
-            result.IconCls = (string)dataReader["IconCls"];
-            result.Url = (string)dataReader["Url"];
-			return result;
+            result.menuid = (int)dataReader["menuid"];
+            result.classid = (string)dataReader["classid"];
+            result.parentid = (string)dataReader["parentid"];
+            result.title = (string)dataReader["title"];
+            result.iconcls = (string)dataReader["iconcls"];
+            result.url = (string)dataReader["url"];
+            result.buttonid = (string)dataReader["buttonid"];
+            return result;
 	    }
 
 		/// <summary>

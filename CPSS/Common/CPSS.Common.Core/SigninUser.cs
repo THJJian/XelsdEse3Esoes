@@ -12,7 +12,8 @@ namespace CPSS.Common.Core
             this.UserName = string.Empty;
             this.AddressIP = string.Empty;
             this.ConnectionConfig = null;
-            this.IsSysManager = false;
+            this.IsSystem = false;
+            this.IsManager = false;
         }
 
         public int UserID { set; get; }
@@ -28,8 +29,13 @@ namespace CPSS.Common.Core
         public DbConnectionConfig ConnectionConfig { set; get; }
 
         /// <summary>
-        /// 是否为超级管理员
+        /// 是否为整个saas系统的超级管理员
         /// </summary>
-        public bool IsSysManager { get; set; }
+        public bool IsSystem { get; set; }
+
+        /// <summary>
+        /// 是否为公司超级管理员
+        /// </summary>
+        public bool IsManager { get; set; }
     }
 }

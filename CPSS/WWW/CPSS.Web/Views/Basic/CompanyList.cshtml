@@ -1,0 +1,60 @@
+﻿@using CPSS.Common.Core.Type.ConstDefined
+@using CPSS.Service.ViewService.ViewModels.HeadButtons.Request
+@{
+    ViewBag.Title = "CompanyList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    WorkContext.Resource
+        //.AddPageCss("")
+        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "grid/tablegrid", "easyui-1.5/plugins/jquery.datagrid.cellediting", "controlshelper");
+}
+
+@section buttons{
+    @{
+        Html.RenderAction("headbuttons", "commonpartial", new RequestHeadButtonsViewModel { MenuID = MenuValueConstDefined.rtBasicCom });
+    }
+}
+
+<div id="billhead" class="easyui-panel" data-options="border: false"
+     style="max-height: 300px; max-width: 100%; overflow: hidden;">
+    @UIHelper.textBox("test1", "测试测试1")
+    @UIHelper.textBox("test2", "测试测试2", _tabIndex: 1)
+    @UIHelper.textBox("test3", "测试测试3", _tabIndex: 2)
+    @UIHelper.textBox("test4", "测试测试4", _tabIndex: 3)
+    @UIHelper.textBox("test5", "测试测试5", _tabIndex: 4)
+</div>
+
+@section grid{
+    <div id="billgrid" class="easyui-panel" data-options="border: false" style="padding-top: 3px;">
+        <table class="easyui-datagrid" id="dvgDataGrid"></table>
+    </div>
+}
+
+@section scripts{
+    <script type="text/javascript">
+        function HeadButtonClick(id) {
+            alert(id);
+            switch (id) {
+                case "rtBasicCom_TB_Add":
+                    break;
+                case "rtBasicCom_TB_Edit":
+
+                    break;
+                case "rtBasicCom_TB_Delete":
+
+                    break;
+                case "rtBasicCom_TB_Resume":
+
+                    break;
+                case "rtBasicCom_TB_Class":
+
+                    break;
+                case "rtBasicCom_TB_Preview":
+
+                    break;
+                case "rtBasicCom_TB_Design":
+
+                    break;
+            }
+        }
+    </script>
+}

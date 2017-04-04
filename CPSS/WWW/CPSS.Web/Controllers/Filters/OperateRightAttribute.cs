@@ -3,6 +3,7 @@ using System.Web;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Features.OwnedInstances;
+using CPSS.Common.Core.Authenticate;
 using CPSS.Common.Core.Mvc.Filters;
 using CPSS.Common.Core.Mvc.Ioc;
 using CPSS.Service.ViewService.Interfaces.MenuRight;
@@ -28,6 +29,13 @@ namespace CPSS.Web.Controllers.Filters
         /// <returns></returns>
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
+            #region 如果是管理员或系统账号则不需要验证权限，本身就拥有所有权限
+            
+            var currentUser = CPSSAuthenticate.GetCurrentUser();
+            if (currentUser.IsManager || currentUser.IsSystem) return true;
+
+            #endregion
+
             var _autofacScope = AutofacServiceContainer.CurrentServiceContainer.BeginLifetimeScope(new object());
             var _service = _autofacScope.Resolve<Owned<IMenuRightCheckViewService>>();
             var request = new RequestMenuRightCheckViewModel

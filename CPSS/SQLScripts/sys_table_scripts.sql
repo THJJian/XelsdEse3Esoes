@@ -36,6 +36,8 @@ CREATE TABLE [dbo].[sysuser](
 	[userid] INT NOT NULL,
 	[username] VARCHAR(50) NOT NULL,
 	[userpwd] VARCHAR(100) NULL,
+	[issystem] BIT NOT NULL,
+	[ismanager] BIT NOT NULL,
 	[modifydate] TIMESTAMP NULL,
 	CONSTRAINT [PK_sysuser_id] PRIMARY KEY CLUSTERED 
 	(
@@ -44,8 +46,8 @@ CREATE TABLE [dbo].[sysuser](
 ) ON [PRIMARY]
 
 GO
-INSERT INTO dbo.[sysuser]([comid] ,[comname], UserID ,UserName ,UserPwd)
-	VALUES(12110, '系统测试公司', 1, 'Admin', '670b14728ad9902aecba32e22fa4f6bd')
+INSERT INTO dbo.[sysuser]([comid] ,[comname], [userid] ,[username] ,[userpwd],[issystem],[ismanager])
+	VALUES(12110, '系统测试公司', 1, 'Admin', '670b14728ad9902aecba32e22fa4f6bd',0,1)
 GO
 
 IF EXISTS(SELECT 1 FROM SYSOBJECTS WHERE id=OBJECT_ID(N'[dbo].[online]') AND OBJECTPROPERTY(id,N'IsUserTable')=1)

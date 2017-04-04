@@ -428,5 +428,153 @@
         public const int rtSystemParameter = 569;
 
         #endregion
+
+        #region 基础资料
+
+        #region 公司资料
+
+        public const int rtBasicCom = 630;
+
+        public const int rtBasicCom_TB_Add = 631;
+
+        public const int rtBasicCom_TB_Edit = 632;
+
+        public const int rtBasicCom_TB_Delete = 633;
+
+        public const int rtBasicCom_TB_Resume = 634;
+
+        public const int rtBasicCom_TB_Class = 635;
+
+        public const int rtBasicCom_TB_Preview = 636;
+
+        public const int rtBasicCom_TB_Design = 637;
+
+        #endregion
+
+        #region 部门资料
+
+        public const int rtBasicDep = 638;
+
+        public const int rtBasicDep_TB_Add = 639;
+
+        public const int rtBasicDep_TB_Edit = 640;
+
+        public const int rtBasicDep_TB_Delete = 641;
+
+        public const int rtBasicDep_TB_Resume = 642;
+
+        public const int rtBasicDep_TB_Class = 643;
+
+        public const int rtBasicDep_TB_Preview = 644;
+
+        public const int rtBasicDep_TB_Design = 645;
+
+        #endregion
+
+        #region 职员资料
+
+        public const int rtBasicEmp = 501;
+
+        public const int rtBasicEmp_TB_Add = 502;
+
+        public const int rtBasicEmp_TB_Edit = 503;
+
+        public const int rtBasicEmp_TB_Delete = 504;
+
+        public const int rtBasicEmp_TB_Resume = 505;
+
+        public const int rtBasicEmp_TB_Class = 506;
+
+        public const int rtBasicEmp_TB_Preview = 507;
+
+        public const int rtBasicEmp_TB_esign = 508;
+
+        #endregion
+
+        #region 往来单位资料
+
+        public const int rtBasicClient = 518;
+
+        public const int rtBasicClient_TB_Add = 519;
+
+        public const int rtBasicClient_TB_Edit = 520;
+
+        public const int rtBasicClient_TB_Delete = 521;
+
+        public const int rtBasicClient_TB_Resume = 522;
+
+        public const int rtBasicClient_TB_Class = 523;
+
+        public const int rtBasicClient_TB_Preview = 524;
+
+        public const int rtBasicClient_TB_Design = 525;
+
+        public const int rtBasicClient_TB_Enable = 530;
+
+        #endregion
+
+        #region 仓库资料
+
+        public const int rtBasicStorage = 531;
+
+        public const int rtBasicStorage_TB_Add = 532;
+
+        public const int rtBasicStorage_TB_Edit = 533;
+
+        public const int rtBasicStorage_TB_Delete = 534;
+
+        public const int rtBasicStorage_TB_Resume = 535;
+
+        public const int rtBasicStorage_TB_Class = 536;
+
+        public const int rtBasicStorage_TB_Preview = 537;
+
+        public const int rtBasicStorage_TB_Design = 538;
+
+        #endregion
+
+        #region 计量单位
+
+        public const int rtBasicUnit = 513;
+
+        public const int rtBasicUnit_TB_Add = 514;
+
+        public const int rtBasicUnit_TB_Del = 515;
+
+        public const int rtBasicUnit_TB_Preview = 516;
+
+        public const int rtBasicUnit_TB_Design = 517;
+
+        #endregion
+
+        #region 商品资料
+
+        public const int rtBasicProduct = 543;
+
+        public const int rtBasicProduct_TB_Add = 544;
+
+        public const int rtBasicProduct_TB_CopyAdd = 545;
+
+        public const int rtBasicProduct_TB_Edit = 546;
+
+        public const int rtBasicProduct_TB_Delete = 547;
+
+        public const int rtBasicProduct_TB_Class = 548;
+
+        public const int rtBasicProduct_TB_Enable = 549;
+
+        public const int rtBasicProduct_TB_IsBuy = 550;
+
+        public const int rtBasicProduct_TB_Resume = 551;
+
+        public const int rtBasicProduct_TB_Preview = 552;
+
+        public const int rtBasicProduct_TB_Design = 553;
+
+        public const int rtBasicProduct_TB_BatchDelete = 557;
+
+        #endregion
+
+        #endregion
     }
 }

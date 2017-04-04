@@ -29,5 +29,10 @@ namespace CPSS.Service.ViewService.ViewModels.MainPage.Respond
         /// 按钮ID
         /// </summary>
         public string ButtonID { set; get; }
+
+        /// <summary>
+        /// 分级ID
+        /// </summary>
+        public string ClassID { get; set; }
     }
 }

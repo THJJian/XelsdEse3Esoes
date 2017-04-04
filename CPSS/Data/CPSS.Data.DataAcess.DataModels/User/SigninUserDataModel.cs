@@ -2,16 +2,16 @@
 {
     public class SigninUserDataModel
     {
-        public int UserID { set; get; }
+        public int userid { set; get; }
 
-        public string UserName { set; get; }
+        public string username { set; get; }
 
-        public int CompanySerialNum { set; get; }
+        public int comid { set; get; }
 
-        public string CompanyName { set; get; }
+        public string comname { set; get; }
 
-        public bool Manager { get; set; }
+        public bool ismanager { get; set; }
 
-        public bool isSystem { set; get; }
+        public bool issystem { set; get; }
     }
 }

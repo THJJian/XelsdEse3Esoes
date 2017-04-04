@@ -68,18 +68,19 @@ namespace CPSS.Service.ViewService.User
                     {
                         CurrentUser = new SigninUser
                         {
-                            CompanySerialNum = dataModel.CompanySerialNum,
+                            CompanySerialNum = dataModel.comid,
                             UserID_g = userID_g,
-                            UserID = dataModel.UserID,
-                            UserName = dataModel.UserName,
-                            IsSysManager = dataModel.Manager && dataModel.isSystem
+                            UserID = dataModel.userid,
+                            UserName = dataModel.username,
+                            IsManager = dataModel.ismanager,
+                            IsSystem = dataModel.issystem
                         }
                     }
                 };
                 this.SaveLoginUserToOnline(new RequestSigninUserViewModel
                 {
-                    UserID = dataModel.UserID,
-                    UserName = dataModel.UserName,
+                    UserID = dataModel.userid,
+                    UserName = dataModel.username,
                     UserID_g= userID_g
                 });
                 FormsAuthenticationTicketManage.CreateFormsAuthentication(userID_g);
@@ -91,7 +92,8 @@ namespace CPSS.Service.ViewService.User
                     LogTime = DateTime.Now,
                     SpecialType = _respond.Data.GetType()
                 };
-                this.mMongoDbDataAccess.Save(_mongo_db_request);
+                //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
+                //this.mMongoDbDataAccess.Save(_mongo_db_request);
                 return _respond;
             }, userID_g.ToString());
         }
@@ -136,11 +138,11 @@ namespace CPSS.Service.ViewService.User
                 {
                     Data = new RespondOnlineSigninUserViewModel
                     {
-                        UserID = dataModel.UserID,
-                        LoginName = dataModel.LoginName,
-                        SGuid = dataModel.SGuid,
-                        ExpTime = dataModel.ExpTime,
-                        UserIP = dataModel.UserIP
+                        UserID = dataModel.userid,
+                        LoginName = dataModel.username,
+                        SGuid = dataModel.sguid,
+                        ExpTime = dataModel.exptime,
+                        UserIP = dataModel.userip
                     }
                 };
             }, string.Format(preCacheKey, "GetOnlineSigninUserByUserID_g"), 
@@ -159,7 +161,7 @@ namespace CPSS.Service.ViewService.User
             if(dataModel==null) return new RespondWebViewData<RespondSigninUserViewModel>(WebViewErrorCode.NotExistUserInfo);
             var companyInfoRequest = new RequestCompanyInfoViewModel
             {
-                CompanyID = dataModel.CompanySerialNum
+                CompanyID = dataModel.comid
             };
             var companyInfo = this.mCompanyInfoViewService.GetCompanyInfoViewModel(companyInfoRequest);
             var connectionConfig = new DbConnectionConfig
@@ -177,12 +179,14 @@ namespace CPSS.Service.ViewService.User
                 {
                     CurrentUser = new SigninUser
                     {
-                        CompanySerialNum = dataModel.CompanySerialNum,
+                        CompanySerialNum = dataModel.comid,
                         UserID_g = request.SGuid,
-                        UserID = dataModel.UserID,
-                        UserName = dataModel.UserName,
+                        UserID = dataModel.userid,
+                        UserName = dataModel.username,
                         AddressIP = UserIPAddressTool.GetRealUserIPAddress(),
-                        ConnectionConfig = connectionConfig
+                        ConnectionConfig = connectionConfig,
+                        IsManager = dataModel.ismanager,
+                        IsSystem = dataModel.issystem
                     }
                 }
             };

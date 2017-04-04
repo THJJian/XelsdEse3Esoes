@@ -15,25 +15,25 @@ namespace CPSS.Data.DataAccess.User
         
         public bool AddCompanyInfo(CompanyInfoDataModel parameter)
         {
-            this.ExecuteSQL = "INSERT INTO CompnayInfo(CompanyID,Server,Database,ConnectTimeout,UserID,Password) VALUES(@CompanyID,@Server,@Database,@ConnectTimeout,@UserID,@Password)";
+            this.ExecuteSQL = "INSERT INTO [compnaydbinfo](comid,dbserver,dbase,timeout,uid,pwd) VALUES(@comid,@dbserver,@dbase,@timeout,@uid,@pwd)";
             this.DataParameter = new IDbDataParameter[]
             {
-                new SqlParameter("@CompanyID", parameter.CompanyID),
-                new SqlParameter("@Server", parameter.Server),
-                new SqlParameter("@Database", parameter.Database),
-                new SqlParameter("@ConnectTimeout", parameter.ConnectTimeout),
-                new SqlParameter("@UserID", parameter.UserID),
-                new SqlParameter("@Password", parameter.Password)
+                new SqlParameter("@comid", parameter.comid),
+                new SqlParameter("@dbserver", parameter.dbserver),
+                new SqlParameter("@dbase", parameter.dbase),
+                new SqlParameter("@timeout", parameter.timeout),
+                new SqlParameter("@uid", parameter.uid),
+                new SqlParameter("@pwd", parameter.pwd)
             };
             return this.ExecuteNonQuery() > 0;
         }
 
         public CompanyInfoDataModel GetCompanyInfoDataModelByID(CompanyInfoParameter parameter)
         {
-            this.ExecuteSQL = "SELECT * FROM CompnayInfo WHERE CompanyID=@CompanyID";
+            this.ExecuteSQL = "SELECT * FROM [compnaydbinfo] WHERE comid=@comid";
             this.DataParameter = new IDbDataParameter[]
             {
-                new SqlParameter("@CompanyID", parameter.CompanyID) 
+                new SqlParameter("@comid", parameter.CompanyID) 
             };
             return this.ExecuteReadSqlToCompanyInfoDataModel();
         }
