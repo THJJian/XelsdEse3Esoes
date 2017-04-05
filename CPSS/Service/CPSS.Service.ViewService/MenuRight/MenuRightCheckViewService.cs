@@ -6,6 +6,7 @@ using CPSS.Data.DataAccess.Interfaces.MenuRight;
 using CPSS.Data.DataAccess.Interfaces.MenuRight.Parameters;
 using CPSS.Service.ViewService.Interfaces.MenuRight;
 using CPSS.Service.ViewService.ViewModels.MenuRight.Request;
+using CPSS.Service.ViewService.ViewModels.MenuRight.Respond;
 
 namespace CPSS.Service.ViewService.MenuRight
 {
@@ -19,7 +20,7 @@ namespace CPSS.Service.ViewService.MenuRight
             this.mMenuRightCheckDataAccess = _menuRightCheckDataAccess;
         }
 
-        public bool CheckMenuRightByMenuID(RequestMenuRightCheckViewModel request)
+        public RespondMenuRightCheckViewModel CheckMenuRightByMenuID(RequestMenuRightCheckViewModel request)
         {
             var user = CPSSAuthenticate.GetCurrentUser();
             return MemcacheHelper.Get(() =>
@@ -30,9 +31,12 @@ namespace CPSS.Service.ViewService.MenuRight
                         UserID = user.UserID
                     };
                     var dataModel = this.mMenuRightCheckDataAccess.CheckMenuRightByMenuID(parameter);
-                    return dataModel != null && dataModel.HaveRight;
+                    var result = new RespondMenuRightCheckViewModel
+                    {
+                        HaveRight = dataModel != null && dataModel.HaveRight
+                    };
+                    return result;
                 }, string.Format(preCacheKey, "CheckMenuRightByMenuID")
-                , DateTime.Now.AddMinutes(WebConfigHelper.MemCachedExpTime())
                 , request.MenuID
                 , user.UserID);
         }

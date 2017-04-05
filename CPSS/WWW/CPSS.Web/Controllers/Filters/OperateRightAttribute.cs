@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using Autofac;
 using Autofac.Features.OwnedInstances;
 using CPSS.Common.Core.Authenticate;
+using CPSS.Common.Core.Helper.Cached;
 using CPSS.Common.Core.Mvc.Filters;
 using CPSS.Common.Core.Mvc.Ioc;
 using CPSS.Service.ViewService.Interfaces.MenuRight;
@@ -45,7 +46,7 @@ namespace CPSS.Web.Controllers.Filters
             var model = _service.Value.CheckMenuRightByMenuID(request);
 
             //验证权限 有相应权限 返回true，否则返回false
-            return model;
+            return model.HaveRight;
         }
 
         /// <summary>

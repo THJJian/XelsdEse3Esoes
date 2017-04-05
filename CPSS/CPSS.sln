@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.23107.0
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01-Common", "01-Common", "{7F2DA74E-AB87-4362-9AC8-4B5BB53975D0}"
 EndProject
@@ -50,6 +50,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Web", "WWW\CPSS.Web\CPSS.Web.csproj", "{C3AFF5BC-AD38-4090-A0D2-E9FDC3887B09}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Web.Resource", "WWW\CPSS.Web.Resource\CPSS.Web.Resource.csproj", "{CB091906-E9D8-4757-A86E-E317A47197FA}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CPSS.Web.DB", "CPSS.Web.DB\CPSS.Web.DB.sqlproj", "{5509F04A-6D1F-41C8-AC25-106615D826D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -125,6 +127,12 @@ Global
 		{CB091906-E9D8-4757-A86E-E317A47197FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB091906-E9D8-4757-A86E-E317A47197FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB091906-E9D8-4757-A86E-E317A47197FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5509F04A-6D1F-41C8-AC25-106615D826D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5509F04A-6D1F-41C8-AC25-106615D826D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5509F04A-6D1F-41C8-AC25-106615D826D5}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5509F04A-6D1F-41C8-AC25-106615D826D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5509F04A-6D1F-41C8-AC25-106615D826D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5509F04A-6D1F-41C8-AC25-106615D826D5}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -150,5 +158,6 @@ Global
 		{4E5DB593-39A3-47B5-B0AD-4CBBE50B73CD} = {42E00763-A664-468E-B70F-571F3571F113}
 		{C3AFF5BC-AD38-4090-A0D2-E9FDC3887B09} = {C9C6C864-8376-4456-81D6-51300BF3B32F}
 		{CB091906-E9D8-4757-A86E-E317A47197FA} = {C9C6C864-8376-4456-81D6-51300BF3B32F}
+		{5509F04A-6D1F-41C8-AC25-106615D826D5} = {C9C6C864-8376-4456-81D6-51300BF3B32F}
 	EndGlobalSection
 EndGlobal

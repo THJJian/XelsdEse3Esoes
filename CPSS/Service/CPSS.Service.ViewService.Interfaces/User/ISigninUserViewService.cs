@@ -1,4 +1,4 @@
-﻿using CPSS.Common.Core.Exception;
+﻿using CPSS.Common.Core;
 using CPSS.Service.ViewService.ViewModels.User.Request;
 using CPSS.Service.ViewService.ViewModels.User.Respond;
 

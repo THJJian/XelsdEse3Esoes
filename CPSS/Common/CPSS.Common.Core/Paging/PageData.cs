@@ -110,7 +110,7 @@ namespace CPSS.Common.Core.Paging
                 }
                 Datas = result;
             }
-            catch (Exception exception)
+            catch (System.Exception exception)
             {
                 throw exception;
             }

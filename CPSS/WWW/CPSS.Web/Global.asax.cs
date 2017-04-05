@@ -66,7 +66,8 @@ namespace CPSS.Web
             var autofac = AutofacServiceContainer.CurrentServiceContainer.BeginLifetimeScope(new object());
             var service = autofac.Resolve<ISigninUserViewService>();
             var userCookie = context.Request.Cookies[FormsAuthentication.FormsCookieName];
-            if (string.IsNullOrEmpty(userCookie?.Value)) return;
+            if(userCookie == null) return;
+            if (string.IsNullOrEmpty(userCookie.Value)) return;
             try
             {
                 var authenticationTicket = FormsAuthentication.Decrypt(userCookie.Value);

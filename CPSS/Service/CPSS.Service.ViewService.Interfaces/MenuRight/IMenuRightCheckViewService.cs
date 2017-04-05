@@ -1,4 +1,5 @@
 ﻿using CPSS.Service.ViewService.ViewModels.MenuRight.Request;
+using CPSS.Service.ViewService.ViewModels.MenuRight.Respond;
 
 namespace CPSS.Service.ViewService.Interfaces.MenuRight
 {
@@ -9,6 +10,6 @@ namespace CPSS.Service.ViewService.Interfaces.MenuRight
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        bool CheckMenuRightByMenuID(RequestMenuRightCheckViewModel request);
+        RespondMenuRightCheckViewModel CheckMenuRightByMenuID(RequestMenuRightCheckViewModel request);
     }
 }
