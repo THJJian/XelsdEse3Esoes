@@ -49,13 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountDataModel.cs">
-      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ClientsDataModel.cs">
-      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CompanyDataModel.cs">
+    <Compile Include="clientDataModel.cs">
       <DependentUpon>CPSSDataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="CPSSDataEntity.Context.cs">
@@ -73,17 +67,32 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CPSSDataEntity.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DepartmentDataModel.cs">
+    <Compile Include="departmentDataModel.cs">
       <DependentUpon>CPSSDataEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="EmployeesDataModel.cs">
+    <Compile Include="employeeDataModel.cs">
       <DependentUpon>CPSSDataEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="HeadButtons\HeadButtonsDataModel.cs" />
     <Compile Include="MainPage\LeftNavMenuDataModel.cs" />
     <Compile Include="MenuRight\MenuRightCheckDataModel.cs" />
+    <Compile Include="productDataModel.cs">
+      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="snstorageDataModel.cs">
+      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="storageDataModel.cs">
+      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="subcompanyDataModel.cs">
+      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="SystemParameterConfig\SystemParameterConfigDataModel.cs" />
+    <Compile Include="unitDataModel.cs">
+      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
+    </Compile>
     <Compile Include="User\CompanyInfoDataModel.cs" />
     <Compile Include="User\OnlineSigninUserDataModel.cs" />
     <Compile Include="User\SigninUserDataModel.cs" />

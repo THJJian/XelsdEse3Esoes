@@ -42,8 +42,6 @@
   <ItemGroup>
     <Compile Include="ErrorCodeItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RespondWebViewData.cs" />
-    <Compile Include="RespondWebViewDataBase.cs" />
     <Compile Include="WebViewErrorCode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -120,7 +120,7 @@
                         }
                         tmpForm.submit();
                         */
-                        window.location.href = "/main/index?userid=" + result.Data.CurrentUser.UserID_g;
+                        window.location.href = "/main/index?userid=" + result.rows.CurrentUser.UserID_g;
                     } else
                         _msgbox.error("", result.ErrorMessage);
                 }, function(result) {
@@ -146,10 +146,11 @@
             },
             onClickIcon: function () {
                 if (_tooltip) {
+                    $("#imgvalidcode").attr("src", "/verifycodeimage/index?rnd=" + Math.random());
                     _tooltip
-                        .tooltip({ content: '<img src="/verifycodeimage/index?rnd=' + Math.random() + '" alt=""/>' });
+                        .tooltip({ content: $("#imgvalidcode") });
                     _tooltip.tooltip("show");
-                }
+                } else $("#txt_valid_code").focus();
             }
         });
 

@@ -18,7 +18,7 @@ namespace CPSS.Common.Core.MongoDb
             this.SpecialType = null;
             this.TableName = string.Empty;
             this.LogName = "系统日志";
-            this.LogData = string.Empty;
+            this.RespondLogData = string.Empty;
             this.LogTime = DateTime.Now;
         }
 
@@ -50,9 +50,14 @@ namespace CPSS.Common.Core.MongoDb
         public string LogName { set; get; }
 
         /// <summary>
-        /// 日志数据，任何对象转换的Json字符串
+        /// 返回结果转换的Json字符串
         /// </summary>
-        public string LogData { set; get; }
+        public string RespondLogData { set; get; }
+
+        /// <summary>
+        /// 请求数据转换的Json字符串
+        /// </summary>
+        public string RequestLogData { set; get; }
 
         /// <summary>
         /// 日志记录日期

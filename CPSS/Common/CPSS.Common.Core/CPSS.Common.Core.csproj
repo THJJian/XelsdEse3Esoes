@@ -60,6 +60,7 @@
     <Compile Include="MongoDb\SpecialField.cs" />
     <Compile Include="Paging\Interface\IPageData.cs" />
     <Compile Include="Paging\PageData.cs" />
+    <Compile Include="Paging\PagingBase.cs" />
     <Compile Include="RequestWebViewData.cs" />
     <Compile Include="RespondWebViewData.cs" />
     <Compile Include="RespondWebViewDataBase.cs" />

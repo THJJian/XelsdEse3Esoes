@@ -12,20 +12,20 @@ namespace CPSS.Data.DataAcess.DataModels
     using System;
     using System.Collections.Generic;
     
-    public partial class DepartmentDataModel
+    public partial class storageDataModel
     {
-        public int department_Id { get; set; }
-        public string class_id { get; set; }
-        public string parent_id { get; set; }
-        public int child_number { get; set; }
-        public int child_count { get; set; }
-        public string serial_number { get; set; }
+        public int stoid { get; set; }
+        public string classid { get; set; }
+        public string parentid { get; set; }
+        public int childnumber { get; set; }
+        public int childcount { get; set; }
+        public string serialnumber { get; set; }
         public string name { get; set; }
+        public string PinYin { get; set; }
+        public string alias { get; set; }
+        public short status { get; set; }
+        public int sort { get; set; }
         public string comment { get; set; }
-        public bool deleted { get; set; }
-        public byte[] ModifyDate { get; set; }
-        public string pinyin { get; set; }
-        public bool Flag { get; set; }
-        public int RowIndex { get; set; }
+        public byte[] modifydate { get; set; }
     }
 }

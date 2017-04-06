@@ -24,20 +24,22 @@ namespace CPSS.Common.Core
 
         public RespondWebViewData(int errorCode, string errorMessage, T data) : base(errorCode, errorMessage)
         {
-            this.Data = data;
+            this.rows = data;
         }
 
         public RespondWebViewData(ErrorCodeItem errorCodeItem, T data) : base(errorCodeItem)
         {
-            this.Data = data;
+            this.rows = data;
         }
 
         public RespondWebViewData(T data) : base(WebViewErrorCode.Success.ErrorCode, string.Empty)
         {
-            this.Data = data;
+            this.rows = data;
         }
 
-        public T Data { get; set; }
+        public int total { set; get; }
+
+        public T rows { get; set; }
 
     }
 }

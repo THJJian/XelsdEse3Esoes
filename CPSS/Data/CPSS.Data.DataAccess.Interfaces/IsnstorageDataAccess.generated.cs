@@ -15,14 +15,14 @@ using System.Data;
 namespace CPSS.Data.DataAccess.Interfaces
 {
 	/// <summary>
-    /// DepartmentDataModel的数据访问层接口
+    /// snstorageDataModel的数据访问层接口
     /// </summary>
-	public partial interface IDepartmentDataAccess
+	public partial interface IsnstorageDataAccess
 	{
 		/// <summary>
-		/// 根据编号获取DepartmentDataModel
+		/// 根据编号获取snstorageDataModel
 		/// </summary>
-		DepartmentDataModel GetDepartmentDataModelById(int department_Id);
+		snstorageDataModel GetsnstorageDataModelById(string sn, int subcomid, int stoid, int clientid, int empid, int depid, int proid, int billtype, int billid, System.DateTime ctime);
 		
         /// <summary>
         /// 增加数据
@@ -30,21 +30,21 @@ namespace CPSS.Data.DataAccess.Interfaces
         /// <param name="data"></param>
 		/// <param name="tansaction">事务</param>
         /// <returns></returns>
-        int Add(DepartmentDataModel data, IDbTransaction tansaction);
+        int Add(snstorageDataModel data, IDbTransaction tansaction);
 
         /// <summary>
         /// 修改数据
         /// </summary>
         /// <param name="data"></param>
 		/// <param name="tansaction">事务</param>
-        int Update(DepartmentDataModel data, IDbTransaction tansaction);
+        int Update(snstorageDataModel data, IDbTransaction tansaction);
 
         /// <summary>
         /// 删除数据
         /// </summary>
         /// <param name="data"></param>
 		/// <param name="tansaction">事务</param>
-        int Delete(DepartmentDataModel data, IDbTransaction tansaction);
+        int Delete(snstorageDataModel data, IDbTransaction tansaction);
 	}
 
 }

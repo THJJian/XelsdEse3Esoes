@@ -44,7 +44,7 @@ namespace CPSS.Web.Controllers
             
             respond = this.mSigninUserViewService.QuerySigninUserViewModel(request);
             HttpContext.Session[BeforeCompileConstDefined.HttpContext_Login_Img_Verify_Code] = string.Empty;
-            if (respond.Data.CurrentUser.UserID > 0)
+            if (respond.rows.CurrentUser.UserID > 0)
             {
                 //var _signature_text = SignatureHelper.BuildSignature(JObject.FromObject(respond.Data.CurrentUser));
                 //return Json(new RespondWebViewData<object>

@@ -41,7 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Company\Request\RequestQueryCompanyViewModel.cs" />
+    <Compile Include="SubCompany\Request\RequestQuerySubCompanyViewModel.cs" />
+    <Compile Include="SubCompany\Respond\RespondQuerySubCompanyViewModel.cs" />
     <Compile Include="HeadButtons\Request\RequestHeadButtonsViewModel.cs" />
     <Compile Include="HeadButtons\Respond\RespondHeadButtonsViewModel.cs" />
     <Compile Include="MainPage\Respond\RespondMenuViewModel.cs" />
@@ -66,9 +67,7 @@
       <Name>CPSS.Common.Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Company\Respond\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

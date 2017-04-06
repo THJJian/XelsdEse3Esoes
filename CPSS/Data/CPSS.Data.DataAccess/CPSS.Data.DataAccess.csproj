@@ -48,13 +48,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountDataAccess.generated.cs">
-      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ClientsDataAccess.generated.cs">
-      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CompanyDataAccess.generated.cs">
+    <Compile Include="Basic\subcompanyDataAccess.cs" />
+    <Compile Include="clientDataAccess.generated.cs">
       <DependentUpon>DataAccessTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccessTemplate.cs">
@@ -62,18 +57,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataAccessTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="DepartmentDataAccess.generated.cs">
+    <Compile Include="departmentDataAccess.generated.cs">
       <DependentUpon>DataAccessTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="EmployeesDataAccess.generated.cs">
+    <Compile Include="employeeDataAccess.generated.cs">
       <DependentUpon>DataAccessTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="HeadButtons\HeadButtonsDataAccess.cs" />
     <Compile Include="MainPage\LeftNavMenuDataAccess.cs" />
     <Compile Include="MenuRight\MenuRightCheckDataAccess.cs" />
     <Compile Include="MongoDB\MongoDbDataAccess.cs" />
+    <Compile Include="productDataAccess.generated.cs">
+      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="snstorageDataAccess.generated.cs">
+      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="storageDataAccess.generated.cs">
+      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="subcompanyDataAccess.generated.cs">
+      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="SystemParameterConfig\SystemParameterConfigDataAccess.cs" />
+    <Compile Include="unitDataAccess.generated.cs">
+      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="User\CompanyInfoDataAccess.cs" />
     <Compile Include="User\SigninUserDataAccess.cs" />
   </ItemGroup>

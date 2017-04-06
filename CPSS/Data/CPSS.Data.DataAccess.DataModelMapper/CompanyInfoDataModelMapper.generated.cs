@@ -24,12 +24,12 @@ namespace CPSS.Data.DataAccess
         /// <param name="entity"></param>
 		public void Map(IDataReader dataReader, CPSS.Data.DataAcess.DataModels.User.CompanyInfoDataModel entity)
 	    {            
-            entity.comid = (int)dataReader["CompanyID"];
-            entity.dbserver = (string)dataReader["Server"];
-            entity.dbase = (string)dataReader["Database"];
-            entity.timeout = (int)dataReader["ConnectTimeout"];
-            entity.uid = (string)dataReader["UserID"];
-            entity.pwd = (string)dataReader["Password"];
+            entity.comid = (int)dataReader["comid"];
+            entity.dbserver = (string)dataReader["dbserver"];
+            entity.dbase = (string)dataReader["dbase"];
+            entity.timeout = (int)dataReader["timeout"];
+            entity.uid = (string)dataReader["uid"];
+            entity.pwd = (string)dataReader["pwd"];
 	    }
 
 		/// <summary>
@@ -40,12 +40,12 @@ namespace CPSS.Data.DataAccess
 	    public CPSS.Data.DataAcess.DataModels.User.CompanyInfoDataModel Map(IDataReader dataReader)
 	    {
 			var result = new CPSS.Data.DataAcess.DataModels.User.CompanyInfoDataModel();
-            result.comid = (int)dataReader["CompanyID"];
-            result.dbserver = (string)dataReader["Server"];
-            result.dbase = (string)dataReader["Database"];
-            result.timeout = (int)dataReader["ConnectTimeout"];
-            result.uid = (string)dataReader["UserID"];
-            result.pwd = (string)dataReader["Password"];
+            result.comid = (int)dataReader["comid"];
+            result.dbserver = (string)dataReader["dbserver"];
+            result.dbase = (string)dataReader["dbase"];
+            result.timeout = (int)dataReader["timeout"];
+            result.uid = (string)dataReader["uid"];
+            result.pwd = (string)dataReader["pwd"];
 			return result;
 	    }
 

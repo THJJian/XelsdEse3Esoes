@@ -24,23 +24,23 @@
 
 @section grid{
     <div id="billgrid" class="easyui-panel" data-options="border: false" style="padding-top: 3px;">
-        <table class="easyui-datagrid" id="dvgDataGrid" data-options="rownumbers:true,singleSelect:true,pagination:true,url:'/basic/getcompanylist',method:'post'">
+        <table class="easyui-datagrid" id="dvgDataGrid" data-options="rownumbers:true, singleSelect:true, pagination:true, url:'/basic/getcompanylist', method:'post', pageList: [1,10,20,30,40,50], pageSize: 1">
             <thead>
-            <tr>
-                <th field="comid" data-options="hidden: true">ComID</th>
-                <th field="classid" data-options="hidden: true">ClassID</th>
-                <th field="parentid" data-options="hidden: true">ParentID</th>
-                <th field="serialnumber" data-options="sortable: true" width="80px;">编号</th>
-                <th field="name" data-options="sortable: true" width="180px;">名称</th>
-                <th field="pinyin" data-options="sortable: true" width="80px;">拼音</th>
-                <th field="pricemode" data-options="sortable: true" width="100px;">价格方式</th>
-                <th field="email" data-options="sortable: true" width="130px;">Email</th>
-                <th field="linkman" data-options="sortable: true" width="130px;">联系人</th>
-                <th field="linktel" data-options="sortable: true" width="130px;">联系电话</th>
-                <th field="status" data-options="sortable: true" width="80px;">状态</th>
-                <th field="comment" width="256px;">备注</th>
-                <th field="sort" data-options="sortable: true" width="50px;">排序</th>
-            </tr>
+                <tr>
+                    <th field="ComId" data-options="hidden: true">ComID</th>
+                    <th field="ClassId" data-options="hidden: true">ClassID</th>
+                    <th field="ParentId" data-options="hidden: true">ParentID</th>
+                    <th field="SerialNumber" data-options="sortable: true" width="80px;">编号</th>
+                    <th field="Name" data-options="sortable: true" width="180px;">名称</th>
+                    <th field="Spelling" data-options="sortable: true" width="80px;">拼音</th>
+                    <th field="PriceMode" data-options="sortable: true" width="100px;">价格方式</th>
+                    <th field="Email" data-options="sortable: true" width="130px;">Email</th>
+                    <th field="LinkMan" data-options="sortable: true" width="130px;">联系人</th>
+                    <th field="LinkTel" data-options="sortable: true" width="130px;">联系电话</th>
+                    <th field="Status" data-options="sortable: true" width="80px;">状态</th>
+                    <th field="Comment" width="256px;">备注</th>
+                    <th field="sort" data-options="sortable: true" width="50px;">排序</th>
+                </tr>
             </thead>
         </table>
     </div>
@@ -50,40 +50,59 @@
     <script type="text/javascript">
         $(document.body)
             .ready(function() {
-                $("#billbutton a").on("click", function() {
-                    var id = $(this).attr("id");
-                    switch (id) {
-                    case "rtBasicCom_TB_Add":
-                        _window.open("add_company", "新增公司信息", 800, 650, "/basic/addcompany");
-                        break;
-                    case "rtBasicCom_TB_Edit":
-                        _window.open("add_company", "新增公司信息", 800, 650, "/basic/editcompany");
-                        break;
-                    case "rtBasicCom_TB_Delete":
+                $("#billbutton a")
+                    .on("click",
+                        function() {
+                            var id = $(this).attr("id");
+                            switch (id) {
+                            case "rtBasicCom_TB_Add":
+                                _window.open("add_company", "新增公司信息", 800, 650, "/basic/addcompany");
+                                break;
+                            case "rtBasicCom_TB_Edit":
+                                _window.open("add_company", "新增公司信息", 800, 650, "/basic/editcompany");
+                                break;
+                            case "rtBasicCom_TB_Delete":
 
-                        break;
-                    case "rtBasicCom_TB_Resume":
+                                break;
+                            case "rtBasicCom_TB_Resume":
 
-                        break;
-                    case "rtBasicCom_TB_Class":
+                                break;
+                            case "rtBasicCom_TB_Class":
 
-                        break;
-                    case "rtBasicCom_TB_Preview":
+                                break;
+                            case "rtBasicCom_TB_Preview":
 
-                        break;
-                    case "rtBasicCom_TB_Design":
+                                break;
+                            case "rtBasicCom_TB_Design":
 
-                        break;
-                    }
-                });
+                                break;
+                            }
+                        });
+                $("#dvgDataGrid")
+                    .datagrid({
+                        queryParams: {
+                            data: {
+                                name: "test2"
+                            }
+                        }
+                    });
                 var pg = $("#dvgDataGrid").datagrid("getPager");
 
                 if (pg) {
-                    $(pg).pagination({
-                        onSelectPage: function(pageIndex, pageSize) {
-                            alert("adasdasd");
-                        }
-                    });
+                    $(pg)
+                        .pagination({
+                            onSelectPage: function(pageIndex, pageSize) {
+                                var data = {
+                                    page: pageIndex,
+                                    rows: pageSize
+                                };
+                                CSPPLib.Utils.AjaxRequest.postData("/basic/getcompanylist",
+                                    data,
+                                    function(result) {
+                                        $("#dvgDataGrid").datagrid({ data: result });
+                                    });
+                            }
+                        });
                 }
                 //var columns = [
                 //    { field: 'comid', title: 'ComID', hidden: true },

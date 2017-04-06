@@ -44,13 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccountDataModelMapper.generated.cs">
-      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ClientsDataModelMapper.generated.cs">
-      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CompanyDataModelMapper.generated.cs">
+    <Compile Include="clientDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="CompanyInfoDataModelMapper.generated.cs">
@@ -61,10 +55,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="DepartmentDataModelMapper.generated.cs">
+    <Compile Include="departmentDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="EmployeesDataModelMapper.generated.cs">
+    <Compile Include="employeeDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="HeadButtonsDataModelMapper.generated.cs">
@@ -79,11 +73,26 @@
     <Compile Include="OnlineSigninUserDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="productDataModelMapper.generated.cs">
+      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SigninUserDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="snstorageDataModelMapper.generated.cs">
+      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="storageDataModelMapper.generated.cs">
+      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="subcompanyDataModelMapper.generated.cs">
+      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
+    </Compile>
     <Compile Include="SystemParameterConfigDataModelMapper.generated.cs">
+      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="unitDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
   </ItemGroup>

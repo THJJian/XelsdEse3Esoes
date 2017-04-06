@@ -15,14 +15,14 @@ using System.Data;
 namespace CPSS.Data.DataAccess.Interfaces
 {
 	/// <summary>
-    /// CompanyDataModel的数据访问层接口
+    /// subcompanyDataModel的数据访问层接口
     /// </summary>
-	public partial interface ICompanyDataAccess
+	public partial interface IsubcompanyDataAccess
 	{
 		/// <summary>
-		/// 根据编号获取CompanyDataModel
+		/// 根据编号获取subcompanyDataModel
 		/// </summary>
-		CompanyDataModel GetCompanyDataModelById(int company_id);
+		subcompanyDataModel GetsubcompanyDataModelById(int subcomid);
 		
         /// <summary>
         /// 增加数据
@@ -30,21 +30,21 @@ namespace CPSS.Data.DataAccess.Interfaces
         /// <param name="data"></param>
 		/// <param name="tansaction">事务</param>
         /// <returns></returns>
-        int Add(CompanyDataModel data, IDbTransaction tansaction);
+        int Add(subcompanyDataModel data, IDbTransaction tansaction);
 
         /// <summary>
         /// 修改数据
         /// </summary>
         /// <param name="data"></param>
 		/// <param name="tansaction">事务</param>
-        int Update(CompanyDataModel data, IDbTransaction tansaction);
+        int Update(subcompanyDataModel data, IDbTransaction tansaction);
 
         /// <summary>
         /// 删除数据
         /// </summary>
         /// <param name="data"></param>
 		/// <param name="tansaction">事务</param>
-        int Delete(CompanyDataModel data, IDbTransaction tansaction);
+        int Delete(subcompanyDataModel data, IDbTransaction tansaction);
 	}
 
 }

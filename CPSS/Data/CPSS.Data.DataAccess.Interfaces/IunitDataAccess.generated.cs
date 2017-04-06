@@ -15,14 +15,14 @@ using System.Data;
 namespace CPSS.Data.DataAccess.Interfaces
 {
 	/// <summary>
-    /// AccountDataModel的数据访问层接口
+    /// unitDataModel的数据访问层接口
     /// </summary>
-	public partial interface IAccountDataAccess
+	public partial interface IunitDataAccess
 	{
 		/// <summary>
-		/// 根据编号获取AccountDataModel
+		/// 根据编号获取unitDataModel
 		/// </summary>
-		AccountDataModel GetAccountDataModelById(int account_id);
+		unitDataModel GetunitDataModelById(int unitid);
 		
         /// <summary>
         /// 增加数据
@@ -30,21 +30,21 @@ namespace CPSS.Data.DataAccess.Interfaces
         /// <param name="data"></param>
 		/// <param name="tansaction">事务</param>
         /// <returns></returns>
-        int Add(AccountDataModel data, IDbTransaction tansaction);
+        int Add(unitDataModel data, IDbTransaction tansaction);
 
         /// <summary>
         /// 修改数据
         /// </summary>
         /// <param name="data"></param>
 		/// <param name="tansaction">事务</param>
-        int Update(AccountDataModel data, IDbTransaction tansaction);
+        int Update(unitDataModel data, IDbTransaction tansaction);
 
         /// <summary>
         /// 删除数据
         /// </summary>
         /// <param name="data"></param>
 		/// <param name="tansaction">事务</param>
-        int Delete(AccountDataModel data, IDbTransaction tansaction);
+        int Delete(unitDataModel data, IDbTransaction tansaction);
 	}
 
 }

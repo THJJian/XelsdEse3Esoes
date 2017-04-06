@@ -30,7 +30,7 @@ namespace CPSS.Data.DataAccess
             entity.title = (string)dataReader["title"];
             entity.iconcls = (string)dataReader["iconcls"];
             entity.url = (string)dataReader["url"];
-	        entity.buttonid = (string) dataReader["buttonid"];
+            entity.buttonid = (string)dataReader["buttonid"];
 	    }
 
 		/// <summary>
@@ -48,7 +48,7 @@ namespace CPSS.Data.DataAccess
             result.iconcls = (string)dataReader["iconcls"];
             result.url = (string)dataReader["url"];
             result.buttonid = (string)dataReader["buttonid"];
-            return result;
+			return result;
 	    }
 
 		/// <summary>

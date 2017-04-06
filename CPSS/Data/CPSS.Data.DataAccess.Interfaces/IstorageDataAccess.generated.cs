@@ -15,14 +15,14 @@ using System.Data;
 namespace CPSS.Data.DataAccess.Interfaces
 {
 	/// <summary>
-    /// EmployeesDataModel的数据访问层接口
+    /// storageDataModel的数据访问层接口
     /// </summary>
-	public partial interface IEmployeesDataAccess
+	public partial interface IstorageDataAccess
 	{
 		/// <summary>
-		/// 根据编号获取EmployeesDataModel
+		/// 根据编号获取storageDataModel
 		/// </summary>
-		EmployeesDataModel GetEmployeesDataModelById(int emp_id);
+		storageDataModel GetstorageDataModelById(int stoid);
 		
         /// <summary>
         /// 增加数据
@@ -30,21 +30,21 @@ namespace CPSS.Data.DataAccess.Interfaces
         /// <param name="data"></param>
 		/// <param name="tansaction">事务</param>
         /// <returns></returns>
-        int Add(EmployeesDataModel data, IDbTransaction tansaction);
+        int Add(storageDataModel data, IDbTransaction tansaction);
 
         /// <summary>
         /// 修改数据
         /// </summary>
         /// <param name="data"></param>
 		/// <param name="tansaction">事务</param>
-        int Update(EmployeesDataModel data, IDbTransaction tansaction);
+        int Update(storageDataModel data, IDbTransaction tansaction);
 
         /// <summary>
         /// 删除数据
         /// </summary>
         /// <param name="data"></param>
 		/// <param name="tansaction">事务</param>
-        int Delete(EmployeesDataModel data, IDbTransaction tansaction);
+        int Delete(storageDataModel data, IDbTransaction tansaction);
 	}
 
 }

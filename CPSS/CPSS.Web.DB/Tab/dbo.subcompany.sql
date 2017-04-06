@@ -26,3 +26,6 @@ CREATE TABLE [dbo].[subcompany](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 99) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+INSERT INTO dbo.subcompany(classid,parentid,childnumber,childcount,serialnumber,name,pinyin,pricemode,email,linkman,linktel,status,comment,sort)
+	VALUES ('000001','',0,0,'root','root','root',0,'','','',0,'',0)
+GO

@@ -51,15 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic\IsubcompanyDataAccess.cs" />
+    <Compile Include="Basic\Parameters\QuerySubCompanyListParameter.cs" />
     <Compile Include="HeadButtons\IHeadButtonsDataAccess.cs" />
     <Compile Include="HeadButtons\Parameters\HeadButtonsParameter.cs" />
-    <Compile Include="IAccountDataAccess.generated.cs">
-      <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="IClientsDataAccess.generated.cs">
-      <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
-    </Compile>
-    <Compile Include="ICompanyDataAccess.generated.cs">
+    <Compile Include="IclientDataAccess.generated.cs">
       <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="IDataAccessTextTemplate.cs">
@@ -67,10 +63,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="IDepartmentDataAccess.generated.cs">
+    <Compile Include="IdepartmentDataAccess.generated.cs">
       <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="IEmployeesDataAccess.generated.cs">
+    <Compile Include="IemployeeDataAccess.generated.cs">
+      <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IproductDataAccess.generated.cs">
+      <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IsnstorageDataAccess.generated.cs">
+      <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IstorageDataAccess.generated.cs">
+      <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IsubcompanyDataAccess.generated.cs">
+      <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IunitDataAccess.generated.cs">
       <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="MainPage\ILeftNavMenuDataAccess.cs" />
