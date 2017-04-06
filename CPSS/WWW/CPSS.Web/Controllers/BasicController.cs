@@ -1,12 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using CPSS.Common.Core;
 using CPSS.Common.Core.Mvc;
 using CPSS.Common.Core.Mvc.Filters;
 using CPSS.Common.Core.Type.ConstDefined;
 using CPSS.Service.ViewService.Interfaces.Basic;
 using CPSS.Service.ViewService.ViewModels.SubCompany.Request;
-using CPSS.Service.ViewService.ViewModels.SubCompany.Respond;
 using CPSS.Web.Controllers.Filters;
 
 namespace CPSS.Web.Controllers
