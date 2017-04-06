@@ -36,7 +36,7 @@ namespace CPSS.Common.Core
         {
             this.rows = data;
         }
-
+        
         public int total { set; get; }
 
         public T rows { get; set; }

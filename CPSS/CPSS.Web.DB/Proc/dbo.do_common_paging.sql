@@ -1,4 +1,6 @@
-﻿IF EXISTS(SELECT 1 FROM sysobjects WHERE id=OBJECT_ID(N'[dbo].[do_common_paging]') AND OBJECTPROPERTY(id,N'IsProcedure')=1)
+﻿USE CPSS
+GO
+IF EXISTS(SELECT 1 FROM sysobjects WHERE id=OBJECT_ID(N'[dbo].[do_common_paging]') AND OBJECTPROPERTY(id,N'IsProcedure')=1)
 BEGIN
 	DROP PROC [dbo].[do_common_paging]
 END

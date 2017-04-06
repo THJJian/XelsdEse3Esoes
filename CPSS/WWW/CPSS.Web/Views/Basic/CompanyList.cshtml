@@ -1,4 +1,5 @@
-﻿@using CPSS.Common.Core.Type.ConstDefined
+﻿@using CPSS.Common.Core.Mvc.UIControl
+@using CPSS.Common.Core.Type.ConstDefined
 @using CPSS.Service.ViewService.ViewModels.HeadButtons.Request
 @{
     ViewBag.Title = "CompanyList";
@@ -15,16 +16,24 @@
 }
 
 <div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 300px; max-width: 100%; overflow: hidden;">
-    @UIHelper.textBox("test1", "测试测试1")
-    @UIHelper.textBox("test2", "测试测试2", _tabIndex: 1)
-    @UIHelper.textBox("test3", "测试测试3", _tabIndex: 2)
-    @UIHelper.textBox("test4", "测试测试4", _tabIndex: 3)
-    @UIHelper.textBox("test5", "测试测试5", _tabIndex: 4)
+    <div class="easyui-panel" data-options="border: false">
+        @UIHelper.textBox("txtSerialNumber", "编号", _buttonText: string.Empty)
+        @UIHelper.textBox("txtName", "名称", _tabIndex: 1, _buttonText: string.Empty)
+        @UIHelper.textBox("txtSpelling", "拼音", _tabIndex: 2, _buttonText: string.Empty)
+        @UIHelper.dropDownList("ddlPriceMode", "售价方式", new List<DropDownOption> { new DropDownOption { Text = "售价1", Value = "1" }, new DropDownOption { Text = "售价2", Value = "2" }, new DropDownOption { Text = "售价3", Value = "3" } }, _tabIndex: 3, _defaultValue: "1", _selectPanelHeight: 65)
+        @UIHelper.textBox("txtEmail", "Email", _tabIndex: 4, _buttonText: string.Empty)
+        @UIHelper.textBox("txtLinkMan", "联系人", _tabIndex: 5, _buttonText: string.Empty)
+        @UIHelper.textBox("txtLinkTel", "联系电话", _tabIndex: 6, _buttonText: string.Empty)
+        @UIHelper.dropDownList("ddlStatus", "状态", new List<DropDownOption> { new DropDownOption { Text = "正常", Value = "1" }, new DropDownOption { Text = "删除", Value = "2" } }, _tabIndex: 7, _defaultValue: "1", _selectPanelHeight: 45)
+    </div>
+    <div class="easyui-panel" data-options="border: false" style="padding-right: 20px; text-align: right;">
+        @UIHelper.linkButton("查  询", "btnSearch")
+    </div>
 </div>
 
 @section grid{
     <div id="billgrid" class="easyui-panel" data-options="border: false" style="padding-top: 3px;">
-        <table class="easyui-datagrid" id="dvgDataGrid" data-options="rownumbers:true, singleSelect:true, pagination:true, url:'/basic/getcompanylist', method:'post', pageList: [1,10,20,30,40,50], pageSize: 1">
+        <table class="easyui-datagrid" id="dvgDataGrid">
             <thead>
                 <tr>
                     <th field="ComId" data-options="hidden: true">ComID</th>
@@ -55,31 +64,39 @@
                         function() {
                             var id = $(this).attr("id");
                             switch (id) {
-                            case "rtBasicCom_TB_Add":
-                                _window.open("add_company", "新增公司信息", 800, 650, "/basic/addcompany");
-                                break;
-                            case "rtBasicCom_TB_Edit":
-                                _window.open("add_company", "新增公司信息", 800, 650, "/basic/editcompany");
-                                break;
-                            case "rtBasicCom_TB_Delete":
+                                case "rtBasicCom_TB_Add":
+                                    //alert($("#txtSerialNumber").textbox("getValue"));
+                                    _window.open("add_company", "新增公司信息", 600, 550, "/basic/addcompany");
+                                    break;
+                                case "rtBasicCom_TB_Edit":
+                                    _window.open("add_company", "新增公司信息", 600, 550, "/basic/editcompany");
+                                    break;
+                                case "rtBasicCom_TB_Delete":
 
-                                break;
-                            case "rtBasicCom_TB_Resume":
+                                    break;
+                                case "rtBasicCom_TB_Resume":
 
-                                break;
-                            case "rtBasicCom_TB_Class":
+                                    break;
+                                case "rtBasicCom_TB_Class":
 
-                                break;
-                            case "rtBasicCom_TB_Preview":
+                                    break;
+                                case "rtBasicCom_TB_Preview":
 
-                                break;
-                            case "rtBasicCom_TB_Design":
+                                    break;
+                                case "rtBasicCom_TB_Design":
 
-                                break;
+                                    break;
                             }
                         });
                 $("#dvgDataGrid")
                     .datagrid({
+                        rownumbers: true,
+                        singleSelect: true,
+                        pagination: true,
+                        url: '/basic/getcompanylist',
+                        method: 'post',
+                        pageSize: 1,
+                        pageList: [1, 10, 20, 30, 40, 50],
                         queryParams: {
                             data: {
                                 name: "test2"
