@@ -1,4 +1,6 @@
-﻿IF EXISTS(SELECT 1 FROM sysobjects WHERE id=OBJECT_ID(N'[dbo].[client]') AND OBJECTPROPERTY(id, N'IsUserTable')=1)
+﻿USE CPSS
+GO
+IF EXISTS(SELECT 1 FROM sysobjects WHERE id=OBJECT_ID(N'[dbo].[client]') AND OBJECTPROPERTY(id, N'IsUserTable')=1)
 BEGIN
 	DROP TABLE [dbo].[client]
 END
