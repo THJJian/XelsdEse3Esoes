@@ -18,7 +18,6 @@ namespace CPSS.Data.DataAcess.DataModels
         public string classid { get; set; }
         public string parentid { get; set; }
         public int childnumber { get; set; }
-        public int childcount { get; set; }
         public string serialnumber { get; set; }
         public string name { get; set; }
         public string pinyin { get; set; }
@@ -29,6 +28,5 @@ namespace CPSS.Data.DataAcess.DataModels
         public short status { get; set; }
         public string comment { get; set; }
         public int sort { get; set; }
-        public byte[] modifydate { get; set; }
     }
 }

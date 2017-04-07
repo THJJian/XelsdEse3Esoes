@@ -70,7 +70,7 @@ namespace <#=namespaceName#>
 					if(entity.KeyMembers.Any(x=>x.Name == GetPropertyName(member.Name)))
 					{
 #>
-				new SqlParameter("@<#=GetPropertyName(member.Name) #>", <#=GetPropertyName(member.Name) #>),                 
+				new SqlParameter("@<#=GetPropertyName(member.Name) #>", <#=GetPropertyName(member.Name) #>),
 <#
 					}
 				}
@@ -93,7 +93,7 @@ foreach(var member in entity.Members)
     if(!GetIsIdentity(member))
     {
 #>
-                new SqlParameter("@<#=GetPropertyName(member.Name) #>", data.<#=GetPropertyName(member.Name) #>),                 
+                new SqlParameter("@<#=GetPropertyName(member.Name) #>", data.<#=GetPropertyName(member.Name) #>),
 <#
     }
 }
@@ -125,7 +125,7 @@ foreach(var member in entity.Members)
     if(!GetIsIdentity(member) || entity.KeyMembers.Any(x=>x.Name == GetPropertyName(member.Name)))
     {
 #>
-                new SqlParameter("@<#=GetPropertyName(member.Name) #>", data.<#=GetPropertyName(member.Name) #>),                 
+                new SqlParameter("@<#=GetPropertyName(member.Name) #>", data.<#=GetPropertyName(member.Name) #>),
 <#
     }
 }
@@ -157,7 +157,7 @@ foreach(var member in entity.Members)
 	if(entity.KeyMembers.Any(x=>x.Name == GetPropertyName(member.Name)))
     {
 #>
-                new SqlParameter("@<#=GetPropertyName(member.Name) #>", data.<#=GetPropertyName(member.Name) #>),                 
+                new SqlParameter("@<#=GetPropertyName(member.Name) #>", data.<#=GetPropertyName(member.Name) #>),
 <#
     }
 }

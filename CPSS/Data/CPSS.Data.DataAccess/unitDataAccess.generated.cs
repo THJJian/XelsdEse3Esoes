@@ -35,7 +35,7 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"SELECT unitid,name,status,sort,modifydate From unit  WHERE  unitid = @unitid ";
 			this.DataParameter = new DbParameter[]
 			{
-				new SqlParameter("@unitid", unitid),                 
+				new SqlParameter("@unitid", unitid),
 			};
             return this.ExecuteReadSqlTounitDataModel();
 		}
@@ -49,10 +49,10 @@ namespace CPSS.Data.DataAccess
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@name", data.name),                 
-                new SqlParameter("@status", data.status),                 
-                new SqlParameter("@sort", data.sort),                 
-                new SqlParameter("@modifydate", data.modifydate),                 
+                new SqlParameter("@name", data.name),
+                new SqlParameter("@status", data.status),
+                new SqlParameter("@sort", data.sort),
+                new SqlParameter("@modifydate", data.modifydate),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -73,11 +73,11 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"UPDATE unit SET  [name] = @name, [status] = @status, [sort] = @sort, [modifydate] = @modifydate WHERE  [unitid] = @unitid ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@unitid", data.unitid),                 
-                new SqlParameter("@name", data.name),                 
-                new SqlParameter("@status", data.status),                 
-                new SqlParameter("@sort", data.sort),                 
-                new SqlParameter("@modifydate", data.modifydate),                 
+                new SqlParameter("@unitid", data.unitid),
+                new SqlParameter("@name", data.name),
+                new SqlParameter("@status", data.status),
+                new SqlParameter("@sort", data.sort),
+                new SqlParameter("@modifydate", data.modifydate),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }
@@ -98,7 +98,7 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"DELETE FROM unit WHERE  [unitid] = @unitid ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@unitid", data.unitid),                 
+                new SqlParameter("@unitid", data.unitid),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }

@@ -32,10 +32,10 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public subcompanyDataModel GetsubcompanyDataModelById(int subcomid)
 		{
-			this.ExecuteSQL = @"SELECT subcomid,classid,parentid,childnumber,childcount,serialnumber,name,pinyin,pricemode,email,linkman,linktel,status,comment,sort,modifydate From subcompany  WHERE  subcomid = @subcomid ";
+			this.ExecuteSQL = @"SELECT subcomid,classid,parentid,childnumber,serialnumber,name,pinyin,pricemode,email,linkman,linktel,status,comment,sort From subcompany  WHERE  subcomid = @subcomid ";
 			this.DataParameter = new DbParameter[]
 			{
-				new SqlParameter("@subcomid", subcomid),                 
+				new SqlParameter("@subcomid", subcomid),
 			};
             return this.ExecuteReadSqlTosubcompanyDataModel();
 		}
@@ -45,25 +45,23 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Add(subcompanyDataModel data, IDbTransaction tansaction)
 	    {
-            this.ExecuteSQL = @"INSERT INTO [subcompany] ([classid],[parentid],[childnumber],[childcount],[serialnumber],[name],[pinyin],[pricemode],[email],[linkman],[linktel],[status],[comment],[sort],[modifydate]) VALUES (@classid,@parentid,@childnumber,@childcount,@serialnumber,@name,@pinyin,@pricemode,@email,@linkman,@linktel,@status,@comment,@sort,@modifydate) 
+            this.ExecuteSQL = @"INSERT INTO [subcompany] ([classid],[parentid],[childnumber],[serialnumber],[name],[pinyin],[pricemode],[email],[linkman],[linktel],[status],[comment],[sort]) VALUES (@classid,@parentid,@childnumber,@serialnumber,@name,@pinyin,@pricemode,@email,@linkman,@linktel,@status,@comment,@sort) 
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@classid", data.classid),                 
-                new SqlParameter("@parentid", data.parentid),                 
-                new SqlParameter("@childnumber", data.childnumber),                 
-                new SqlParameter("@childcount", data.childcount),                 
-                new SqlParameter("@serialnumber", data.serialnumber),                 
-                new SqlParameter("@name", data.name),                 
-                new SqlParameter("@pinyin", data.pinyin),                 
-                new SqlParameter("@pricemode", data.pricemode),                 
-                new SqlParameter("@email", data.email),                 
-                new SqlParameter("@linkman", data.linkman),                 
-                new SqlParameter("@linktel", data.linktel),                 
-                new SqlParameter("@status", data.status),                 
-                new SqlParameter("@comment", data.comment),                 
-                new SqlParameter("@sort", data.sort),                 
-                new SqlParameter("@modifydate", data.modifydate),                 
+                new SqlParameter("@classid", data.classid),
+                new SqlParameter("@parentid", data.parentid),
+                new SqlParameter("@childnumber", data.childnumber),
+                new SqlParameter("@serialnumber", data.serialnumber),
+                new SqlParameter("@name", data.name),
+                new SqlParameter("@pinyin", data.pinyin),
+                new SqlParameter("@pricemode", data.pricemode),
+                new SqlParameter("@email", data.email),
+                new SqlParameter("@linkman", data.linkman),
+                new SqlParameter("@linktel", data.linktel),
+                new SqlParameter("@status", data.status),
+                new SqlParameter("@comment", data.comment),
+                new SqlParameter("@sort", data.sort),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -81,25 +79,23 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Update(subcompanyDataModel data, IDbTransaction tansaction)
 	    {
-			this.ExecuteSQL = @"UPDATE subcompany SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [pricemode] = @pricemode, [email] = @email, [linkman] = @linkman, [linktel] = @linktel, [status] = @status, [comment] = @comment, [sort] = @sort, [modifydate] = @modifydate WHERE  [subcomid] = @subcomid ";
+			this.ExecuteSQL = @"UPDATE subcompany SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [pricemode] = @pricemode, [email] = @email, [linkman] = @linkman, [linktel] = @linktel, [status] = @status, [comment] = @comment, [sort] = @sort WHERE  [subcomid] = @subcomid ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@subcomid", data.subcomid),                 
-                new SqlParameter("@classid", data.classid),                 
-                new SqlParameter("@parentid", data.parentid),                 
-                new SqlParameter("@childnumber", data.childnumber),                 
-                new SqlParameter("@childcount", data.childcount),                 
-                new SqlParameter("@serialnumber", data.serialnumber),                 
-                new SqlParameter("@name", data.name),                 
-                new SqlParameter("@pinyin", data.pinyin),                 
-                new SqlParameter("@pricemode", data.pricemode),                 
-                new SqlParameter("@email", data.email),                 
-                new SqlParameter("@linkman", data.linkman),                 
-                new SqlParameter("@linktel", data.linktel),                 
-                new SqlParameter("@status", data.status),                 
-                new SqlParameter("@comment", data.comment),                 
-                new SqlParameter("@sort", data.sort),                 
-                new SqlParameter("@modifydate", data.modifydate),                 
+                new SqlParameter("@subcomid", data.subcomid),
+                new SqlParameter("@classid", data.classid),
+                new SqlParameter("@parentid", data.parentid),
+                new SqlParameter("@childnumber", data.childnumber),
+                new SqlParameter("@serialnumber", data.serialnumber),
+                new SqlParameter("@name", data.name),
+                new SqlParameter("@pinyin", data.pinyin),
+                new SqlParameter("@pricemode", data.pricemode),
+                new SqlParameter("@email", data.email),
+                new SqlParameter("@linkman", data.linkman),
+                new SqlParameter("@linktel", data.linktel),
+                new SqlParameter("@status", data.status),
+                new SqlParameter("@comment", data.comment),
+                new SqlParameter("@sort", data.sort),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }
@@ -120,7 +116,7 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"DELETE FROM subcompany WHERE  [subcomid] = @subcomid ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@subcomid", data.subcomid),                 
+                new SqlParameter("@subcomid", data.subcomid),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }

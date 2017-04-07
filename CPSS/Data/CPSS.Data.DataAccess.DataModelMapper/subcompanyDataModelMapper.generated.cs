@@ -28,7 +28,6 @@ namespace CPSS.Data.DataAccess
             entity.classid = (string)dataReader["classid"];
             entity.parentid = (string)dataReader["parentid"];
             entity.childnumber = (int)dataReader["childnumber"];
-            entity.childcount = (int)dataReader["childcount"];
             entity.serialnumber = (string)dataReader["serialnumber"];
             entity.name = (string)dataReader["name"];
             entity.pinyin = (string)dataReader["pinyin"];
@@ -39,7 +38,6 @@ namespace CPSS.Data.DataAccess
             entity.status = (short)dataReader["status"];
             entity.comment = (string)dataReader["comment"];
             entity.sort = (int)dataReader["sort"];
-            entity.modifydate = (System.Byte[])dataReader["modifydate"];
 	    }
 
 		/// <summary>
@@ -54,7 +52,6 @@ namespace CPSS.Data.DataAccess
             result.classid = (string)dataReader["classid"];
             result.parentid = (string)dataReader["parentid"];
             result.childnumber = (int)dataReader["childnumber"];
-            result.childcount = (int)dataReader["childcount"];
             result.serialnumber = (string)dataReader["serialnumber"];
             result.name = (string)dataReader["name"];
             result.pinyin = (string)dataReader["pinyin"];
@@ -65,7 +62,6 @@ namespace CPSS.Data.DataAccess
             result.status = (short)dataReader["status"];
             result.comment = (string)dataReader["comment"];
             result.sort = (int)dataReader["sort"];
-            result.modifydate = (System.Byte[])dataReader["modifydate"];
 			return result;
 	    }
 

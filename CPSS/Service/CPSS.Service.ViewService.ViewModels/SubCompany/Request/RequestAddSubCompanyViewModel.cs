@@ -1,8 +1,8 @@
 ﻿namespace CPSS.Service.ViewService.ViewModels.SubCompany.Request
 {
-    public class RequestQuerySubCompanyViewModel
+    public class RequestAddSubCompanyViewModel
     {
-        public RequestQuerySubCompanyViewModel()
+        public RequestAddSubCompanyViewModel()
         {
             this.ParentId = "000001";
         }
@@ -17,12 +17,14 @@
 
         public string ParentId { get; set; }
 
-        public int PriceMode { get; set; }
+        public short PriceMode { get; set; }
 
         public string SerialNumber { get; set; }
 
         public string Spelling { get; set; }
 
-        public int Status { get; set; }
+        public string Comment { set; get; }
+
+        public int Sort { set; get; }
     }
 }

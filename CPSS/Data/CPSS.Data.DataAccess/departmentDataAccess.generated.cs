@@ -35,7 +35,7 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"SELECT depid,classid,parentid,childnumber,childcount,serialnumber,name,pinyin,status,sort,comment,modifydDate From department  WHERE  depid = @depid ";
 			this.DataParameter = new DbParameter[]
 			{
-				new SqlParameter("@depid", depid),                 
+				new SqlParameter("@depid", depid),
 			};
             return this.ExecuteReadSqlTodepartmentDataModel();
 		}
@@ -49,17 +49,17 @@ namespace CPSS.Data.DataAccess
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@classid", data.classid),                 
-                new SqlParameter("@parentid", data.parentid),                 
-                new SqlParameter("@childnumber", data.childnumber),                 
-                new SqlParameter("@childcount", data.childcount),                 
-                new SqlParameter("@serialnumber", data.serialnumber),                 
-                new SqlParameter("@name", data.name),                 
-                new SqlParameter("@pinyin", data.pinyin),                 
-                new SqlParameter("@status", data.status),                 
-                new SqlParameter("@sort", data.sort),                 
-                new SqlParameter("@comment", data.comment),                 
-                new SqlParameter("@modifydDate", data.modifydDate),                 
+                new SqlParameter("@classid", data.classid),
+                new SqlParameter("@parentid", data.parentid),
+                new SqlParameter("@childnumber", data.childnumber),
+                new SqlParameter("@childcount", data.childcount),
+                new SqlParameter("@serialnumber", data.serialnumber),
+                new SqlParameter("@name", data.name),
+                new SqlParameter("@pinyin", data.pinyin),
+                new SqlParameter("@status", data.status),
+                new SqlParameter("@sort", data.sort),
+                new SqlParameter("@comment", data.comment),
+                new SqlParameter("@modifydDate", data.modifydDate),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -80,18 +80,18 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"UPDATE department SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [status] = @status, [sort] = @sort, [comment] = @comment, [modifydDate] = @modifydDate WHERE  [depid] = @depid ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@depid", data.depid),                 
-                new SqlParameter("@classid", data.classid),                 
-                new SqlParameter("@parentid", data.parentid),                 
-                new SqlParameter("@childnumber", data.childnumber),                 
-                new SqlParameter("@childcount", data.childcount),                 
-                new SqlParameter("@serialnumber", data.serialnumber),                 
-                new SqlParameter("@name", data.name),                 
-                new SqlParameter("@pinyin", data.pinyin),                 
-                new SqlParameter("@status", data.status),                 
-                new SqlParameter("@sort", data.sort),                 
-                new SqlParameter("@comment", data.comment),                 
-                new SqlParameter("@modifydDate", data.modifydDate),                 
+                new SqlParameter("@depid", data.depid),
+                new SqlParameter("@classid", data.classid),
+                new SqlParameter("@parentid", data.parentid),
+                new SqlParameter("@childnumber", data.childnumber),
+                new SqlParameter("@childcount", data.childcount),
+                new SqlParameter("@serialnumber", data.serialnumber),
+                new SqlParameter("@name", data.name),
+                new SqlParameter("@pinyin", data.pinyin),
+                new SqlParameter("@status", data.status),
+                new SqlParameter("@sort", data.sort),
+                new SqlParameter("@comment", data.comment),
+                new SqlParameter("@modifydDate", data.modifydDate),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }
@@ -112,7 +112,7 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"DELETE FROM department WHERE  [depid] = @depid ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@depid", data.depid),                 
+                new SqlParameter("@depid", data.depid),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }

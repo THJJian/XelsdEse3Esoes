@@ -74,7 +74,7 @@
     }
 
     $(document.body).ready(function () {
-        var remember = CSPPLib.Utils.LocalStorage.getCookie("user_login_name_remember");
+        var remember = CPSSLib.Utils.LocalStorage.getCookie("user_login_name_remember");
         if (remember && remember.length > 0) {
             var _checked = remember.split(",")[0],
                 _user_name_ = remember.split(",")[1];
@@ -90,15 +90,15 @@
                     _valid_code = $("#txt_valid_code").textbox("getValue"),
                     _chk_remember_me = $("#chkRememberme").prop("checked");
                 if (_chk_remember_me) {
-                    CSPPLib.Utils.LocalStorage.setCookie("user_login_name_remember", [_chk_remember_me, _user_name].join(","));
+                    CPSSLib.Utils.LocalStorage.setCookie("user_login_name_remember", [_chk_remember_me, _user_name].join(","));
                 }
-                CSPPLib.Utils.AjaxRequest.postData("/signin/login",
+                CPSSLib.Utils.AjaxRequest.postData("/signin/login",
                 {
                     UserName: _user_name,
                     UserPwd: _user_pwd,
                     ValidCode: _valid_code
                 }, function(result) {
-                    //_msgbox.alert("", result.ErrorMessage);
+                    //_msgbox.alert(result.ErrorMessage);
                     if (result.ErrorCode === 0) {
                         /*
                         var tmpForm = document.createElement("form");
@@ -122,7 +122,7 @@
                         */
                         window.location.href = "/main/index?userid=" + result.rows.CurrentUser.UserID_g;
                     } else
-                        _msgbox.error("", result.ErrorMessage);
+                        _msgbox.error(result.ErrorMessage);
                 }, function(result) {
                 });
             }

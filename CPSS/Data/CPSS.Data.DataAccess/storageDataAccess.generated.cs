@@ -35,7 +35,7 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"SELECT stoid,classid,parentid,childnumber,childcount,serialnumber,name,PinYin,alias,status,sort,comment,modifydate From storage  WHERE  stoid = @stoid ";
 			this.DataParameter = new DbParameter[]
 			{
-				new SqlParameter("@stoid", stoid),                 
+				new SqlParameter("@stoid", stoid),
 			};
             return this.ExecuteReadSqlTostorageDataModel();
 		}
@@ -49,18 +49,18 @@ namespace CPSS.Data.DataAccess
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@classid", data.classid),                 
-                new SqlParameter("@parentid", data.parentid),                 
-                new SqlParameter("@childnumber", data.childnumber),                 
-                new SqlParameter("@childcount", data.childcount),                 
-                new SqlParameter("@serialnumber", data.serialnumber),                 
-                new SqlParameter("@name", data.name),                 
-                new SqlParameter("@PinYin", data.PinYin),                 
-                new SqlParameter("@alias", data.alias),                 
-                new SqlParameter("@status", data.status),                 
-                new SqlParameter("@sort", data.sort),                 
-                new SqlParameter("@comment", data.comment),                 
-                new SqlParameter("@modifydate", data.modifydate),                 
+                new SqlParameter("@classid", data.classid),
+                new SqlParameter("@parentid", data.parentid),
+                new SqlParameter("@childnumber", data.childnumber),
+                new SqlParameter("@childcount", data.childcount),
+                new SqlParameter("@serialnumber", data.serialnumber),
+                new SqlParameter("@name", data.name),
+                new SqlParameter("@PinYin", data.PinYin),
+                new SqlParameter("@alias", data.alias),
+                new SqlParameter("@status", data.status),
+                new SqlParameter("@sort", data.sort),
+                new SqlParameter("@comment", data.comment),
+                new SqlParameter("@modifydate", data.modifydate),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -81,19 +81,19 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"UPDATE storage SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [PinYin] = @PinYin, [alias] = @alias, [status] = @status, [sort] = @sort, [comment] = @comment, [modifydate] = @modifydate WHERE  [stoid] = @stoid ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@stoid", data.stoid),                 
-                new SqlParameter("@classid", data.classid),                 
-                new SqlParameter("@parentid", data.parentid),                 
-                new SqlParameter("@childnumber", data.childnumber),                 
-                new SqlParameter("@childcount", data.childcount),                 
-                new SqlParameter("@serialnumber", data.serialnumber),                 
-                new SqlParameter("@name", data.name),                 
-                new SqlParameter("@PinYin", data.PinYin),                 
-                new SqlParameter("@alias", data.alias),                 
-                new SqlParameter("@status", data.status),                 
-                new SqlParameter("@sort", data.sort),                 
-                new SqlParameter("@comment", data.comment),                 
-                new SqlParameter("@modifydate", data.modifydate),                 
+                new SqlParameter("@stoid", data.stoid),
+                new SqlParameter("@classid", data.classid),
+                new SqlParameter("@parentid", data.parentid),
+                new SqlParameter("@childnumber", data.childnumber),
+                new SqlParameter("@childcount", data.childcount),
+                new SqlParameter("@serialnumber", data.serialnumber),
+                new SqlParameter("@name", data.name),
+                new SqlParameter("@PinYin", data.PinYin),
+                new SqlParameter("@alias", data.alias),
+                new SqlParameter("@status", data.status),
+                new SqlParameter("@sort", data.sort),
+                new SqlParameter("@comment", data.comment),
+                new SqlParameter("@modifydate", data.modifydate),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }
@@ -114,7 +114,7 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"DELETE FROM storage WHERE  [stoid] = @stoid ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@stoid", data.stoid),                 
+                new SqlParameter("@stoid", data.stoid),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }

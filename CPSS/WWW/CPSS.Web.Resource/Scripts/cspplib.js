@@ -1,5 +1,5 @@
 ﻿;
-var CSPPLib = (function () {
+var CPSSLib = (function () {
     if (!window.console) {
         window.console = {};
         window.console.log = function () {
@@ -8,7 +8,7 @@ var CSPPLib = (function () {
     return {
         RegNameSpace: function (ns) {
             var domains = ns.split(".");
-            var cur_domain = CSPPLib;
+            var cur_domain = CPSSLib;
             for (var i = 0; i < domains.length; i++) {
                 var domain = domains[i];
                 if (typeof (cur_domain[domain]) === "undefined") {
@@ -23,7 +23,7 @@ var CSPPLib = (function () {
 
 (function (ns) {
 
-    CSPPLib.RegNameSpace(ns).LocalStorage = (function () {
+    CPSSLib.RegNameSpace(ns).LocalStorage = (function () {
         var __isLocalStorage = window.localStorage ? true : false;
 
         function _setCookie(key, value, seconds) {
@@ -100,15 +100,15 @@ var CSPPLib = (function () {
 
     })();
 
-    CSPPLib.RegNameSpace(ns).AjaxRequest = (function() {
+    CPSSLib.RegNameSpace(ns).AjaxRequest = (function() {
 
         var __success = function(jsonResult) {
-            _msgbox.success("", jsonResult.Data.ErrorMessage);
+            _msgbox.success(jsonResult.Data.ErrorMessage);
         }
 
         var __error = function (xmlHttpRequest) {
             if (xmlHttpRequest.readyState != 0 && xmlHttpRequest.readyState != 0) {
-                _msgbox.error("", "执行过程中错误。");
+                _msgbox.error("执行过程中错误。");
             }
         }
 
@@ -142,7 +142,7 @@ var CSPPLib = (function () {
         }
     })();
 
-    CSPPLib.RegNameSpace(ns).StringBuilder = (function () {
+    CPSSLib.RegNameSpace(ns).StringBuilder = (function () {
         var self;
 
         var init = function() {
@@ -192,76 +192,76 @@ var CSPPLib = (function () {
         };
     })();
 
-    CSPPLib.RegNameSpace(ns).MsgBox = (function() {
+    CPSSLib.RegNameSpace(ns).MsgBox = (function() {
 
-        var __getTitle = function(_title) {
-            var __title = (typeof _title === "undefined" || _title === "") ? "系统提示" : _title;
-            return __title;
+        var fn_getTitle = function(title) {
+            var _title = (typeof title === "undefined" || title === "" || title === null) ? "系统提示" : title;
+            return _title;
         }
 
-        var _alert = function (__title, __msgContent) {
-            $.messager.alert(__getTitle(__title), __msgContent);
+        var fn_alert = function (msgContent, title) {
+            $.messager.alert(fn_getTitle(title), msgContent);
         };
 
-        var __msg = function (__title, __msgContent, __icon, __fun) {
-            var ___fun = (typeof __fun === "function") ? __fun : null;
-            if (___fun === null) $.messager.alert(__getTitle(__title), __msgContent, __icon);
-            else $.messager.alert(__getTitle(__title), __msgContent, __icon, ___fun);
+        var fn_msg = function (title, msgContent, icon, fun) {
+            var _fun = (typeof fun === "function") ? fun : null;
+            if (_fun === null) $.messager.alert(fn_getTitle(title), msgContent, icon);
+            else $.messager.alert(fn_getTitle(title), msgContent, icon, _fun);
         };
 
-        var _info = function (__title, __msgContent, __fun) {
-            __msg(__title, __msgContent, "info", __fun);
+        var fn_info = function (msgContent, fun, title) {
+            fn_msg(title, msgContent, "info", fun);
         }
 
-        var _success = function() {
-            
+        var fn_success = function (msgContent, fun, title) {
+            fn_msg(title, msgContent, "", fun);
         }
 
-        var _warning = function (__title, __msgContent, __fun) {
-            __msg(__title, __msgContent, "warning", __fun);
+        var fn_warning = function (msgContent, fun, title) {
+            fn_msg(title, msgContent, "warning", fun);
         }
 
-        var _error = function (__title, __msgContent, __fun) {
-            __msg(__title, __msgContent, "error", __fun);
+        var fn_error = function (msgContent, fun, title) {
+            fn_msg(title, msgContent, "error", fun);
         }
 
-        var _question = function (__title, __msgContent, __fun) {
-            __msg(__title, __msgContent, "question", __fun);
+        var fn_question = function (msgContent, fun, title) {
+            fn_msg(title, msgContent, "question", fun);
         }
 
-        var _confirm = function (__title, __msgContent, __fun) {
-            var ___fun = (typeof __fun === "function") ? __fun : function(isOk) {
-                _alert("系统提示", isOk);
+        var fn_confirm = function (msgContent, fun, title) {
+            var _fun = (typeof fun === "function") ? fun : function(isOk) {
+                fn_alert("系统提示", isOk);
             };
-            $.messager.confirm(__getTitle(__title), __msgContent, ___fun);
+            $.messager.confirm(fn_getTitle(title), msgContent, _fun);
         };
 
-        var _prompt = function (__title, __msgContent, __fun) {
-            var ___fun = (typeof __fun === "function") ? __fun : function(__result) {
-                if (__result) {
-                    _alert("系统提示", ["您输入的内容是:", result, "；请自行处理输入内容。"].join(""));
+        var fn_prompt = function (msgContent, fun, title) {
+            var _fun = (typeof fun === "function") ? fun : function(result) {
+                if (result) {
+                    fn_alert("系统提示", ["您输入的内容是:", result, "；请自行处理输入内容。"].join(""));
                 };
             }
-            var ___msgContent = (typeof __msgContent === "undefined" || __msgContent === "") ? "请在下面文本框内输入内容：" : __msgContent;
-            $.messager.prompt(__getTitle(__title), ___msgContent, ___fun);
+            var _msgContent = (typeof msgContent === "undefined" || msgContent === "") ? "请在下面文本框内输入内容：" : msgContent;
+            $.messager.prompt(fn_getTitle(title), _msgContent, _fun);
         }
 
         return {
-            alert: _alert,
-            info: _info,
-            success: _success,
-            warning: _warning,
-            error: _error,
-            question: _question,
-            confirm: _confirm,
-            prompt: _prompt
+            alert: fn_alert,
+            info: fn_info,
+            success: fn_success,
+            warning: fn_warning,
+            error: fn_error,
+            question: fn_question,
+            confirm: fn_confirm,
+            prompt: fn_prompt
         };
 
     })();
 
-    CSPPLib.RegNameSpace(ns).Window = (function () {
+    CPSSLib.RegNameSpace(ns).Window = (function () {
         var _win,
-            _strBuilder = CSPPLib.Utils.StringBuilder,
+            _strBuilder = CPSSLib.Utils.StringBuilder,
             _win_html = "<div id=\"{0}\" class=\"easyui-window\" title=\"{1}\" style=\"width:{2}px; height: {3}px; display: none;\" ><iframe frameborder=\"0\" style=\"width:100%; height: {4}px;\" src=\"{5}\" scrolling=\"no\"></iframe></div>";
 
         var _open = function (_win_id_, _win_title_, _win_width_, _win_height_, _win_src_) {
@@ -303,5 +303,5 @@ var CSPPLib = (function () {
 
 })("Utils");
 
-var _msgbox = CSPPLib.Utils.MsgBox;
-var _window = CSPPLib.Utils.Window;
+var _msgbox = CPSSLib.Utils.MsgBox;
+var _window = CPSSLib.Utils.Window;

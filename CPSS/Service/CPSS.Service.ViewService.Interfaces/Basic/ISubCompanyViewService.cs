@@ -13,5 +13,12 @@ namespace CPSS.Service.ViewService.Interfaces.Basic
         /// <param name="request"></param>
         /// <returns></returns>
         RespondWebViewData<List<RespondQuerySubCompanyViewModel>> GetQueryCompanyList(RequestWebViewData<RequestQuerySubCompanyViewModel> request);
+
+        /// <summary>
+        /// 新增子公司信息
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        RespondWebViewData<RespondAddSubCompanyViewModel> AddSubCompany(RequestWebViewData<RequestAddSubCompanyViewModel> request);
     }
 }

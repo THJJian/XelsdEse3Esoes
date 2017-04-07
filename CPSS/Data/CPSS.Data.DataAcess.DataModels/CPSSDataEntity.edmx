@@ -159,7 +159,6 @@
           <Property Name="classid" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="parentid" Type="varchar" MaxLength="54" />
           <Property Name="childnumber" Type="int" Nullable="false" />
-          <Property Name="childcount" Type="int" Nullable="false" />
           <Property Name="serialnumber" Type="varchar" MaxLength="26" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="pinyin" Type="varchar" MaxLength="80" />
@@ -170,7 +169,6 @@
           <Property Name="status" Type="smallint" Nullable="false" />
           <Property Name="comment" Type="varchar" MaxLength="100" />
           <Property Name="sort" Type="int" Nullable="false" />
-          <Property Name="modifydate" Type="timestamp" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="unit">
           <Key>
@@ -218,10 +216,10 @@
           <EntitySet Name="employee" EntityType="CPSS.Data.DataAccess.DataModels.employee" />
           <EntitySet Name="product" EntityType="CPSS.Data.DataAccess.DataModels.product" />
           <EntitySet Name="storage" EntityType="CPSS.Data.DataAccess.DataModels.storage" />
-          <EntitySet Name="subcompany" EntityType="CPSS.Data.DataAccess.DataModels.subcompany" />
           <EntitySet Name="unit" EntityType="CPSS.Data.DataAccess.DataModels.unit" />
           <EntitySet Name="snstorage" EntityType="CPSS.Data.DataAccess.DataModels.snstorage" />
           <EntitySet Name="department" EntityType="CPSS.Data.DataAccess.DataModels.department" />
+          <EntitySet Name="subcompany" EntityType="CPSS.Data.DataAccess.DataModels.subcompany" />
         </EntityContainer>
         <EntityType Name="client">
           <Key>
@@ -322,27 +320,6 @@
           <Property Name="comment" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="modifydate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
-        <EntityType Name="subcompany">
-          <Key>
-            <PropertyRef Name="subcomid" />
-          </Key>
-          <Property Name="subcomid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="classid" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="parentid" Type="String" MaxLength="54" FixedLength="false" Unicode="false" />
-          <Property Name="childnumber" Type="Int32" Nullable="false" />
-          <Property Name="childcount" Type="Int32" Nullable="false" />
-          <Property Name="serialnumber" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="pinyin" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="pricemode" Type="Int16" Nullable="false" />
-          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="linkman" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="linktel" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="status" Type="Int16" Nullable="false" />
-          <Property Name="comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="sort" Type="Int32" Nullable="false" />
-          <Property Name="modifydate" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-        </EntityType>
         <EntityType Name="unit">
           <Key>
             <PropertyRef Name="unitid" />
@@ -397,6 +374,25 @@
           <Property Name="sort" Type="Int32" Nullable="false" />
           <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="modifydDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="subcompany">
+          <Key>
+            <PropertyRef Name="subcomid" />
+          </Key>
+          <Property Name="subcomid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="classid" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="parentid" Type="String" MaxLength="54" FixedLength="false" Unicode="false" />
+          <Property Name="childnumber" Type="Int32" Nullable="false" />
+          <Property Name="serialnumber" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="pinyin" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="pricemode" Type="Int16" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="linkman" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="linktel" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int16" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="sort" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -507,28 +503,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="subcompany">
-            <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.subcompany">
-              <MappingFragment StoreEntitySet="subcompany">
-                <ScalarProperty Name="modifydate" ColumnName="modifydate" />
-                <ScalarProperty Name="sort" ColumnName="sort" />
-                <ScalarProperty Name="comment" ColumnName="comment" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="linktel" ColumnName="linktel" />
-                <ScalarProperty Name="linkman" ColumnName="linkman" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="pricemode" ColumnName="pricemode" />
-                <ScalarProperty Name="pinyin" ColumnName="pinyin" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="serialnumber" ColumnName="serialnumber" />
-                <ScalarProperty Name="childcount" ColumnName="childcount" />
-                <ScalarProperty Name="childnumber" ColumnName="childnumber" />
-                <ScalarProperty Name="parentid" ColumnName="parentid" />
-                <ScalarProperty Name="classid" ColumnName="classid" />
-                <ScalarProperty Name="subcomid" ColumnName="subcomid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="unit">
             <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.unit">
               <MappingFragment StoreEntitySet="unit">
@@ -575,6 +549,26 @@
                 <ScalarProperty Name="parentid" ColumnName="parentid" />
                 <ScalarProperty Name="classid" ColumnName="classid" />
                 <ScalarProperty Name="depid" ColumnName="depid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subcompany">
+            <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.subcompany">
+              <MappingFragment StoreEntitySet="subcompany">
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="linktel" ColumnName="linktel" />
+                <ScalarProperty Name="linkman" ColumnName="linkman" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="pricemode" ColumnName="pricemode" />
+                <ScalarProperty Name="pinyin" ColumnName="pinyin" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="serialnumber" ColumnName="serialnumber" />
+                <ScalarProperty Name="childnumber" ColumnName="childnumber" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="classid" ColumnName="classid" />
+                <ScalarProperty Name="subcomid" ColumnName="subcomid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

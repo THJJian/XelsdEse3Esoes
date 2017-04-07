@@ -1,7 +1,7 @@
 ﻿;
 (function (ns) {
 
-    CSPPLib.RegNameSpace(ns).linkButtonHelper = (function() {
+    CPSSLib.RegNameSpace(ns).linkButtonHelper = (function() {
         var self;
 
         var _init = function(__onClick) {
@@ -16,7 +16,7 @@
         };
     })();
 
-    CSPPLib.RegNameSpace(ns).textBoxHelper = (function() {
+    CPSSLib.RegNameSpace(ns).textBoxHelper = (function() {
         var self;
 
         var _init = function (__onClickButton, __onChange, __invoiceType, __queryType) {
@@ -35,7 +35,7 @@
                                 case 13:
                                     if (_value === null || _value === "") {
                                         //TODO 弹出选择窗口
-                                        _msgbox.alert("", "弹出选择窗口");
+                                        _msgbox.alert("弹出选择窗口");
                                         break;
                                     }
                                     var _next_tabindex = _tabIndex + 1;
@@ -66,5 +66,5 @@
 
 })("UI");
 
-var linkButtonHelper = CSPPLib.UI.linkButtonHelper;
-var textBoxHelper = CSPPLib.UI.textBoxHelper;
+var linkButtonHelper = CPSSLib.UI.linkButtonHelper;
+var textBoxHelper = CPSSLib.UI.textBoxHelper;

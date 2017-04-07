@@ -5,7 +5,7 @@
         left_nav_container_id = "#left_nav";
 
     //主页的Tab标签设置
-    CSPPLib.RegNameSpace(ns).TabsHelper = (function() {
+    CPSSLib.RegNameSpace(ns).TabsHelper = (function() {
         var self;
         var tabContent = "<iframe scrolling=\"no\" frameborder=\"0\"  src=\"{0}\" style=\"width:100%; height: {1}px;\"></iframe>";
 
@@ -23,7 +23,7 @@
 
         var _addTab = function (_title, _url, _icon) {
             if (!$(tab_container_id).tabs("exists", _title)) {
-                var builder = CSPPLib.Utils.StringBuilder;
+                var builder = CPSSLib.Utils.StringBuilder;
                 var panel_0_height = $(tab_container_id).tabs("tabs")[0].panel("options").height;
                 builder.appendFrt(tabContent, [_url, zoomRate * panel_0_height]);
                 var _content = builder.toString();
@@ -47,7 +47,7 @@
     })();
 
     //初始化Accordion的Panel默认高度
-    CSPPLib.RegNameSpace(ns).PanelHelper = (function() {
+    CPSSLib.RegNameSpace(ns).PanelHelper = (function() {
         var self;
 
         var __init = function() {
@@ -93,7 +93,7 @@
             });
 
         //初始化Accordion的Panel默认高度
-        CSPPLib.Main.PanelHelper.setPanelHeight();
+        CPSSLib.Main.PanelHelper.setPanelHeight();
 
         //contentWidth = $($("#main_layout").layout("panel", "center")).css("width");
 
@@ -146,7 +146,7 @@
                     _url = _self.attr("url"),
                     _icons = _self.attr("icons");
                 if (_icons === "") _icons = null;
-                CSPPLib.Main.TabsHelper.addTab(_title, _url, _icons);
+                CPSSLib.Main.TabsHelper.addTab(_title, _url, _icons);
 
                 $(".easyui-accordion li div").removeClass("selected");
                 $(this).parent().addClass("selected");

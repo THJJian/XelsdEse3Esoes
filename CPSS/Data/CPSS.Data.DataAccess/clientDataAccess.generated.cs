@@ -35,7 +35,7 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"SELECT clientid,classid,parentid,childnumber,childcount,serialnumber,name,pinyin,alias,address,zipcode,linkman,linktel,linkaddress,credits,pricemode,comment,status,sort,modifydate From client  WHERE  clientid = @clientid ";
 			this.DataParameter = new DbParameter[]
 			{
-				new SqlParameter("@clientid", clientid),                 
+				new SqlParameter("@clientid", clientid),
 			};
             return this.ExecuteReadSqlToclientDataModel();
 		}
@@ -49,25 +49,25 @@ namespace CPSS.Data.DataAccess
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@classid", data.classid),                 
-                new SqlParameter("@parentid", data.parentid),                 
-                new SqlParameter("@childnumber", data.childnumber),                 
-                new SqlParameter("@childcount", data.childcount),                 
-                new SqlParameter("@serialnumber", data.serialnumber),                 
-                new SqlParameter("@name", data.name),                 
-                new SqlParameter("@pinyin", data.pinyin),                 
-                new SqlParameter("@alias", data.alias),                 
-                new SqlParameter("@address", data.address),                 
-                new SqlParameter("@zipcode", data.zipcode),                 
-                new SqlParameter("@linkman", data.linkman),                 
-                new SqlParameter("@linktel", data.linktel),                 
-                new SqlParameter("@linkaddress", data.linkaddress),                 
-                new SqlParameter("@credits", data.credits),                 
-                new SqlParameter("@pricemode", data.pricemode),                 
-                new SqlParameter("@comment", data.comment),                 
-                new SqlParameter("@status", data.status),                 
-                new SqlParameter("@sort", data.sort),                 
-                new SqlParameter("@modifydate", data.modifydate),                 
+                new SqlParameter("@classid", data.classid),
+                new SqlParameter("@parentid", data.parentid),
+                new SqlParameter("@childnumber", data.childnumber),
+                new SqlParameter("@childcount", data.childcount),
+                new SqlParameter("@serialnumber", data.serialnumber),
+                new SqlParameter("@name", data.name),
+                new SqlParameter("@pinyin", data.pinyin),
+                new SqlParameter("@alias", data.alias),
+                new SqlParameter("@address", data.address),
+                new SqlParameter("@zipcode", data.zipcode),
+                new SqlParameter("@linkman", data.linkman),
+                new SqlParameter("@linktel", data.linktel),
+                new SqlParameter("@linkaddress", data.linkaddress),
+                new SqlParameter("@credits", data.credits),
+                new SqlParameter("@pricemode", data.pricemode),
+                new SqlParameter("@comment", data.comment),
+                new SqlParameter("@status", data.status),
+                new SqlParameter("@sort", data.sort),
+                new SqlParameter("@modifydate", data.modifydate),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -88,26 +88,26 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"UPDATE client SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [alias] = @alias, [address] = @address, [zipcode] = @zipcode, [linkman] = @linkman, [linktel] = @linktel, [linkaddress] = @linkaddress, [credits] = @credits, [pricemode] = @pricemode, [comment] = @comment, [status] = @status, [sort] = @sort, [modifydate] = @modifydate WHERE  [clientid] = @clientid ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@clientid", data.clientid),                 
-                new SqlParameter("@classid", data.classid),                 
-                new SqlParameter("@parentid", data.parentid),                 
-                new SqlParameter("@childnumber", data.childnumber),                 
-                new SqlParameter("@childcount", data.childcount),                 
-                new SqlParameter("@serialnumber", data.serialnumber),                 
-                new SqlParameter("@name", data.name),                 
-                new SqlParameter("@pinyin", data.pinyin),                 
-                new SqlParameter("@alias", data.alias),                 
-                new SqlParameter("@address", data.address),                 
-                new SqlParameter("@zipcode", data.zipcode),                 
-                new SqlParameter("@linkman", data.linkman),                 
-                new SqlParameter("@linktel", data.linktel),                 
-                new SqlParameter("@linkaddress", data.linkaddress),                 
-                new SqlParameter("@credits", data.credits),                 
-                new SqlParameter("@pricemode", data.pricemode),                 
-                new SqlParameter("@comment", data.comment),                 
-                new SqlParameter("@status", data.status),                 
-                new SqlParameter("@sort", data.sort),                 
-                new SqlParameter("@modifydate", data.modifydate),                 
+                new SqlParameter("@clientid", data.clientid),
+                new SqlParameter("@classid", data.classid),
+                new SqlParameter("@parentid", data.parentid),
+                new SqlParameter("@childnumber", data.childnumber),
+                new SqlParameter("@childcount", data.childcount),
+                new SqlParameter("@serialnumber", data.serialnumber),
+                new SqlParameter("@name", data.name),
+                new SqlParameter("@pinyin", data.pinyin),
+                new SqlParameter("@alias", data.alias),
+                new SqlParameter("@address", data.address),
+                new SqlParameter("@zipcode", data.zipcode),
+                new SqlParameter("@linkman", data.linkman),
+                new SqlParameter("@linktel", data.linktel),
+                new SqlParameter("@linkaddress", data.linkaddress),
+                new SqlParameter("@credits", data.credits),
+                new SqlParameter("@pricemode", data.pricemode),
+                new SqlParameter("@comment", data.comment),
+                new SqlParameter("@status", data.status),
+                new SqlParameter("@sort", data.sort),
+                new SqlParameter("@modifydate", data.modifydate),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }
@@ -128,7 +128,7 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"DELETE FROM client WHERE  [clientid] = @clientid ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@clientid", data.clientid),                 
+                new SqlParameter("@clientid", data.clientid),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }

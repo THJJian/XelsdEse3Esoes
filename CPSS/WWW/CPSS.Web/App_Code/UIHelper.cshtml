@@ -1,12 +1,12 @@
 ﻿@using CPSS.Common.Core.Helper.Extension
 @using CPSS.Common.Core.Mvc.UIControl
 
-@helper textBox(string _textBoxID, string _labelName, string _labelPosition = "before", string _labelAlign = "right", int _labelWidth = 80, int _width = 260, int _height = 30, string _buttonText = "…", int _tabIndex = 0, string _value = "")
+@helper textBox(string _textBoxID, string _labelName, string _labelPosition = "before", string _labelAlign = "right", int _labelWidth = 80, int _width = 260, int _height = 30, string _buttonText = "…", int _tabIndex = 0, string _value = "", string _multiline = "false")
 {
     <div style="padding-top: 5px; float: left;">
         <input class="easyui-textbox" id="@_textBoxID" type="text" tabindex="@_tabIndex"
-               data-options="label:'@_labelName', labelPosition: '@_labelPosition', labelAlign: '@_labelAlign', labelWidth: '@string.Concat(_labelWidth, "px")',
-           width: '@string.Concat(_width, "px")', height: '@string.Concat(_height, "px")', buttonText:'@_buttonText', value: '@_value'" style="padding-top: 5px;"/>
+               data-options="multiline: @_multiline,label:'@_labelName', labelPosition: '@_labelPosition', labelAlign: '@_labelAlign', labelWidth: '@string.Concat(_labelWidth, "px")',width: '@string.Concat(_width, "px")', height: '@string.Concat(_height, "px")', buttonText:'@_buttonText', value: '@_value'"
+               style="padding-top: 5px;" />
     </div>
 }
 
@@ -24,8 +24,7 @@
 {
     <div style="padding-top: 5px; float: left;">
         <select class="easyui-combobox" id="@_ddlID" tabindex="@_tabIndex"
-                data-options="label:'@_labelText', labelPosition: '@_labelPosition', labelAlign: '@_labelAlign', labelWidth: '@string.Concat(_labelWidth, "px")',
-           width: '@string.Concat(_width, "px")', height: '@string.Concat(_height, "px")', panelHeight: '@string.Concat(_selectPanelHeight, "px")'"
+                data-options="label:'@_labelText', labelPosition: '@_labelPosition', labelAlign: '@_labelAlign', labelWidth: '@string.Concat(_labelWidth, "px")', width: '@string.Concat(_width, "px")', height: '@string.Concat(_height, "px")', panelHeight: '@string.Concat(_selectPanelHeight, "px")'"
                 style="padding-top: 5px;">
             @foreach (var option in _options)
             {

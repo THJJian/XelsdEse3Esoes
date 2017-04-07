@@ -35,7 +35,7 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"SELECT proid,classid,parentid,childcount,serialnumber,name,pinyin,alias,standard,modal,permitcode,brand,trademark,makearea,barcode,price,taxrate,unitid,validmonth,validday,status,costmethod,snmanage,snlength,sort,comment,ModifyDate From product  WHERE  proid = @proid ";
 			this.DataParameter = new DbParameter[]
 			{
-				new SqlParameter("@proid", proid),                 
+				new SqlParameter("@proid", proid),
 			};
             return this.ExecuteReadSqlToproductDataModel();
 		}
@@ -49,32 +49,32 @@ namespace CPSS.Data.DataAccess
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@classid", data.classid),                 
-                new SqlParameter("@parentid", data.parentid),                 
-                new SqlParameter("@childcount", data.childcount),                 
-                new SqlParameter("@serialnumber", data.serialnumber),                 
-                new SqlParameter("@name", data.name),                 
-                new SqlParameter("@pinyin", data.pinyin),                 
-                new SqlParameter("@alias", data.alias),                 
-                new SqlParameter("@standard", data.standard),                 
-                new SqlParameter("@modal", data.modal),                 
-                new SqlParameter("@permitcode", data.permitcode),                 
-                new SqlParameter("@brand", data.brand),                 
-                new SqlParameter("@trademark", data.trademark),                 
-                new SqlParameter("@makearea", data.makearea),                 
-                new SqlParameter("@barcode", data.barcode),                 
-                new SqlParameter("@price", data.price),                 
-                new SqlParameter("@taxrate", data.taxrate),                 
-                new SqlParameter("@unitid", data.unitid),                 
-                new SqlParameter("@validmonth", data.validmonth),                 
-                new SqlParameter("@validday", data.validday),                 
-                new SqlParameter("@status", data.status),                 
-                new SqlParameter("@costmethod", data.costmethod),                 
-                new SqlParameter("@snmanage", data.snmanage),                 
-                new SqlParameter("@snlength", data.snlength),                 
-                new SqlParameter("@sort", data.sort),                 
-                new SqlParameter("@comment", data.comment),                 
-                new SqlParameter("@ModifyDate", data.ModifyDate),                 
+                new SqlParameter("@classid", data.classid),
+                new SqlParameter("@parentid", data.parentid),
+                new SqlParameter("@childcount", data.childcount),
+                new SqlParameter("@serialnumber", data.serialnumber),
+                new SqlParameter("@name", data.name),
+                new SqlParameter("@pinyin", data.pinyin),
+                new SqlParameter("@alias", data.alias),
+                new SqlParameter("@standard", data.standard),
+                new SqlParameter("@modal", data.modal),
+                new SqlParameter("@permitcode", data.permitcode),
+                new SqlParameter("@brand", data.brand),
+                new SqlParameter("@trademark", data.trademark),
+                new SqlParameter("@makearea", data.makearea),
+                new SqlParameter("@barcode", data.barcode),
+                new SqlParameter("@price", data.price),
+                new SqlParameter("@taxrate", data.taxrate),
+                new SqlParameter("@unitid", data.unitid),
+                new SqlParameter("@validmonth", data.validmonth),
+                new SqlParameter("@validday", data.validday),
+                new SqlParameter("@status", data.status),
+                new SqlParameter("@costmethod", data.costmethod),
+                new SqlParameter("@snmanage", data.snmanage),
+                new SqlParameter("@snlength", data.snlength),
+                new SqlParameter("@sort", data.sort),
+                new SqlParameter("@comment", data.comment),
+                new SqlParameter("@ModifyDate", data.ModifyDate),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -95,33 +95,33 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"UPDATE product SET  [classid] = @classid, [parentid] = @parentid, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [alias] = @alias, [standard] = @standard, [modal] = @modal, [permitcode] = @permitcode, [brand] = @brand, [trademark] = @trademark, [makearea] = @makearea, [barcode] = @barcode, [price] = @price, [taxrate] = @taxrate, [unitid] = @unitid, [validmonth] = @validmonth, [validday] = @validday, [status] = @status, [costmethod] = @costmethod, [snmanage] = @snmanage, [snlength] = @snlength, [sort] = @sort, [comment] = @comment, [ModifyDate] = @ModifyDate WHERE  [proid] = @proid ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@proid", data.proid),                 
-                new SqlParameter("@classid", data.classid),                 
-                new SqlParameter("@parentid", data.parentid),                 
-                new SqlParameter("@childcount", data.childcount),                 
-                new SqlParameter("@serialnumber", data.serialnumber),                 
-                new SqlParameter("@name", data.name),                 
-                new SqlParameter("@pinyin", data.pinyin),                 
-                new SqlParameter("@alias", data.alias),                 
-                new SqlParameter("@standard", data.standard),                 
-                new SqlParameter("@modal", data.modal),                 
-                new SqlParameter("@permitcode", data.permitcode),                 
-                new SqlParameter("@brand", data.brand),                 
-                new SqlParameter("@trademark", data.trademark),                 
-                new SqlParameter("@makearea", data.makearea),                 
-                new SqlParameter("@barcode", data.barcode),                 
-                new SqlParameter("@price", data.price),                 
-                new SqlParameter("@taxrate", data.taxrate),                 
-                new SqlParameter("@unitid", data.unitid),                 
-                new SqlParameter("@validmonth", data.validmonth),                 
-                new SqlParameter("@validday", data.validday),                 
-                new SqlParameter("@status", data.status),                 
-                new SqlParameter("@costmethod", data.costmethod),                 
-                new SqlParameter("@snmanage", data.snmanage),                 
-                new SqlParameter("@snlength", data.snlength),                 
-                new SqlParameter("@sort", data.sort),                 
-                new SqlParameter("@comment", data.comment),                 
-                new SqlParameter("@ModifyDate", data.ModifyDate),                 
+                new SqlParameter("@proid", data.proid),
+                new SqlParameter("@classid", data.classid),
+                new SqlParameter("@parentid", data.parentid),
+                new SqlParameter("@childcount", data.childcount),
+                new SqlParameter("@serialnumber", data.serialnumber),
+                new SqlParameter("@name", data.name),
+                new SqlParameter("@pinyin", data.pinyin),
+                new SqlParameter("@alias", data.alias),
+                new SqlParameter("@standard", data.standard),
+                new SqlParameter("@modal", data.modal),
+                new SqlParameter("@permitcode", data.permitcode),
+                new SqlParameter("@brand", data.brand),
+                new SqlParameter("@trademark", data.trademark),
+                new SqlParameter("@makearea", data.makearea),
+                new SqlParameter("@barcode", data.barcode),
+                new SqlParameter("@price", data.price),
+                new SqlParameter("@taxrate", data.taxrate),
+                new SqlParameter("@unitid", data.unitid),
+                new SqlParameter("@validmonth", data.validmonth),
+                new SqlParameter("@validday", data.validday),
+                new SqlParameter("@status", data.status),
+                new SqlParameter("@costmethod", data.costmethod),
+                new SqlParameter("@snmanage", data.snmanage),
+                new SqlParameter("@snlength", data.snlength),
+                new SqlParameter("@sort", data.sort),
+                new SqlParameter("@comment", data.comment),
+                new SqlParameter("@ModifyDate", data.ModifyDate),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }
@@ -142,7 +142,7 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"DELETE FROM product WHERE  [proid] = @proid ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@proid", data.proid),                 
+                new SqlParameter("@proid", data.proid),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }

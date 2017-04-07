@@ -46,10 +46,10 @@
                         type: "post",
                         dataType: "json",
                         success: function(result) {
-                            _msgbox.alert("", "success");
+                            _msgbox.alert("success");
                         },
                         error: function(_error) {
-                            _msgbox.error("", _error.responseText);
+                            _msgbox.error(_error.responseText);
                         },
                         complete: function() {
                         }
@@ -87,7 +87,7 @@
                         editor: { type: "checkbox", options: { on: "√", off: "" } }, sortable: true
                     }
                 ];
-                tableGrid = CSPPLib.UI.TableGrid.init("dvgDataGrid", true, columns, "code", 19);
+                tableGrid = CPSSLib.UI.TableGrid.init("dvgDataGrid", true, columns, "code", 19);
 
             });
     </script>

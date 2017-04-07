@@ -1,9 +1,10 @@
-﻿@using CPSS.Service.ViewService.ViewModels.HeadButtons.Respond
+﻿@using CPSS.Common.Core.Mvc.UIControl
+@using CPSS.Service.ViewService.ViewModels.HeadButtons.Respond
 @{
     Layout = "~/views/shared/_layout.cshtml";
     WorkContext.Resource
         //.AddPageCss("")
-        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "grid/tablegrid", "easyui-1.5/plugins/jquery.datagrid.cellediting", "controlshelper");
+        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "grid/tablegrid", "easyui-1.5/plugins/jquery.datagrid.cellediting", "controlshelper", "basic/subcompany/addsubcompany");
     var buttonModel = new List<RespondHeadButtonsViewModel>
     {
         new RespondHeadButtonsViewModel{ ButtonName = "rtBasicCom_TB_Add_Save", ButtonText = "保存"},
@@ -15,20 +16,23 @@
     @Html.Partial("~/Views/Shared/CommonPartial/HeadButtons.cshtml", buttonModel)
 }
 
-<div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 300px; max-width: 100%; overflow: hidden;">
-    @UIHelper.textBox("test1", "测试测试1")
-    @UIHelper.textBox("test2", "测试测试2", _tabIndex: 1)
-    @UIHelper.textBox("test3", "测试测试3", _tabIndex: 2)
-    @UIHelper.textBox("test4", "测试测试4", _tabIndex: 3)
-    @UIHelper.textBox("test5", "测试测试5", _tabIndex: 4)
+<div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 500px; max-width: 100%; overflow: hidden;">
+    <input type="hidden" id="txtParentId" value="@this.WorkContext.GetQueryString("parentid")"/>
+    @UIHelper.textBox("txtSerialNumber", "编号", _buttonText: string.Empty)
+    @UIHelper.textBox("txtName", "名称", _tabIndex: 1, _buttonText: string.Empty)
+    @UIHelper.textBox("txtSpelling", "拼音", _tabIndex: 2, _buttonText: string.Empty)
+    @UIHelper.dropDownList("ddlPriceMode", "售价方式", new List<DropDownOption> {new DropDownOption {Text = "售价1", Value = "0"}, new DropDownOption {Text = "售价2", Value = "1"}, new DropDownOption {Text = "售价3", Value = "2"}}, _tabIndex: 3, _defaultValue: "0", _selectPanelHeight: 65)
+    @UIHelper.textBox("txtEmail", "Email", _tabIndex: 4, _buttonText: string.Empty)
+    @UIHelper.textBox("txtLinkMan", "联系人", _tabIndex: 5, _buttonText: string.Empty)
+    @UIHelper.textBox("txtLinkTel", "联系电话", _tabIndex: 6, _buttonText: string.Empty)
+    @UIHelper.textBox("txtSort", "排序", _tabIndex: 6, _buttonText: string.Empty, _value: "0")
+    @UIHelper.textBox("txtComment", "备注", _tabIndex: 7, _buttonText: string.Empty, _multiline: "true",_width: 520, _height: 100)
 </div>
 @section scripts{
     <script type="text/javascript">
         $(document.body)
-            .ready(function() {
-                $("#rtBasicCom_TB_Add_Cancel").on("click", function() {
-                    parent._window.close();
-                });
+            .ready(function () {
+                CPSSLib.Page.addSubCompany.init();
             });
     </script>
 }

@@ -1,6 +1,6 @@
 ﻿(
     function(ns) {
-        CSPPLib.RegNameSpace(ns).TableGrid = (function () {
+        CPSSLib.RegNameSpace(ns).TableGrid = (function () {
             var self;
             
             var _init = function (_grid_control_id_, _grid_show_footer_, _columns_, _init_field_, _init_grid_row_count_, _button_panel_id_, _head_panel_id_, _grid_panel_id_) {

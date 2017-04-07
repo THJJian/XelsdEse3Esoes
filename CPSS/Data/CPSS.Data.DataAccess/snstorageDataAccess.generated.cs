@@ -35,16 +35,16 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"SELECT sn,subcomid,stoid,clientid,empid,depid,proid,billtype,billid,costprice,ctime,makedate,validdate,modifydate From snstorage  WHERE  sn = @sn AND subcomid = @subcomid AND stoid = @stoid AND clientid = @clientid AND empid = @empid AND depid = @depid AND proid = @proid AND billtype = @billtype AND billid = @billid AND ctime = @ctime ";
 			this.DataParameter = new DbParameter[]
 			{
-				new SqlParameter("@sn", sn),                 
-				new SqlParameter("@subcomid", subcomid),                 
-				new SqlParameter("@stoid", stoid),                 
-				new SqlParameter("@clientid", clientid),                 
-				new SqlParameter("@empid", empid),                 
-				new SqlParameter("@depid", depid),                 
-				new SqlParameter("@proid", proid),                 
-				new SqlParameter("@billtype", billtype),                 
-				new SqlParameter("@billid", billid),                 
-				new SqlParameter("@ctime", ctime),                 
+				new SqlParameter("@sn", sn),
+				new SqlParameter("@subcomid", subcomid),
+				new SqlParameter("@stoid", stoid),
+				new SqlParameter("@clientid", clientid),
+				new SqlParameter("@empid", empid),
+				new SqlParameter("@depid", depid),
+				new SqlParameter("@proid", proid),
+				new SqlParameter("@billtype", billtype),
+				new SqlParameter("@billid", billid),
+				new SqlParameter("@ctime", ctime),
 			};
             return this.ExecuteReadSqlTosnstorageDataModel();
 		}
@@ -58,20 +58,20 @@ namespace CPSS.Data.DataAccess
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@sn", data.sn),                 
-                new SqlParameter("@subcomid", data.subcomid),                 
-                new SqlParameter("@stoid", data.stoid),                 
-                new SqlParameter("@clientid", data.clientid),                 
-                new SqlParameter("@empid", data.empid),                 
-                new SqlParameter("@depid", data.depid),                 
-                new SqlParameter("@proid", data.proid),                 
-                new SqlParameter("@billtype", data.billtype),                 
-                new SqlParameter("@billid", data.billid),                 
-                new SqlParameter("@costprice", data.costprice),                 
-                new SqlParameter("@ctime", data.ctime),                 
-                new SqlParameter("@makedate", data.makedate),                 
-                new SqlParameter("@validdate", data.validdate),                 
-                new SqlParameter("@modifydate", data.modifydate),                 
+                new SqlParameter("@sn", data.sn),
+                new SqlParameter("@subcomid", data.subcomid),
+                new SqlParameter("@stoid", data.stoid),
+                new SqlParameter("@clientid", data.clientid),
+                new SqlParameter("@empid", data.empid),
+                new SqlParameter("@depid", data.depid),
+                new SqlParameter("@proid", data.proid),
+                new SqlParameter("@billtype", data.billtype),
+                new SqlParameter("@billid", data.billid),
+                new SqlParameter("@costprice", data.costprice),
+                new SqlParameter("@ctime", data.ctime),
+                new SqlParameter("@makedate", data.makedate),
+                new SqlParameter("@validdate", data.validdate),
+                new SqlParameter("@modifydate", data.modifydate),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -92,20 +92,20 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"UPDATE snstorage SET  [costprice] = @costprice, [makedate] = @makedate, [validdate] = @validdate, [modifydate] = @modifydate WHERE  [sn] = @sn AND [subcomid] = @subcomid AND [stoid] = @stoid AND [clientid] = @clientid AND [empid] = @empid AND [depid] = @depid AND [proid] = @proid AND [billtype] = @billtype AND [billid] = @billid AND [ctime] = @ctime ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@sn", data.sn),                 
-                new SqlParameter("@subcomid", data.subcomid),                 
-                new SqlParameter("@stoid", data.stoid),                 
-                new SqlParameter("@clientid", data.clientid),                 
-                new SqlParameter("@empid", data.empid),                 
-                new SqlParameter("@depid", data.depid),                 
-                new SqlParameter("@proid", data.proid),                 
-                new SqlParameter("@billtype", data.billtype),                 
-                new SqlParameter("@billid", data.billid),                 
-                new SqlParameter("@costprice", data.costprice),                 
-                new SqlParameter("@ctime", data.ctime),                 
-                new SqlParameter("@makedate", data.makedate),                 
-                new SqlParameter("@validdate", data.validdate),                 
-                new SqlParameter("@modifydate", data.modifydate),                 
+                new SqlParameter("@sn", data.sn),
+                new SqlParameter("@subcomid", data.subcomid),
+                new SqlParameter("@stoid", data.stoid),
+                new SqlParameter("@clientid", data.clientid),
+                new SqlParameter("@empid", data.empid),
+                new SqlParameter("@depid", data.depid),
+                new SqlParameter("@proid", data.proid),
+                new SqlParameter("@billtype", data.billtype),
+                new SqlParameter("@billid", data.billid),
+                new SqlParameter("@costprice", data.costprice),
+                new SqlParameter("@ctime", data.ctime),
+                new SqlParameter("@makedate", data.makedate),
+                new SqlParameter("@validdate", data.validdate),
+                new SqlParameter("@modifydate", data.modifydate),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }
@@ -126,16 +126,16 @@ namespace CPSS.Data.DataAccess
 			this.ExecuteSQL = @"DELETE FROM snstorage WHERE  [sn] = @sn AND [subcomid] = @subcomid AND [stoid] = @stoid AND [clientid] = @clientid AND [empid] = @empid AND [depid] = @depid AND [proid] = @proid AND [billtype] = @billtype AND [billid] = @billid AND [ctime] = @ctime ";
 			this.DataParameter = new DbParameter[]
             {
-                new SqlParameter("@sn", data.sn),                 
-                new SqlParameter("@subcomid", data.subcomid),                 
-                new SqlParameter("@stoid", data.stoid),                 
-                new SqlParameter("@clientid", data.clientid),                 
-                new SqlParameter("@empid", data.empid),                 
-                new SqlParameter("@depid", data.depid),                 
-                new SqlParameter("@proid", data.proid),                 
-                new SqlParameter("@billtype", data.billtype),                 
-                new SqlParameter("@billid", data.billid),                 
-                new SqlParameter("@ctime", data.ctime),                 
+                new SqlParameter("@sn", data.sn),
+                new SqlParameter("@subcomid", data.subcomid),
+                new SqlParameter("@stoid", data.stoid),
+                new SqlParameter("@clientid", data.clientid),
+                new SqlParameter("@empid", data.empid),
+                new SqlParameter("@depid", data.depid),
+                new SqlParameter("@proid", data.proid),
+                new SqlParameter("@billtype", data.billtype),
+                new SqlParameter("@billid", data.billid),
+                new SqlParameter("@ctime", data.ctime),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }

@@ -54,10 +54,19 @@ namespace CPSS.Web.Controllers
         [HttpPost]
         public JsonResult GetCompanyList(RequestWebViewData<RequestQuerySubCompanyViewModel> request)
         {
+            if (string.IsNullOrEmpty(request.data.ParentId)) request.data.ParentId = "000001";
             var respond = this.mSubCompanyViewService.GetQueryCompanyList(request);
+            respond.parentId = request.data.ParentId;
             return Json(respond);
         }
-        
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Add)]
+        [HttpPost]
+        public JsonResult AddCompany(RequestWebViewData<RequestAddSubCompanyViewModel> request)
+        {
+            var respond = this.mSubCompanyViewService.AddSubCompany(request);
+            return Json(respond);
+        }
 
         #endregion
 
