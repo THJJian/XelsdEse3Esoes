@@ -41,5 +41,9 @@ namespace CPSS.Common.Core
 
         public T rows { get; set; }
 
+        /// <summary>
+        /// 基础资料查询传入的ParentId
+        /// </summary>
+        public string parentId { set; get; }
     }
 }

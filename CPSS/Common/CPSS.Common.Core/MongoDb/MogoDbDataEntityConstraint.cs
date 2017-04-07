@@ -65,5 +65,8 @@ namespace CPSS.Common.Core.MongoDb
         [SpecialField(BsonValueType = BsonValueType.BsonDateTime)]
         public DateTime LogTime { set; get; }
 
+        public string OpUserID { set; get; }
+
+        public string OpUserName { set; get; }
     }
 }
