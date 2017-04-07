@@ -86,6 +86,7 @@
     <Compile Include="Config\RSASecretConfig.cs" />
     <Compile Include="Extension\BasicTypeExtension.cs" />
     <Compile Include="Extension\ControllerExtension.cs" />
+    <Compile Include="Generated\BuildNewClassIdByLastClassId.cs" />
     <Compile Include="GZip\GZipHelper.cs" />
     <Compile Include="MD5\MD5Helper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
