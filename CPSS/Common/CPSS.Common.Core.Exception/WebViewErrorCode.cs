@@ -22,5 +22,8 @@
         public static ErrorCodeItem ModelValidateError = new ErrorCodeItem(7, "实体验证出错");
 
         public static ErrorCodeItem VerifyCodeError = new ErrorCodeItem(8, "验证码错误");
+
+        public static ErrorCodeItem NotExistsDataInfo = new ErrorCodeItem(9, "数据不存在");
+
     }
 }

@@ -18,7 +18,8 @@ CREATE TABLE [dbo].[subcompany](
 	[linkman] VARCHAR(20) NULL DEFAULT(''),
 	[linktel] VARCHAR(60) NULL DEFAULT(''),
 	[status] SMALLINT NOT NULL,
-	[comment] VARCHAR(100) NULL DEFAULT(''),
+	[deleted] SMALLINT NOT NULL,
+	[comment] VARCHAR(256) NULL DEFAULT(''),
 	[sort] INT NOT NULL,
  CONSTRAINT [PK_company_subcomid] PRIMARY KEY CLUSTERED 
 (
@@ -26,6 +27,6 @@ CREATE TABLE [dbo].[subcompany](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 99) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-INSERT INTO dbo.subcompany(classid,parentid,childnumber,serialnumber,name,pinyin,pricemode,email,linkman,linktel,status,comment,sort)
-	VALUES ('000001','',0,'root','root','root',0,'','','',0,'',0)
+INSERT INTO dbo.subcompany(classid,parentid,childnumber,serialnumber,name,pinyin,pricemode,email,linkman,linktel,[status],comment,sort,deleted)
+	VALUES ('000001','',0,'root','root','root',0,'','','',0,'',0,0)
 GO

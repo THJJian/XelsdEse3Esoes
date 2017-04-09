@@ -18,15 +18,15 @@
 
 <div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 500px; max-width: 100%; overflow: hidden;">
     <input type="hidden" id="txtParentId" value="@this.WorkContext.GetQueryString("parentid")"/>
-    @UIHelper.textBox("txtSerialNumber", "编号", _buttonText: string.Empty)
-    @UIHelper.textBox("txtName", "名称", _tabIndex: 1, _buttonText: string.Empty)
-    @UIHelper.textBox("txtSpelling", "拼音", _tabIndex: 2, _buttonText: string.Empty)
-    @UIHelper.dropDownList("ddlPriceMode", "售价方式", new List<DropDownOption> {new DropDownOption {Text = "售价1", Value = "0"}, new DropDownOption {Text = "售价2", Value = "1"}, new DropDownOption {Text = "售价3", Value = "2"}}, _tabIndex: 3, _defaultValue: "0", _selectPanelHeight: 65)
-    @UIHelper.textBox("txtEmail", "Email", _tabIndex: 4, _buttonText: string.Empty)
-    @UIHelper.textBox("txtLinkMan", "联系人", _tabIndex: 5, _buttonText: string.Empty)
-    @UIHelper.textBox("txtLinkTel", "联系电话", _tabIndex: 6, _buttonText: string.Empty)
-    @UIHelper.textBox("txtSort", "排序", _tabIndex: 6, _buttonText: string.Empty, _value: "0")
-    @UIHelper.textBox("txtComment", "备注", _tabIndex: 7, _buttonText: string.Empty, _multiline: "true",_width: 520, _height: 100)
+    @UIHelper.textBox("txtSerialNumber", "编号", _tabIndex: 1, _buttonText: string.Empty)
+    @UIHelper.textBox("txtName", "名称", _tabIndex: 2, _buttonText: string.Empty)
+    @UIHelper.textBox("txtSpelling", "拼音", _tabIndex: 3, _buttonText: string.Empty)
+    @UIHelper.dropDownList("ddlPriceMode", "售价方式", new List<DropDownOption> { new DropDownOption { Text = "售价1", Value = "1" }, new DropDownOption { Text = "售价2", Value = "2" }, new DropDownOption { Text = "售价3", Value = "3" } }, _tabIndex: 4, _defaultValue: "1", _selectPanelHeight: 65)
+    @UIHelper.textBox("txtEmail", "Email", _tabIndex: 5, _buttonText: string.Empty)
+    @UIHelper.textBox("txtLinkMan", "联系人", _tabIndex: 6, _buttonText: string.Empty)
+    @UIHelper.textBox("txtLinkTel", "联系电话", _tabIndex: 7, _buttonText: string.Empty)
+    @UIHelper.textBox("txtSort", "排序", _tabIndex: 8, _buttonText: string.Empty, _value: "0")
+    @UIHelper.textBox("txtComment", "备注", _tabIndex: 9, _buttonText: string.Empty, _multiline: "true",_width: 520, _height: 100)
 </div>
 @section scripts{
     <script type="text/javascript">

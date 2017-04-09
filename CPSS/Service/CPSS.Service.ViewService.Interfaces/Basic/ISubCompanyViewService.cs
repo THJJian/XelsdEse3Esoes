@@ -20,5 +20,18 @@ namespace CPSS.Service.ViewService.Interfaces.Basic
         /// <param name="request"></param>
         /// <returns></returns>
         RespondWebViewData<RespondAddSubCompanyViewModel> AddSubCompany(RequestWebViewData<RequestAddSubCompanyViewModel> request);
+
+        /// <summary>
+        /// 根据comid查询对应行公司信息
+        /// </summary>
+        /// <returns></returns>
+        RespondWebViewData<RespondQuerySubCompanyViewModel> GetSubCompanyByComId(RequestWebViewData<RequestGetSubCompanyByIdViewModel> request);
+
+        /// <summary>
+        /// 修改子公司资料
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        RespondWebViewData<RespondEditSubCompanyViewModel> EditSubCompany(RequestWebViewData<RequestEditSubCompanyViewModel> request);
     }
 }

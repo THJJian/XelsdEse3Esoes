@@ -167,7 +167,8 @@
           <Property Name="linkman" Type="varchar" MaxLength="20" />
           <Property Name="linktel" Type="varchar" MaxLength="60" />
           <Property Name="status" Type="smallint" Nullable="false" />
-          <Property Name="comment" Type="varchar" MaxLength="100" />
+          <Property Name="deleted" Type="smallint" Nullable="false" />
+          <Property Name="comment" Type="varchar" MaxLength="256" />
           <Property Name="sort" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="unit">
@@ -391,8 +392,9 @@
           <Property Name="linkman" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="linktel" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int16" Nullable="false" />
-          <Property Name="comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="comment" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="sort" Type="Int32" Nullable="false" />
+          <Property Name="deleted" Type="Int16" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -555,6 +557,7 @@
           <EntitySetMapping Name="subcompany">
             <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.subcompany">
               <MappingFragment StoreEntitySet="subcompany">
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
                 <ScalarProperty Name="sort" ColumnName="sort" />
                 <ScalarProperty Name="comment" ColumnName="comment" />
                 <ScalarProperty Name="status" ColumnName="status" />

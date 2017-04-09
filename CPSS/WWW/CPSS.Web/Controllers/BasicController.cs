@@ -44,7 +44,14 @@ namespace CPSS.Web.Controllers
         public ActionResult EditCompany()
         {
             var comid = this.WorkContext.GetQueryInt("comid");
-            var model = new object();
+            var request = new RequestWebViewData<RequestGetSubCompanyByIdViewModel>
+            {
+                data = new RequestGetSubCompanyByIdViewModel
+                {
+                    ComId = comid
+                }
+            };
+            var model = this.mSubCompanyViewService.GetSubCompanyByComId(request);
             return View(model);
         }
 
@@ -65,6 +72,14 @@ namespace CPSS.Web.Controllers
         public JsonResult AddCompany(RequestWebViewData<RequestAddSubCompanyViewModel> request)
         {
             var respond = this.mSubCompanyViewService.AddSubCompany(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Edit)]
+        [HttpPost]
+        public JsonResult EditCompany(RequestWebViewData<RequestEditSubCompanyViewModel> request)
+        {
+            var respond = this.mSubCompanyViewService.EditSubCompany(request);
             return Json(respond);
         }
 

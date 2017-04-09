@@ -74,7 +74,8 @@ namespace CPSS.Service.ViewService.Basic
                         SerialNumber = item.serialnumber,
                         sort = item.sort.ToString(),
                         Status = item.status.ToString(),
-                        Spelling = item.pinyin
+                        Spelling = item.pinyin,
+                        ChildNumber = item.childnumber
                     }).ToList()
                 };
 
@@ -124,13 +125,100 @@ namespace CPSS.Service.ViewService.Basic
                     pricemode = rData.PriceMode,
                     serialnumber = rData.SerialNumber,
                     sort = rData.Sort,
-                    status = 0
+                    status = 0,
+                    deleted = 0
                 };
                 var addResult = this.mSubCompanyDataAccess.Add(data, tran);
                 if (addResult > 0) this.mSubCompanyDataAccess.UpdateChildNumberByClassId(tran, parameter);
                 var mongo_db_request = new RequestMongoDbViewModel
                 {
                     LogName = "新增分公司资料",
+                    RespondLogData = JObject.FromObject(respond).ToString(Formatting.None),
+                    RequestLogData = JObject.FromObject(request).ToString(Formatting.None),
+                    LogTime = DateTime.Now,
+                    SpecialType = this.GetType(),
+                    OpUserID = this.mSigninUser.UserID.ToString(),
+                    OpUserName = this.mSigninUser.UserName
+                };
+                //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
+                //this.mMongoDbDataAccess.Save(mongo_db_request);
+            });
+            return respond;
+        }
+
+        public RespondWebViewData<RespondQuerySubCompanyViewModel> GetSubCompanyByComId(RequestWebViewData<RequestGetSubCompanyByIdViewModel> request)
+        {
+            return MemcacheHelper.Get(() =>
+                {
+                    var respond = new RespondWebViewData<RespondQuerySubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                    var subCompany = this.mSubCompanyDataAccess.GetsubcompanyDataModelById(request.data.ComId);
+                    if (subCompany == null) return respond;
+                    if (subCompany.deleted == 1 || subCompany.status != 0) return respond;
+                    respond = new RespondWebViewData<RespondQuerySubCompanyViewModel>
+                    {
+                        rows = new RespondQuerySubCompanyViewModel
+                        {
+                            ComId = subCompany.subcomid,
+                            Comment = subCompany.comment,
+                            Email = subCompany.email,
+                            LinkMan = subCompany.linkman,
+                            LinkTel = subCompany.linktel,
+                            Name = subCompany.name,
+                            PriceMode = subCompany.pricemode.ToString(),
+                            SerialNumber = subCompany.serialnumber,
+                            sort = subCompany.sort.ToString(),
+                            Spelling = subCompany.pinyin
+                        }
+                    };
+                    return respond;
+                }
+                , string.Format(PRE_CACHE_KEY, "GetSubCompanyByComId")
+                , DateTime.Now.AddMinutes(30)
+                , request.data.ComId
+            );
+        }
+
+        public RespondWebViewData<RespondEditSubCompanyViewModel> EditSubCompany(RequestWebViewData<RequestEditSubCompanyViewModel> request)
+        {
+            var respond = new RespondWebViewData<RespondEditSubCompanyViewModel>(WebViewErrorCode.Success);
+            var rData = request.data;
+
+            this.mDbConnection.ExecuteTransaction(tran =>
+            {
+                var company = this.mSubCompanyDataAccess.GetsubcompanyDataModelById(rData.ComId);
+                if (company == null)
+                {
+                    respond = new RespondWebViewData<RespondEditSubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                    return;
+                }
+                if (company.deleted == 1)
+                {
+                    respond = new RespondWebViewData<RespondEditSubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                    return;
+                }
+
+                var data = new subcompanyDataModel
+                {
+                    subcomid = rData.ComId,
+                    comment = rData.Comment,
+                    email = rData.Email,
+                    linktel = rData.LinkTel,
+                    linkman = rData.LinkMan,
+                    name = rData.Name,
+                    pinyin = rData.Spelling,
+                    pricemode = rData.PriceMode,
+                    serialnumber = rData.SerialNumber,
+                    sort = rData.Sort,
+                    status = company.status,
+                    deleted = company.deleted,
+                    childnumber = company.childnumber,
+                    classid = company.classid,
+                    parentid = company.parentid
+                };
+                this.mSubCompanyDataAccess.Update(data, tran);
+                var mongo_db_request = new RequestMongoDbViewModel
+                {
+                    LogName = "编辑分公司资料",
                     RespondLogData = JObject.FromObject(respond).ToString(Formatting.None),
                     RequestLogData = JObject.FromObject(request).ToString(Formatting.None),
                     LogTime = DateTime.Now,

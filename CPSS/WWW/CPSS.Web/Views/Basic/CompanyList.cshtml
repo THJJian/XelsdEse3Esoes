@@ -18,14 +18,14 @@
 <div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 300px; max-width: 100%; overflow: hidden;">
     <input type="hidden" id="txtParentId" value="" />
     <div class="easyui-panel" data-options="border: false">
-        @UIHelper.textBox("txtSerialNumber", "编号", _buttonText: string.Empty)
-        @UIHelper.textBox("txtName", "名称", _tabIndex: 1, _buttonText: string.Empty)
-        @UIHelper.textBox("txtSpelling", "拼音", _tabIndex: 2, _buttonText: string.Empty)
-        @UIHelper.dropDownList("ddlPriceMode", "售价方式", new List<DropDownOption> { new DropDownOption { Text = "无", Value = "0" }, new DropDownOption { Text = "售价1", Value = "1" }, new DropDownOption { Text = "售价2", Value = "2" }, new DropDownOption { Text = "售价3", Value = "3" } }, _tabIndex: 3, _defaultValue: "0", _selectPanelHeight: 65)
-        @UIHelper.textBox("txtEmail", "Email", _tabIndex: 4, _buttonText: string.Empty)
-        @UIHelper.textBox("txtLinkMan", "联系人", _tabIndex: 5, _buttonText: string.Empty)
-        @UIHelper.textBox("txtLinkTel", "联系电话", _tabIndex: 6, _buttonText: string.Empty)
-        @UIHelper.dropDownList("ddlStatus", "状态", new List<DropDownOption> {new DropDownOption {Text = "正常", Value = "0"}, new DropDownOption {Text = "删除", Value = "1"}}, _tabIndex: 7, _defaultValue: "0", _selectPanelHeight: 45)
+        @UIHelper.textBox("txtSerialNumber", "编号", _tabIndex: 1, _buttonText: string.Empty)
+        @UIHelper.textBox("txtName", "名称", _tabIndex: 2, _buttonText: string.Empty)
+        @UIHelper.textBox("txtSpelling", "拼音", _tabIndex: 3, _buttonText: string.Empty)
+        @UIHelper.dropDownList("ddlPriceMode", "售价方式", new List<DropDownOption> { new DropDownOption { Text = "无", Value = "0" }, new DropDownOption { Text = "售价1", Value = "1" }, new DropDownOption { Text = "售价2", Value = "2" }, new DropDownOption { Text = "售价3", Value = "3" } }, _tabIndex: 4, _defaultValue: "0", _selectPanelHeight: 85)
+        @UIHelper.textBox("txtEmail", "Email", _tabIndex: 5, _buttonText: string.Empty)
+        @UIHelper.textBox("txtLinkMan", "联系人", _tabIndex: 6, _buttonText: string.Empty)
+        @UIHelper.textBox("txtLinkTel", "联系电话", _tabIndex: 7, _buttonText: string.Empty)
+        @UIHelper.dropDownList("ddlStatus", "状态", new List<DropDownOption> {new DropDownOption {Text = "正常", Value = "0"}, new DropDownOption {Text = "删除", Value = "1"}}, _tabIndex: 8, _defaultValue: "0", _selectPanelHeight: 45)
     </div>
     <div class="easyui-panel" data-options="border: false" style="padding-right: 20px; text-align: right;">
         @UIHelper.linkButton("查  询", "btnSearch")
@@ -40,16 +40,18 @@
                     <th field="ComId" data-options="hidden: true">ComID</th>
                     <th field="ClassId" data-options="hidden: true">ClassID</th>
                     <th field="ParentId" data-options="hidden: true">ParentID</th>
-                    <th field="SerialNumber" data-options="sortable: true" width="80px;">编号</th>
-                    <th field="Name" data-options="sortable: true" width="180px;">名称</th>
-                    <th field="Spelling" data-options="sortable: true" width="80px;">拼音</th>
-                    <th field="PriceMode" data-options="sortable: true" width="100px;">价格方式</th>
-                    <th field="Email" data-options="sortable: true" width="130px;">Email</th>
-                    <th field="LinkMan" data-options="sortable: true" width="130px;">联系人</th>
-                    <th field="LinkTel" data-options="sortable: true" width="130px;">联系电话</th>
-                    <th field="Status" data-options="sortable: true" width="80px;">状态</th>
+                    <th field="Deleted" data-options="hidden: true">Deleted</th>
+                    <th field="LevelClassId" data-options="width:30, align:'center', formatter: function(val, row, index){return subCompany.cellFormatter(val, row, index);}"></th>
+                    <th field="SerialNumber" width="80px;">编号</th>
+                    <th field="Name" width="180px;">名称</th>
+                    <th field="Spelling" width="80px;">拼音</th>
+                    <th field="PriceMode" width="60px;">价格方式</th>
+                    <th field="Email" width="150px;">Email</th>
+                    <th field="LinkMan" width="80px;">联系人</th>
+                    <th field="LinkTel" width="90px;">联系电话</th>
+                    <th field="Status" width="60px;">状态</th>
                     <th field="Comment" width="256px;">备注</th>
-                    <th field="sort" data-options="sortable: true" width="50px;">排序</th>
+                    <th field="sort" width="50px;">排序</th>
                 </tr>
             </thead>
         </table>
@@ -59,10 +61,10 @@
 @section scripts{
     <script type="text/javascript">
         var userId_g = "@this.WorkContext.GetQueryString("userid")";
-
+        var subCompany;
         $(document.body)
             .ready(function () {
-                CPSSLib.Page.subCompanyList.init(userId_g);
+                subCompany = CPSSLib.Page.subCompanyList.init(userId_g);
                 /*
                 var pg = $("#dvgDataGrid").datagrid("getPager");
     

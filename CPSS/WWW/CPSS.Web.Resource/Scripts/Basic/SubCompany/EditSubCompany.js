@@ -1,19 +1,7 @@
 ﻿;
 (function(ns) {
-    CPSSLib.RegNameSpace(ns).addSubCompany = (function () {
+    CPSSLib.RegNameSpace(ns).editSubCompany = (function () {
         var self;
-
-        var fn_clear = function() {
-            $("#txtSerialNumber").textbox("setValue", "");
-            $("#txtName").textbox("setValue", "");
-            $("#txtSpelling").textbox("setValue", "");
-            $("#txtEmail").textbox("setValue", "");
-            $("#ddlPriceMode").combobox("setValue", "0");
-            $("#txtLinkMan").textbox("setValue", "");
-            $("#txtLinkTel").textbox("setValue", "");
-            $("#txtSort").textbox("setValue", "");
-            $("#txtComment").textbox("setValue", "");
-        }
 
         //数据封装
         var fn_data_encapsulation = function () {
@@ -26,21 +14,21 @@
                 LinkMan: $("#txtLinkMan").textbox("getValue"),
                 LinkTel: $("#txtLinkTel").textbox("getValue"),
                 Sort: $("#txtSort").textbox("getValue"),
-                ParentId: $("#txtParentId").val(),
-                Comment: $("#txtComment").textbox("getValue")
+                Comment: $("#txtComment").textbox("getValue"),
+                ComId: self.comId
             };
             return data;
         }
 
         //默认回调函数
-        var fn_call_back = function(result) {
-            if (result.ErrorCode !== 0) 
+        var fn_call_back = function (result) {
+            if (result.ErrorCode !== 0)
                 _msgbox.error(result.ErrorMessage);
-            else 
+            else
                 _msgbox.alert(result.ErrorMessage);
         }
 
-        var fn_postData = function (data, url,callBack) {
+        var fn_postData = function (data, url, callBack) {
             if (typeof data !== "object") data = { data: fn_data_encapsulation() };
             if (typeof callBack !== "function") callBack = fn_call_back;
             CPSSLib.Utils.AjaxRequest.postData(url,
@@ -53,38 +41,28 @@
         var fn_button_click = function (sender) {
             var id = $(sender).attr("id");
             switch (id) {
-                case "rtBasicCom_TB_Add_Save":
-                    fn_postData(undefined, "/basic/addcompany", function (result) {
+                case "rtBasicCom_TB_Edit_Save":
+                    fn_postData(undefined, "/basic/editcompany", function (result) {
                         if (result.ErrorCode === 0)
                             _msgbox.success(result.ErrorMessage,
-                                function () {
+                                function() {
                                     parent._window.close();
                                 });
                         else
                             _msgbox.error(result.ErrorMessage);
                     });
                     break;
-                case "rtBasicCom_TB_Add_Save_Go":
-                    fn_postData(undefined, "/basic/addcompany", function (result) {
-                        if (result.ErrorCode === 0)
-                            _msgbox.success(result.ErrorMessage,
-                                function () {
-                                    fn_clear();
-                                });
-                        else
-                            _msgbox.error(result.ErrorMessage);
-                    });
-                    break;
-                case "rtBasicCom_TB_Add_Cancel":
+                case "rtBasicCom_TB_Edit_Cancel":
                     parent._window.close();
                     break;
             }
         }
 
-        var fn_init = function() {
+        var fn_init = function (comId) {
             self = this;
+            self.comId = comId;
             $("#txtName").textbox({
-                onChange: function(nVal, oVal) {
+                onChange: function (nVal, oVal) {
                     if (nVal === oVal) return;
                     if (nVal === "" || nVal === null) {
                         $("#txtSpelling").textbox("setValue", "");
@@ -100,8 +78,8 @@
             });
         }
 
-        return {
+        return{
             init: fn_init
-        }
+        };
     })();
 })("Page");

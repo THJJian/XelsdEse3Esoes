@@ -11,16 +11,16 @@ namespace CPSS.Data.DataAccess
     {
         public PageData<subcompanyDataModel> GetQuerySubCompanyList(QuerySubCompanyListParameter parameter)
         {
-            this.ExecuteSQL = string.Format("SELECT * FROM dbo.subcompany WHERE parentid='{0}' AND serialnumber LIKE '%{1}%' AND name LIKE '%{2}%' AND pinyin LIKE '%{3}%' AND email LIKE '%{4}%' AND linkman LIKE '%{5}%' AND linktel LIKE '%{6}%' AND [status]={7} AND pricemode={8}"
-                ,parameter.ParentId
-                ,parameter.SerialNumber
-                ,parameter.Name
-                ,parameter.Spelling
-                ,parameter.Email
-                ,parameter.LinkMan
-                ,parameter.LinkTel
-                ,parameter.Status
-                ,parameter.PriceMode);
+            this.ExecuteSQL = string.Format("SELECT * FROM dbo.subcompany WHERE parentid='{0}' AND serialnumber LIKE '%{1}%' AND name LIKE '%{2}%' AND pinyin LIKE '%{3}%' AND email LIKE '%{4}%' AND linkman LIKE '%{5}%' AND linktel LIKE '%{6}%' AND [status]={7} AND pricemode in({8})"
+                    , parameter.ParentId
+                    , parameter.SerialNumber
+                    , parameter.Name
+                    , parameter.Spelling
+                    , parameter.Email
+                    , parameter.LinkMan
+                    , parameter.LinkTel
+                    , parameter.Status
+                    , parameter.PriceMode == 0 ? "1,2,3" : parameter.PriceMode.ToString());
             return this.ExecuteReadSqlTosubcompanyDataModelPageData("subcomid", parameter.PageIndex, parameter.PageSize, "[sort] ASC");
         }
 
