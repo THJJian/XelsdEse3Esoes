@@ -32,5 +32,7 @@ namespace CPSS.Service.ViewService.ViewModels.SubCompany.Respond
         public string Spelling { get; set; }
 
         public int ChildNumber { get; set; }
+
+        public short Deleted { get; set; }
     }
 }

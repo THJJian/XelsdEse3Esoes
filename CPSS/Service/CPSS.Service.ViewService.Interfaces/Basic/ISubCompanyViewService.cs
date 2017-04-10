@@ -33,5 +33,19 @@ namespace CPSS.Service.ViewService.Interfaces.Basic
         /// <param name="request"></param>
         /// <returns></returns>
         RespondWebViewData<RespondEditSubCompanyViewModel> EditSubCompany(RequestWebViewData<RequestEditSubCompanyViewModel> request);
+        
+        /// <summary>
+        /// 删除子公司资料(逻辑删除)
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        RespondWebViewData<RespondDeleteSubCompanyViewModel> DeleteSubCompany(RequestWebViewData<RequestDeleteSubCompanyViewModel> request);
+
+        /// <summary>
+        /// 恢复删除子公司资料
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        RespondWebViewData<RespondDeleteSubCompanyViewModel> ReDeleteSubCompany(RequestWebViewData<RequestDeleteSubCompanyViewModel> request);
     }
 }

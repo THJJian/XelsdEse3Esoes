@@ -3,7 +3,7 @@
 namespace CPSS.Service.ViewService.ViewModels.SubCompany.Respond
 {
     [Serializable]
-    public class RespondDeleteSubCompanyViewModel
+    public class RespondEditSubCompanyViewModel
     {
         
     }

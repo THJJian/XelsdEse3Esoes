@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     WorkContext.Resource
         //.AddPageCss("")
-        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "grid/tablegrid", "easyui-1.5/plugins/jquery.datagrid.cellediting", "controlshelper", "basic/subcompany/subcompanylist");
+        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "grid/tablegrid", "controlshelper", "basic/subcompany/subcompanylist", "lodop/lodopfuncs");
 }
 
 @section buttons{
@@ -41,7 +41,7 @@
                     <th field="ClassId" data-options="hidden: true">ClassID</th>
                     <th field="ParentId" data-options="hidden: true">ParentID</th>
                     <th field="Deleted" data-options="hidden: true">Deleted</th>
-                    <th field="LevelClassId" data-options="width:30, align:'center', formatter: function(val, row, index){return subCompany.cellFormatter(val, row, index);}"></th>
+                    <th field="LevelClassId" data-options="width:60, align:'center', formatter: function(val, row, index){return subCompany.cellFormatter(val, row, index);}"></th>
                     <th field="SerialNumber" width="80px;">编号</th>
                     <th field="Name" width="180px;">名称</th>
                     <th field="Spelling" width="80px;">拼音</th>
@@ -59,6 +59,7 @@
 }
 
 @section scripts{
+    <script type="text/javascript" src="http://localhost:18000/CLodopfuncs.js?priority=1"></script>
     <script type="text/javascript">
         var userId_g = "@this.WorkContext.GetQueryString("userid")";
         var subCompany;

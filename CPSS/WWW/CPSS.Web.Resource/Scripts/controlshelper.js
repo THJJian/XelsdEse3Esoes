@@ -4,27 +4,30 @@
     CPSSLib.RegNameSpace(ns).linkButtonHelper = (function() {
         var self;
 
-        var _init = function(__onClick) {
+        var fn_init = function(onClick) {
             self = this;
+            if(typeof onClick !== "function") onClick = function() { return false; }
             self.linkbutton = $(".easyui-linkbutton").linkbutton({
-                onClick: __onClick
+                onClick: onClick
             });
         }
 
         return {
-            init: _init
+            init: fn_init
         };
     })();
 
     CPSSLib.RegNameSpace(ns).textBoxHelper = (function() {
         var self;
 
-        var _init = function (__onClickButton, __onChange, __invoiceType, __queryType) {
+        var fn_init = function (onClickButton, onChange, invoiceType, queryType) {
             self = this;
+            if (typeof onClickButton !== "function") onClickButton = function () { return false; };
+            if (typeof onChange !== "function") onChange = function () { return false;}
             $(".easyui-textbox")
                 .textbox({
-                    onClickButton: __onClickButton,
-                    onChange: __onChange,
+                    onClickButton: onClickButton,
+                    onChange: onChange,
                     inputEvents: {
                         keydown: function (e) {
                             var _textbox = $(e.data.target),
@@ -49,18 +52,34 @@
                 });
         };
 
-        var _setValue = function(__textboxid, __value) {
-            $("#" + __textboxid).textbox("setValue", __value);
+        var fn_setValue = function (ctrlId, value) {
+            $("#" + ctrlId).textbox("setValue", value);
         }
 
-        var _getValue = function (__textboxid) {
-            return $("#" + __textboxid).textbox("getValue");
+        var fn_getValue = function (ctrlId) {
+            return $("#" + ctrlId).textbox("getValue");
         };
 
         return {
-            init: _init,
-            setValue: _setValue,
-            getValue: _getValue
+            init: fn_init,
+            setValue: fn_setValue,
+            getValue: fn_getValue
+        }
+    })();
+
+    CPSSLib.RegNameSpace(ns).comboboxHelper = (function() {
+        
+        var fn_setValue = function(ctrlId, value) {
+            $("#" + ctrlId).combobox("setValue", value);
+        }
+
+        var fn_getValue = function(ctrlId) {
+            return $("#" + ctrlId).combobox("getValue");
+        }
+
+        return {
+            setValue: fn_setValue,
+            getValue: fn_getValue
         }
     })();
 
@@ -68,3 +87,4 @@
 
 var linkButtonHelper = CPSSLib.UI.linkButtonHelper;
 var textBoxHelper = CPSSLib.UI.textBoxHelper;
+var comboboxHelper = CPSSLib.UI.comboboxHelper;

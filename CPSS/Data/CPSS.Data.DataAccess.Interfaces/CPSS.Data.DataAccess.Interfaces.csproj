@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Basic\IsubcompanyDataAccess.cs" />
+    <Compile Include="Basic\Parameters\DeleteSubCompanyParameter.cs" />
     <Compile Include="Basic\Parameters\QuerySubCompanyListParameter.cs" />
     <Compile Include="HeadButtons\IHeadButtonsDataAccess.cs" />
     <Compile Include="HeadButtons\Parameters\HeadButtonsParameter.cs" />

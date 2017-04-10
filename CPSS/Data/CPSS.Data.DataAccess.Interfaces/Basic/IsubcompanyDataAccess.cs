@@ -36,5 +36,17 @@ namespace CPSS.Data.DataAccess.Interfaces
         /// <param name="parameter"></param>
         /// <returns></returns>
         int UpdateChildNumberByClassId(IDbTransaction tran, QuerySubCompanyListParameter parameter);
+
+        /// <summary>
+        /// 删除子公司资料(逻辑删除)
+        /// </summary>
+        /// <returns></returns>
+        int Delete(DeleteSubCompanyParameter parameter);
+
+        /// <summary>
+        /// 恢复删除子公司资料
+        /// </summary>
+        /// <returns></returns>
+        int ReDelete(DeleteSubCompanyParameter parameter);
     }
 }

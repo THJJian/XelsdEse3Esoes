@@ -4,30 +4,30 @@
         var self;
 
         var fn_clear = function() {
-            $("#txtSerialNumber").textbox("setValue", "");
-            $("#txtName").textbox("setValue", "");
-            $("#txtSpelling").textbox("setValue", "");
-            $("#txtEmail").textbox("setValue", "");
-            $("#ddlPriceMode").combobox("setValue", "0");
-            $("#txtLinkMan").textbox("setValue", "");
-            $("#txtLinkTel").textbox("setValue", "");
-            $("#txtSort").textbox("setValue", "");
-            $("#txtComment").textbox("setValue", "");
+            textBoxHelper.setValue("txtSerialNumber", "");
+            textBoxHelper.setValue("txtName", "");
+            textBoxHelper.setValue("txtSpelling", "");
+            textBoxHelper.setValue("txtEmail", "");
+            comboboxHelper.setValue("ddlPriceMode", "0");
+            textBoxHelper.setValue("txtLinkMan", "");
+            textBoxHelper.setValue("txtLinkTel", "");
+            textBoxHelper.setValue("txtSort", "");
+            textBoxHelper.setValue("txtComment", "");
         }
 
         //数据封装
         var fn_data_encapsulation = function () {
             var data = {
-                SerialNumber: $("#txtSerialNumber").textbox("getValue"),
-                Name: $("#txtName").textbox("getValue"),
-                Spelling: $("#txtSpelling").textbox("getValue"),
-                PriceMode: $("#ddlPriceMode").combobox("getValue"),
-                Email: $("#txtEmail").textbox("getValue"),
-                LinkMan: $("#txtLinkMan").textbox("getValue"),
-                LinkTel: $("#txtLinkTel").textbox("getValue"),
-                Sort: $("#txtSort").textbox("getValue"),
-                ParentId: $("#txtParentId").val(),
-                Comment: $("#txtComment").textbox("getValue")
+                SerialNumber: textBoxHelper.getValue("txtSerialNumber"),
+                Name: textBoxHelper.getValue("txtName"),
+                Spelling: textBoxHelper.getValue("txtSpelling"),
+                PriceMode: comboboxHelper.getValue("ddlPriceMode"),
+                Email: textBoxHelper.getValue("txtEmail"),
+                LinkMan: textBoxHelper.getValue("txtLinkMan"),
+                LinkTel: textBoxHelper.getValue("txtLinkTel"),
+                Sort: textBoxHelper.getValue("txtSort"),
+                Comment: textBoxHelper.getValue("txtComment"),
+                ParentId: $("#txtParentId").val()
             };
             return data;
         }
@@ -58,6 +58,7 @@
                         if (result.ErrorCode === 0)
                             _msgbox.success(result.ErrorMessage,
                                 function () {
+                                    parent.subCompany.level(undefined, 1);
                                     parent._window.close();
                                 });
                         else

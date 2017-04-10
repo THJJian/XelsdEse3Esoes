@@ -83,6 +83,21 @@ namespace CPSS.Web.Controllers
             return Json(respond);
         }
 
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Delete)]
+        [HttpPost]
+        public JsonResult DeleteCompany(RequestWebViewData<RequestDeleteSubCompanyViewModel> request)
+        {
+            var respond = this.mSubCompanyViewService.DeleteSubCompany(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Resume)]
+        [HttpPost]
+        public JsonResult ReDeleteCompany(RequestWebViewData<RequestDeleteSubCompanyViewModel> request)
+        {
+            var respond = this.mSubCompanyViewService.ReDeleteSubCompany(request);
+            return Json(respond);
+        }
         #endregion
 
         #endregion

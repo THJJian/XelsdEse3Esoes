@@ -53,5 +53,25 @@ namespace CPSS.Data.DataAccess
             };
             return this.ExecuteNonQuery(tran);
         }
+
+        public int Delete(DeleteSubCompanyParameter parameter)
+        {
+            this.ExecuteSQL = "UPDATE dbo.subcompany SET deleted=1 WHERE subcomid=@subcomid";
+            this.DataParameter = new IDbDataParameter[]
+            {
+                new SqlParameter("@subcomid", parameter.ComId)
+            };
+            return this.ExecuteNonQuery();
+        }
+
+        public int ReDelete(DeleteSubCompanyParameter parameter)
+        {
+            this.ExecuteSQL = "UPDATE dbo.subcompany SET deleted=0 WHERE subcomid=@subcomid";
+            this.DataParameter = new IDbDataParameter[]
+            {
+                new SqlParameter("@subcomid", parameter.ComId)
+            };
+            return this.ExecuteNonQuery();
+        }
     }
 }

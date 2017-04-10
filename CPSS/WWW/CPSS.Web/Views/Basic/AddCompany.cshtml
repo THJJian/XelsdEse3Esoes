@@ -4,11 +4,11 @@
     Layout = "~/views/shared/_layout.cshtml";
     WorkContext.Resource
         //.AddPageCss("")
-        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "grid/tablegrid", "easyui-1.5/plugins/jquery.datagrid.cellediting", "controlshelper", "basic/subcompany/addsubcompany");
+        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "grid/tablegrid", "controlshelper", "basic/subcompany/addsubcompany");
     var buttonModel = new List<RespondHeadButtonsViewModel>
     {
         new RespondHeadButtonsViewModel{ ButtonName = "rtBasicCom_TB_Add_Save", ButtonText = "保存"},
-        new RespondHeadButtonsViewModel{ ButtonName = "rtBasicCom_TB_Add_Save_Go", ButtonText = "保存并继续"},
+        //new RespondHeadButtonsViewModel{ ButtonName = "rtBasicCom_TB_Add_Save_Go", ButtonText = "保存并继续"},
         new RespondHeadButtonsViewModel{ ButtonName = "rtBasicCom_TB_Add_Cancel", ButtonText = "取消"},
     };
 }

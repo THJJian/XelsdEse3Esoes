@@ -40,6 +40,19 @@ namespace CPSS.Service.ViewService.Basic
         public RespondWebViewData<List<RespondQuerySubCompanyViewModel>> GetQueryCompanyList(RequestWebViewData<RequestQuerySubCompanyViewModel> request)
         {
             if(request.data == null) request.data = new RequestQuerySubCompanyViewModel();
+            if (request.reload != 0)
+                MemcacheHelper.Remove(string.Format(PRE_CACHE_KEY, "GetQueryCompanyList"), request.page
+                    , request.rows
+                    , request.data.ParentId
+                    , request.data.Email
+                    , request.data.LinkMan
+                    , request.data.LinkTel
+                    , request.data.Name
+                    , request.data.PriceMode
+                    , request.data.SerialNumber
+                    , request.data.Spelling
+                    , request.data.Status);
+
             return MemcacheHelper.Get(() =>
             {
                 var parameter = new QuerySubCompanyListParameter
@@ -75,7 +88,8 @@ namespace CPSS.Service.ViewService.Basic
                         sort = item.sort.ToString(),
                         Status = item.status.ToString(),
                         Spelling = item.pinyin,
-                        ChildNumber = item.childnumber
+                        ChildNumber = item.childnumber,
+                        Deleted = item.deleted
                     }).ToList()
                 };
 
@@ -229,6 +243,56 @@ namespace CPSS.Service.ViewService.Basic
                 //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                 //this.mMongoDbDataAccess.Save(mongo_db_request);
             });
+            return respond;
+        }
+
+        public RespondWebViewData<RespondDeleteSubCompanyViewModel> DeleteSubCompany(RequestWebViewData<RequestDeleteSubCompanyViewModel> request)
+        {
+            var respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Exception);
+            var parameter = new DeleteSubCompanyParameter
+            {
+                ComId = request.data.ComId
+            };
+            var dataResult = this.mSubCompanyDataAccess.Delete(parameter);
+            if (dataResult <= 0) return respond;
+            respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Success);
+            var mongo_db_request = new RequestMongoDbViewModel
+            {
+                LogName = "删除分公司资料",
+                RespondLogData = JObject.FromObject(respond).ToString(Formatting.None),
+                RequestLogData = JObject.FromObject(request).ToString(Formatting.None),
+                LogTime = DateTime.Now,
+                SpecialType = this.GetType(),
+                OpUserID = this.mSigninUser.UserID.ToString(),
+                OpUserName = this.mSigninUser.UserName
+            };
+            //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
+            //this.mMongoDbDataAccess.Save(mongo_db_request);
+            return respond;
+        }
+
+        public RespondWebViewData<RespondDeleteSubCompanyViewModel> ReDeleteSubCompany(RequestWebViewData<RequestDeleteSubCompanyViewModel> request)
+        {
+            var respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Exception);
+            var parameter = new DeleteSubCompanyParameter
+            {
+                ComId = request.data.ComId
+            };
+            var dataResult = this.mSubCompanyDataAccess.ReDelete(parameter);
+            if (dataResult <= 0) return respond;
+            respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Success);
+            var mongo_db_request = new RequestMongoDbViewModel
+            {
+                LogName = "恢复删除分公司资料",
+                RespondLogData = JObject.FromObject(respond).ToString(Formatting.None),
+                RequestLogData = JObject.FromObject(request).ToString(Formatting.None),
+                LogTime = DateTime.Now,
+                SpecialType = this.GetType(),
+                OpUserID = this.mSigninUser.UserID.ToString(),
+                OpUserName = this.mSigninUser.UserName
+            };
+            //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
+            //this.mMongoDbDataAccess.Save(mongo_db_request);
             return respond;
         }
     }
