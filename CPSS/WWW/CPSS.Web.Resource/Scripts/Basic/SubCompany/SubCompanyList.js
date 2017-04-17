@@ -132,6 +132,10 @@
                         _msgbox.alert("请选择需要修改的分公司");
                         return;
                     }
+                    if (selectRow.Deleted === 1) {
+                        _msgbox.alert("删除状态的分公司不允许修改");
+                        return;
+                    }
                     url = ["/basic/editcompany?userid=", userId_g, "&comid=", selectRow.ComId].join("");
                     _window.open("add_company", "新增公司信息", 600, 550, url);
                     break;

@@ -162,34 +162,30 @@ namespace CPSS.Service.ViewService.Basic
 
         public RespondWebViewData<RespondQuerySubCompanyViewModel> GetSubCompanyByComId(RequestWebViewData<RequestGetSubCompanyByIdViewModel> request)
         {
-            return MemcacheHelper.Get(() =>
+            var respond = new RespondWebViewData<RespondQuerySubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo)
+            {
+                rows = new RespondQuerySubCompanyViewModel()
+            };
+            var subCompany = this.mSubCompanyDataAccess.GetsubcompanyDataModelById(request.data.ComId);
+            if (subCompany == null) return respond;
+            if (subCompany.deleted == 1 || subCompany.status != 0) return respond;
+            respond = new RespondWebViewData<RespondQuerySubCompanyViewModel>
+            {
+                rows = new RespondQuerySubCompanyViewModel
                 {
-                    var respond = new RespondWebViewData<RespondQuerySubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo);
-                    var subCompany = this.mSubCompanyDataAccess.GetsubcompanyDataModelById(request.data.ComId);
-                    if (subCompany == null) return respond;
-                    if (subCompany.deleted == 1 || subCompany.status != 0) return respond;
-                    respond = new RespondWebViewData<RespondQuerySubCompanyViewModel>
-                    {
-                        rows = new RespondQuerySubCompanyViewModel
-                        {
-                            ComId = subCompany.subcomid,
-                            Comment = subCompany.comment,
-                            Email = subCompany.email,
-                            LinkMan = subCompany.linkman,
-                            LinkTel = subCompany.linktel,
-                            Name = subCompany.name,
-                            PriceMode = subCompany.pricemode.ToString(),
-                            SerialNumber = subCompany.serialnumber,
-                            sort = subCompany.sort.ToString(),
-                            Spelling = subCompany.pinyin
-                        }
-                    };
-                    return respond;
+                    ComId = subCompany.subcomid,
+                    Comment = subCompany.comment,
+                    Email = subCompany.email,
+                    LinkMan = subCompany.linkman,
+                    LinkTel = subCompany.linktel,
+                    Name = subCompany.name,
+                    PriceMode = subCompany.pricemode.ToString(),
+                    SerialNumber = subCompany.serialnumber,
+                    sort = subCompany.sort.ToString(),
+                    Spelling = subCompany.pinyin
                 }
-                , string.Format(PRE_CACHE_KEY, "GetSubCompanyByComId")
-                , DateTime.Now.AddMinutes(30)
-                , request.data.ComId
-            );
+            };
+            return respond;
         }
 
         public RespondWebViewData<RespondEditSubCompanyViewModel> EditSubCompany(RequestWebViewData<RequestEditSubCompanyViewModel> request)
