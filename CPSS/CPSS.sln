@@ -51,7 +51,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Web", "WWW\CPSS.Web\CP
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPSS.Web.Resource", "WWW\CPSS.Web.Resource\CPSS.Web.Resource.csproj", "{CB091906-E9D8-4757-A86E-E317A47197FA}"
 EndProject
-Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CPSS.Web.DB", "CPSS.Web.DB\CPSS.Web.DB.sqlproj", "{5509F04A-6D1F-41C8-AC25-106615D826D5}"
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "CPSS.Web.DB", "WWW\CPSS.Web.DB\CPSS.Web.DB.sqlproj", "{5509F04A-6D1F-41C8-AC25-106615D826D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

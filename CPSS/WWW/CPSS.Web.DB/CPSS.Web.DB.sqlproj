@@ -89,4 +89,7 @@
   <ItemGroup>
     <None Include="Tab\Sys\dbo.compnaydbinfo.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="Fun\Function1.sql" />
+  </ItemGroup>
 </Project>
