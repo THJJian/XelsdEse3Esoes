@@ -266,7 +266,7 @@ var CPSSLib = (function () {
 
         var _open = function (_win_id_, _win_title_, _win_width_, _win_height_, _win_src_) {
             var __win_id_ = "#" + _win_id_;
-            _strBuilder.appendFrt(_win_html, [_win_id_, _win_title_, _win_width_, _win_height_, _win_height_ - 39, _win_src_]);
+            _strBuilder.appendFrt(_win_html, [_win_id_, _win_title_, _win_width_, _win_height_, _win_height_ - 40, _win_src_]);
             var _html = _strBuilder.toString();
             $(document.body).append($(_html));
             _win = $(__win_id_).window({

@@ -137,7 +137,7 @@
                         return;
                     }
                     url = ["/basic/editcompany?userid=", userId_g, "&comid=", selectRow.ComId].join("");
-                    _window.open("add_company", "新增公司信息", 600, 550, url);
+                    _window.open("add_company", "修改分公司信息", 600, 550, url);
                     break;
                 case "rtBasicCom_TB_Delete":
                     fn_postData(0);
@@ -152,13 +152,47 @@
                         return;
                     }
                     url = ["/basic/addcompany?userid=", userId_g, "&parentid=", selectRow.ClassId].join("");
-                    _window.open("add_company", "新增公司信息", 600, 550, url);
+                    _window.open("add_company", "新增子级分公司信息", 600, 550, url);
                     break;
                 case "rtBasicCom_TB_Preview":
                     self.lodop.PREVIEW();
                     break;
                 case "rtBasicCom_TB_Design":
+                    var page = {
+                        billHead: {
+                            SerialNumber: "",
+                            Name: "",
+                            Spelling: "",
+                            PriceMode: "",
+                            Email: "",
+                            LinkMan: "",
+                            LinkTel: "",
+                            Status: ""
+                        }
+                    };
+                    self.lodop.PRINT_INIT("分公司资料");                    self.lodop.SET_PRINT_STYLE("FontColor", "#0000FF");
+                    self.lodop.SET_PRINT_STYLE("Alignment", 3);
+                    self.lodop.ADD_PRINT_TEXT(10, 5, 70, 20, "编号：");
+                    self.lodop.ADD_PRINT_TEXT(10, 75, 110, 20, page.billHead.SerialNumber);
+                    self.lodop.ADD_PRINT_TEXT(10, 205, 70, 20, "名称：");
+                    self.lodop.ADD_PRINT_TEXT(10, 275, 110, 20, page.billHead.Name);
+                    self.lodop.ADD_PRINT_TEXT(10, 405, 70, 20, "拼音：");
+                    self.lodop.ADD_PRINT_TEXT(10, 475, 110, 20, page.billHead.Spelling);
+                    self.lodop.ADD_PRINT_TEXT(10, 605, 70, 20, "售价方式：");
+                    self.lodop.ADD_PRINT_TEXT(10, 675, 110, 20, page.billHead.PriceMode);
+                    self.lodop.ADD_PRINT_TEXT(40, 5, 70, 20, "Email：");
+                    self.lodop.ADD_PRINT_TEXT(40, 75, 110, 20, page.billHead.Email);
+                    self.lodop.ADD_PRINT_TEXT(40, 205, 70, 20, "联系人：");
+                    self.lodop.ADD_PRINT_TEXT(40, 275, 110, 20, page.billHead.LinkMan);
+                    self.lodop.ADD_PRINT_TEXT(40, 405, 70, 20, "联系电话：");
+                    self.lodop.ADD_PRINT_TEXT(40, 475, 110, 20, page.billHead.LinkTel);
+                    self.lodop.ADD_PRINT_TEXT(40, 605, 70, 20, "状态：");
+                    self.lodop.ADD_PRINT_TEXT(40, 675, 110, 20, page.billHead.Status);
 
+                    self.lodop.On_Return = function (TaskID, Value) {
+                        _msgbox.alert(Value);
+                    };
+                    self.lodop.PRINT_DESIGN();
                     break;
             }
         }

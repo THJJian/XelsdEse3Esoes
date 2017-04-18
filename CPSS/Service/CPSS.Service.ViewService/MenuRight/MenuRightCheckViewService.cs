@@ -36,8 +36,9 @@ namespace CPSS.Service.ViewService.MenuRight
                         HaveRight = dataModel != null && dataModel.HaveRight
                     };
                     return result;
-                }, string.Format(preCacheKey, "CheckMenuRightByMenuID")
-                , request.MenuID
+                }, string.Format(preCacheKey, "CheckMenuRightByMenuID"),
+                false, 
+                request.MenuID
                 , user.UserID);
         }
     }

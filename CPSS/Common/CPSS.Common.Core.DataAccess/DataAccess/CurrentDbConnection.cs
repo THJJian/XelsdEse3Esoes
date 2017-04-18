@@ -29,7 +29,7 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
                     }
                     var config = ConfigHelper.GetConfig<DbConnectionConfig>(connectFilePath);
                     return config;
-                }, "CPSS.Common.Core.DataAccess.DataAccess.CurrentDbConnection.ConnectionConfig", connectFilePath, notUserMainConnection.ToString(), user.UserID);
+                }, "CPSS.Common.Core.DataAccess.DataAccess.CurrentDbConnection.ConnectionConfig", false, connectFilePath, notUserMainConnection.ToString(), user.UserID);
             }
         }
 

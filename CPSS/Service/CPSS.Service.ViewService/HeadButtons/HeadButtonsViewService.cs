@@ -40,6 +40,7 @@ namespace CPSS.Service.ViewService.HeadButtons
             }, 
             string.Format(preCacheKey, "QueryHeadButtonsViewModelsByMenuID"), 
             DateTime.Now.AddMinutes(WebConfigHelper.MemCachedExpTime()), 
+            false,
             request.MenuID, 
             request.ClassID);
         }

@@ -81,6 +81,7 @@
     <Compile Include="BuildFilePath\ExistsFileHelper.cs" />
     <Compile Include="Cached\CacheKeyHelper.cs" />
     <Compile Include="Cached\MemcacheHelper.cs" />
+    <Compile Include="Cached\RequestMemcacheParameter.cs" />
     <Compile Include="Config\BuildConfigFilePath.cs" />
     <Compile Include="Config\ConfigHelper.cs" />
     <Compile Include="Config\RSASecretConfig.cs" />

@@ -47,7 +47,7 @@ namespace CPSS.Common.Core.Helper.Config
                     }
                 }
                 return config;
-            }, cacheKey, DateTime.Now.AddMinutes(expiresAt));
+            }, cacheKey, DateTime.Now.AddMinutes(expiresAt), false);
         }
 
         /// <summary>
@@ -81,7 +81,7 @@ namespace CPSS.Common.Core.Helper.Config
                     }
                 }
                 return config;
-            }, cacheKey);
+            }, cacheKey, false);
         }
 
         #region 不需要通过程序来写配置(配置文件开发过程中手工生成)

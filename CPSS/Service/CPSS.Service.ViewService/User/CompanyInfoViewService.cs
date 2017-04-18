@@ -65,7 +65,7 @@ namespace CPSS.Service.ViewService.User
                 };
                 ConfigHelper.Save(_DbconnectionConfig, filePath);
                 return _respond;
-            }, string.Format(preCachedKey, "GetCompanyInfoViewModel"), request.CompanyID);
+            }, string.Format(preCachedKey, "GetCompanyInfoViewModel"), false, request.CompanyID);
             return respond;
         }
     }

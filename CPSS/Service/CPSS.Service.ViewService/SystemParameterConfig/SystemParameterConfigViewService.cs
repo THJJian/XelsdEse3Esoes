@@ -40,6 +40,7 @@ namespace CPSS.Service.ViewService.SystemParameterConfig
                     return viewModels;
                 }, string.Format(preCacheKey, "GetSystemParameterConfigViewModels"),
                 DateTime.Now.AddMinutes(WebConfigHelper.MemCachedExpTime()),
+                false,
                 this.mSigninUser.UserID,
                 this.mSigninUser.CompanySerialNum);
         }
@@ -61,6 +62,7 @@ namespace CPSS.Service.ViewService.SystemParameterConfig
                     };
                 },
                 string.Format(preCacheKey, "GetSystemParameterConfigViewModel"),
+                false,
                 request.ParameterConfigName,
                 this.mSigninUser.UserID,
                 this.mSigninUser.CompanySerialNum);

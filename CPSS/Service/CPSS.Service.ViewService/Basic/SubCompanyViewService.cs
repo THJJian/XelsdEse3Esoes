@@ -23,6 +23,7 @@ namespace CPSS.Service.ViewService.Basic
 {
     public class SubCompanyViewService : ISubCompanyViewService
     {
+        private const string THISSERVICE_PRE_CACHE_KEY_MANAGE = "CPSS.Service.ViewService.Basic.SubCompanyViewService";
         private const string PRE_CACHE_KEY = "CPSS.Service.ViewService.Basic.SubCompanyViewService.{0}";
         private readonly IDbConnection mDbConnection;
         private readonly IsubcompanyDataAccess mSubCompanyDataAccess;
@@ -40,74 +41,74 @@ namespace CPSS.Service.ViewService.Basic
         public RespondWebViewData<List<RespondQuerySubCompanyViewModel>> GetQueryCompanyList(RequestWebViewData<RequestQuerySubCompanyViewModel> request)
         {
             if(request.data == null) request.data = new RequestQuerySubCompanyViewModel();
-            if (request.reload != 0)
-                MemcacheHelper.Remove(string.Format(PRE_CACHE_KEY, "GetQueryCompanyList"), request.page
-                    , request.rows
-                    , request.data.ParentId
-                    , request.data.Email
-                    , request.data.LinkMan
-                    , request.data.LinkTel
-                    , request.data.Name
-                    , request.data.PriceMode
-                    , request.data.SerialNumber
-                    , request.data.Spelling
-                    , request.data.Status);
 
-            return MemcacheHelper.Get(() =>
-            {
-                var parameter = new QuerySubCompanyListParameter
-                {
-                    Email = request.data.Email,
-                    LinkMan = request.data.LinkMan,
-                    LinkTel = request.data.LinkTel,
-                    Name = request.data.Name,
-                    PageIndex = request.page,
-                    PageSize = request.rows,
-                    ParentId = request.data.ParentId,
-                    PriceMode = request.data.PriceMode,
-                    SerialNumber = request.data.SerialNumber,
-                    Spelling = request.data.Spelling,
-                    Status = request.data.Status
-                };
-                var pageDataList = this.mSubCompanyDataAccess.GetQuerySubCompanyList(parameter);
-                var respond = new RespondWebViewData<List<RespondQuerySubCompanyViewModel>>
-                {
-                    total = pageDataList.DataCount,
-                    rows = pageDataList.Datas.Select(item=>new RespondQuerySubCompanyViewModel
+            return MemcacheHelper.Get(new RequestMemcacheParameter<RespondWebViewData<List<RespondQuerySubCompanyViewModel>>>
                     {
-                        ClassId = item.classid,
-                        ComId = item.subcomid,
-                        Email = item.email,
-                        Comment = item.comment,
-                        LinkMan = item.linkman,
-                        LinkTel = item.linktel,
-                        Name = item.name,
-                        ParentId = item.parentid,
-                        PriceMode = item.pricemode.ToString(),
-                        SerialNumber = item.serialnumber,
-                        sort = item.sort.ToString(),
-                        Status = item.status.ToString(),
-                        Spelling = item.pinyin,
-                        ChildNumber = item.childnumber,
-                        Deleted = item.deleted
-                    }).ToList()
-                };
+                        CacheKey = string.Format(PRE_CACHE_KEY, "GetQueryCompanyList"),
 
-                return respond;
-            }
-            , string.Format(PRE_CACHE_KEY, "GetQueryCompanyList")
-            , DateTime.Now.AddMinutes(30)
-            , request.page
-            , request.rows
-            , request.data.ParentId
-            , request.data.Email
-            , request.data.LinkMan
-            , request.data.LinkTel
-            , request.data.Name
-            , request.data.PriceMode
-            , request.data.SerialNumber
-            , request.data.Spelling
-            , request.data.Status);
+                        #region ==========================
+                
+                        CallBackFunc = () =>
+                        {
+                            var parameter = new QuerySubCompanyListParameter
+                            {
+                                Email = request.data.Email,
+                                LinkMan = request.data.LinkMan,
+                                LinkTel = request.data.LinkTel,
+                                Name = request.data.Name,
+                                PageIndex = request.page,
+                                PageSize = request.rows,
+                                ParentId = request.data.ParentId,
+                                PriceMode = request.data.PriceMode,
+                                SerialNumber = request.data.SerialNumber,
+                                Spelling = request.data.Spelling,
+                                Status = request.data.Status
+                            };
+                            var pageDataList = this.mSubCompanyDataAccess.GetQuerySubCompanyList(parameter);
+                            var respond = new RespondWebViewData<List<RespondQuerySubCompanyViewModel>>
+                            {
+                                total = pageDataList.DataCount,
+                                rows = pageDataList.Datas.Select(item => new RespondQuerySubCompanyViewModel
+                                {
+                                    ClassId = item.classid,
+                                    ComId = item.subcomid,
+                                    Email = item.email,
+                                    Comment = item.comment,
+                                    LinkMan = item.linkman,
+                                    LinkTel = item.linktel,
+                                    Name = item.name,
+                                    ParentId = item.parentid,
+                                    PriceMode = item.pricemode.ToString(),
+                                    SerialNumber = item.serialnumber,
+                                    sort = item.sort.ToString(),
+                                    Status = item.status.ToString(),
+                                    Spelling = item.pinyin,
+                                    ChildNumber = item.childnumber,
+                                    Deleted = item.deleted
+                                }).ToList()
+                            };
+                            return respond;
+                        },
+
+                        #endregion
+                        
+                        ExpiresAt = DateTime.Now.AddMinutes(30),
+                        ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
+                        ParamsKeys = new object[]
+                        {
+                            request.page,
+                            request.rows,
+                            request.data.ParentId,
+                            request.data.Email,
+                            request.data.LinkMan,
+                            request.data.LinkTel,
+                            request.data.Name,
+                            request.data.PriceMode,
+                            request.data.SerialNumber,
+                            request.data.Spelling,
+                            request.data.Status
+                        }
+                    });
         }
 
         public RespondWebViewData<RespondAddSubCompanyViewModel> AddSubCompany(RequestWebViewData<RequestAddSubCompanyViewModel> request)
@@ -144,6 +145,7 @@ namespace CPSS.Service.ViewService.Basic
                 };
                 var addResult = this.mSubCompanyDataAccess.Add(data, tran);
                 if (addResult > 0) this.mSubCompanyDataAccess.UpdateChildNumberByClassId(tran, parameter);
+                MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
                 var mongo_db_request = new RequestMongoDbViewModel
                 {
                     LogName = "新增分公司资料",
@@ -162,30 +164,49 @@ namespace CPSS.Service.ViewService.Basic
 
         public RespondWebViewData<RespondQuerySubCompanyViewModel> GetSubCompanyByComId(RequestWebViewData<RequestGetSubCompanyByIdViewModel> request)
         {
-            var respond = new RespondWebViewData<RespondQuerySubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo)
+            return MemcacheHelper.Get(new RequestMemcacheParameter<RespondWebViewData<RespondQuerySubCompanyViewModel>>
             {
-                rows = new RespondQuerySubCompanyViewModel()
-            };
-            var subCompany = this.mSubCompanyDataAccess.GetsubcompanyDataModelById(request.data.ComId);
-            if (subCompany == null) return respond;
-            if (subCompany.deleted == 1 || subCompany.status != 0) return respond;
-            respond = new RespondWebViewData<RespondQuerySubCompanyViewModel>
-            {
-                rows = new RespondQuerySubCompanyViewModel
+                CacheKey = string.Format(PRE_CACHE_KEY, "GetSubCompanyByComId"),
+
+                #region =================
+
+                CallBackFunc = () =>
                 {
-                    ComId = subCompany.subcomid,
-                    Comment = subCompany.comment,
-                    Email = subCompany.email,
-                    LinkMan = subCompany.linkman,
-                    LinkTel = subCompany.linktel,
-                    Name = subCompany.name,
-                    PriceMode = subCompany.pricemode.ToString(),
-                    SerialNumber = subCompany.serialnumber,
-                    sort = subCompany.sort.ToString(),
-                    Spelling = subCompany.pinyin
+                    var respond = new RespondWebViewData<RespondQuerySubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo)
+                    {
+                        rows = new RespondQuerySubCompanyViewModel()
+                    };
+                    var subCompany = this.mSubCompanyDataAccess.GetsubcompanyDataModelById(request.data.ComId);
+                    if (subCompany == null) return respond;
+                    if (subCompany.deleted == 1 || subCompany.status != 0) return respond;
+                    respond = new RespondWebViewData<RespondQuerySubCompanyViewModel>
+                    {
+                        rows = new RespondQuerySubCompanyViewModel
+                        {
+                            ComId = subCompany.subcomid,
+                            Comment = subCompany.comment,
+                            Email = subCompany.email,
+                            LinkMan = subCompany.linkman,
+                            LinkTel = subCompany.linktel,
+                            Name = subCompany.name,
+                            PriceMode = subCompany.pricemode.ToString(),
+                            SerialNumber = subCompany.serialnumber,
+                            sort = subCompany.sort.ToString(),
+                            Spelling = subCompany.pinyin
+                        }
+                    };
+                    return respond;
+                },
+
+                #endregion
+            
+                ExpiresAt = DateTime.Now.AddMinutes(30),
+                ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
+                ParamsKeys = new object[]
+                {
+                    request.data.ComId
                 }
-            };
-            return respond;
+            });
         }
 
         public RespondWebViewData<RespondEditSubCompanyViewModel> EditSubCompany(RequestWebViewData<RequestEditSubCompanyViewModel> request)
@@ -226,6 +247,8 @@ namespace CPSS.Service.ViewService.Basic
                     parentid = company.parentid
                 };
                 this.mSubCompanyDataAccess.Update(data, tran);
+                MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+
                 var mongo_db_request = new RequestMongoDbViewModel
                 {
                     LogName = "编辑分公司资料",
@@ -251,7 +274,8 @@ namespace CPSS.Service.ViewService.Basic
             };
             var dataResult = this.mSubCompanyDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;
-            respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Success);
+            respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Success); 
+            MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
             var mongo_db_request = new RequestMongoDbViewModel
             {
                 LogName = "删除分公司资料",
@@ -277,6 +301,8 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mSubCompanyDataAccess.ReDelete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Success);
+            MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+
             var mongo_db_request = new RequestMongoDbViewModel
             {
                 LogName = "恢复删除分公司资料",

@@ -76,6 +76,10 @@ function getLodop(oOBJECT, oEMBED) {
 
     //===如下空白位置适合调用统一功能(如注册语句、语言选择等):===
     LODOP.SET_SHOW_MODE("NP_NO_RESULT", true);//设置NP插件无返回，这可避免chrome对弹窗超时误报崩溃
+    LODOP.SET_SHOW_MODE("SHOW_SCALEBAR", true);
+    LODOP.SET_SHOW_MODE("HIDE_ITEM_LIST", true);//设置对象列表默认处于关闭状态
+    LODOP.SET_SHOW_MODE("TEXT_SHOW_BORDER", 1); //设置字符编辑框默认为single
+
     //LODOP.SET_LICENSES("", "13528A153BAEE3A0254B9507DCDE2839", "", "");
     //===========================================================
 

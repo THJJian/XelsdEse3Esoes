@@ -143,8 +143,9 @@ namespace CPSS.Service.ViewService.User
                         UserIP = dataModel.userip
                     }
                 };
-            }, string.Format(preCacheKey, "GetOnlineSigninUserByUserID_g"), 
+            }, string.Format(preCacheKey, "GetOnlineSigninUserByUserID_g"),
             DateTime.Now.AddMinutes(WebConfigHelper.MemCachedExpTime()), 
+            false, 
             request.SGuid, 
             request.AddressIP);
         }
