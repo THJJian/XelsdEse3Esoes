@@ -44,14 +44,14 @@
                     <th field="LevelClassId" data-options="width:60, align:'center', formatter: function(val, row, index){return subCompany.cellFormatter(val, row, index);}"></th>
                     <th field="SerialNumber" width="80px;">编号</th>
                     <th field="Name" width="180px;">名称</th>
-                    <th field="Spelling" width="80px;">拼音</th>
+                    <th field="Spelling" class="notPrint" width="80px;">拼音</th>
                     <th field="PriceMode" width="60px;">价格方式</th>
-                    <th field="Email" width="150px;">Email</th>
+                    <th field="Email" class="notPrint" width="150px;">Email</th>
                     <th field="LinkMan" width="80px;">联系人</th>
                     <th field="LinkTel" width="90px;">联系电话</th>
-                    <th field="Status" width="60px;">状态</th>
+                    <th field="Status" class="notPrint" width="60px;">状态</th>
                     <th field="Comment" width="256px;">备注</th>
-                    <th field="sort" width="50px;">排序</th>
+                    <th field="sort" class="notPrint" width="50px;">排序</th>
                 </tr>
             </thead>
         </table>
@@ -65,50 +65,7 @@
         var subCompany;
         $(document.body)
             .ready(function () {
-                subCompany = CPSSLib.Page.subCompanyList.init(userId_g);
-                /*
-                var pg = $("#dvgDataGrid").datagrid("getPager");
-    
-                if (pg) {
-                    $(pg)
-                        .pagination({
-                            onSelectPage: function(pageIndex, pageSize) {
-                                var data = {
-                                    page: pageIndex,
-                                    rows: pageSize
-                                };
-                                CPSSLib.Utils.AjaxRequest.postData("/basic/getcompanylist",
-                                    data,
-                                    function(result) {
-                                        $("#dvgDataGrid").datagrid({ data: result });
-                                    });
-                            }
-                        });
-                }*/
-                //var columns = [
-                //    { field: 'comid', title: 'ComID', hidden: true },
-                //    { field: 'classid', title: 'ClassID', hidden: true },
-                //    { field: 'parentid', title: 'ParentID', hidden: true },
-                //    { field: 'serialnumber', title: '编号', width: 400, editor: "label", sortable: true },
-                //    { field: 'name', title: '名称', width: 400, editor: "text", sortable: true },
-                //    {
-                //        field: 'name',
-                //        title: 'Name',
-                //        width: 100,
-                //        editor: { type: "numberspinner", options: { precision: 2, increment: 0.5 } }, sortable: true
-                //    },
-                //    { field: 'price', title: 'Price', width: 350, align: 'right', readonly: true, sortable: true },
-                //    { field: "validdate", title: "Valid Date", width: 145, editor: { type: "datetimebox" }, sortable: true },
-                //    {
-                //        field: "status",
-                //        title: "Status",
-                //        width: 560,
-                //        align: "center",
-                //        editor: { type: "checkbox", options: { on: "√", off: "" } }, sortable: true
-                //    }
-                //];
-                //tableGrid = CPSSLib.UI.TableGrid.init("dvgDataGrid", true, columns, "code", 19);
-
+                subCompany = CPSSLib.Page.subCompanyList.init(userId_g, @MenuValueConstDefined.rtBasicCom);
             });
 
     </script>

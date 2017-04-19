@@ -11,6 +11,7 @@ namespace CPSS.Web.Controllers
     [HaveToLogin]
     public class CommonAjaxController : WebBaseController
     {
+
         #region 获取汉字首字母
 
         private string getSpelling(string cnChar)
@@ -59,6 +60,18 @@ namespace CPSS.Web.Controllers
                 rows = new RespondGetNameSpellingViewModel
                 {
                     Spelling = this.GetChineseSpelling(request.data.ChineseChar)
+                }
+            };
+            return Json(respond);
+        }
+
+        public JsonResult GetPrintDesignStyle(RequestWebViewData<RequestGetPrintDesignStyleViewModel> request)
+        {
+            var respond = new RespondWebViewData<RespondGetPrintDesignStyleViewModel>
+            {
+                rows = new RespondGetPrintDesignStyleViewModel
+                {
+                    PrintDesignStyle = string.Empty
                 }
             };
             return Json(respond);

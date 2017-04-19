@@ -479,6 +479,7 @@
     <Content Include="Scripts\Lodop\LodopFuncs.js" />
     <Content Include="Scripts\Main\MainHelper.js" />
     <Content Include="Scripts\controlshelper.js" />
+    <Content Include="Scripts\printer.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

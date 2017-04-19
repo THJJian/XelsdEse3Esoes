@@ -77,9 +77,14 @@
             return $("#" + ctrlId).combobox("getValue");
         }
 
+        var fn_getText = function(ctrlId) {
+            return $("#" + ctrlId).combobox("getText");
+        }
+
         return {
             setValue: fn_setValue,
-            getValue: fn_getValue
+            getValue: fn_getValue,
+            getText: fn_getText
         }
     })();
 
