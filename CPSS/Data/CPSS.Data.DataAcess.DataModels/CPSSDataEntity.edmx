@@ -43,9 +43,9 @@
           <Property Name="name" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="pinyin" Type="varchar" MaxLength="80" />
           <Property Name="status" Type="int" Nullable="false" />
+          <Property Name="deleted" Type="smallint" />
           <Property Name="sort" Type="int" Nullable="false" />
           <Property Name="comment" Type="varchar" MaxLength="50" />
-          <Property Name="modifydDate" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="employee">
           <Key>
@@ -219,8 +219,8 @@
           <EntitySet Name="storage" EntityType="CPSS.Data.DataAccess.DataModels.storage" />
           <EntitySet Name="unit" EntityType="CPSS.Data.DataAccess.DataModels.unit" />
           <EntitySet Name="snstorage" EntityType="CPSS.Data.DataAccess.DataModels.snstorage" />
-          <EntitySet Name="department" EntityType="CPSS.Data.DataAccess.DataModels.department" />
           <EntitySet Name="subcompany" EntityType="CPSS.Data.DataAccess.DataModels.subcompany" />
+          <EntitySet Name="department" EntityType="CPSS.Data.DataAccess.DataModels.department" />
         </EntityContainer>
         <EntityType Name="client">
           <Key>
@@ -359,23 +359,6 @@
           <Property Name="validdate" Type="DateTime" Precision="3" />
           <Property Name="modifydate" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
-        <EntityType Name="department">
-          <Key>
-            <PropertyRef Name="depid" />
-          </Key>
-          <Property Name="depid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="classid" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="parentid" Type="String" MaxLength="54" FixedLength="false" Unicode="false" />
-          <Property Name="childnumber" Type="Int32" Nullable="false" />
-          <Property Name="childcount" Type="Int32" Nullable="false" />
-          <Property Name="serialnumber" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="pinyin" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="status" Type="Int32" Nullable="false" />
-          <Property Name="sort" Type="Int32" Nullable="false" />
-          <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="modifydDate" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-        </EntityType>
         <EntityType Name="subcompany">
           <Key>
             <PropertyRef Name="subcomid" />
@@ -395,6 +378,23 @@
           <Property Name="comment" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="sort" Type="Int32" Nullable="false" />
           <Property Name="deleted" Type="Int16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="department">
+          <Key>
+            <PropertyRef Name="depid" />
+          </Key>
+          <Property Name="depid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="classid" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="parentid" Type="String" MaxLength="54" FixedLength="false" Unicode="false" />
+          <Property Name="childnumber" Type="Int32" Nullable="false" />
+          <Property Name="childcount" Type="Int32" Nullable="false" />
+          <Property Name="serialnumber" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="pinyin" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int32" Nullable="false" />
+          <Property Name="deleted" Type="Int16" />
+          <Property Name="sort" Type="Int32" Nullable="false" />
+          <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -536,24 +536,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="department">
-            <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.department">
-              <MappingFragment StoreEntitySet="department">
-                <ScalarProperty Name="modifydDate" ColumnName="modifydDate" />
-                <ScalarProperty Name="comment" ColumnName="comment" />
-                <ScalarProperty Name="sort" ColumnName="sort" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="pinyin" ColumnName="pinyin" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="serialnumber" ColumnName="serialnumber" />
-                <ScalarProperty Name="childcount" ColumnName="childcount" />
-                <ScalarProperty Name="childnumber" ColumnName="childnumber" />
-                <ScalarProperty Name="parentid" ColumnName="parentid" />
-                <ScalarProperty Name="classid" ColumnName="classid" />
-                <ScalarProperty Name="depid" ColumnName="depid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="subcompany">
             <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.subcompany">
               <MappingFragment StoreEntitySet="subcompany">
@@ -572,6 +554,24 @@
                 <ScalarProperty Name="parentid" ColumnName="parentid" />
                 <ScalarProperty Name="classid" ColumnName="classid" />
                 <ScalarProperty Name="subcomid" ColumnName="subcomid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="department">
+            <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.department">
+              <MappingFragment StoreEntitySet="department">
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="pinyin" ColumnName="pinyin" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="serialnumber" ColumnName="serialnumber" />
+                <ScalarProperty Name="childcount" ColumnName="childcount" />
+                <ScalarProperty Name="childnumber" ColumnName="childnumber" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="classid" ColumnName="classid" />
+                <ScalarProperty Name="depid" ColumnName="depid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

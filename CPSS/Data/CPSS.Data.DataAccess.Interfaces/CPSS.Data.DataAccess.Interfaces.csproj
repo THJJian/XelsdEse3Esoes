@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic\IdepartmentDataAccess.cs" />
     <Compile Include="Basic\IsubcompanyDataAccess.cs" />
     <Compile Include="Basic\Parameters\DeleteSubCompanyParameter.cs" />
     <Compile Include="Basic\Parameters\QuerySubCompanyListParameter.cs" />

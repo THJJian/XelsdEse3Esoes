@@ -11,8 +11,8 @@
         <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.storage" Width="1.5" PointX="5.875" PointY="4.5" />
         <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.unit" Width="1.5" PointX="7.5" PointY="1.125" />
         <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.snstorage" Width="1.5" PointX="9.375" PointY="1" />
-        <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.department" Width="1.5" PointX="5.75" PointY="0.875" />
         <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.subcompany" Width="1.5" PointX="9.375" PointY="4.75" />
+        <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.department" Width="1.5" PointX="5.75" PointY="1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -32,7 +32,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public departmentDataModel GetdepartmentDataModelById(int depid)
 		{
-			this.ExecuteSQL = @"SELECT depid,classid,parentid,childnumber,childcount,serialnumber,name,pinyin,status,sort,comment,modifydDate From department  WHERE  depid = @depid ";
+			this.ExecuteSQL = @"SELECT depid,classid,parentid,childnumber,childcount,serialnumber,name,pinyin,status,deleted,sort,comment From department  WHERE  depid = @depid ";
 			this.DataParameter = new DbParameter[]
 			{
 				new SqlParameter("@depid", depid),
@@ -45,7 +45,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Add(departmentDataModel data, IDbTransaction tansaction)
 	    {
-            this.ExecuteSQL = @"INSERT INTO [department] ([classid],[parentid],[childnumber],[childcount],[serialnumber],[name],[pinyin],[status],[sort],[comment],[modifydDate]) VALUES (@classid,@parentid,@childnumber,@childcount,@serialnumber,@name,@pinyin,@status,@sort,@comment,@modifydDate) 
+            this.ExecuteSQL = @"INSERT INTO [department] ([classid],[parentid],[childnumber],[childcount],[serialnumber],[name],[pinyin],[status],[deleted],[sort],[comment]) VALUES (@classid,@parentid,@childnumber,@childcount,@serialnumber,@name,@pinyin,@status,@deleted,@sort,@comment) 
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
@@ -57,9 +57,9 @@ namespace CPSS.Data.DataAccess
                 new SqlParameter("@name", data.name),
                 new SqlParameter("@pinyin", data.pinyin),
                 new SqlParameter("@status", data.status),
+                new SqlParameter("@deleted", data.deleted),
                 new SqlParameter("@sort", data.sort),
                 new SqlParameter("@comment", data.comment),
-                new SqlParameter("@modifydDate", data.modifydDate),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -77,7 +77,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Update(departmentDataModel data, IDbTransaction tansaction)
 	    {
-			this.ExecuteSQL = @"UPDATE department SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [status] = @status, [sort] = @sort, [comment] = @comment, [modifydDate] = @modifydDate WHERE  [depid] = @depid ";
+			this.ExecuteSQL = @"UPDATE department SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [status] = @status, [deleted] = @deleted, [sort] = @sort, [comment] = @comment WHERE  [depid] = @depid ";
 			this.DataParameter = new DbParameter[]
             {
                 new SqlParameter("@depid", data.depid),
@@ -89,9 +89,9 @@ namespace CPSS.Data.DataAccess
                 new SqlParameter("@name", data.name),
                 new SqlParameter("@pinyin", data.pinyin),
                 new SqlParameter("@status", data.status),
+                new SqlParameter("@deleted", data.deleted),
                 new SqlParameter("@sort", data.sort),
                 new SqlParameter("@comment", data.comment),
-                new SqlParameter("@modifydDate", data.modifydDate),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }
