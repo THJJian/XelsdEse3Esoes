@@ -25,7 +25,7 @@
         @UIHelper.textBox("txtEmail", "Email", _tabIndex: 5, _buttonText: string.Empty)
         @UIHelper.textBox("txtLinkMan", "联系人", _tabIndex: 6, _buttonText: string.Empty)
         @UIHelper.textBox("txtLinkTel", "联系电话", _tabIndex: 7, _buttonText: string.Empty)
-        @UIHelper.dropDownList("ddlStatus", "状态", new List<DropDownOption> {new DropDownOption {Text = "正常", Value = "0"}, new DropDownOption {Text = "删除", Value = "1"}}, _tabIndex: 8, _defaultValue: "0", _selectPanelHeight: 45)
+        @UIHelper.dropDownList("ddlStatus", "状态", new List<DropDownOption> {new DropDownOption {Text = "正常", Value = "0"}}, _tabIndex: 8, _defaultValue: "0", _selectPanelHeight: 45)
     </div>
     <div class="easyui-panel" data-options="border: false" style="padding-right: 20px; text-align: right;">
         @UIHelper.linkButton("查  询", "btnSearch")

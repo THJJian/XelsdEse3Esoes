@@ -62,7 +62,8 @@ namespace CPSS.Service.ViewService.Basic
                                 PriceMode = request.data.PriceMode,
                                 SerialNumber = request.data.SerialNumber,
                                 Spelling = request.data.Spelling,
-                                Status = request.data.Status
+                                Status = request.data.Status,
+                                Deleted = request.data.Deleted
                             };
                             var pageDataList = this.mSubCompanyDataAccess.GetQuerySubCompanyList(parameter);
                             var respond = new RespondWebViewData<List<RespondQuerySubCompanyViewModel>>
@@ -106,7 +107,8 @@ namespace CPSS.Service.ViewService.Basic
                             request.data.PriceMode,
                             request.data.SerialNumber,
                             request.data.Spelling,
-                            request.data.Status
+                            request.data.Status,
+                            request.data.Deleted
                         }
                     });
         }

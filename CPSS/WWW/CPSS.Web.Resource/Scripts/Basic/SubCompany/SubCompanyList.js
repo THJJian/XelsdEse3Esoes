@@ -35,41 +35,6 @@
                 });
         }
 
-        var fn_init_grid = function() {
-            self.grid = $("#dvgDataGrid");
-            self.grid.datagrid({
-                rownumbers: true,
-                singleSelect: true,
-                pagination: true,
-                url: "/basic/getcompanylist",
-                method: "post",
-                pageSize: 10,
-                pageList: [10, 20, 30, 50],
-                queryParams: {
-                    reload: self.reload,
-                    data: {
-                        ParentId: ($("#txtParentId").val() === null || $("#txtParentId").val() === "") ? "000001" : $("#txtParentId").val()
-                    }
-                },
-                rowStyler: function(index, row) {
-                    if (row.Deleted === 1) return "color: #FF0000;";
-                    return "";
-                },
-                onLoadSuccess: function(data) {
-                    $("#txtParentId").val(data.parentId);
-                    self.reload = 0;
-                    self.grid.datagrid("options").queryParams.reload = self.reload;
-                },
-                onDblClickRow: function(index, row) {
-                    fn_level(row.ClassId);
-                }
-            });
-            var paging = self.grid.datagrid("getPager");
-            paging.pagination({
-                showRefresh: false
-            });
-        };
-
         var fn_check_select_row = function(selectRow) {
             if (selectRow === null || !selectRow) return false;
             return true;
@@ -162,6 +127,45 @@
                 self.printer.design();
                 break;
             }
+        };
+
+
+        var fn_init_grid = function () {
+            self.grid = $("#dvgDataGrid");
+            self.grid.datagrid({
+                rownumbers: true,
+                singleSelect: true,
+                pagination: true,
+                url: "/basic/getcompanylist",
+                method: "post",
+                pageSize: 10,
+                pageList: [10, 20, 30, 50],
+                queryParams: {
+                    reload: self.reload,
+                    data: {
+                        ParentId: ($("#txtParentId").val() === null || $("#txtParentId").val() === "") ? "000001" : $("#txtParentId").val()
+                    }
+                },
+                rowStyler: function (index, row) {
+                    if (row.Deleted === 1) return "color: #FF0000;";
+                    return "";
+                },
+                onLoadSuccess: function (data) {
+                    $("#txtParentId").val(data.parentId);
+                    self.reload = 0;
+                    self.grid.datagrid("options").queryParams.reload = self.reload;
+                },
+                onDblClickRow: function (index, row) {
+                    if (row.ChildNumber > 0)
+                        fn_level(row.ClassId);
+                    else
+                        fn_button_click($("#rtBasicCom_TB_Edit"));
+                }
+            });
+            var paging = self.grid.datagrid("getPager");
+            paging.pagination({
+                showRefresh: false
+            });
         };
 
         var fn_init = function(userId_g, menuId) {

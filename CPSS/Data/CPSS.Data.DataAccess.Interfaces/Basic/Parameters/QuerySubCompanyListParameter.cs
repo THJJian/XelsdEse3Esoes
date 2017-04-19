@@ -26,5 +26,7 @@ namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters
         public string LinkTel { set; get; }
 
         public int Status { set; get; }
+
+        public short Deleted { get; set; }
     }
 }
