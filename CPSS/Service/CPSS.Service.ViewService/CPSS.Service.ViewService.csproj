@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic\DepartmentViewService.cs" />
     <Compile Include="Basic\SubCompanyViewService.cs" />
     <Compile Include="HeadButtons\HeadButtonsViewService.cs" />
     <Compile Include="MainPage\LeftNavMenuViewService.cs" />

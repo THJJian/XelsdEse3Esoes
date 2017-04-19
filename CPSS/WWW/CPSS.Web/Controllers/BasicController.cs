@@ -4,6 +4,7 @@ using CPSS.Common.Core.Mvc;
 using CPSS.Common.Core.Mvc.Filters;
 using CPSS.Common.Core.Type.ConstDefined;
 using CPSS.Service.ViewService.Interfaces.Basic;
+using CPSS.Service.ViewService.ViewModels.Department.Request;
 using CPSS.Service.ViewService.ViewModels.SubCompany.Request;
 using CPSS.Web.Controllers.Filters;
 
@@ -107,20 +108,61 @@ namespace CPSS.Web.Controllers
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicDep)]
         public ActionResult DepartmentList()
         {
-            return View();
+            return View("~/views/basic/department/departmentlist.cshtml");
         }
 
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicDep_TB_Add)]
         public ActionResult AddDepartment()
         {
-            return View();
+            return View("~/views/basic/department/adddepartment.cshtml");
         }
 
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicDep_TB_Edit)]
         public ActionResult EditDepartment()
         {
-            return View();
+            return View("~/views/basic/department/editdepartment.cshtml");
         }
+
+        #region Ajax操作方法
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicDep)]
+        [HttpPost]
+        public JsonResult GetDepartmentList(RequestWebViewData<RequestQueryDepartmentViewModel> request)
+        {
+            if (string.IsNullOrEmpty(request.data.ParentId)) request.data.ParentId = "000001";
+
+            return Json(new object());
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Add)]
+        [HttpPost]
+        public JsonResult AddDepartment(RequestWebViewData<RequestAddDepartmentViewModel> request)
+        {
+            return Json(new object());
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Edit)]
+        [HttpPost]
+        public JsonResult EditDepartment(RequestWebViewData<RequestEditDepartmentViewModel> request)
+        {
+            return Json(new object());
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Delete)]
+        [HttpPost]
+        public JsonResult DeleteDepartment(RequestWebViewData<RequestDeleteDepartmentViewModel> request)
+        {
+            return Json(new object());
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Resume)]
+        [HttpPost]
+        public JsonResult ReDeleteDepartment(RequestWebViewData<RequestDeleteDepartmentViewModel> request)
+        {
+            return Json(new object());
+        }
+
+        #endregion
 
         #endregion
     }

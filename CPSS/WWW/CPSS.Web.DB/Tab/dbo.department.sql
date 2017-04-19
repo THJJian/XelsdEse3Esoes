@@ -15,6 +15,7 @@ CREATE TABLE [dbo].[department](
 	[name] VARCHAR(80) NOT NULL,
 	[pinyin] VARCHAR(80) NULL DEFAULT (''),
 	[status] INT NOT NULL,
+	[deleted] SMALLINT NULL DEFAULT(0),
 	[sort] INT NOT NULL,
 	[comment] VARCHAR(50) NULL DEFAULT (''),
 	[modifydDate] TIMESTAMP NOT NULL,

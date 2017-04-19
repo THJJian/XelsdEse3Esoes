@@ -45,6 +45,15 @@
     <Compile Include="Common\Request\RequestGetPrintDesignStyleViewModel.cs" />
     <Compile Include="Common\Respond\RespondGetNameSpellingViewModel.cs" />
     <Compile Include="Common\Respond\RespondGetPrintDesignStyleViewModel.cs" />
+    <Compile Include="Department\Request\RequestAddDepartmentViewModel.cs" />
+    <Compile Include="Department\Request\RequestDeleteDepartmentViewModel.cs" />
+    <Compile Include="Department\Request\RequestEditDepartmentViewModel.cs" />
+    <Compile Include="Department\Request\RequestGetDepartmentByIdViewModel.cs" />
+    <Compile Include="Department\Request\RequestQueryDepartmentViewModel.cs" />
+    <Compile Include="Department\Respond\RespondAddDepartmentViewModel.cs" />
+    <Compile Include="Department\Respond\RespondDeleteDepartmentViewModel.cs" />
+    <Compile Include="Department\Respond\RespondEditDepartmentViewModel.cs" />
+    <Compile Include="Department\Respond\RespondQueryDepartmentViewModel.cs" />
     <Compile Include="SubCompany\Request\RequestAddSubCompanyViewModel.cs" />
     <Compile Include="SubCompany\Request\RequestDeleteSubCompanyViewModel.cs" />
     <Compile Include="SubCompany\Request\RequestEditSubCompanyViewModel.cs" />

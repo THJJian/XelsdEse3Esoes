@@ -161,6 +161,9 @@
     <Content Include="Views\Basic\SubCompany\AddCompany.cshtml" />
     <Content Include="Views\Basic\SubCompany\CompanyList.cshtml" />
     <Content Include="Views\Basic\SubCompany\EditCompany.cshtml" />
+    <Content Include="Views\Basic\Department\DepartmentList.cshtml" />
+    <Content Include="Views\Basic\Department\AddDepartment.cshtml" />
+    <Content Include="Views\Basic\Department\EditDepartment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
