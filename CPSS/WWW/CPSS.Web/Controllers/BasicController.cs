@@ -31,13 +31,13 @@ namespace CPSS.Web.Controllers
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom)]
         public ActionResult CompanyList()
         {
-            return View();
+            return View("~/Views/Basic/SubCompany/CompanyList.cshtml");
         }
 
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Add)]
         public ActionResult AddCompany()
         {
-            return View();
+            return View("~/views/basic/subcompany/addcompany.cshtml");
         }
 
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Edit)]
@@ -52,7 +52,7 @@ namespace CPSS.Web.Controllers
                 }
             };
             var model = this.mSubCompanyViewService.GetSubCompanyByComId(request);
-            return View(model);
+            return View("~/views/basic/subcompany/editcompany.cshtml", model);
         }
 
         #region ajax操作方法
@@ -99,6 +99,28 @@ namespace CPSS.Web.Controllers
             return Json(respond);
         }
         #endregion
+
+        #endregion
+
+        #region 部门资料
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicDep)]
+        public ActionResult DepartmentList()
+        {
+            return View();
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicDep_TB_Add)]
+        public ActionResult AddDepartment()
+        {
+            return View();
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicDep_TB_Edit)]
+        public ActionResult EditDepartment()
+        {
+            return View();
+        }
 
         #endregion
     }

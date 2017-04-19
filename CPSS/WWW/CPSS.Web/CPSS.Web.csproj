@@ -158,9 +158,9 @@
     <Content Include="Views\VerifyCodeImage\Index.cshtml" />
     <Content Include="Views\Buy\BuyOrder.cshtml" />
     <Content Include="config\mongodbconfig.config" />
-    <Content Include="Views\Basic\CompanyList.cshtml" />
-    <Content Include="Views\Basic\AddCompany.cshtml" />
-    <Content Include="Views\Basic\EditCompany.cshtml" />
+    <Content Include="Views\Basic\SubCompany\AddCompany.cshtml" />
+    <Content Include="Views\Basic\SubCompany\CompanyList.cshtml" />
+    <Content Include="Views\Basic\SubCompany\EditCompany.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
