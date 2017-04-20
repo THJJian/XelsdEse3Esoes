@@ -26,7 +26,7 @@ namespace CPSS.Data.DataAccess
                 , parameter.Status
                 , parameter.PriceMode == 0 ? "1,2,3" : parameter.PriceMode.ToString()
                 , parameter.Deleted == 1 ? "AND deleted=0" : string.Empty);
-            return this.ExecuteReadSqlTosubcompanyDataModelPageData("subcomid", parameter.PageIndex, parameter.PageSize, "[sort] ASC");
+            return this.ExecuteReadSqlTosubcompanyDataModelPageData("subcomid", parameter.PageIndex, parameter.PageSize, "classid ASC, [sort] DESC");
         }
 
         public List<subcompanyDataModel> GetSubCompanyListByParentID(QuerySubCompanyListParameter parameter)

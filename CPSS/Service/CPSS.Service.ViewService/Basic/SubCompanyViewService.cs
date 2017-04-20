@@ -142,8 +142,8 @@ namespace CPSS.Service.ViewService.Basic
                     pricemode = rData.PriceMode,
                     serialnumber = rData.SerialNumber,
                     sort = rData.Sort,
-                    status = 0,
-                    deleted = 0
+                    status = 1,
+                    deleted = 1
                 };
                 var addResult = this.mSubCompanyDataAccess.Add(data, tran);
                 if (addResult > 0) this.mSubCompanyDataAccess.UpdateChildNumberByClassId(tran, parameter);

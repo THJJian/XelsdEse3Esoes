@@ -16,9 +16,9 @@ CREATE TABLE [dbo].[storage](
 	[PinYin] VARCHAR(80) NULL DEFAULT(''),
 	[alias] VARCHAR(30) NULL DEFAULT(''),
 	[status] SMALLINT NOT NULL,
-	[sort] INT NOT NULL,
+	[deleted] SMALLINT NULL DEFAULT(0),
 	[comment] VARCHAR(256) NULL DEFAULT(''),
-	[modifydate] TIMESTAMP NOT NULL,
+	[sort] INT NOT NULL,
  CONSTRAINT [PK_storage_stoid] PRIMARY KEY CLUSTERED 
 (
 	[stoid] ASC

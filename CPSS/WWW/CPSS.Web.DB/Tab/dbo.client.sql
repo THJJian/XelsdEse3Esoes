@@ -24,8 +24,8 @@ CREATE TABLE [dbo].[client](
 	[pricemode] SMALLINT NULL DEFAULT(0),
 	[comment] VARCHAR(256) NULL DEFAULT(''),
 	[status] INT NULL DEFAULT(0),
+	[deleted] SMALLINT NULL DEFAULT(0),
 	[sort] INT NULL DEFAULT(0),
-	[modifydate] TIMESTAMP NULL
  CONSTRAINT [PK_client_clientid] PRIMARY KEY CLUSTERED 
 (
 	[clientid] ASC

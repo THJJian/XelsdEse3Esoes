@@ -4,5 +4,13 @@
     {
 
         public string ParentId { get; set; }
+
+        public string SerialNumber { get; set; }
+
+        public short Deleted { get; set; }
+
+        public string Name { get; set; }
+
+        public short Status { get; set; }
     }
 }

@@ -30,9 +30,9 @@ CREATE TABLE [dbo].[product](
 	[costmethod] SMALLINT NULL DEFAULT(0),
 	[snmanage] INT NOT NULL,
 	[snlength] SMALLINT NOT NULL,
+	[deleted] SMALLINT NULL DEFAULT(0),
 	[sort] INT NOT NULL,
 	[comment] VARCHAR(256) NULL DEFAULT(''),
-	[ModifyDate] [timestamp] NULL,
  CONSTRAINT [PK_products_proid] PRIMARY KEY CLUSTERED 
 (
 	[proid] ASC

@@ -19,6 +19,6 @@ CREATE TABLE [dbo].[snstorage](
 	[ctime] DATETIME NOT NULL,
 	[makedate] DATETIME NULL,
 	[validdate] DATETIME NULL,
-	[modifydate] TIMESTAMP NULL
+	[deleted] SMALLINT NULL DEFAULT(0)
 ) ON [PRIMARY]
 GO

@@ -12,40 +12,40 @@ namespace CPSS.Service.ViewService.Interfaces.Basic
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondWebViewData<List<RespondQueryDepartmentViewModel>> GetQueryCompanyList(RequestWebViewData<RequestQueryDepartmentViewModel> request);
+        RespondWebViewData<List<RespondQueryDepartmentViewModel>> GetQueryDepartmentList(RequestWebViewData<RequestQueryDepartmentViewModel> request);
 
         /// <summary>
         /// 新增部门信息
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondWebViewData<RespondAddDepartmentViewModel> AddSubCompany(RequestWebViewData<RequestAddDepartmentViewModel> request);
+        RespondWebViewData<RespondAddDepartmentViewModel> AddDepartment(RequestWebViewData<RequestAddDepartmentViewModel> request);
 
         /// <summary>
         /// 根据depid查询对应行部门信息
         /// </summary>
         /// <returns></returns>
-        RespondWebViewData<RespondQueryDepartmentViewModel> GetSubCompanyByComId(RequestWebViewData<RequestGetDepartmentByIdViewModel> request);
+        RespondWebViewData<RespondQueryDepartmentViewModel> GetDepartmentByComId(RequestWebViewData<RequestGetDepartmentByIdViewModel> request);
 
         /// <summary>
         /// 修改部门资料
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondWebViewData<RequestEditDepartmentViewModel> EditSubCompany(RequestWebViewData<RequestEditDepartmentViewModel> request);
+        RespondWebViewData<RequestEditDepartmentViewModel> EditDepartment(RequestWebViewData<RequestEditDepartmentViewModel> request);
         
         /// <summary>
         /// 删除部门资料(逻辑删除)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondWebViewData<RespondDeleteDepartmentViewModel> DeleteSubCompany(RequestWebViewData<RequestDeleteDepartmentViewModel> request);
+        RespondWebViewData<RespondDeleteDepartmentViewModel> DeleteDepartment(RequestWebViewData<RequestDeleteDepartmentViewModel> request);
 
         /// <summary>
         /// 恢复删除部门资料
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondWebViewData<RespondDeleteDepartmentViewModel> ReDeleteSubCompany(RequestWebViewData<RequestDeleteDepartmentViewModel> request);
+        RespondWebViewData<RespondDeleteDepartmentViewModel> ReDeleteDepartment(RequestWebViewData<RequestDeleteDepartmentViewModel> request);
     }
 }

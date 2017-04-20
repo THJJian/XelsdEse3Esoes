@@ -22,9 +22,9 @@ CREATE TABLE [dbo].[employee](
 	[status] SMALLINT NULL DEFAULT(0),
 	[mobile] VARCHAR(60) NULL DEFAULT(''),
 	[address] VARCHAR(66) NULL DEFAULT(''),
+	[deleted] SMALLINT NULL DEFAULT(0),
 	[sort] INT NULL DEFAULT(0),
 	[comment] VARCHAR(256) NULL DEFAULT(''),
-	[ModifyDate] TIMESTAMP NULL,
  CONSTRAINT [PK_employees] PRIMARY KEY CLUSTERED 
 (
 	[empid] ASC

@@ -15,10 +15,10 @@ CREATE TABLE [dbo].[user](
 	[prefix] VARCHAR(3) NULL,
 	[manager] BIT NOT NULL,
 	[status] SMALLINT NOT NULL,
+	[deleted] smallint null default(0),
 	[loginstime] DATETIME NOT NULL,
 	[loginetime] DATETIME NOT NULL,
 	[sort] INT NULL DEFAULT(0),
-	[modifydate] TIMESTAMP NOT NULL,
  CONSTRAINT [PK_sys_user_userid] PRIMARY KEY CLUSTERED 
 (
 	[userid] ASC

@@ -9,8 +9,8 @@ CREATE TABLE [dbo].[unit](
 	[unitid] INT IDENTITY(1,1) NOT NULL,
 	[name] VARCHAR(10) NOT NULL,
 	[status] SMALLINT NOT NULL,
+	[deleted] SMALLINT NULL DEFAULT(0),
 	[sort] INT NULL DEFAULT(0),
-	[modifydate] TIMESTAMP NOT NULL,
  CONSTRAINT [PK_unit_unitid] PRIMARY KEY CLUSTERED 
 (
 	[unitid] ASC
