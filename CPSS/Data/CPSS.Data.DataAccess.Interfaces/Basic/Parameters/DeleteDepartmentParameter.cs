@@ -4,5 +4,7 @@
     {
 
         public int depid { get; set; }
+
+        public short Deleted { set; get; }
     }
 }

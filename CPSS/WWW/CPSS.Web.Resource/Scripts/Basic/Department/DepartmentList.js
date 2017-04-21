@@ -1,17 +1,17 @@
 ﻿;
 (function(ns) {
-    CPSSLib.RegNameSpace(ns).subCompanyList = (function() {
+    CPSSLib.RegNameSpace(ns).departmentList = (function () {
         var self;
 
-        //此方法的subCompany.level("****")中的subCompany是页面上定义的此JS自己的引用
+        //此方法的department.level("****")中的department是页面上定义的此JS自己的引用
         function fn_cellFormatter(val, row, index) {
             var html = "";
             if (row.ParentId.length >= 12) {
                 var classId = row.ParentId.substr(0, row.ParentId.length - 6);
-                html = "<a href=\"javascript:void(0);\" onclick=\"subCompany.level('" + classId + "')\" style=\"text-decoration:none;\">←</a>";
+                html = "<a href=\"javascript:void(0);\" onclick=\"department.level('" + classId + "')\" style=\"text-decoration:none;\">←</a>";
             }
             if (row.ChildNumber > 0)
-                html += "<a href=\"javascript:void(0);\" onclick=\"subCompany.level('" + row.ClassId + "')\" style=\"text-decoration:none;\">→</a>";
+                html += "<a href=\"javascript:void(0);\" onclick=\"department.level('" + row.ClassId + "')\" style=\"text-decoration:none;\">→</a>";
             return html;
         }
 
@@ -43,8 +43,8 @@
         var fn_postData = function(flag) {
             if (self.isDeletedButtonClick) return;
             self.isDeletedButtonClick = true;
-            var msg = "请选择需要删除的分公司",
-                url = "/basic/deletecompany",
+            var msg = "请选择需要删除的部门",
+                url = "/basic/deletedepartment",
                 selectRow = self.grid.datagrid("getSelected");
             if (flag === 0) {
                 if (selectRow.ChildNumber > 0) {
@@ -52,12 +52,12 @@
                     return;
                 }
             } else {
-                if (selectRow.Deleted === 1) {
+                if (selectRow.Deleted === 0) {
                     _msgbox.error("该节点未被删除，不需要恢复删除。");
                     return;
                 }
-                url = ["/basic/redeletecompany"].join("");
-                msg = "请选择需要恢复删除的分公司";
+                url = ["/basic/redeletedepartment"].join("");
+                msg = "请选择需要恢复删除的部门";
             }
 
             if (!fn_check_select_row(selectRow)) {
@@ -66,7 +66,7 @@
             }
             var data = {
                 data: {
-                    ComId: selectRow.ComId
+                    DepId: selectRow.DepId
                 }
             };
             CPSSLib.Utils.AjaxRequest.postData(url,
@@ -87,43 +87,43 @@
             var id = $(sender).attr("id");
             var selectRow, url;
             switch (id) {
-            case "rtBasicCom_TB_Add":
+            case "rtBasicDep_TB_Add":
                 var parentId = $("#txtParentId").val();
-                url = ["/basic/addcompany?userid=", userId_g, "&parentid=", parentId].join("");
-                _window.open("add_company", "新增公司信息", 600, 550, url);
+                url = ["/basic/adddepartment?userid=", userId_g, "&parentid=", parentId].join("");
+                _window.open("add_department", "新增部门资料", 600, 550, url);
                 break;
-            case "rtBasicCom_TB_Edit":
+            case "rtBasicDep_TB_Edit":
                 selectRow = self.grid.datagrid("getSelected");
                 if (!fn_check_select_row(selectRow)) {
-                    _msgbox.alert("请选择需要修改的分公司");
+                    _msgbox.alert("请选择需要修改的部门");
                     return;
                 }
-                if (selectRow.Deleted === 2) {
-                    _msgbox.alert("删除状态的分公司不允许修改");
+                if (selectRow.Deleted === 1) {
+                    _msgbox.alert("删除状态的部门不允许修改");
                     return;
                 }
-                url = ["/basic/editcompany?userid=", userId_g, "&comid=", selectRow.ComId].join("");
-                _window.open("edit_company", "修改分公司信息", 600, 550, url);
+                url = ["/basic/editdepartment?userid=", userId_g, "&depid=", selectRow.ComId].join("");
+                _window.open("edit_cdepartment", "修改部门资料", 600, 550, url);
                 break;
-            case "rtBasicCom_TB_Delete":
+            case "rtBasicDep_TB_Delete":
                 fn_postData(0);
                 break;
-            case "rtBasicCom_TB_Resume":
+            case "rtBasicDep_TB_Resume":
                 fn_postData(1);
                 break;
-            case "rtBasicCom_TB_Class":
+            case "rtBasicDep_TB_Class":
                 selectRow = self.grid.datagrid("getSelected");
                 if (!fn_check_select_row(selectRow)) {
-                    _msgbox.success("请选择分公司再进行新增下级操作");
+                    _msgbox.success("请选择部门再进行新增下级操作");
                     return;
                 }
                 url = ["/basic/addcompany?userid=", userId_g, "&parentid=", selectRow.ClassId].join("");
-                _window.open("add_company", "新增子级分公司信息", 600, 550, url);
+                _window.open("add_company", "新增子级部门资料", 600, 550, url);
                 break;
-            case "rtBasicCom_TB_Preview":
+            case "rtBasicDep_TB_Preview":
                 self.printer.preview();
                 break;
-            case "rtBasicCom_TB_Design":
+            case "rtBasicDep_TB_Design":
                 self.printer.design();
                 break;
             }
@@ -136,7 +136,7 @@
                 rownumbers: true,
                 singleSelect: true,
                 pagination: true,
-                url: "/basic/getcompanylist",
+                url: "/basic/getdepartmentList",
                 method: "post",
                 pageSize: 10,
                 pageList: [10, 20, 30, 50],
@@ -159,7 +159,7 @@
                     if (row.ChildNumber > 0)
                         fn_level(row.ClassId);
                     else
-                        fn_button_click($("#rtBasicCom_TB_Edit"));
+                        fn_button_click($("#rtBasicDep_TB_Edit"));
                 }
             });
             var paging = self.grid.datagrid("getPager");
@@ -175,7 +175,7 @@
             fn_init_grid();
 
             self.printer = CPSSLib.Print.printer.init({
-                pageName: "分公司资料",
+                pageName: "部门资料",
                 menuId: menuId,//暂时不使用，主要用户自定义打印样式
                 billHead: [
                     { title: "编号", type: "text", id: "txtSerialNumber", labelWidth: 70 },

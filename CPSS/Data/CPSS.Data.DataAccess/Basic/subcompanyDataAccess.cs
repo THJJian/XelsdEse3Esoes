@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using CPSS.Common.Core.Paging;
+using CPSS.Common.Core.Type.EnumType;
 using CPSS.Data.DataAccess.Interfaces.Basic.Parameters;
 using CPSS.Data.DataAcess.DataModels;
 
@@ -13,9 +14,9 @@ namespace CPSS.Data.DataAccess
         {
             var isSearch = !(string.IsNullOrEmpty(parameter.Email) && string.IsNullOrEmpty(parameter.LinkMan) && string.IsNullOrEmpty(parameter.LinkTel)
                 && string.IsNullOrEmpty(parameter.Name) && string.IsNullOrEmpty(parameter.SerialNumber) && string.IsNullOrEmpty(parameter.Spelling)
-                && parameter.PriceMode == 0);
+                && parameter.PriceMode == 0 && parameter.Status == (short)CommonStatus.Default);
 
-            this.ExecuteSQL = string.Format("SELECT * FROM dbo.subcompany WHERE {0} serialnumber LIKE '%{1}%' AND name LIKE '%{2}%' AND pinyin LIKE '%{3}%' AND email LIKE '%{4}%' AND linkman LIKE '%{5}%' AND linktel LIKE '%{6}%' AND [status]={7} AND pricemode in({8}) {9}"
+            this.ExecuteSQL = string.Format("SELECT * FROM dbo.subcompany WHERE {0} serialnumber LIKE '%{1}%' AND name LIKE '%{2}%' AND pinyin LIKE '%{3}%' AND email LIKE '%{4}%' AND linkman LIKE '%{5}%' AND linktel LIKE '%{6}%' AND [status] IN({7}) AND pricemode in({8}) AND deleted IN({9})"
                 , isSearch ? string.Empty : string.Format(" parentid='{0}' AND ", parameter.ParentId)
                 , parameter.SerialNumber
                 , parameter.Name
@@ -23,9 +24,9 @@ namespace CPSS.Data.DataAccess
                 , parameter.Email
                 , parameter.LinkMan
                 , parameter.LinkTel
-                , parameter.Status
+                , parameter.Status == (short)CommonStatus.Default ? string.Concat((short)CommonStatus.Used, ",", (short)CommonStatus.Stopped) : parameter.Status.ToString()
                 , parameter.PriceMode == 0 ? "1,2,3" : parameter.PriceMode.ToString()
-                , parameter.Deleted == 1 ? "AND deleted=0" : string.Empty);
+                , parameter.Deleted == (short)CommonDeleted.Default ? string.Concat((short)CommonDeleted.Deleted, ",", (short)CommonDeleted.NotDeleted) : parameter.Deleted.ToString());
             return this.ExecuteReadSqlTosubcompanyDataModelPageData("subcomid", parameter.PageIndex, parameter.PageSize, "classid ASC, [sort] DESC");
         }
 
@@ -61,9 +62,10 @@ namespace CPSS.Data.DataAccess
 
         public int Delete(DeleteSubCompanyParameter parameter)
         {
-            this.ExecuteSQL = "UPDATE dbo.subcompany SET deleted=1 WHERE subcomid=@subcomid";
+            this.ExecuteSQL = "UPDATE dbo.subcompany SET deleted=@deleted WHERE subcomid=@subcomid";
             this.DataParameter = new IDbDataParameter[]
             {
+                new SqlParameter("@deleted", parameter.Deleted), 
                 new SqlParameter("@subcomid", parameter.ComId)
             };
             return this.ExecuteNonQuery();
@@ -71,9 +73,10 @@ namespace CPSS.Data.DataAccess
 
         public int ReDelete(DeleteSubCompanyParameter parameter)
         {
-            this.ExecuteSQL = "UPDATE dbo.subcompany SET deleted=0 WHERE subcomid=@subcomid";
+            this.ExecuteSQL = "UPDATE dbo.subcompany SET deleted=@deleted WHERE subcomid=@subcomid";
             this.DataParameter = new IDbDataParameter[]
             {
+                new SqlParameter("@deleted", parameter.Deleted), 
                 new SqlParameter("@subcomid", parameter.ComId)
             };
             return this.ExecuteNonQuery();

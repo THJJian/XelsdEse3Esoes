@@ -23,7 +23,7 @@
 
         public string Spelling { get; set; }
 
-        public int Status { get; set; }
+        public short Status { get; set; }
 
         public short Deleted { get; set; }
     }

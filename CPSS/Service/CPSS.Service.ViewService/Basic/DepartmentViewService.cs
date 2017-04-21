@@ -221,7 +221,8 @@ namespace CPSS.Service.ViewService.Basic
             var respond = new RespondWebViewData<RespondDeleteDepartmentViewModel>(WebViewErrorCode.Exception);
             var parameter = new DeleteDepartmentParameter
             {
-                depid = request.data.DepId
+                depid = request.data.DepId,
+                Deleted = (short)CommonDeleted.Deleted
             };
             var dataResult = this.mDepartmentDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;
@@ -238,7 +239,8 @@ namespace CPSS.Service.ViewService.Basic
             var respond = new RespondWebViewData<RespondDeleteDepartmentViewModel>(WebViewErrorCode.Exception);
             var parameter = new DeleteDepartmentParameter
             {
-                depid = request.data.DepId
+                depid = request.data.DepId,
+                Deleted = (short)CommonDeleted.NotDeleted
             };
             var dataResult = this.mDepartmentDataAccess.ReDelete(parameter);
             if (dataResult <= 0) return respond;

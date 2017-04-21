@@ -24,3 +24,6 @@ CREATE TABLE [dbo].[department](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 99) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+INSERT INTO dbo.[department](classid,parentid,childnumber,childcount,serialnumber,name,pinyin,[status],comment,sort,deleted)
+	VALUES ('000001','',0,0,'root','root','root',1,'',0,1)
+GO

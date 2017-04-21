@@ -246,7 +246,8 @@ namespace CPSS.Service.ViewService.Basic
             var respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Exception);
             var parameter = new DeleteSubCompanyParameter
             {
-                ComId = request.data.ComId
+                ComId = request.data.ComId,
+                Deleted = (short)CommonDeleted.Deleted
             };
             var dataResult = this.mSubCompanyDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;
@@ -263,7 +264,8 @@ namespace CPSS.Service.ViewService.Basic
             var respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Exception);
             var parameter = new DeleteSubCompanyParameter
             {
-                ComId = request.data.ComId
+                ComId = request.data.ComId,
+                Deleted = (short)CommonDeleted.NotDeleted
             };
             var dataResult = this.mSubCompanyDataAccess.ReDelete(parameter);
             if (dataResult <= 0) return respond;

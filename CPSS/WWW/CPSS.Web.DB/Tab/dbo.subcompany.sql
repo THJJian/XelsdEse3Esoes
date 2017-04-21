@@ -28,5 +28,5 @@ CREATE TABLE [dbo].[subcompany](
 ) ON [PRIMARY]
 GO
 INSERT INTO dbo.subcompany(classid,parentid,childnumber,serialnumber,name,pinyin,pricemode,email,linkman,linktel,[status],comment,sort,deleted)
-	VALUES ('000001','',0,'root','root','root',0,'','','',0,'',0,0)
+	VALUES ('000001','',0,'root','root','root',0,'','','',1,'',0,1)
 GO

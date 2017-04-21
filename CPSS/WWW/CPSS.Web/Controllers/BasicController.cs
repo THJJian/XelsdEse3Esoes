@@ -16,13 +16,15 @@ namespace CPSS.Web.Controllers
         #region private readonly fields
 
         private readonly ISubCompanyViewService mSubCompanyViewService;
+        private readonly IDepartmentViewService mDepartmentViewService;
 
         #endregion
 
         #region 构造函数
-        public BasicController(ISubCompanyViewService subCompanyViewService)
+        public BasicController(ISubCompanyViewService subCompanyViewService, IDepartmentViewService departmentViewService)
         {
             this.mSubCompanyViewService = subCompanyViewService;
+            this.mDepartmentViewService = departmentViewService;
         }
 
         #endregion
@@ -130,36 +132,41 @@ namespace CPSS.Web.Controllers
         public JsonResult GetDepartmentList(RequestWebViewData<RequestQueryDepartmentViewModel> request)
         {
             if (string.IsNullOrEmpty(request.data.ParentId)) request.data.ParentId = "000001";
-
-            return Json(new object());
+            var respond = this.mDepartmentViewService.GetQueryDepartmentList(request);
+            respond.parentId = request.data.ParentId;
+            return Json(respond);
         }
 
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Add)]
         [HttpPost]
         public JsonResult AddDepartment(RequestWebViewData<RequestAddDepartmentViewModel> request)
         {
-            return Json(new object());
+            var respond = this.mDepartmentViewService.AddDepartment(request);
+            return Json(respond);
         }
 
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Edit)]
         [HttpPost]
         public JsonResult EditDepartment(RequestWebViewData<RequestEditDepartmentViewModel> request)
         {
-            return Json(new object());
+            var respond = this.mDepartmentViewService.EditDepartment(request);
+            return Json(respond);
         }
 
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Delete)]
         [HttpPost]
         public JsonResult DeleteDepartment(RequestWebViewData<RequestDeleteDepartmentViewModel> request)
         {
-            return Json(new object());
+            var respond = this.mDepartmentViewService.DeleteDepartment(request);
+            return Json(respond);
         }
 
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Resume)]
         [HttpPost]
         public JsonResult ReDeleteDepartment(RequestWebViewData<RequestDeleteDepartmentViewModel> request)
         {
-            return Json(new object());
+            var respond = this.mDepartmentViewService.ReDeleteDepartment(request);
+            return Json(respond);
         }
 
         #endregion

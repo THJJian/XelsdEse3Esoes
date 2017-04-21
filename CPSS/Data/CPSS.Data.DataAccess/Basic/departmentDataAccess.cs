@@ -2,6 +2,7 @@
 using System.Data;
 using System.Data.SqlClient;
 using CPSS.Common.Core.Paging;
+using CPSS.Common.Core.Type.EnumType;
 using CPSS.Data.DataAccess.Interfaces.Basic.Parameters;
 using CPSS.Data.DataAcess.DataModels;
 
@@ -17,8 +18,8 @@ namespace CPSS.Data.DataAccess
                 isSearch ? string.Empty : string.Format("parentid='{0}' AND", parameter.ParentId),
                 parameter.SerialNumber,
                 parameter.Name,
-                parameter.Status == 0 ? "1, 2" : parameter.Status.ToString(),
-                parameter.Deleted == 0 ? "1, 2":parameter.Deleted.ToString()
+                parameter.Status == (short)CommonStatus.Default ? string.Concat((short)CommonStatus.Used, ",", (short)CommonStatus.Stopped) : parameter.Status.ToString(),
+                parameter.Deleted == (short)CommonDeleted.Default ? string.Concat((short)CommonDeleted.Deleted, ",", (short)CommonDeleted.NotDeleted) : parameter.Deleted.ToString()
                 );
             return this.ExecuteReadSqlTodepartmentDataModelPageData("depid", parameter.PageIndex, parameter.PageSize, "classid ASC, [sort] DESC");
         }
@@ -55,9 +56,10 @@ namespace CPSS.Data.DataAccess
 
         public int Delete(DeleteDepartmentParameter parameter)
         {
-            this.ExecuteSQL = "UPDATE dbo.department SET deleted=1 WHERE depid=@depid";
+            this.ExecuteSQL = "UPDATE dbo.department SET deleted=@deleted WHERE depid=@depid";
             this.DataParameter = new IDbDataParameter[]
             {
+                new SqlParameter("@deleted", parameter.Deleted), 
                 new SqlParameter("@subcomid", parameter.depid)
             };
             return this.ExecuteNonQuery();
@@ -65,9 +67,10 @@ namespace CPSS.Data.DataAccess
 
         public int ReDelete(DeleteDepartmentParameter parameter)
         {
-            this.ExecuteSQL = "UPDATE dbo.department SET deleted=0 WHERE depid=@depid";
+            this.ExecuteSQL = "UPDATE dbo.department SET deleted=@deleted WHERE depid=@depid";
             this.DataParameter = new IDbDataParameter[]
             {
+                new SqlParameter("@deleted", parameter.Deleted), 
                 new SqlParameter("@subcomid", parameter.depid)
             };
             return this.ExecuteNonQuery();

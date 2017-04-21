@@ -1,5 +1,6 @@
 ﻿@using CPSS.Common.Core.Mvc.UIControl
 @using CPSS.Common.Core.Type.ConstDefined
+@using CPSS.Common.Core.Type.EnumType
 @using CPSS.Service.ViewService.ViewModels.HeadButtons.Request
 @{
     ViewBag.Title = "CompanyList";
@@ -25,7 +26,7 @@
         @UIHelper.textBox("txtEmail", "Email", _tabIndex: 5, _buttonText: string.Empty)
         @UIHelper.textBox("txtLinkMan", "联系人", _tabIndex: 6, _buttonText: string.Empty)
         @UIHelper.textBox("txtLinkTel", "联系电话", _tabIndex: 7, _buttonText: string.Empty)
-        @UIHelper.dropDownList("ddlStatus", "状态", new List<DropDownOption> {new DropDownOption {Text = "正常", Value = "0"}}, _tabIndex: 8, _defaultValue: "0", _selectPanelHeight: 45)
+        @UIHelper.dropDownList("ddlStatus", "状态", new List<DropDownOption> { new DropDownOption { Text = "无", Value = ((short)CommonStatus.Default).ToString() }, new DropDownOption { Text = "正常", Value = ((short)CommonStatus.Used).ToString() } }, _tabIndex: 8, _defaultValue: ((short)CommonStatus.Default).ToString(), _selectPanelHeight: 45)
     </div>
     <div class="easyui-panel" data-options="border: false" style="padding-right: 20px; text-align: right;">
         @UIHelper.linkButton("查  询", "btnSearch")
