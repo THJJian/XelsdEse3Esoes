@@ -10,18 +10,16 @@ CREATE TABLE [dbo].[employee](
 	[classid] VARCHAR(60) NOT NULL,
 	[parentid] VARCHAR(54) NOT NULL,
 	[childnumber] INT NOT NULL,
-	[childcount] INT NOT NULL,
 	[serialnumber] VARCHAR(26) NOT NULL,
 	[name] VARCHAR(80) NOT NULL,
-	[pinyin] VARCHAR(80) NULL DEFAULT(''),
-	[alias] VARCHAR(30) NULL DEFAULT(''),
+	[pinyin] VARCHAR(80) NOT NULL DEFAULT(''),
 	[depid] INT NOT NULL,
 	[lowestdiscount] SMALLINT NULL DEFAULT(100),
 	[prepaidmenttotal] NUMERIC(18,5) NULL DEFAULT(0),
 	[prepayfeetotal] NUMERIC(18,5) NULL DEFAULT(0),
-	[status] SMALLINT NULL DEFAULT(0),
 	[mobile] VARCHAR(60) NULL DEFAULT(''),
 	[address] VARCHAR(66) NULL DEFAULT(''),
+	[status] SMALLINT NULL DEFAULT(0),
 	[deleted] SMALLINT NULL DEFAULT(0),
 	[sort] INT NULL DEFAULT(0),
 	[comment] VARCHAR(256) NULL DEFAULT(''),
@@ -30,4 +28,7 @@ CREATE TABLE [dbo].[employee](
 	[empid] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 99) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+INSERT INTO dbo.[employee](classid,parentid,childnumber,serialnumber,name,pinyin,[depid],[lowestdiscount],[prepaidmenttotal],[prepayfeetotal],[mobile],[address],[status],comment,sort,deleted)
+	VALUES ('000001','',0,'root','root','root',0,100,0,0,'','',1,'',0,1)
 GO

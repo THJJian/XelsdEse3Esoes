@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Web.Configuration;
 using CPSS.Common.Core.Authenticate;
 using CPSS.Common.Core.Helper.Cached;
 using CPSS.Common.Core.Helper.Config;
@@ -18,6 +19,8 @@ namespace CPSS.Common.Core.DataAccess.DataAccess
             get
             {
                 var connectFilePath = "~/config/connection.config";
+                var configFilePath = WebConfigurationManager.AppSettings["master_connection_config_file_path"];
+                if (!string.IsNullOrEmpty(configFilePath)) connectFilePath = configFilePath;
                 var notUserMainConnection = CPSSAuthenticate.NotUseMainConnection();
                 var user = CPSSAuthenticate.GetCurrentUser() == null ? new SigninUser() : CPSSAuthenticate.GetCurrentUser();
                 return MemcacheHelper.Get(() =>
