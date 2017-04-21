@@ -3,39 +3,32 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using CPSS.Common.Core;
-using CPSS.Common.Core.Authenticate;
 using CPSS.Common.Core.DataAccess.DataAccess;
 using CPSS.Common.Core.Exception;
 using CPSS.Common.Core.Helper.Cached;
 using CPSS.Common.Core.Helper.Generated;
+using CPSS.Common.Core.Type.EnumType;
 using CPSS.Data.DataAccess.Interfaces;
 using CPSS.Data.DataAccess.Interfaces.Basic.Parameters;
 using CPSS.Data.DataAccess.Interfaces.MongoDB;
 using CPSS.Data.DataAcess.DataModels;
 using CPSS.Service.ViewService.Interfaces.Basic;
-using CPSS.Service.ViewService.ViewModels.MongoDb.Request;
 using CPSS.Service.ViewService.ViewModels.SubCompany.Request;
 using CPSS.Service.ViewService.ViewModels.SubCompany.Respond;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace CPSS.Service.ViewService.Basic
 {
-    public class SubCompanyViewService : ISubCompanyViewService
+    public class SubCompanyViewService : BaseViewService, ISubCompanyViewService
     {
         private const string THISSERVICE_PRE_CACHE_KEY_MANAGE = "CPSS.Service.ViewService.Basic.SubCompanyViewService";
         private const string PRE_CACHE_KEY = "CPSS.Service.ViewService.Basic.SubCompanyViewService.{0}";
         private readonly IDbConnection mDbConnection;
         private readonly IsubcompanyDataAccess mSubCompanyDataAccess;
-        private readonly IMongoDbDataAccess mMongoDbDataAccess;
-        private readonly SigninUser mSigninUser;
 
-        public SubCompanyViewService(IDbConnection dbConnection, IsubcompanyDataAccess subCompanyDataAccess, IMongoDbDataAccess mongoDbDataAccess)
+        public SubCompanyViewService(IDbConnection dbConnection, IsubcompanyDataAccess subCompanyDataAccess, IMongoDbDataAccess mongoDbDataAccess) : base(mongoDbDataAccess)
         {
             this.mDbConnection = dbConnection;
             this.mSubCompanyDataAccess = subCompanyDataAccess;
-            this.mMongoDbDataAccess = mongoDbDataAccess;
-            this.mSigninUser = CPSSAuthenticate.GetCurrentUser();
         }
 
         public RespondWebViewData<List<RespondQuerySubCompanyViewModel>> GetQueryCompanyList(RequestWebViewData<RequestQuerySubCompanyViewModel> request)
@@ -148,18 +141,9 @@ namespace CPSS.Service.ViewService.Basic
                 var addResult = this.mSubCompanyDataAccess.Add(data, tran);
                 if (addResult > 0) this.mSubCompanyDataAccess.UpdateChildNumberByClassId(tran, parameter);
                 MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
-                var mongo_db_request = new RequestMongoDbViewModel
-                {
-                    LogName = "新增分公司资料",
-                    RespondLogData = JObject.FromObject(respond).ToString(Formatting.None),
-                    RequestLogData = JObject.FromObject(request).ToString(Formatting.None),
-                    LogTime = DateTime.Now,
-                    SpecialType = this.GetType(),
-                    OpUserID = this.mSigninUser.UserID.ToString(),
-                    OpUserName = this.mSigninUser.UserName
-                };
+                
                 //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
-                //this.mMongoDbDataAccess.Save(mongo_db_request);
+                //this.SaveMongoDbData("新增分公司资料", request, respond, this.GetType());
             });
             return respond;
         }
@@ -180,7 +164,7 @@ namespace CPSS.Service.ViewService.Basic
                     };
                     var subCompany = this.mSubCompanyDataAccess.GetsubcompanyDataModelById(request.data.ComId);
                     if (subCompany == null) return respond;
-                    if (subCompany.deleted == 1 || subCompany.status != 0) return respond;
+                    if (subCompany.deleted == (short)CommonDeleted.Deleted || subCompany.status != (short)CommonStatus.Used) return respond;
                     respond = new RespondWebViewData<RespondQuerySubCompanyViewModel>
                     {
                         rows = new RespondQuerySubCompanyViewModel
@@ -251,18 +235,8 @@ namespace CPSS.Service.ViewService.Basic
                 this.mSubCompanyDataAccess.Update(data, tran);
                 MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
 
-                var mongo_db_request = new RequestMongoDbViewModel
-                {
-                    LogName = "编辑分公司资料",
-                    RespondLogData = JObject.FromObject(respond).ToString(Formatting.None),
-                    RequestLogData = JObject.FromObject(request).ToString(Formatting.None),
-                    LogTime = DateTime.Now,
-                    SpecialType = this.GetType(),
-                    OpUserID = this.mSigninUser.UserID.ToString(),
-                    OpUserName = this.mSigninUser.UserName
-                };
                 //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
-                //this.mMongoDbDataAccess.Save(mongo_db_request);
+                //this.SaveMongoDbData("编辑分公司资料", request, respond, this.GetType());
             });
             return respond;
         }
@@ -278,18 +252,9 @@ namespace CPSS.Service.ViewService.Basic
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Success); 
             MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
-            var mongo_db_request = new RequestMongoDbViewModel
-            {
-                LogName = "删除分公司资料",
-                RespondLogData = JObject.FromObject(respond).ToString(Formatting.None),
-                RequestLogData = JObject.FromObject(request).ToString(Formatting.None),
-                LogTime = DateTime.Now,
-                SpecialType = this.GetType(),
-                OpUserID = this.mSigninUser.UserID.ToString(),
-                OpUserName = this.mSigninUser.UserName
-            };
+           
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
-            //this.mMongoDbDataAccess.Save(mongo_db_request);
+            //this.SaveMongoDbData("删除分公司资料", request, respond, this.GetType());
             return respond;
         }
 
@@ -304,19 +269,9 @@ namespace CPSS.Service.ViewService.Basic
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Success);
             MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
-
-            var mongo_db_request = new RequestMongoDbViewModel
-            {
-                LogName = "恢复删除分公司资料",
-                RespondLogData = JObject.FromObject(respond).ToString(Formatting.None),
-                RequestLogData = JObject.FromObject(request).ToString(Formatting.None),
-                LogTime = DateTime.Now,
-                SpecialType = this.GetType(),
-                OpUserID = this.mSigninUser.UserID.ToString(),
-                OpUserName = this.mSigninUser.UserName
-            };
+            
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
-            //this.mMongoDbDataAccess.Save(mongo_db_request);
+            //this.SaveMongoDbData("恢复删除分公司资料", request, respond, this.GetType());
             return respond;
         }
     }

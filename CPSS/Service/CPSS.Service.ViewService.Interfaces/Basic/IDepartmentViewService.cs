@@ -25,7 +25,7 @@ namespace CPSS.Service.ViewService.Interfaces.Basic
         /// 根据depid查询对应行部门信息
         /// </summary>
         /// <returns></returns>
-        RespondWebViewData<RespondQueryDepartmentViewModel> GetDepartmentByComId(RequestWebViewData<RequestGetDepartmentByIdViewModel> request);
+        RespondWebViewData<RespondQueryDepartmentViewModel> GetDepartmentByDepId(RequestWebViewData<RequestGetDepartmentByIdViewModel> request);
 
         /// <summary>
         /// 修改部门资料

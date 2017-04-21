@@ -2,6 +2,7 @@
 {
     public class RequestDeleteDepartmentViewModel
     {
-        
+
+        public int DepId { get; set; }
     }
 }

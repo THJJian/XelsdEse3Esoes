@@ -15,7 +15,7 @@ CREATE TABLE [dbo].[department](
 	[name] VARCHAR(80) NOT NULL,
 	[pinyin] VARCHAR(80) NULL DEFAULT (''),
 	[status] INT NOT NULL,
-	[deleted] SMALLINT NULL DEFAULT(0),
+	[deleted] SMALLINT NOT NULL DEFAULT(1),
 	[sort] INT NOT NULL,
 	[comment] VARCHAR(50) NULL DEFAULT ('')
  CONSTRAINT [PK_department_depid] PRIMARY KEY CLUSTERED 

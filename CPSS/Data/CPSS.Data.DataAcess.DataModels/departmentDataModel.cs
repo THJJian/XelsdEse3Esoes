@@ -23,7 +23,7 @@ namespace CPSS.Data.DataAcess.DataModels
         public string name { get; set; }
         public string pinyin { get; set; }
         public int status { get; set; }
-        public Nullable<short> deleted { get; set; }
+        public short deleted { get; set; }
         public int sort { get; set; }
         public string comment { get; set; }
     }

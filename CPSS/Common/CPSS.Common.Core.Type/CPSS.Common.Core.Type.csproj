@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="BeforeCompileConstDefined.cs" />
     <Compile Include="ConstDefined\MenuValueConstDefined.cs" />
+    <Compile Include="EnumType\CommonDeleted.cs" />
+    <Compile Include="EnumType\CommonStatus.cs" />
     <Compile Include="InvoiceType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

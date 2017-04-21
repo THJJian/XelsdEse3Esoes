@@ -33,7 +33,7 @@ namespace CPSS.Data.DataAccess
             entity.name = (string)dataReader["name"];
             entity.pinyin = (string)dataReader["pinyin"];
             entity.status = (int)dataReader["status"];
-            entity.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
+            entity.deleted = (short)dataReader["deleted"];
             entity.sort = (int)dataReader["sort"];
             entity.comment = (string)dataReader["comment"];
 	    }
@@ -55,7 +55,7 @@ namespace CPSS.Data.DataAccess
             result.name = (string)dataReader["name"];
             result.pinyin = (string)dataReader["pinyin"];
             result.status = (int)dataReader["status"];
-			result.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
+			result.deleted = (short)dataReader["deleted"];
             result.sort = (int)dataReader["sort"];
             result.comment = (string)dataReader["comment"];
 			return result;
