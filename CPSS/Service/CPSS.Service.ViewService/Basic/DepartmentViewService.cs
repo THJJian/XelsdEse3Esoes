@@ -49,7 +49,8 @@ namespace CPSS.Service.ViewService.Basic
                         Name = request.data.Name,
                         PageIndex = request.page,
                         PageSize = request.rows,
-                        Status = request.data.Status
+                        Status = request.data.Status,
+                        ParentId = request.data.ParentId
                     };
                     var pageDataList = this.mDepartmentDataAccess.GetQueryDepartmentList(parameter);
                     var respond = new RespondWebViewData<List<RespondQueryDepartmentViewModel>>
@@ -66,7 +67,7 @@ namespace CPSS.Service.ViewService.Basic
                             Name = item.name,
                             ParentId = item.parentid,
                             SerialNumber = item.serialnumber,
-                            Sort = item.sort,
+                            Sort = item.sort.ToString(),
                             Spelling = item.pinyin,
                             Status = item.status
                         }).ToList()
@@ -84,7 +85,8 @@ namespace CPSS.Service.ViewService.Basic
                     request.data.Name,
                     request.page,
                     request.rows,
-                    request.data.Status
+                    request.data.Status,
+                    request.data.ParentId
                 }
             });
         }
@@ -158,7 +160,7 @@ namespace CPSS.Service.ViewService.Basic
                             SerialNumber = department.serialnumber,
                             Status = department.status,
                             Spelling = department.pinyin,
-                            Sort = department.sort
+                            Sort = department.sort.ToString()
                         }
                     };
                     return respond;

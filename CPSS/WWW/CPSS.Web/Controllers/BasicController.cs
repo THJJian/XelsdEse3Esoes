@@ -122,7 +122,16 @@ namespace CPSS.Web.Controllers
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicDep_TB_Edit)]
         public ActionResult EditDepartment()
         {
-            return View("~/views/basic/department/editdepartment.cshtml");
+            var depid = this.WorkContext.GetQueryInt("depid");
+            var request = new RequestWebViewData<RequestGetDepartmentByIdViewModel>
+            {
+                data = new RequestGetDepartmentByIdViewModel
+                {
+                    DepId = depid
+                }
+            };
+            var model = this.mDepartmentViewService.GetDepartmentByDepId(request);
+            return View("~/views/basic/department/editdepartment.cshtml", model);
         }
 
         #region Ajax操作方法

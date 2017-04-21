@@ -15,7 +15,7 @@ namespace CPSS.Service.ViewService.ViewModels.Department.Respond
         public string Spelling { get; set; }
         public int Status { get; set; }
         public short Deleted { get; set; }
-        public int Sort { get; set; }
+        public string Sort { get; set; }
         public string Comment { get; set; }
     }
 }

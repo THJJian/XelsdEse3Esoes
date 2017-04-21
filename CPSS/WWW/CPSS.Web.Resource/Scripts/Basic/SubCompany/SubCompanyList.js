@@ -41,11 +41,16 @@
         };
 
         var fn_postData = function(flag) {
-            if (self.isDeletedButtonClick) return;
-            self.isDeletedButtonClick = true;
             var msg = "请选择需要删除的分公司",
                 url = "/basic/deletecompany",
                 selectRow = self.grid.datagrid("getSelected");
+
+            if (!fn_check_select_row(selectRow)) {
+                if(flag !== 0) msg = "请选择需要恢复删除的分公司";
+                _msgbox.alert(msg);
+                return;
+            }
+
             if (flag === 0) {
                 if (selectRow.ChildNumber > 0) {
                     _msgbox.error("不能删除含有未删除的子节点的节点");
@@ -57,13 +62,11 @@
                     return;
                 }
                 url = ["/basic/redeletecompany"].join("");
-                msg = "请选择需要恢复删除的分公司";
             }
 
-            if (!fn_check_select_row(selectRow)) {
-                _msgbox.alert(msg);
-                return;
-            }
+            if (self.isDeletedButtonClick) return;
+            self.isDeletedButtonClick = true;
+
             var data = {
                 data: {
                     ComId: selectRow.ComId

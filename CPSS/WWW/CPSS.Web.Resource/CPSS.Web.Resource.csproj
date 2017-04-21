@@ -421,7 +421,9 @@
     <Content Include="Css\easyui-1.5\themes\metro\validatebox.css" />
     <Content Include="Css\easyui-1.5\themes\metro\window.css" />
     <Content Include="Css\Main\left-nav.css" />
+    <Content Include="Scripts\Basic\Department\AddDepartment.js" />
     <Content Include="Scripts\Basic\Department\DepartmentList.js" />
+    <Content Include="Scripts\Basic\Department\EditDepartment.js" />
     <Content Include="Scripts\Basic\SubCompany\AddSubCompany.js" />
     <Content Include="Scripts\Basic\SubCompany\EditSubCompany.js" />
     <Content Include="Scripts\Basic\SubCompany\SubCompanyList.js" />

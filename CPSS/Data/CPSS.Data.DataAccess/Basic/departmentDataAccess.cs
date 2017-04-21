@@ -60,7 +60,7 @@ namespace CPSS.Data.DataAccess
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@deleted", parameter.Deleted), 
-                new SqlParameter("@subcomid", parameter.depid)
+                new SqlParameter("@depid", parameter.depid)
             };
             return this.ExecuteNonQuery();
         }
@@ -71,7 +71,7 @@ namespace CPSS.Data.DataAccess
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@deleted", parameter.Deleted), 
-                new SqlParameter("@subcomid", parameter.depid)
+                new SqlParameter("@depid", parameter.depid)
             };
             return this.ExecuteNonQuery();
         }

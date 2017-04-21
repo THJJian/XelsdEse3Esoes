@@ -12,26 +12,21 @@ using CPSS.Data.DataAccess.Interfaces.MongoDB;
 using CPSS.Data.DataAccess.Interfaces.User;
 using CPSS.Data.DataAccess.Interfaces.User.Parameters;
 using CPSS.Service.ViewService.Interfaces.User;
-using CPSS.Service.ViewService.ViewModels.MongoDb.Request;
 using CPSS.Service.ViewService.ViewModels.User.Request;
 using CPSS.Service.ViewService.ViewModels.User.Respond;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace CPSS.Service.ViewService.User
 {
-    public class SigninUserViewService : ISigninUserViewService
+    public class SigninUserViewService : BaseViewService, ISigninUserViewService
     {
         private const string preCacheKey = "CPSS.Service.ViewService.User.SigninUserViewService.{0}";
         private readonly ISiginUserDataAccess mSiginUserDataAccess;
         private readonly ICompanyInfoViewService mCompanyInfoViewService;
-        private readonly IMongoDbDataAccess mMongoDbDataAccess;
 
-        public SigninUserViewService(ISiginUserDataAccess _siginUserDataAccess, ICompanyInfoViewService _companyInfoViewService, IMongoDbDataAccess _mongoDbDataAccess)
+        public SigninUserViewService(ISiginUserDataAccess _siginUserDataAccess, ICompanyInfoViewService _companyInfoViewService, IMongoDbDataAccess _mongoDbDataAccess) : base(_mongoDbDataAccess)
         {
             this.mSiginUserDataAccess = _siginUserDataAccess;
             this.mCompanyInfoViewService = _companyInfoViewService;
-            this.mMongoDbDataAccess = _mongoDbDataAccess;
         }
 
         public RespondWebViewData<RespondSigninUserViewModel> QuerySigninUserViewModel(RequestSigninUserViewModel request)
@@ -83,16 +78,8 @@ namespace CPSS.Service.ViewService.User
             });
             FormsAuthenticationTicketManage.CreateFormsAuthentication(userID_g);
             HttpContext.Current.Items.Add(BeforeCompileConstDefined.HttpContext_Login_User, _respond.rows.CurrentUser);
-            var _mongo_db_request = new RequestMongoDbViewModel
-            {
-                LogName = "登录操作",
-                RespondLogData =  JObject.FromObject(_respond).ToString(Formatting.None),
-                RequestLogData = JObject.FromObject(request).ToString(Formatting.None),
-                LogTime = DateTime.Now,
-                SpecialType = _respond.rows.GetType()
-            };
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
-            //this.mMongoDbDataAccess.Save(_mongo_db_request);
+            //this.SaveMongoDbData("登录操作", request, _respond, this.GetType());
             return _respond;
         }
 

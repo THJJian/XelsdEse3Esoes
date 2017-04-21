@@ -41,11 +41,16 @@
         };
 
         var fn_postData = function(flag) {
-            if (self.isDeletedButtonClick) return;
-            self.isDeletedButtonClick = true;
             var msg = "请选择需要删除的部门",
                 url = "/basic/deletedepartment",
                 selectRow = self.grid.datagrid("getSelected");
+
+            if (!fn_check_select_row(selectRow)) {
+                if (flag !== 0) msg = "请选择需要恢复删除的部门";
+                _msgbox.alert(msg);
+                return;
+            }
+
             if (flag === 0) {
                 if (selectRow.ChildNumber > 0) {
                     _msgbox.error("不能删除含有未删除的子节点的节点");
@@ -57,13 +62,11 @@
                     return;
                 }
                 url = ["/basic/redeletedepartment"].join("");
-                msg = "请选择需要恢复删除的部门";
             }
 
-            if (!fn_check_select_row(selectRow)) {
-                _msgbox.alert(msg);
-                return;
-            }
+            if (self.isDeletedButtonClick) return;
+            self.isDeletedButtonClick = true;
+
             var data = {
                 data: {
                     DepId: selectRow.DepId
@@ -98,11 +101,11 @@
                     _msgbox.alert("请选择需要修改的部门");
                     return;
                 }
-                if (selectRow.Deleted === 1) {
+                if (selectRow.Deleted === 2) {
                     _msgbox.alert("删除状态的部门不允许修改");
                     return;
                 }
-                url = ["/basic/editdepartment?userid=", userId_g, "&depid=", selectRow.ComId].join("");
+                url = ["/basic/editdepartment?userid=", userId_g, "&depid=", selectRow.DepId].join("");
                 _window.open("edit_cdepartment", "修改部门资料", 600, 550, url);
                 break;
             case "rtBasicDep_TB_Delete":
@@ -117,8 +120,8 @@
                     _msgbox.success("请选择部门再进行新增下级操作");
                     return;
                 }
-                url = ["/basic/addcompany?userid=", userId_g, "&parentid=", selectRow.ClassId].join("");
-                _window.open("add_company", "新增子级部门资料", 600, 550, url);
+                url = ["/basic/adddepartment?userid=", userId_g, "&parentid=", selectRow.ClassId].join("");
+                _window.open("add_department", "新增子级部门资料", 600, 550, url);
                 break;
             case "rtBasicDep_TB_Preview":
                 self.printer.preview();
@@ -181,10 +184,6 @@
                     { title: "编号", type: "text", id: "txtSerialNumber", labelWidth: 70 },
                     { title: "名称", type: "text", id: "txtName", labelWidth: 70 },
                     { title: "拼音", type: "text", id: "txtSpelling", labelWidth: 70 },
-                    { title: "售价方式", type: "combobox", id: "ddlPriceMode", labelWidth: 70 },
-                    { title: "Email", type: "text", id: "txtEmail", labelWidth: 70 },
-                    { title: "联系人", type: "text", id: "txtLinkMan", labelWidth: 70 },
-                    { title: "联系电话", type: "text", id: "txtLinkTel", labelWidth: 70 },
                     { title: "状态", type: "combobox", id: "ddlStatus", labelWidth: 70 }
                 ],
                 billGrid: self.grid

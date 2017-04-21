@@ -1,8 +1,35 @@
-﻿
+﻿@using CPSS.Service.ViewService.ViewModels.HeadButtons.Respond
 @{
     ViewBag.Title = "AddDepartment";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    
+    WorkContext.Resource
+        //.AddPageCss("")
+        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "grid/tablegrid", "controlshelper", "basic/department/adddepartment");
+    var buttonModel = new List<RespondHeadButtonsViewModel>
+    {
+        new RespondHeadButtonsViewModel{ ButtonName = "rtBasicDep_TB_Add_Save", ButtonText = "保存"},
+        //new RespondHeadButtonsViewModel{ ButtonName = "rtBasicDep_TB_Add_Save_Go", ButtonText = "保存并继续"},
+        new RespondHeadButtonsViewModel{ ButtonName = "rtBasicDep_TB_Add_Cancel", ButtonText = "取消"},
+    };
+}
+@section buttons{
+    @Html.Partial("~/Views/Shared/CommonPartial/HeadButtons.cshtml", buttonModel)
 }
 
-<h2>AddDepartment</h2>
-
+<div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 500px; max-width: 100%; overflow: hidden;">
+    <input type="hidden" id="txtParentId" value="@this.WorkContext.GetQueryString("parentid")" />
+    @UIHelper.textBox("txtSerialNumber", "编号", _tabIndex: 1, _buttonText: string.Empty)
+    @UIHelper.textBox("txtName", "名称", _tabIndex: 2, _buttonText: string.Empty)
+    @UIHelper.textBox("txtSpelling", "拼音", _tabIndex: 3, _buttonText: string.Empty)
+    @UIHelper.textBox("txtSort", "排序", _tabIndex: 8, _buttonText: string.Empty, _value: "0")
+    @UIHelper.textBox("txtComment", "备注", _tabIndex: 9, _buttonText: string.Empty, _multiline: "true", _width: 520, _height: 100)
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document.body)
+            .ready(function () {
+                CPSSLib.Page.addDepartment.init();
+            });
+    </script>
+}
