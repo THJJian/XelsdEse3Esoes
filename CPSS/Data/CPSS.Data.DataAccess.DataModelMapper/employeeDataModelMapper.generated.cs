@@ -28,21 +28,20 @@ namespace CPSS.Data.DataAccess
             entity.classid = (string)dataReader["classid"];
             entity.parentid = (string)dataReader["parentid"];
             entity.childnumber = (int)dataReader["childnumber"];
-            entity.childcount = (int)dataReader["childcount"];
             entity.serialnumber = (string)dataReader["serialnumber"];
             entity.name = (string)dataReader["name"];
             entity.pinyin = (string)dataReader["pinyin"];
-            entity.alias = (string)dataReader["alias"];
             entity.depid = (int)dataReader["depid"];
+            entity.depname = (string)dataReader["depname"];
             entity.lowestdiscount = dataReader.IsDBNull(dataReader.GetOrdinal("lowestdiscount"))? null: (System.Nullable<short>)dataReader["lowestdiscount"];
-            entity.prepaidmenttotal = dataReader.IsDBNull(dataReader.GetOrdinal("prepaidmenttotal"))? null: (System.Nullable<System.Decimal>)dataReader["prepaidmenttotal"];
+            entity.preinadvancetotal = dataReader.IsDBNull(dataReader.GetOrdinal("preinadvancetotal")) ? null : (System.Nullable<System.Decimal>)dataReader["preinadvancetotal"];
             entity.prepayfeetotal = dataReader.IsDBNull(dataReader.GetOrdinal("prepayfeetotal"))? null: (System.Nullable<System.Decimal>)dataReader["prepayfeetotal"];
-            entity.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (System.Nullable<short>)dataReader["status"];
             entity.mobile = (string)dataReader["mobile"];
             entity.address = (string)dataReader["address"];
+            entity.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (System.Nullable<short>)dataReader["status"];
+            entity.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
             entity.sort = dataReader.IsDBNull(dataReader.GetOrdinal("sort"))? null: (int?)dataReader["sort"];
             entity.comment = (string)dataReader["comment"];
-            entity.ModifyDate = (System.Byte[])dataReader["ModifyDate"];
 	    }
 
 		/// <summary>
@@ -57,21 +56,20 @@ namespace CPSS.Data.DataAccess
             result.classid = (string)dataReader["classid"];
             result.parentid = (string)dataReader["parentid"];
             result.childnumber = (int)dataReader["childnumber"];
-            result.childcount = (int)dataReader["childcount"];
             result.serialnumber = (string)dataReader["serialnumber"];
             result.name = (string)dataReader["name"];
             result.pinyin = (string)dataReader["pinyin"];
-            result.alias = (string)dataReader["alias"];
             result.depid = (int)dataReader["depid"];
+            result.depname = (string)dataReader["depname"];
 			result.lowestdiscount = dataReader.IsDBNull(dataReader.GetOrdinal("lowestdiscount"))? null: (System.Nullable<short>)dataReader["lowestdiscount"];
-			result.prepaidmenttotal = dataReader.IsDBNull(dataReader.GetOrdinal("prepaidmenttotal"))? null: (System.Nullable<System.Decimal>)dataReader["prepaidmenttotal"];
+            result.preinadvancetotal = dataReader.IsDBNull(dataReader.GetOrdinal("preinadvancetotal")) ? null : (System.Nullable<System.Decimal>)dataReader["preinadvancetotal"];
 			result.prepayfeetotal = dataReader.IsDBNull(dataReader.GetOrdinal("prepayfeetotal"))? null: (System.Nullable<System.Decimal>)dataReader["prepayfeetotal"];
-			result.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (System.Nullable<short>)dataReader["status"];
             result.mobile = (string)dataReader["mobile"];
             result.address = (string)dataReader["address"];
+			result.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (System.Nullable<short>)dataReader["status"];
+			result.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
 			result.sort = dataReader.IsDBNull(dataReader.GetOrdinal("sort"))? null: (int?)dataReader["sort"];
             result.comment = (string)dataReader["comment"];
-            result.ModifyDate = (System.Byte[])dataReader["ModifyDate"];
 			return result;
 	    }
 

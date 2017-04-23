@@ -1,6 +1,6 @@
 ﻿using CPSS.Common.Core.Paging;
 
-namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters
+namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters.SubCompany
 {
     public class QuerySubCompanyListParameter : PagingBase
     {

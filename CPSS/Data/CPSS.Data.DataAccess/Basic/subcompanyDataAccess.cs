@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using CPSS.Common.Core.Paging;
 using CPSS.Common.Core.Type.EnumType;
-using CPSS.Data.DataAccess.Interfaces.Basic.Parameters;
+using CPSS.Data.DataAccess.Interfaces.Basic.Parameters.SubCompany;
 using CPSS.Data.DataAcess.DataModels;
 
 namespace CPSS.Data.DataAccess

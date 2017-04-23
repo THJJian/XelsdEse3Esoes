@@ -54,6 +54,15 @@
     <Compile Include="Department\Respond\RespondDeleteDepartmentViewModel.cs" />
     <Compile Include="Department\Respond\RespondEditDepartmentViewModel.cs" />
     <Compile Include="Department\Respond\RespondQueryDepartmentViewModel.cs" />
+    <Compile Include="Employee\Request\RequestAddEmployeeViewModel.cs" />
+    <Compile Include="Employee\Request\RequestDeleteEmployeeViewModel.cs" />
+    <Compile Include="Employee\Request\RequestEditEmployeeViewModel.cs" />
+    <Compile Include="Employee\Request\RequestGetEmployeeByIdViewModel.cs" />
+    <Compile Include="Employee\Request\RequestQueryEmployeeViewModel.cs" />
+    <Compile Include="Employee\Respond\RespondAddEmployeeViewModel.cs" />
+    <Compile Include="Employee\Respond\RespondDeleteEmployeeViewModel.cs" />
+    <Compile Include="Employee\Respond\RespondEditEmployeeViewModel.cs" />
+    <Compile Include="Employee\Respond\RespondQueryEmployeeViewModel.cs" />
     <Compile Include="SubCompany\Request\RequestAddSubCompanyViewModel.cs" />
     <Compile Include="SubCompany\Request\RequestDeleteSubCompanyViewModel.cs" />
     <Compile Include="SubCompany\Request\RequestEditSubCompanyViewModel.cs" />

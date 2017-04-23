@@ -3,7 +3,7 @@ using System.Data;
 using System.Data.SqlClient;
 using CPSS.Common.Core.Paging;
 using CPSS.Common.Core.Type.EnumType;
-using CPSS.Data.DataAccess.Interfaces.Basic.Parameters;
+using CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Department;
 using CPSS.Data.DataAcess.DataModels;
 
 namespace CPSS.Data.DataAccess
@@ -14,12 +14,13 @@ namespace CPSS.Data.DataAccess
         {
             var isSearch = !(string.IsNullOrEmpty(parameter.SerialNumber) && string.IsNullOrEmpty(parameter.Name) && parameter.Status == 0 && parameter.Deleted == 0);
 
-            this.ExecuteSQL = string.Format("SELECT * FROM dbo.department WHERE {0} serialnumber LIKE '%{1}%' AND name LIKE '%{2}%' AND [status] IN({3}) AND deleted IN({4})",
+            this.ExecuteSQL = string.Format("SELECT * FROM dbo.department WHERE {0} serialnumber LIKE '%{1}%' AND name LIKE '%{2}%' AND pinyin LIKE '%{5}%' AND [status] IN({3}) AND deleted IN({4})",
                 isSearch ? string.Empty : string.Format("parentid='{0}' AND", parameter.ParentId),
                 parameter.SerialNumber,
                 parameter.Name,
                 parameter.Status == (short)CommonStatus.Default ? string.Concat((short)CommonStatus.Used, ",", (short)CommonStatus.Stopped) : parameter.Status.ToString(),
-                parameter.Deleted == (short)CommonDeleted.Default ? string.Concat((short)CommonDeleted.Deleted, ",", (short)CommonDeleted.NotDeleted) : parameter.Deleted.ToString()
+                parameter.Deleted == (short)CommonDeleted.Default ? string.Concat((short)CommonDeleted.Deleted, ",", (short)CommonDeleted.NotDeleted) : parameter.Deleted.ToString(),
+                parameter.Spelling
                 );
             return this.ExecuteReadSqlTodepartmentDataModelPageData("depid", parameter.PageIndex, parameter.PageSize, "classid ASC, [sort] DESC");
         }

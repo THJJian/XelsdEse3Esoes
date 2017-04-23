@@ -9,7 +9,7 @@ using CPSS.Common.Core.Helper.Cached;
 using CPSS.Common.Core.Helper.Generated;
 using CPSS.Common.Core.Type.EnumType;
 using CPSS.Data.DataAccess.Interfaces;
-using CPSS.Data.DataAccess.Interfaces.Basic.Parameters;
+using CPSS.Data.DataAccess.Interfaces.Basic.Parameters.SubCompany;
 using CPSS.Data.DataAccess.Interfaces.MongoDB;
 using CPSS.Data.DataAcess.DataModels;
 using CPSS.Service.ViewService.Interfaces.Basic;

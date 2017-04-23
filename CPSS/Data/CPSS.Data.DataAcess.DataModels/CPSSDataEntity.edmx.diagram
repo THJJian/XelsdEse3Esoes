@@ -6,13 +6,13 @@
     <edmx:Diagrams>
       <Diagram DiagramId="70220cfada04467a8e4fa89be18d6673" Name="Diagram1" ZoomLevel="97">
         <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.client" Width="1.5" PointX="2" PointY="1" />
-        <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.employee" Width="1.5" PointX="7.75" PointY="3.5" />
         <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.product" Width="1.5" PointX="4" PointY="1" />
         <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.storage" Width="1.5" PointX="5.875" PointY="4.5" />
         <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.unit" Width="1.5" PointX="7.5" PointY="1.125" />
         <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.snstorage" Width="1.5" PointX="9.375" PointY="1" />
         <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.subcompany" Width="1.5" PointX="9.375" PointY="4.75" />
         <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.department" Width="1.5" PointX="5.75" PointY="1" />
+        <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.employee" Width="1.5" PointX="7.625" PointY="3.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

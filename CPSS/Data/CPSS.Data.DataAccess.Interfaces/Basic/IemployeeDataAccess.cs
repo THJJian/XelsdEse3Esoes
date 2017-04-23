@@ -1,33 +1,33 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 using CPSS.Common.Core.Paging;
-using CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Department;
+using CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Employee;
 using CPSS.Data.DataAcess.DataModels;
 
 namespace CPSS.Data.DataAccess.Interfaces
 {
-    public partial interface IdepartmentDataAccess
+    public partial interface IemployeeDataAccess
     {
         /// <summary>
-        /// 获取部门资料列表
+        /// 获取职员资料列表
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        PageData<departmentDataModel> GetQueryDepartmentList(QueryDepartmentListParameter parameter);
+        PageData<employeeDataModel> GetQueryEmployeeList(QueryEmployeeListParameter parameter);
 
         /// <summary>
-        /// 根据parentid查询部门信息列表(ORDER BY classid DESC)
+        /// 根据parentid查询职员信息列表(ORDER BY classid DESC)
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        List<departmentDataModel> GetDepartmentListByParentID(QueryDepartmentListParameter parameter);
+        List<employeeDataModel> GetEmployeeListByParentID(QueryEmployeeListParameter parameter);
 
         /// <summary>
         /// 根据classid获取对应行数据
         /// </summary>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        departmentDataModel GetDepartmentByClassID(QueryDepartmentListParameter parameter);
+        employeeDataModel GetEmployeeByClassID(QueryEmployeeListParameter parameter);
 
         /// <summary>
         /// 根据classid更新childnumber字段的值
@@ -35,18 +35,18 @@ namespace CPSS.Data.DataAccess.Interfaces
         /// <param name="tran"></param>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        int UpdateChildNumberByClassId(IDbTransaction tran, QueryDepartmentListParameter parameter);
+        int UpdateChildNumberByClassId(IDbTransaction tran, QueryEmployeeListParameter parameter);
 
         /// <summary>
-        /// 删除部门资料(逻辑删除)
+        /// 删除职员资料(逻辑删除)
         /// </summary>
         /// <returns></returns>
-        int Delete(DeleteDepartmentParameter parameter);
+        int Delete(DeleteEmployeeParameter parameter);
 
         /// <summary>
-        /// 恢复删除部门资料
+        /// 恢复删除职员资料
         /// </summary>
         /// <returns></returns>
-        int ReDelete(DeleteDepartmentParameter parameter);
+        int ReDelete(DeleteEmployeeParameter parameter);
     }
 }

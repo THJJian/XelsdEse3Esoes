@@ -1,6 +1,6 @@
 ﻿using CPSS.Common.Core.Paging;
 
-namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters
+namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Department
 {
     public class QueryDepartmentListParameter : PagingBase
     {
@@ -8,6 +8,8 @@ namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters
         public string ParentId { get; set; }
 
         public string Name { get; set; }
+
+        public string Spelling { set; get; }
 
         public string SerialNumber { get; set; }
 

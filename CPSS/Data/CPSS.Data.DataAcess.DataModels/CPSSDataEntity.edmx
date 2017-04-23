@@ -43,9 +43,9 @@
           <Property Name="name" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="pinyin" Type="varchar" MaxLength="80" />
           <Property Name="status" Type="int" Nullable="false" />
-          <Property Name="deleted" Type="smallint" />
+          <Property Name="deleted" Type="smallint" Nullable="false" />
           <Property Name="sort" Type="int" Nullable="false" />
-          <Property Name="comment" Type="varchar" MaxLength="50" />
+          <Property Name="comment" Type="varchar" MaxLength="256" />
         </EntityType>
         <EntityType Name="employee">
           <Key>
@@ -55,21 +55,19 @@
           <Property Name="classid" Type="varchar" MaxLength="60" Nullable="false" />
           <Property Name="parentid" Type="varchar" MaxLength="54" Nullable="false" />
           <Property Name="childnumber" Type="int" Nullable="false" />
-          <Property Name="childcount" Type="int" Nullable="false" />
           <Property Name="serialnumber" Type="varchar" MaxLength="26" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="80" Nullable="false" />
-          <Property Name="pinyin" Type="varchar" MaxLength="80" />
-          <Property Name="alias" Type="varchar" MaxLength="30" />
+          <Property Name="pinyin" Type="varchar" MaxLength="80" Nullable="false" />
           <Property Name="depid" Type="int" Nullable="false" />
           <Property Name="lowestdiscount" Type="smallint" />
           <Property Name="prepaidmenttotal" Type="numeric" Precision="18" Scale="5" />
           <Property Name="prepayfeetotal" Type="numeric" Precision="18" Scale="5" />
-          <Property Name="status" Type="smallint" />
           <Property Name="mobile" Type="varchar" MaxLength="60" />
           <Property Name="address" Type="varchar" MaxLength="66" />
+          <Property Name="status" Type="smallint" />
+          <Property Name="deleted" Type="smallint" />
           <Property Name="sort" Type="int" />
           <Property Name="comment" Type="varchar" MaxLength="256" />
-          <Property Name="ModifyDate" Type="timestamp" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -214,13 +212,13 @@
       <Schema Namespace="CPSS.Data.DataAccess.DataModels" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2009/11/edm" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
           <EntitySet Name="client" EntityType="CPSS.Data.DataAccess.DataModels.client" />
-          <EntitySet Name="employee" EntityType="CPSS.Data.DataAccess.DataModels.employee" />
           <EntitySet Name="product" EntityType="CPSS.Data.DataAccess.DataModels.product" />
           <EntitySet Name="storage" EntityType="CPSS.Data.DataAccess.DataModels.storage" />
           <EntitySet Name="unit" EntityType="CPSS.Data.DataAccess.DataModels.unit" />
           <EntitySet Name="snstorage" EntityType="CPSS.Data.DataAccess.DataModels.snstorage" />
           <EntitySet Name="subcompany" EntityType="CPSS.Data.DataAccess.DataModels.subcompany" />
           <EntitySet Name="department" EntityType="CPSS.Data.DataAccess.DataModels.department" />
+          <EntitySet Name="employee" EntityType="CPSS.Data.DataAccess.DataModels.employee" />
         </EntityContainer>
         <EntityType Name="client">
           <Key>
@@ -246,30 +244,6 @@
           <Property Name="status" Type="Int32" />
           <Property Name="sort" Type="Int32" />
           <Property Name="modifydate" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-        </EntityType>
-        <EntityType Name="employee">
-          <Key>
-            <PropertyRef Name="empid" />
-          </Key>
-          <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="classid" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="parentid" Type="String" Nullable="false" MaxLength="54" FixedLength="false" Unicode="false" />
-          <Property Name="childnumber" Type="Int32" Nullable="false" />
-          <Property Name="childcount" Type="Int32" Nullable="false" />
-          <Property Name="serialnumber" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="false" />
-          <Property Name="name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="pinyin" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
-          <Property Name="alias" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-          <Property Name="depid" Type="Int32" Nullable="false" />
-          <Property Name="lowestdiscount" Type="Int16" />
-          <Property Name="prepaidmenttotal" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="prepayfeetotal" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="status" Type="Int16" />
-          <Property Name="mobile" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
-          <Property Name="address" Type="String" MaxLength="66" FixedLength="false" Unicode="false" />
-          <Property Name="sort" Type="Int32" />
-          <Property Name="comment" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
-          <Property Name="ModifyDate" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="product">
           <Key>
@@ -392,9 +366,31 @@
           <Property Name="name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="pinyin" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
           <Property Name="status" Type="Int32" Nullable="false" />
-          <Property Name="deleted" Type="Int16" />
+          <Property Name="deleted" Type="Int16" Nullable="false" />
           <Property Name="sort" Type="Int32" Nullable="false" />
-          <Property Name="comment" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="comment" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="employee">
+          <Key>
+            <PropertyRef Name="empid" />
+          </Key>
+          <Property Name="empid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="classid" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="parentid" Type="String" Nullable="false" MaxLength="54" FixedLength="false" Unicode="false" />
+          <Property Name="childnumber" Type="Int32" Nullable="false" />
+          <Property Name="serialnumber" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="pinyin" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="depid" Type="Int32" Nullable="false" />
+          <Property Name="lowestdiscount" Type="Int16" />
+          <Property Name="prepaidmenttotal" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="prepayfeetotal" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="mobile" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="address" Type="String" MaxLength="66" FixedLength="false" Unicode="false" />
+          <Property Name="status" Type="Int16" />
+          <Property Name="deleted" Type="Int16" />
+          <Property Name="sort" Type="Int32" />
+          <Property Name="comment" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -425,31 +421,6 @@
                 <ScalarProperty Name="parentid" ColumnName="parentid" />
                 <ScalarProperty Name="classid" ColumnName="classid" />
                 <ScalarProperty Name="clientid" ColumnName="clientid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="employee">
-            <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.employee">
-              <MappingFragment StoreEntitySet="employee">
-                <ScalarProperty Name="ModifyDate" ColumnName="ModifyDate" />
-                <ScalarProperty Name="comment" ColumnName="comment" />
-                <ScalarProperty Name="sort" ColumnName="sort" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="mobile" ColumnName="mobile" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="prepayfeetotal" ColumnName="prepayfeetotal" />
-                <ScalarProperty Name="prepaidmenttotal" ColumnName="prepaidmenttotal" />
-                <ScalarProperty Name="lowestdiscount" ColumnName="lowestdiscount" />
-                <ScalarProperty Name="depid" ColumnName="depid" />
-                <ScalarProperty Name="alias" ColumnName="alias" />
-                <ScalarProperty Name="pinyin" ColumnName="pinyin" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="serialnumber" ColumnName="serialnumber" />
-                <ScalarProperty Name="childcount" ColumnName="childcount" />
-                <ScalarProperty Name="childnumber" ColumnName="childnumber" />
-                <ScalarProperty Name="parentid" ColumnName="parentid" />
-                <ScalarProperty Name="classid" ColumnName="classid" />
-                <ScalarProperty Name="empid" ColumnName="empid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -572,6 +543,29 @@
                 <ScalarProperty Name="parentid" ColumnName="parentid" />
                 <ScalarProperty Name="classid" ColumnName="classid" />
                 <ScalarProperty Name="depid" ColumnName="depid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="employee">
+            <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.employee">
+              <MappingFragment StoreEntitySet="employee">
+                <ScalarProperty Name="comment" ColumnName="comment" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="mobile" ColumnName="mobile" />
+                <ScalarProperty Name="prepayfeetotal" ColumnName="prepayfeetotal" />
+                <ScalarProperty Name="prepaidmenttotal" ColumnName="prepaidmenttotal" />
+                <ScalarProperty Name="lowestdiscount" ColumnName="lowestdiscount" />
+                <ScalarProperty Name="depid" ColumnName="depid" />
+                <ScalarProperty Name="pinyin" ColumnName="pinyin" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="serialnumber" ColumnName="serialnumber" />
+                <ScalarProperty Name="childnumber" ColumnName="childnumber" />
+                <ScalarProperty Name="parentid" ColumnName="parentid" />
+                <ScalarProperty Name="classid" ColumnName="classid" />
+                <ScalarProperty Name="empid" ColumnName="empid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

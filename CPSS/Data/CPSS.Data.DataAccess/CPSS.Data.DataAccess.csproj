@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Basic\departmentDataAccess.cs" />
+    <Compile Include="Basic\employeeDataAccess.cs" />
     <Compile Include="Basic\subcompanyDataAccess.cs" />
     <Compile Include="clientDataAccess.generated.cs">
       <DependentUpon>DataAccessTemplate.tt</DependentUpon>

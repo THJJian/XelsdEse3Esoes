@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Basic\IDepartmentViewService.cs" />
+    <Compile Include="Basic\IEmployeeViewService.cs" />
     <Compile Include="Basic\ISubCompanyViewService.cs" />
     <Compile Include="HeadButtons\IHeadButtonsViewService.cs" />
     <Compile Include="MainPage\ILeftNavMenuViewService.cs" />

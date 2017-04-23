@@ -164,6 +164,9 @@
     <Content Include="Views\Basic\Department\DepartmentList.cshtml" />
     <Content Include="Views\Basic\Department\AddDepartment.cshtml" />
     <Content Include="Views\Basic\Department\EditDepartment.cshtml" />
+    <Content Include="Views\Basic\Employee\EmployeeList.cshtml" />
+    <Content Include="Views\Basic\Employee\AddEmployee.cshtml" />
+    <Content Include="Views\Basic\Employee\EditEmployee.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

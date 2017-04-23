@@ -146,7 +146,7 @@ namespace CPSS.Web.Controllers
             return Json(respond);
         }
 
-        [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Add)]
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicDep_TB_Add)]
         [HttpPost]
         public JsonResult AddDepartment(RequestWebViewData<RequestAddDepartmentViewModel> request)
         {
@@ -154,7 +154,7 @@ namespace CPSS.Web.Controllers
             return Json(respond);
         }
 
-        [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Edit)]
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicDep_TB_Edit)]
         [HttpPost]
         public JsonResult EditDepartment(RequestWebViewData<RequestEditDepartmentViewModel> request)
         {
@@ -162,7 +162,7 @@ namespace CPSS.Web.Controllers
             return Json(respond);
         }
 
-        [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Delete)]
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicDep_TB_Delete)]
         [HttpPost]
         public JsonResult DeleteDepartment(RequestWebViewData<RequestDeleteDepartmentViewModel> request)
         {
@@ -170,9 +170,86 @@ namespace CPSS.Web.Controllers
             return Json(respond);
         }
 
-        [OperateRight(MenuID = MenuValueConstDefined.rtBasicCom_TB_Resume)]
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicDep_TB_Resume)]
         [HttpPost]
         public JsonResult ReDeleteDepartment(RequestWebViewData<RequestDeleteDepartmentViewModel> request)
+        {
+            var respond = this.mDepartmentViewService.ReDeleteDepartment(request);
+            return Json(respond);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 职员资料
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicEmp)]
+        public ActionResult EmployeeList()
+        {
+            return View("~/views/basic/employee/employeelist.cshtml");
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicEmp_TB_Add)]
+        public ActionResult AddEmployee()
+        {
+            return View("~/views/basic/employee/addemployee.cshtml");
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicEmp_TB_Edit)]
+        public ActionResult EditEmployee()
+        {
+            var depid = this.WorkContext.GetQueryInt("empid");
+            var request = new RequestWebViewData<RequestGetDepartmentByIdViewModel>
+            {
+                data = new RequestGetDepartmentByIdViewModel
+                {
+                    DepId = depid
+                }
+            };
+            var model = this.mDepartmentViewService.GetDepartmentByDepId(request);
+            return View("~/views/basic/employee/editemployee.cshtml", model);
+        }
+
+        #region Ajax操作方法
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicEmp)]
+        [HttpPost]
+        public JsonResult GetEmployeeList(RequestWebViewData<RequestQueryDepartmentViewModel> request)
+        {
+            if (string.IsNullOrEmpty(request.data.ParentId)) request.data.ParentId = "000001";
+            var respond = this.mDepartmentViewService.GetQueryDepartmentList(request);
+            respond.parentId = request.data.ParentId;
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicEmp_TB_Add)]
+        [HttpPost]
+        public JsonResult AddEmployee(RequestWebViewData<RequestAddDepartmentViewModel> request)
+        {
+            var respond = this.mDepartmentViewService.AddDepartment(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicEmp_TB_Edit)]
+        [HttpPost]
+        public JsonResult EditEmployee(RequestWebViewData<RequestEditDepartmentViewModel> request)
+        {
+            var respond = this.mDepartmentViewService.EditDepartment(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicEmp_TB_Delete)]
+        [HttpPost]
+        public JsonResult DeleteEmployee(RequestWebViewData<RequestDeleteDepartmentViewModel> request)
+        {
+            var respond = this.mDepartmentViewService.DeleteDepartment(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicEmp_TB_Resume)]
+        [HttpPost]
+        public JsonResult ReDeleteEmployee(RequestWebViewData<RequestDeleteDepartmentViewModel> request)
         {
             var respond = this.mDepartmentViewService.ReDeleteDepartment(request);
             return Json(respond);

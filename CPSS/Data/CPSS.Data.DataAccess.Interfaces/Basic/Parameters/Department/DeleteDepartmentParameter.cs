@@ -1,4 +1,4 @@
-﻿namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters
+﻿namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Department
 {
     public class DeleteDepartmentParameter
     {

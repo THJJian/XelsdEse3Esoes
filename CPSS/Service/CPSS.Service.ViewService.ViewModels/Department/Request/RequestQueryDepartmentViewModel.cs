@@ -12,5 +12,7 @@
         public string Name { get; set; }
 
         public short Status { get; set; }
+
+        public string Spelling { get; set; }
     }
 }

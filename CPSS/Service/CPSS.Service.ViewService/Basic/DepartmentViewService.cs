@@ -9,7 +9,7 @@ using CPSS.Common.Core.Helper.Cached;
 using CPSS.Common.Core.Helper.Generated;
 using CPSS.Common.Core.Type.EnumType;
 using CPSS.Data.DataAccess.Interfaces;
-using CPSS.Data.DataAccess.Interfaces.Basic.Parameters;
+using CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Department;
 using CPSS.Data.DataAccess.Interfaces.MongoDB;
 using CPSS.Data.DataAcess.DataModels;
 using CPSS.Service.ViewService.Interfaces.Basic;
@@ -50,7 +50,8 @@ namespace CPSS.Service.ViewService.Basic
                         PageIndex = request.page,
                         PageSize = request.rows,
                         Status = request.data.Status,
-                        ParentId = request.data.ParentId
+                        ParentId = request.data.ParentId,
+                        Spelling = request.data.Spelling
                     };
                     var pageDataList = this.mDepartmentDataAccess.GetQueryDepartmentList(parameter);
                     var respond = new RespondWebViewData<List<RespondQueryDepartmentViewModel>>
@@ -124,7 +125,7 @@ namespace CPSS.Service.ViewService.Basic
                 MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
 
                 //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
-                this.SaveMongoDbData("新增部门资料", request, respond, this.GetType());
+                //this.SaveMongoDbData("新增部门资料", request, respond, this.GetType());
             });
             return respond;
         }
@@ -213,7 +214,7 @@ namespace CPSS.Service.ViewService.Basic
                 MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
 
                 //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
-                this.SaveMongoDbData("编辑分公司资料", request, respond, this.GetType());
+                //this.SaveMongoDbData("编辑分公司资料", request, respond, this.GetType());
             });
             return respond;
         }
