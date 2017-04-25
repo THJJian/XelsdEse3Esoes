@@ -31,7 +31,7 @@ namespace CPSS.Service.ViewService.ViewModels.Employee.Respond
 
         public string Address { set; get; }
 
-        public int Status { get; set; }
+        public short Status { get; set; }
         
         public short Deleted { get; set; }
         

@@ -19,14 +19,15 @@
 <div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 300px; max-width: 100%; overflow: hidden;">
     <input type="hidden" id="txtParentId" value="" />
     <div class="easyui-panel" data-options="border: false">
-        @UIHelper.textBox("txtSerialNumber", "编号", _tabIndex: 1, _buttonText: string.Empty)
-        @UIHelper.textBox("txtName", "名称", _tabIndex: 2, _buttonText: string.Empty)
-        @UIHelper.textBox("txtSpelling", "拼音", _tabIndex: 3, _buttonText: string.Empty)
-        @UIHelper.dropDownList("ddlPriceMode", "售价方式", new List<DropDownOption> { new DropDownOption { Text = "无", Value = "0" }, new DropDownOption { Text = "售价1", Value = "1" }, new DropDownOption { Text = "售价2", Value = "2" }, new DropDownOption { Text = "售价3", Value = "3" } }, _tabIndex: 4, _defaultValue: "0", _selectPanelHeight: 85)
-        @UIHelper.textBox("txtEmail", "Email", _tabIndex: 5, _buttonText: string.Empty)
-        @UIHelper.textBox("txtLinkMan", "联系人", _tabIndex: 6, _buttonText: string.Empty)
-        @UIHelper.textBox("txtLinkTel", "联系电话", _tabIndex: 7, _buttonText: string.Empty)
-        @UIHelper.dropDownList("ddlStatus", "状态", new List<DropDownOption> { new DropDownOption { Text = "无", Value = ((short)CommonStatus.Default).ToString() }, new DropDownOption { Text = "正常", Value = ((short)CommonStatus.Used).ToString() } }, _tabIndex: 8, _defaultValue: ((short)CommonStatus.Default).ToString(), _selectPanelHeight: 45)
+        @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSerialNumber", TabIndex = 1, LabelName = "编号" })
+        @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtName", TabIndex = 2, LabelName = "名称" })
+        @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSpelling", TabIndex = 3, LabelName = "拼音" })
+        @UIHelper.dropDownList(new DropDownOption { LabelName = "售价方式", Id = "ddlPriceMode", TabIndex = 4, Value = "0", SelectPanelHeight = 90, SelectItems = new List<DropDownSelectItem> { new DropDownSelectItem { Text = "无", Value = "0" }, new DropDownSelectItem { Text = "售价1", Value = "1" }, new DropDownSelectItem { Text = "售价2", Value = "2" }, new DropDownSelectItem { Text = "售价3", Value = "3" } } })
+        @*@UIHelper.dropDownList("ddlPriceMode", "售价方式", new List<DropDownOption> { new DropDownOption { Text = "无", Value = "0" }, new DropDownOption { Text = "售价1", Value = "1" }, new DropDownOption { Text = "售价2", Value = "2" }, new DropDownOption { Text = "售价3", Value = "3" } }, _tabIndex: 4, _defaultValue: "0", _selectPanelHeight: 85)*@
+        @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtEmail", TabIndex = 5, LabelName = "Email" })
+        @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtLinkMan", TabIndex = 6, LabelName = "联系人" })
+        @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtLinkTel", TabIndex = 7, LabelName = "联系电话" })
+        @UIHelper.dropDownList(new DropDownOption { LabelName = "状态", Id = "ddlStatus", TabIndex = 8, Value = ((short)CommonStatus.Default).ToString(), SelectPanelHeight = 70, SelectItems = new List<DropDownSelectItem> { new DropDownSelectItem { Text = "无", Value = ((short)CommonStatus.Default).ToString() }, new DropDownSelectItem { Text = "正常", Value = ((short)CommonStatus.Used).ToString() }, new DropDownSelectItem { Text = "停用", Value = ((short)CommonStatus.Stopped).ToString() } } })
     </div>
     <div class="easyui-panel" data-options="border: false" style="padding-right: 20px; text-align: right;">
         @UIHelper.linkButton("查  询", "btnSearch")

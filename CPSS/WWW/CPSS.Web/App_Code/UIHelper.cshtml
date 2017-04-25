@@ -1,11 +1,11 @@
 ﻿@using CPSS.Common.Core.Helper.Extension
 @using CPSS.Common.Core.Mvc.UIControl
 
-@helper textBox(string _textBoxID, string _labelName, string _labelPosition = "before", string _labelAlign = "right", int _labelWidth = 80, int _width = 260, int _height = 30, string _buttonText = "…", int _tabIndex = 0, string _value = "", string _multiline = "false")
+@helper textBox(TextBoxOption option)
 {
     <div style="padding-top: 5px; float: left;">
-        <input class="easyui-textbox" id="@_textBoxID" type="text" tabindex="@_tabIndex"
-               data-options="multiline: @_multiline,label:'@_labelName', labelPosition: '@_labelPosition', labelAlign: '@_labelAlign', labelWidth: '@string.Concat(_labelWidth, "px")',width: '@string.Concat(_width, "px")', height: '@string.Concat(_height, "px")', buttonText:'@_buttonText', value: '@_value'"
+        <input class="easyui-textbox" id="@option.Id" type="text" tabindex="@option.TabIndex"
+               data-options="multiline: @option.Multiline.ToLowerString(),label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign: '@option.LabelAlign', labelWidth: '@string.Concat(option.LabelWidth, "px")',width: '@string.Concat(option.Width, "px")', height: '@string.Concat(option.Height, "px")', buttonText:'@option.ButtonText', value: '@option.Value'"
                style="padding-top: 5px;" />
     </div>
 }
@@ -20,23 +20,24 @@
     <a href="javascript:void(0);" id="@_buttonID" class="easyui-linkbutton" data-options="iconCls:'@_iconCls', disabled: @_disabled.ToLowerString()">@_buttonText</a>
 }
 
-@helper dropDownList(string _ddlID, string _labelText, List<DropDownOption> _options, string _labelPosition = "before", string _labelAlign = "right", int _labelWidth = 80, int _width = 260, int _height = 30, int _selectPanelHeight = 200 , int _tabIndex = 0, string _defaultValue = "")
+@helper dropDownList(DropDownOption option)
 {
     <div style="padding-top: 5px; float: left;">
-        <select class="easyui-combobox" id="@_ddlID" tabindex="@_tabIndex"
-                data-options="label:'@_labelText', labelPosition: '@_labelPosition', labelAlign: '@_labelAlign', labelWidth: '@string.Concat(_labelWidth, "px")', width: '@string.Concat(_width, "px")', height: '@string.Concat(_height, "px")', panelHeight: '@string.Concat(_selectPanelHeight, "px")'"
+        <select class="easyui-combobox" id="@option.Id" tabindex="@option.TabIndex"
+                data-options="label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign: '@option.LabelAlign', labelWidth: '@string.Concat(option.LabelWidth, "px")', width: '@string.Concat(option.Width, "px")', height: '@string.Concat(option.Height, "px")', panelHeight: '@string.Concat(option.SelectPanelHeight, "px")'"
                 style="padding-top: 5px;">
-            @foreach (var option in _options)
+            @foreach (var item in option.SelectItems)
             {
-            <option value="@option.Value" @(!string.IsNullOrEmpty(_defaultValue) && option.Value == _defaultValue ? "selected='selected'" : string.Empty)>@option.Text</option>
+                <option value="@item.Value" @(!string.IsNullOrEmpty(option.Value) && item.Value == option.Value ? "selected='selected'" : string.Empty)>@item.Text</option>
             }
         </select>
     </div>
 }
 
-@helper comboGrid(string ddlId, string labelText, string labelPosition = "before", string labelAlign = "right", int labelWidth = 80, int width = 260, int height = 30, int tabIndex = 0, string defaultValue = "")
+@helper comboGrid(ComboGridOption option)
 {
     <div style="padding-top: 5px; float: left;">
-        
+        <input class="easyui-combogrid" id="@option.Id" tabindex="@option.TabIndex"
+               data-options="label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign:'@option.LabelAlign', labelWidth:'@string.Concat(option.LabelWidth, "px")', width:'@string.Concat(option.Width, "px")', height:'@string.Concat(option.Height, "px")', panelHeight: '@string.Concat(option.SelectPanelHeight, "px")', panelWidth: '@string.Concat(option.SelectPanelWidth, "px")'," />
     </div>
 }

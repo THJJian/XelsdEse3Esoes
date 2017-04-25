@@ -1,4 +1,5 @@
 ﻿@model CPSS.Common.Core.RespondWebViewData<CPSS.Service.ViewService.ViewModels.Department.Respond.RespondQueryDepartmentViewModel>
+@using CPSS.Common.Core.Mvc.UIControl
 @using CPSS.Service.ViewService.ViewModels.HeadButtons.Respond
 @{
     ViewBag.Title = "EditDepartment";
@@ -19,11 +20,11 @@
 
 <div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 500px; max-width: 100%; overflow: hidden;">
     <input type="hidden" id="txtSubComId" value="@_model.DepId" />
-    @UIHelper.textBox("txtSerialNumber", "编号", _tabIndex: 1, _buttonText: string.Empty, _value: _model.SerialNumber)
-    @UIHelper.textBox("txtName", "名称", _tabIndex: 2, _buttonText: string.Empty, _value: _model.Name)
-    @UIHelper.textBox("txtSpelling", "拼音", _tabIndex: 3, _buttonText: string.Empty, _value: _model.Spelling)
-    @UIHelper.textBox("txtSort", "排序", _tabIndex: 8, _buttonText: string.Empty, _value: _model.Sort)
-    @UIHelper.textBox("txtComment", "备注", _tabIndex: 9, _buttonText: string.Empty, _multiline: "true", _width: 520, _height: 100, _value: _model.Comment)
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSerialNumber", TabIndex = 1, LabelName = "编号", Value = _model.SerialNumber})
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtName", TabIndex = 2, LabelName = "名称", Value = _model.Name})
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSpelling", TabIndex = 3, LabelName = "拼音", Value = _model.Spelling})
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSort", TabIndex = 4, LabelName = "排序", Value = _model.Sort})
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtComment", TabIndex = 1, LabelName = "备注", Value = _model.Comment, Multiline = true, Width = 520, Height = 100})
 </div>
 @section scripts{
     <script type="text/javascript">

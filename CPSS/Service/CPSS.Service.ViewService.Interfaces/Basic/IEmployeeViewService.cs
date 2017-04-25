@@ -13,40 +13,40 @@ namespace CPSS.Service.ViewService.Interfaces.Basic
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondWebViewData<List<RespondQueryEmployeeViewModel>> GetQueryDepartmentList(RequestWebViewData<RequestQueryEmployeeViewModel> request);
+        RespondWebViewData<List<RespondQueryEmployeeViewModel>> GetQueryEmployeeList(RequestWebViewData<RequestQueryEmployeeViewModel> request);
 
         /// <summary>
         /// 新增职员信息
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondWebViewData<RespondAddEmployeeViewModel> AddDepartment(RequestWebViewData<RequestAddEmployeeViewModel> request);
+        RespondWebViewData<RespondAddEmployeeViewModel> AddEmployee(RequestWebViewData<RequestAddEmployeeViewModel> request);
 
         /// <summary>
         /// 根据depid查询对应行职员信息
         /// </summary>
         /// <returns></returns>
-        RespondWebViewData<RespondQueryEmployeeViewModel> GetDepartmentByDepId(RequestWebViewData<RequestGetEmployeeByIdViewModel> request);
+        RespondWebViewData<RespondQueryEmployeeViewModel> GetEmployeeByDepId(RequestWebViewData<RequestGetEmployeeByIdViewModel> request);
 
         /// <summary>
         /// 修改职员资料
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondWebViewData<RequestEditEmployeeViewModel> EditDepartment(RequestWebViewData<RequestEditEmployeeViewModel> request);
+        RespondWebViewData<RequestEditEmployeeViewModel> EditEmployee(RequestWebViewData<RequestEditEmployeeViewModel> request);
 
         /// <summary>
         /// 删除职员资料(逻辑删除)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondWebViewData<RespondDeleteEmployeeViewModel> DeleteDepartment(RequestWebViewData<RequestDeleteEmployeeViewModel> request);
+        RespondWebViewData<RespondDeleteEmployeeViewModel> DeleteEmployee(RequestWebViewData<RequestDeleteEmployeeViewModel> request);
 
         /// <summary>
         /// 恢复删除职员资料
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondWebViewData<RespondDeleteEmployeeViewModel> ReDeleteDepartment(RequestWebViewData<RequestDeleteEmployeeViewModel> request);
+        RespondWebViewData<RespondDeleteEmployeeViewModel> ReDeleteEmployee(RequestWebViewData<RequestDeleteEmployeeViewModel> request);
     }
 }
