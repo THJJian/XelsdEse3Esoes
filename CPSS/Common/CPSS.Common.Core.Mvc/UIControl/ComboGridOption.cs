@@ -3,6 +3,14 @@ namespace CPSS.Common.Core.Mvc.UIControl
 {
     public class ComboGridOption : EasyUIBaseControl
     {
+        public ComboGridOption()
+        {
+            this.Method = "post";
+            this.Mode = "remote";
+            this.FitColumns = true;
+            this.SelectPanelWidth = 500;
+        }
+
         public string IdField { set; get; }
 
         public string TextField { set; get; }
@@ -18,5 +26,7 @@ namespace CPSS.Common.Core.Mvc.UIControl
         public int SelectPanelHeight { set; get; }
 
         public int SelectPanelWidth { set; get; }
+
+        public string Mode { get; set; }
     }
 }

@@ -1,11 +1,12 @@
 ﻿@using CPSS.Common.Core.Helper.Extension
 @using CPSS.Common.Core.Mvc.UIControl
+@using Newtonsoft.Json.Linq
 
 @helper textBox(TextBoxOption option)
 {
     <div style="padding-top: 5px; float: left;">
         <input class="easyui-textbox" id="@option.Id" type="text" tabindex="@option.TabIndex"
-               data-options="multiline: @option.Multiline.ToLowerString(),label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign: '@option.LabelAlign', labelWidth: '@string.Concat(option.LabelWidth, "px")',width: '@string.Concat(option.Width, "px")', height: '@string.Concat(option.Height, "px")', buttonText:'@option.ButtonText', value: '@option.Value'"
+               data-options="multiline: @option.Multiline.ToLowerString(), label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign: '@option.LabelAlign', labelWidth: '@string.Concat(option.LabelWidth, "px")', width: '@string.Concat(option.Width, "px")', height: '@string.Concat(option.Height, "px")', buttonText:'@option.ButtonText', value: '@option.Value'"
                style="padding-top: 5px;" />
     </div>
 }
@@ -38,6 +39,6 @@
 {
     <div style="padding-top: 5px; float: left;">
         <input class="easyui-combogrid" id="@option.Id" tabindex="@option.TabIndex"
-               data-options="label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign:'@option.LabelAlign', labelWidth:'@string.Concat(option.LabelWidth, "px")', width:'@string.Concat(option.Width, "px")', height:'@string.Concat(option.Height, "px")', panelHeight: '@string.Concat(option.SelectPanelHeight, "px")', panelWidth: '@string.Concat(option.SelectPanelWidth, "px")'," />
+               data-options="label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign:'@option.LabelAlign', labelWidth: '@string.Concat(option.LabelWidth, "px")', width:'@string.Concat(option.Width, "px")', height:'@string.Concat(option.Height, "px")', panelHeight: '@string.Concat(option.SelectPanelHeight, "px")', panelWidth: '@string.Concat(option.SelectPanelWidth, "px")', url: '@option.Url', idField: '@option.IdField', textField: '@option.TextField', mode: '@option.Mode', fitColumns: '@option.FitColumns.ToLowerString()', columns:[[@JObject.FromObject(option.GridColumns).ToString()]] " />
     </div>
 }
