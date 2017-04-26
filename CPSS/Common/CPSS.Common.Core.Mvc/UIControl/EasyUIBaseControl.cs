@@ -11,6 +11,7 @@
             this.Height = 30;
             this.TabIndex = 0;
             this.Value = string.Empty;
+            this.Disabled = false;
         }
 
         public string Id { set; get; }

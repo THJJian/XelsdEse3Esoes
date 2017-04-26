@@ -47,5 +47,7 @@ namespace CPSS.Service.ViewService.ViewModels.Employee.Respond
         public int Sort { get; set; }
         
         public string Comment { get; set; }
+
+        public int DepId { get; set; }
     }
 }

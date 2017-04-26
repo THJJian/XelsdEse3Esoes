@@ -19,7 +19,6 @@
 }
 
 <div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 500px; max-width: 100%; overflow: hidden;">
-    <input type="hidden" id="txtSubComId" value="@_model.DepId" />
     @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSerialNumber", TabIndex = 1, LabelName = "编号", Value = _model.SerialNumber})
     @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtName", TabIndex = 2, LabelName = "名称", Value = _model.Name})
     @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSpelling", TabIndex = 3, LabelName = "拼音", Value = _model.Spelling})

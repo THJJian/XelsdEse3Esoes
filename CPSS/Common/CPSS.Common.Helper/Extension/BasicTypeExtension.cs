@@ -183,11 +183,22 @@ namespace CPSS.Common.Core.Helper.Extension
         /// 将decimal转换成指定精度的字符串(货币)
         /// </summary>
         /// <param name="source"></param>
-        /// <param name="precision"></param>
+        /// <param name="precision">精度</param>
         /// <returns></returns>
         public static string ToCurrencyString(this decimal source, short precision)
         {
             return source.ToString(string.Concat("C", precision));
+        }
+
+        /// <summary>
+        /// 将decimal转换成指定精度的字符串
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="precision">精度</param>
+        /// <returns></returns>
+        public static string ToNumberString(this decimal source, short precision)
+        {
+            return source.ToString(string.Concat("N", precision));
         }
 
         #endregion

@@ -43,6 +43,6 @@
 {
     <div style="padding-top: 5px; float: left;">
         <input class="easyui-combogrid" id="@option.Id" tabindex="@option.TabIndex"
-               data-options="label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign:'@option.LabelAlign', labelWidth: '@string.Concat(option.LabelWidth, "px")', width:'@string.Concat(option.Width, "px")', height:'@string.Concat(option.Height, "px")', panelHeight: '@string.Concat(option.SelectPanelHeight, "px")', panelWidth: '@string.Concat(option.SelectPanelWidth, "px")', url: '@option.Url', idField: '@option.IdField', textField: '@option.TextField', mode: '@option.Mode', fitColumns: '@option.FitColumns.ToLowerString()', columns:[@JObject.FromObject(option).GetValue("GridColumns").ToString()] " />
+               data-options="label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign:'@option.LabelAlign', labelWidth: '@string.Concat(option.LabelWidth, "px")', width:'@string.Concat(option.Width, "px")', height:'@string.Concat(option.Height, "px")', panelHeight: '@string.Concat(option.SelectPanelHeight, "px")', panelWidth: '@string.Concat(option.SelectPanelWidth, "px")', value: '@option.Value', disabled: @option.Disabled.ToLowerString(), url: '@option.Url', idField: '@option.IdField', textField: '@option.TextField', mode: '@option.Mode', fitColumns: '@option.FitColumns.ToLowerString()', columns:[@JObject.FromObject(option).GetValue("GridColumns").ToString()] " />
     </div>
 }

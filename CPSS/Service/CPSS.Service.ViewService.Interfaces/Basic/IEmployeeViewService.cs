@@ -26,7 +26,7 @@ namespace CPSS.Service.ViewService.Interfaces.Basic
         /// 根据depid查询对应行职员信息
         /// </summary>
         /// <returns></returns>
-        RespondWebViewData<RespondQueryEmployeeViewModel> GetEmployeeByDepId(RequestWebViewData<RequestGetEmployeeByIdViewModel> request);
+        RespondWebViewData<RespondQueryEmployeeViewModel> GetEmployeeByEmpId(RequestWebViewData<RequestGetEmployeeByIdViewModel> request);
 
         /// <summary>
         /// 修改职员资料

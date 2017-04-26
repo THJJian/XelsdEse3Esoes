@@ -150,11 +150,11 @@ namespace CPSS.Service.ViewService.Basic
             return respond;
         }
 
-        public RespondWebViewData<RespondQueryEmployeeViewModel> GetEmployeeByDepId(RequestWebViewData<RequestGetEmployeeByIdViewModel> request)
+        public RespondWebViewData<RespondQueryEmployeeViewModel> GetEmployeeByEmpId(RequestWebViewData<RequestGetEmployeeByIdViewModel> request)
         {
             return MemcacheHelper.Get(new RequestMemcacheParameter<RespondWebViewData<RespondQueryEmployeeViewModel>>
             {
-                CacheKey = string.Format(PRE_CACHE_KEY, "GetDepartmentByComId"),
+                CacheKey = string.Format(PRE_CACHE_KEY, "GetEmployeeByEmpId"),
 
                 #region ====================
                 CallBackFunc = () =>
@@ -176,14 +176,15 @@ namespace CPSS.Service.ViewService.Basic
                             ClassId = employee.classid,
                             Comment = employee.comment,
                             Deleted = employee.deleted.HasValue ? employee.deleted.Value : (short)CommonDeleted.NotDeleted,
+                            DepId = employee.depid,
                             DepName = employee.depname,
                             EmpId = employee.empid,
                             LowestDiscount = employee.lowestdiscount.HasValue ? employee.lowestdiscount.Value : (short)100,
                             Mobile = employee.mobile,
                             Name = employee.name,
                             ParentId = employee.parentid,
-                            PreInAdvanceTotal = employee.preinadvancetotal.HasValue ? employee.preinadvancetotal.Value.ToCurrencyString(5) : "0.00000",
-                            PrePayFeeTotal = employee.prepayfeetotal.HasValue ? employee.prepayfeetotal.Value.ToCurrencyString(5) : "0.00000",
+                            PreInAdvanceTotal = employee.preinadvancetotal.HasValue ? employee.preinadvancetotal.Value.ToNumberString(5) : "0.00000",
+                            PrePayFeeTotal = employee.prepayfeetotal.HasValue ? employee.prepayfeetotal.Value.ToNumberString(5) : "0.00000",
                             SerialNumber = employee.serialnumber,
                             Status = employee.status.Value,
                             Spelling = employee.pinyin,

@@ -210,7 +210,7 @@ namespace CPSS.Web.Controllers
                     EmpId = empId
                 }
             };
-            var model = this.mEmployeeViewService.GetEmployeeByDepId(request);
+            var model = this.mEmployeeViewService.GetEmployeeByEmpId(request);
             return View("~/views/basic/employee/editemployee.cshtml", model);
         }
 
