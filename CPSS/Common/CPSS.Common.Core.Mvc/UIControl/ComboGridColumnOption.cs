@@ -2,10 +2,22 @@
 {
     public class ComboGridColumnOption
     {
-        public string Field { set; get; }
+        public ComboGridColumnOption()
+        {
+            this.width = 120;
+            this.hidden = false;
+            this.align = "right";
+        }
 
-        public string Title { set; get; }
+        public string field { set; get; }
 
-        public int Width { set; get; }
+        public string title { set; get; }
+
+        public int width { set; get; }
+
+        public bool hidden { set; get; }
+
+        public string align { set; get; }
+
     }
 }

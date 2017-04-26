@@ -32,7 +32,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public productDataModel GetproductDataModelById(int proid)
 		{
-			this.ExecuteSQL = @"SELECT proid,classid,parentid,childcount,serialnumber,name,pinyin,alias,standard,modal,permitcode,brand,trademark,makearea,barcode,price,taxrate,unitid,validmonth,validday,status,costmethod,snmanage,snlength,sort,comment,ModifyDate From product  WHERE  proid = @proid ";
+			this.ExecuteSQL = @"SELECT proid,classid,parentid,childcount,serialnumber,name,pinyin,alias,standard,modal,permitcode,brand,trademark,makearea,barcode,price,taxrate,unitid,validmonth,validday,status,costmethod,snmanage,snlength,deleted,sort,comment From product  WHERE  proid = @proid ";
 			this.DataParameter = new DbParameter[]
 			{
 				new SqlParameter("@proid", proid),
@@ -45,7 +45,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Add(productDataModel data, IDbTransaction tansaction)
 	    {
-            this.ExecuteSQL = @"INSERT INTO [product] ([classid],[parentid],[childcount],[serialnumber],[name],[pinyin],[alias],[standard],[modal],[permitcode],[brand],[trademark],[makearea],[barcode],[price],[taxrate],[unitid],[validmonth],[validday],[status],[costmethod],[snmanage],[snlength],[sort],[comment],[ModifyDate]) VALUES (@classid,@parentid,@childcount,@serialnumber,@name,@pinyin,@alias,@standard,@modal,@permitcode,@brand,@trademark,@makearea,@barcode,@price,@taxrate,@unitid,@validmonth,@validday,@status,@costmethod,@snmanage,@snlength,@sort,@comment,@ModifyDate) 
+            this.ExecuteSQL = @"INSERT INTO [product] ([classid],[parentid],[childcount],[serialnumber],[name],[pinyin],[alias],[standard],[modal],[permitcode],[brand],[trademark],[makearea],[barcode],[price],[taxrate],[unitid],[validmonth],[validday],[status],[costmethod],[snmanage],[snlength],[deleted],[sort],[comment]) VALUES (@classid,@parentid,@childcount,@serialnumber,@name,@pinyin,@alias,@standard,@modal,@permitcode,@brand,@trademark,@makearea,@barcode,@price,@taxrate,@unitid,@validmonth,@validday,@status,@costmethod,@snmanage,@snlength,@deleted,@sort,@comment) 
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
@@ -72,9 +72,9 @@ namespace CPSS.Data.DataAccess
                 new SqlParameter("@costmethod", data.costmethod),
                 new SqlParameter("@snmanage", data.snmanage),
                 new SqlParameter("@snlength", data.snlength),
+                new SqlParameter("@deleted", data.deleted),
                 new SqlParameter("@sort", data.sort),
                 new SqlParameter("@comment", data.comment),
-                new SqlParameter("@ModifyDate", data.ModifyDate),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -92,7 +92,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Update(productDataModel data, IDbTransaction tansaction)
 	    {
-			this.ExecuteSQL = @"UPDATE product SET  [classid] = @classid, [parentid] = @parentid, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [alias] = @alias, [standard] = @standard, [modal] = @modal, [permitcode] = @permitcode, [brand] = @brand, [trademark] = @trademark, [makearea] = @makearea, [barcode] = @barcode, [price] = @price, [taxrate] = @taxrate, [unitid] = @unitid, [validmonth] = @validmonth, [validday] = @validday, [status] = @status, [costmethod] = @costmethod, [snmanage] = @snmanage, [snlength] = @snlength, [sort] = @sort, [comment] = @comment, [ModifyDate] = @ModifyDate WHERE  [proid] = @proid ";
+			this.ExecuteSQL = @"UPDATE product SET  [classid] = @classid, [parentid] = @parentid, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [alias] = @alias, [standard] = @standard, [modal] = @modal, [permitcode] = @permitcode, [brand] = @brand, [trademark] = @trademark, [makearea] = @makearea, [barcode] = @barcode, [price] = @price, [taxrate] = @taxrate, [unitid] = @unitid, [validmonth] = @validmonth, [validday] = @validday, [status] = @status, [costmethod] = @costmethod, [snmanage] = @snmanage, [snlength] = @snlength, [deleted] = @deleted, [sort] = @sort, [comment] = @comment WHERE  [proid] = @proid ";
 			this.DataParameter = new DbParameter[]
             {
                 new SqlParameter("@proid", data.proid),
@@ -119,9 +119,9 @@ namespace CPSS.Data.DataAccess
                 new SqlParameter("@costmethod", data.costmethod),
                 new SqlParameter("@snmanage", data.snmanage),
                 new SqlParameter("@snlength", data.snlength),
+                new SqlParameter("@deleted", data.deleted),
                 new SqlParameter("@sort", data.sort),
                 new SqlParameter("@comment", data.comment),
-                new SqlParameter("@ModifyDate", data.ModifyDate),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }

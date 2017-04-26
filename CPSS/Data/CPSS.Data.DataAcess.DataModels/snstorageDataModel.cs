@@ -27,6 +27,6 @@ namespace CPSS.Data.DataAcess.DataModels
         public System.DateTime ctime { get; set; }
         public Nullable<System.DateTime> makedate { get; set; }
         public Nullable<System.DateTime> validdate { get; set; }
-        public byte[] modifydate { get; set; }
+        public Nullable<short> deleted { get; set; }
     }
 }

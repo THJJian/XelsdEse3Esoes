@@ -11,9 +11,13 @@
     </div>
 }
 
-@helper numberBox()
+@helper numberBox(NumberBoxOption option)
 {
-    
+    <div style="padding-top: 5px; float: left;">
+        <input class="easyui-numberbox" id="@option.Id" type="text" tabindex="@option.TabIndex"
+               data-options="label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign: '@option.LabelAlign', labelWidth: '@string.Concat(option.LabelWidth, "px")', width: '@string.Concat(option.Width, "px")', height: '@string.Concat(option.Height, "px")', value: '@option.Value', min: @option.Min, max: @option.Max, precision: @option.Precision, decimalSeparator: '@option.DecimalSeparator', groupSeparator: '@option.GroupSeparator', prefix: '@option.Prefix'"
+               style="padding-top: 5px;" />
+    </div>
 }
 
 @helper linkButton(string _buttonText, string _buttonID, bool _disabled = false, string _iconCls = "")
@@ -39,6 +43,6 @@
 {
     <div style="padding-top: 5px; float: left;">
         <input class="easyui-combogrid" id="@option.Id" tabindex="@option.TabIndex"
-               data-options="label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign:'@option.LabelAlign', labelWidth: '@string.Concat(option.LabelWidth, "px")', width:'@string.Concat(option.Width, "px")', height:'@string.Concat(option.Height, "px")', panelHeight: '@string.Concat(option.SelectPanelHeight, "px")', panelWidth: '@string.Concat(option.SelectPanelWidth, "px")', url: '@option.Url', idField: '@option.IdField', textField: '@option.TextField', mode: '@option.Mode', fitColumns: '@option.FitColumns.ToLowerString()', columns:[[@JObject.FromObject(option.GridColumns).ToString()]] " />
+               data-options="label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign:'@option.LabelAlign', labelWidth: '@string.Concat(option.LabelWidth, "px")', width:'@string.Concat(option.Width, "px")', height:'@string.Concat(option.Height, "px")', panelHeight: '@string.Concat(option.SelectPanelHeight, "px")', panelWidth: '@string.Concat(option.SelectPanelWidth, "px")', url: '@option.Url', idField: '@option.IdField', textField: '@option.TextField', mode: '@option.Mode', fitColumns: '@option.FitColumns.ToLowerString()', columns:[@JObject.FromObject(option).GetValue("GridColumns").ToString()] " />
     </div>
 }

@@ -32,7 +32,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public employeeDataModel GetemployeeDataModelById(int empid)
 		{
-			this.ExecuteSQL = @"SELECT empid,classid,parentid,childnumber,serialnumber,name,pinyin,depid,lowestdiscount,prepaidmenttotal,prepayfeetotal,mobile,address,status,deleted,sort,comment From employee  WHERE  empid = @empid ";
+			this.ExecuteSQL = @"SELECT empid,classid,parentid,childnumber,serialnumber,name,pinyin,depid,depname,lowestdiscount,preinadvancetotal,prepayfeetotal,mobile,address,status,deleted,sort,comment From employee  WHERE  empid = @empid ";
 			this.DataParameter = new DbParameter[]
 			{
 				new SqlParameter("@empid", empid),
@@ -45,7 +45,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Add(employeeDataModel data, IDbTransaction tansaction)
 	    {
-            this.ExecuteSQL = @"INSERT INTO [employee] ([classid],[parentid],[childnumber],[serialnumber],[name],[pinyin],[depid],[lowestdiscount],[preinadvancetotal],[prepayfeetotal],[mobile],[address],[status],[deleted],[sort],[comment]) VALUES (@classid,@parentid,@childnumber,@serialnumber,@name,@pinyin,@depid,@lowestdiscount,@preinadvancetotal,@prepayfeetotal,@mobile,@address,@status,@deleted,@sort,@comment) 
+            this.ExecuteSQL = @"INSERT INTO [employee] ([classid],[parentid],[childnumber],[serialnumber],[name],[pinyin],[depid],[depname],[lowestdiscount],[preinadvancetotal],[prepayfeetotal],[mobile],[address],[status],[deleted],[sort],[comment]) VALUES (@classid,@parentid,@childnumber,@serialnumber,@name,@pinyin,@depid,@depname,@lowestdiscount,@preinadvancetotal,@prepayfeetotal,@mobile,@address,@status,@deleted,@sort,@comment) 
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
@@ -56,6 +56,7 @@ namespace CPSS.Data.DataAccess
                 new SqlParameter("@name", data.name),
                 new SqlParameter("@pinyin", data.pinyin),
                 new SqlParameter("@depid", data.depid),
+                new SqlParameter("@depname", data.depname),
                 new SqlParameter("@lowestdiscount", data.lowestdiscount),
                 new SqlParameter("@preinadvancetotal", data.preinadvancetotal),
                 new SqlParameter("@prepayfeetotal", data.prepayfeetotal),
@@ -82,7 +83,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Update(employeeDataModel data, IDbTransaction tansaction)
 	    {
-            this.ExecuteSQL = @"UPDATE employee SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [depid] = @depid, [lowestdiscount] = @lowestdiscount, [preinadvancetotal] = @preinadvancetotal, [prepayfeetotal] = @prepayfeetotal, [mobile] = @mobile, [address] = @address, [status] = @status, [deleted] = @deleted, [sort] = @sort, [comment] = @comment WHERE  [empid] = @empid ";
+			this.ExecuteSQL = @"UPDATE employee SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [depid] = @depid, [depname] = @depname, [lowestdiscount] = @lowestdiscount, [preinadvancetotal] = @preinadvancetotal, [prepayfeetotal] = @prepayfeetotal, [mobile] = @mobile, [address] = @address, [status] = @status, [deleted] = @deleted, [sort] = @sort, [comment] = @comment WHERE  [empid] = @empid ";
 			this.DataParameter = new DbParameter[]
             {
                 new SqlParameter("@empid", data.empid),
@@ -93,6 +94,7 @@ namespace CPSS.Data.DataAccess
                 new SqlParameter("@name", data.name),
                 new SqlParameter("@pinyin", data.pinyin),
                 new SqlParameter("@depid", data.depid),
+                new SqlParameter("@depname", data.depname),
                 new SqlParameter("@lowestdiscount", data.lowestdiscount),
                 new SqlParameter("@preinadvancetotal", data.preinadvancetotal),
                 new SqlParameter("@prepayfeetotal", data.prepayfeetotal),

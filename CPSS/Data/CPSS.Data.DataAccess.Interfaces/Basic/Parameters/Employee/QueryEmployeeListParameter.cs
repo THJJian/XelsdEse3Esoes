@@ -14,7 +14,7 @@ namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Employee
 
         public string SerialNumber { get; set; }
 
-        public List<int> DepIds { set; get; }
+        public int DepId { set; get; }
 
         public string Mobile { set; get; }
 

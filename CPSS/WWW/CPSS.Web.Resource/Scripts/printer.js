@@ -56,6 +56,9 @@
                 case "combobox":
                     value = comboboxHelper.getText(headItem.id);
                     break;
+                case "combogrid":
+                    value = combogridHelper.getText(headItem.id);
+                    break;
             }
             return value;
         }

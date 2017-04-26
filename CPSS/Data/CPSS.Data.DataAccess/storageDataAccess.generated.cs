@@ -32,7 +32,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public storageDataModel GetstorageDataModelById(int stoid)
 		{
-			this.ExecuteSQL = @"SELECT stoid,classid,parentid,childnumber,childcount,serialnumber,name,PinYin,alias,status,sort,comment,modifydate From storage  WHERE  stoid = @stoid ";
+			this.ExecuteSQL = @"SELECT stoid,classid,parentid,childnumber,childcount,serialnumber,name,PinYin,alias,status,deleted,comment,sort From storage  WHERE  stoid = @stoid ";
 			this.DataParameter = new DbParameter[]
 			{
 				new SqlParameter("@stoid", stoid),
@@ -45,7 +45,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Add(storageDataModel data, IDbTransaction tansaction)
 	    {
-            this.ExecuteSQL = @"INSERT INTO [storage] ([classid],[parentid],[childnumber],[childcount],[serialnumber],[name],[PinYin],[alias],[status],[sort],[comment],[modifydate]) VALUES (@classid,@parentid,@childnumber,@childcount,@serialnumber,@name,@PinYin,@alias,@status,@sort,@comment,@modifydate) 
+            this.ExecuteSQL = @"INSERT INTO [storage] ([classid],[parentid],[childnumber],[childcount],[serialnumber],[name],[PinYin],[alias],[status],[deleted],[comment],[sort]) VALUES (@classid,@parentid,@childnumber,@childcount,@serialnumber,@name,@PinYin,@alias,@status,@deleted,@comment,@sort) 
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
@@ -58,9 +58,9 @@ namespace CPSS.Data.DataAccess
                 new SqlParameter("@PinYin", data.PinYin),
                 new SqlParameter("@alias", data.alias),
                 new SqlParameter("@status", data.status),
-                new SqlParameter("@sort", data.sort),
+                new SqlParameter("@deleted", data.deleted),
                 new SqlParameter("@comment", data.comment),
-                new SqlParameter("@modifydate", data.modifydate),
+                new SqlParameter("@sort", data.sort),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -78,7 +78,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Update(storageDataModel data, IDbTransaction tansaction)
 	    {
-			this.ExecuteSQL = @"UPDATE storage SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [PinYin] = @PinYin, [alias] = @alias, [status] = @status, [sort] = @sort, [comment] = @comment, [modifydate] = @modifydate WHERE  [stoid] = @stoid ";
+			this.ExecuteSQL = @"UPDATE storage SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [PinYin] = @PinYin, [alias] = @alias, [status] = @status, [deleted] = @deleted, [comment] = @comment, [sort] = @sort WHERE  [stoid] = @stoid ";
 			this.DataParameter = new DbParameter[]
             {
                 new SqlParameter("@stoid", data.stoid),
@@ -91,9 +91,9 @@ namespace CPSS.Data.DataAccess
                 new SqlParameter("@PinYin", data.PinYin),
                 new SqlParameter("@alias", data.alias),
                 new SqlParameter("@status", data.status),
-                new SqlParameter("@sort", data.sort),
+                new SqlParameter("@deleted", data.deleted),
                 new SqlParameter("@comment", data.comment),
-                new SqlParameter("@modifydate", data.modifydate),
+                new SqlParameter("@sort", data.sort),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }

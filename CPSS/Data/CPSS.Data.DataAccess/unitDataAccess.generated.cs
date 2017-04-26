@@ -32,7 +32,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public unitDataModel GetunitDataModelById(int unitid)
 		{
-			this.ExecuteSQL = @"SELECT unitid,name,status,sort,modifydate From unit  WHERE  unitid = @unitid ";
+			this.ExecuteSQL = @"SELECT unitid,name,status,deleted,sort From unit  WHERE  unitid = @unitid ";
 			this.DataParameter = new DbParameter[]
 			{
 				new SqlParameter("@unitid", unitid),
@@ -45,14 +45,14 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Add(unitDataModel data, IDbTransaction tansaction)
 	    {
-            this.ExecuteSQL = @"INSERT INTO [unit] ([name],[status],[sort],[modifydate]) VALUES (@name,@status,@sort,@modifydate) 
+            this.ExecuteSQL = @"INSERT INTO [unit] ([name],[status],[deleted],[sort]) VALUES (@name,@status,@deleted,@sort) 
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
                 new SqlParameter("@name", data.name),
                 new SqlParameter("@status", data.status),
+                new SqlParameter("@deleted", data.deleted),
                 new SqlParameter("@sort", data.sort),
-                new SqlParameter("@modifydate", data.modifydate),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -70,14 +70,14 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Update(unitDataModel data, IDbTransaction tansaction)
 	    {
-			this.ExecuteSQL = @"UPDATE unit SET  [name] = @name, [status] = @status, [sort] = @sort, [modifydate] = @modifydate WHERE  [unitid] = @unitid ";
+			this.ExecuteSQL = @"UPDATE unit SET  [name] = @name, [status] = @status, [deleted] = @deleted, [sort] = @sort WHERE  [unitid] = @unitid ";
 			this.DataParameter = new DbParameter[]
             {
                 new SqlParameter("@unitid", data.unitid),
                 new SqlParameter("@name", data.name),
                 new SqlParameter("@status", data.status),
+                new SqlParameter("@deleted", data.deleted),
                 new SqlParameter("@sort", data.sort),
-                new SqlParameter("@modifydate", data.modifydate),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }

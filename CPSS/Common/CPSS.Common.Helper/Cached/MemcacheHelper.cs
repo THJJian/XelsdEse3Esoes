@@ -91,7 +91,8 @@ namespace CPSS.Common.Core.Helper.Cached
         public static T Get<T>(RequestMemcacheParameter<T> parameter) where T: class, new()
         {
             var realCacheKey = GetRealCacheKey(parameter.CacheKey, parameter.ParamsKeys);
-            Update(parameter.ManageCacheKeyForKey, realCacheKey);
+            if (!string.IsNullOrEmpty(parameter.ManageCacheKeyForKey))
+                Update(parameter.ManageCacheKeyForKey, realCacheKey);
             return Get(parameter.CallBackFunc, realCacheKey, parameter.ExpiresAt, true, parameter.ParamsKeys);
         }
 

@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[employee](
 	[name] VARCHAR(80) NOT NULL,
 	[pinyin] VARCHAR(80) NOT NULL DEFAULT(''),
 	[depid] INT NOT NULL,
-	[depname] INT NOT NULL,
+	[depname] VARCHAR(80) NOT NULL,
 	[lowestdiscount] SMALLINT NULL DEFAULT(100),
 	[preinadvancetotal] NUMERIC(18,5) NULL DEFAULT(0),
 	[prepayfeetotal] NUMERIC(18,5) NULL DEFAULT(0),

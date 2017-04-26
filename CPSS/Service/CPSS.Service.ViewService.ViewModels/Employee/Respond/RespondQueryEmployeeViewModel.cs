@@ -21,11 +21,20 @@ namespace CPSS.Service.ViewService.ViewModels.Employee.Respond
 
         public string DepName { set; get; }
 
+        /// <summary>
+        /// 最低折扣
+        /// </summary>
         public short LowestDiscount { set; get; }
 
-        public decimal PreInAdvanceTotal { set; get; }
+        /// <summary>
+        /// 预收金额上限
+        /// </summary>
+        public string PreInAdvanceTotal { set; get; }
 
-        public decimal PrePayFeeTotal { set; get; }
+        /// <summary>
+        /// 预付金额上限
+        /// </summary>
+        public string PrePayFeeTotal { set; get; }
 
         public string Mobile { set; get; }
 

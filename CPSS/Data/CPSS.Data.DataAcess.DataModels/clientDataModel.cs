@@ -32,7 +32,7 @@ namespace CPSS.Data.DataAcess.DataModels
         public Nullable<short> pricemode { get; set; }
         public string comment { get; set; }
         public Nullable<int> status { get; set; }
+        public Nullable<short> deleted { get; set; }
         public Nullable<int> sort { get; set; }
-        public byte[] modifydate { get; set; }
     }
 }

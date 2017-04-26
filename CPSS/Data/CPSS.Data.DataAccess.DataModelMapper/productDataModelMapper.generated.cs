@@ -48,9 +48,9 @@ namespace CPSS.Data.DataAccess
             entity.costmethod = dataReader.IsDBNull(dataReader.GetOrdinal("costmethod"))? null: (System.Nullable<short>)dataReader["costmethod"];
             entity.snmanage = (int)dataReader["snmanage"];
             entity.snlength = (short)dataReader["snlength"];
+            entity.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
             entity.sort = (int)dataReader["sort"];
             entity.comment = (string)dataReader["comment"];
-            entity.ModifyDate = (System.Byte[])dataReader["ModifyDate"];
 	    }
 
 		/// <summary>
@@ -85,9 +85,9 @@ namespace CPSS.Data.DataAccess
 			result.costmethod = dataReader.IsDBNull(dataReader.GetOrdinal("costmethod"))? null: (System.Nullable<short>)dataReader["costmethod"];
             result.snmanage = (int)dataReader["snmanage"];
             result.snlength = (short)dataReader["snlength"];
+			result.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
             result.sort = (int)dataReader["sort"];
             result.comment = (string)dataReader["comment"];
-            result.ModifyDate = (System.Byte[])dataReader["ModifyDate"];
 			return result;
 	    }
 

@@ -34,7 +34,7 @@ namespace CPSS.Data.DataAccess
             entity.depid = (int)dataReader["depid"];
             entity.depname = (string)dataReader["depname"];
             entity.lowestdiscount = dataReader.IsDBNull(dataReader.GetOrdinal("lowestdiscount"))? null: (System.Nullable<short>)dataReader["lowestdiscount"];
-            entity.preinadvancetotal = dataReader.IsDBNull(dataReader.GetOrdinal("preinadvancetotal")) ? null : (System.Nullable<System.Decimal>)dataReader["preinadvancetotal"];
+            entity.preinadvancetotal = dataReader.IsDBNull(dataReader.GetOrdinal("preinadvancetotal"))? null: (System.Nullable<System.Decimal>)dataReader["preinadvancetotal"];
             entity.prepayfeetotal = dataReader.IsDBNull(dataReader.GetOrdinal("prepayfeetotal"))? null: (System.Nullable<System.Decimal>)dataReader["prepayfeetotal"];
             entity.mobile = (string)dataReader["mobile"];
             entity.address = (string)dataReader["address"];
@@ -62,7 +62,7 @@ namespace CPSS.Data.DataAccess
             result.depid = (int)dataReader["depid"];
             result.depname = (string)dataReader["depname"];
 			result.lowestdiscount = dataReader.IsDBNull(dataReader.GetOrdinal("lowestdiscount"))? null: (System.Nullable<short>)dataReader["lowestdiscount"];
-            result.preinadvancetotal = dataReader.IsDBNull(dataReader.GetOrdinal("preinadvancetotal")) ? null : (System.Nullable<System.Decimal>)dataReader["preinadvancetotal"];
+			result.preinadvancetotal = dataReader.IsDBNull(dataReader.GetOrdinal("preinadvancetotal"))? null: (System.Nullable<System.Decimal>)dataReader["preinadvancetotal"];
 			result.prepayfeetotal = dataReader.IsDBNull(dataReader.GetOrdinal("prepayfeetotal"))? null: (System.Nullable<System.Decimal>)dataReader["prepayfeetotal"];
             result.mobile = (string)dataReader["mobile"];
             result.address = (string)dataReader["address"];

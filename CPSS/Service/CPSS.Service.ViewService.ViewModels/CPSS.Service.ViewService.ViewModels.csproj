@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\Request\RequestGetAllDepartmentViewModel.cs" />
     <Compile Include="Common\Request\RequestGetNameSpellingViewModel.cs" />
     <Compile Include="Common\Request\RequestGetPrintDesignStyleViewModel.cs" />
+    <Compile Include="Common\Respond\RespondGetAllDepartmentViewModel.cs" />
     <Compile Include="Common\Respond\RespondGetNameSpellingViewModel.cs" />
     <Compile Include="Common\Respond\RespondGetPrintDesignStyleViewModel.cs" />
     <Compile Include="Department\Request\RequestAddDepartmentViewModel.cs" />

@@ -24,6 +24,7 @@ namespace CPSS.Data.DataAcess.DataModels
         public int depid { get; set; }
         public string depname { get; set; }
         public Nullable<short> lowestdiscount { get; set; }
+        public Nullable<decimal> preinadvancetotal { get; set; }
         public Nullable<decimal> prepayfeetotal { get; set; }
         public string mobile { get; set; }
         public string address { get; set; }
@@ -31,7 +32,5 @@ namespace CPSS.Data.DataAcess.DataModels
         public Nullable<short> deleted { get; set; }
         public Nullable<int> sort { get; set; }
         public string comment { get; set; }
-
-        public Nullable<decimal> preinadvancetotal { get; set; }
     }
 }

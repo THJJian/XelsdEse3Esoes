@@ -3,6 +3,7 @@ using CPSS.Common.Core;
 using CPSS.Common.Core.Helper.Extension;
 using CPSS.Common.Core.Mvc;
 using CPSS.Common.Core.Mvc.Filters;
+using CPSS.Service.ViewService.Interfaces.Common;
 using CPSS.Service.ViewService.ViewModels.Common.Request;
 using CPSS.Service.ViewService.ViewModels.Common.Respond;
 
@@ -11,6 +12,19 @@ namespace CPSS.Web.Controllers
     [HaveToLogin]
     public class CommonAjaxController : WebBaseController
     {
+        #region 私有字段
+
+        private readonly ICommonAjaxViewService mCommonAjaxViewService;
+
+        #endregion
+        #region 构造函数
+
+        public CommonAjaxController(ICommonAjaxViewService commonAjaxViewService)
+        {
+            this.mCommonAjaxViewService = commonAjaxViewService;
+        }
+
+        #endregion
 
         #region 获取汉字首字母
 
@@ -65,6 +79,11 @@ namespace CPSS.Web.Controllers
             return Json(respond);
         }
 
+        /// <summary>
+        /// 未实现
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public JsonResult GetPrintDesignStyle(RequestWebViewData<RequestGetPrintDesignStyleViewModel> request)
         {
             var respond = new RespondWebViewData<RespondGetPrintDesignStyleViewModel>
@@ -74,6 +93,20 @@ namespace CPSS.Web.Controllers
                     PrintDesignStyle = string.Empty
                 }
             };
+            return Json(respond);
+        }
+
+        [HttpPost]
+        public JsonResult GetAllDepartment()
+        {
+            var request = new RequestWebViewData<RequestGetAllDepartmentViewModel>
+            {
+                data = new RequestGetAllDepartmentViewModel
+                {
+                    Keywords = this.WorkContext.GetQueryString("q")
+                }
+            };
+            var respond = this.mCommonAjaxViewService.GetAllDepartment(request);
             return Json(respond);
         }
     }

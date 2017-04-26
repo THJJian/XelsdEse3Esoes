@@ -9,6 +9,7 @@ namespace CPSS.Common.Core.Mvc.UIControl
             this.Mode = "remote";
             this.FitColumns = true;
             this.SelectPanelWidth = 500;
+            this.SelectPanelHeight = 300;
         }
 
         public string IdField { set; get; }

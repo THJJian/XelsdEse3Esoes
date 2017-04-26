@@ -78,7 +78,7 @@ namespace CPSS.Service.ViewService.Basic
                                     Status = item.status.ToString(),
                                     Spelling = item.pinyin,
                                     ChildNumber = item.childnumber,
-                                    Deleted = item.deleted
+                                    Deleted = item.deleted.HasValue ? item.deleted.Value : (short)CommonDeleted.NotDeleted
                                 }).ToList()
                             };
                             return respond;

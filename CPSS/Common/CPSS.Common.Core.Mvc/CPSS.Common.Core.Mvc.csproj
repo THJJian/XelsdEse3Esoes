@@ -94,6 +94,7 @@
     <Compile Include="UIControl\ComboGridOption.cs" />
     <Compile Include="UIControl\DropDownOption.cs" />
     <Compile Include="UIControl\EasyUIBaseControl.cs" />
+    <Compile Include="UIControl\NumberBoxOption.cs" />
     <Compile Include="UIControl\TextBoxOption.cs" />
     <Compile Include="WebBaseController.cs" />
     <Compile Include="WebWorkContext.cs" />

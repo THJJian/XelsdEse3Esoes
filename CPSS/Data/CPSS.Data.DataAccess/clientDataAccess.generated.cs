@@ -32,7 +32,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public clientDataModel GetclientDataModelById(int clientid)
 		{
-			this.ExecuteSQL = @"SELECT clientid,classid,parentid,childnumber,childcount,serialnumber,name,pinyin,alias,address,zipcode,linkman,linktel,linkaddress,credits,pricemode,comment,status,sort,modifydate From client  WHERE  clientid = @clientid ";
+			this.ExecuteSQL = @"SELECT clientid,classid,parentid,childnumber,childcount,serialnumber,name,pinyin,alias,address,zipcode,linkman,linktel,linkaddress,credits,pricemode,comment,status,deleted,sort From client  WHERE  clientid = @clientid ";
 			this.DataParameter = new DbParameter[]
 			{
 				new SqlParameter("@clientid", clientid),
@@ -45,7 +45,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Add(clientDataModel data, IDbTransaction tansaction)
 	    {
-            this.ExecuteSQL = @"INSERT INTO [client] ([classid],[parentid],[childnumber],[childcount],[serialnumber],[name],[pinyin],[alias],[address],[zipcode],[linkman],[linktel],[linkaddress],[credits],[pricemode],[comment],[status],[sort],[modifydate]) VALUES (@classid,@parentid,@childnumber,@childcount,@serialnumber,@name,@pinyin,@alias,@address,@zipcode,@linkman,@linktel,@linkaddress,@credits,@pricemode,@comment,@status,@sort,@modifydate) 
+            this.ExecuteSQL = @"INSERT INTO [client] ([classid],[parentid],[childnumber],[childcount],[serialnumber],[name],[pinyin],[alias],[address],[zipcode],[linkman],[linktel],[linkaddress],[credits],[pricemode],[comment],[status],[deleted],[sort]) VALUES (@classid,@parentid,@childnumber,@childcount,@serialnumber,@name,@pinyin,@alias,@address,@zipcode,@linkman,@linktel,@linkaddress,@credits,@pricemode,@comment,@status,@deleted,@sort) 
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
@@ -66,8 +66,8 @@ namespace CPSS.Data.DataAccess
                 new SqlParameter("@pricemode", data.pricemode),
                 new SqlParameter("@comment", data.comment),
                 new SqlParameter("@status", data.status),
+                new SqlParameter("@deleted", data.deleted),
                 new SqlParameter("@sort", data.sort),
-                new SqlParameter("@modifydate", data.modifydate),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -85,7 +85,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Update(clientDataModel data, IDbTransaction tansaction)
 	    {
-			this.ExecuteSQL = @"UPDATE client SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [alias] = @alias, [address] = @address, [zipcode] = @zipcode, [linkman] = @linkman, [linktel] = @linktel, [linkaddress] = @linkaddress, [credits] = @credits, [pricemode] = @pricemode, [comment] = @comment, [status] = @status, [sort] = @sort, [modifydate] = @modifydate WHERE  [clientid] = @clientid ";
+			this.ExecuteSQL = @"UPDATE client SET  [classid] = @classid, [parentid] = @parentid, [childnumber] = @childnumber, [childcount] = @childcount, [serialnumber] = @serialnumber, [name] = @name, [pinyin] = @pinyin, [alias] = @alias, [address] = @address, [zipcode] = @zipcode, [linkman] = @linkman, [linktel] = @linktel, [linkaddress] = @linkaddress, [credits] = @credits, [pricemode] = @pricemode, [comment] = @comment, [status] = @status, [deleted] = @deleted, [sort] = @sort WHERE  [clientid] = @clientid ";
 			this.DataParameter = new DbParameter[]
             {
                 new SqlParameter("@clientid", data.clientid),
@@ -106,8 +106,8 @@ namespace CPSS.Data.DataAccess
                 new SqlParameter("@pricemode", data.pricemode),
                 new SqlParameter("@comment", data.comment),
                 new SqlParameter("@status", data.status),
+                new SqlParameter("@deleted", data.deleted),
                 new SqlParameter("@sort", data.sort),
-                new SqlParameter("@modifydate", data.modifydate),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }

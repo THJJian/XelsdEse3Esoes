@@ -48,5 +48,12 @@ namespace CPSS.Data.DataAccess.Interfaces
         /// </summary>
         /// <returns></returns>
         int ReDelete(DeleteDepartmentParameter parameter);
+
+        /// <summary>
+        /// 获取所有没有子节点的部门信息
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        List<departmentDataModel> GetAllDepartment(QueryDepartmentListParameter parameter);
     }
 }

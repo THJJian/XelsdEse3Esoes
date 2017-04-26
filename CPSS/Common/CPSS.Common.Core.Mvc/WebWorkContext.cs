@@ -32,7 +32,6 @@ namespace CPSS.Common.Core.Mvc
 
         private event ContainerDisposeHandler OnDisposeContainer;
 
-        //[Obsolete("MVC 中尽量不要使用此方法了")]
         public string GetQueryString(string key, string defVal = "")
         {
             var result = this.CurrentRequestContext.HttpContext.Request[key];
@@ -44,7 +43,7 @@ namespace CPSS.Common.Core.Mvc
             var result = this.CurrentRequestContext.HttpContext.Request[key];           
             if (string.IsNullOrEmpty(result)) return defVal;
             if (decode) result = HttpUtility.UrlDecode(HttpUtility.UrlDecode(result));
-            return result != null ? result.ToString(CultureInfo.InvariantCulture) : defVal;
+            return result.ToString(CultureInfo.InvariantCulture);
         }
 
         public string GetRouterString(string key, string defVal = "")

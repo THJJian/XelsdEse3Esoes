@@ -30,5 +30,7 @@
         public int TabIndex { set; get; }
 
         public string Value { set; get; }
+
+        public bool Disabled { set; get; }
     }
 }

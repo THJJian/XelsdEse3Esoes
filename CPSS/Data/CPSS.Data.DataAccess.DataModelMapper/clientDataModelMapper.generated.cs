@@ -42,8 +42,8 @@ namespace CPSS.Data.DataAccess
             entity.pricemode = dataReader.IsDBNull(dataReader.GetOrdinal("pricemode"))? null: (System.Nullable<short>)dataReader["pricemode"];
             entity.comment = (string)dataReader["comment"];
             entity.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (int?)dataReader["status"];
+            entity.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
             entity.sort = dataReader.IsDBNull(dataReader.GetOrdinal("sort"))? null: (int?)dataReader["sort"];
-            entity.modifydate = (System.Byte[])dataReader["modifydate"];
 	    }
 
 		/// <summary>
@@ -72,8 +72,8 @@ namespace CPSS.Data.DataAccess
 			result.pricemode = dataReader.IsDBNull(dataReader.GetOrdinal("pricemode"))? null: (System.Nullable<short>)dataReader["pricemode"];
             result.comment = (string)dataReader["comment"];
 			result.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (int?)dataReader["status"];
+			result.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
 			result.sort = dataReader.IsDBNull(dataReader.GetOrdinal("sort"))? null: (int?)dataReader["sort"];
-            result.modifydate = (System.Byte[])dataReader["modifydate"];
 			return result;
 	    }
 

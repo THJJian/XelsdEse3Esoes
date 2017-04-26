@@ -13,7 +13,7 @@ namespace CPSS.Service.ViewService.ViewModels.Employee.Request
 
         public string Spelling { get; set; }
 
-        public List<int> DepIds { set; get; }
+        public int DepId { set; get; }
 
         public string Mobile { set; get; }
 

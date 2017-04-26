@@ -38,8 +38,8 @@ namespace CPSS.Data.DataAcess.DataModels
         public Nullable<short> costmethod { get; set; }
         public int snmanage { get; set; }
         public short snlength { get; set; }
+        public Nullable<short> deleted { get; set; }
         public int sort { get; set; }
         public string comment { get; set; }
-        public byte[] ModifyDate { get; set; }
     }
 }

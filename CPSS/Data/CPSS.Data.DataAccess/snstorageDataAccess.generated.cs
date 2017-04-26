@@ -32,7 +32,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public snstorageDataModel GetsnstorageDataModelById(string sn, int subcomid, int stoid, int clientid, int empid, int depid, int proid, int billtype, int billid, System.DateTime ctime)
 		{
-			this.ExecuteSQL = @"SELECT sn,subcomid,stoid,clientid,empid,depid,proid,billtype,billid,costprice,ctime,makedate,validdate,modifydate From snstorage  WHERE  sn = @sn AND subcomid = @subcomid AND stoid = @stoid AND clientid = @clientid AND empid = @empid AND depid = @depid AND proid = @proid AND billtype = @billtype AND billid = @billid AND ctime = @ctime ";
+			this.ExecuteSQL = @"SELECT sn,subcomid,stoid,clientid,empid,depid,proid,billtype,billid,costprice,ctime,makedate,validdate,deleted From snstorage  WHERE  sn = @sn AND subcomid = @subcomid AND stoid = @stoid AND clientid = @clientid AND empid = @empid AND depid = @depid AND proid = @proid AND billtype = @billtype AND billid = @billid AND ctime = @ctime ";
 			this.DataParameter = new DbParameter[]
 			{
 				new SqlParameter("@sn", sn),
@@ -54,7 +54,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Add(snstorageDataModel data, IDbTransaction tansaction)
 	    {
-            this.ExecuteSQL = @"INSERT INTO [snstorage] ([sn],[subcomid],[stoid],[clientid],[empid],[depid],[proid],[billtype],[billid],[costprice],[ctime],[makedate],[validdate],[modifydate]) VALUES (@sn,@subcomid,@stoid,@clientid,@empid,@depid,@proid,@billtype,@billid,@costprice,@ctime,@makedate,@validdate,@modifydate) 
+            this.ExecuteSQL = @"INSERT INTO [snstorage] ([sn],[subcomid],[stoid],[clientid],[empid],[depid],[proid],[billtype],[billid],[costprice],[ctime],[makedate],[validdate],[deleted]) VALUES (@sn,@subcomid,@stoid,@clientid,@empid,@depid,@proid,@billtype,@billid,@costprice,@ctime,@makedate,@validdate,@deleted) 
  SELECT SCOPE_IDENTITY()";
 			this.DataParameter = new DbParameter[]
             {
@@ -71,7 +71,7 @@ namespace CPSS.Data.DataAccess
                 new SqlParameter("@ctime", data.ctime),
                 new SqlParameter("@makedate", data.makedate),
                 new SqlParameter("@validdate", data.validdate),
-                new SqlParameter("@modifydate", data.modifydate),
+                new SqlParameter("@deleted", data.deleted),
             };
 	        return this.ExecuteNonQuery(tansaction, false);
 	    }
@@ -89,7 +89,7 @@ namespace CPSS.Data.DataAccess
 		/// </summary>
 		public int Update(snstorageDataModel data, IDbTransaction tansaction)
 	    {
-			this.ExecuteSQL = @"UPDATE snstorage SET  [costprice] = @costprice, [makedate] = @makedate, [validdate] = @validdate, [modifydate] = @modifydate WHERE  [sn] = @sn AND [subcomid] = @subcomid AND [stoid] = @stoid AND [clientid] = @clientid AND [empid] = @empid AND [depid] = @depid AND [proid] = @proid AND [billtype] = @billtype AND [billid] = @billid AND [ctime] = @ctime ";
+			this.ExecuteSQL = @"UPDATE snstorage SET  [costprice] = @costprice, [makedate] = @makedate, [validdate] = @validdate, [deleted] = @deleted WHERE  [sn] = @sn AND [subcomid] = @subcomid AND [stoid] = @stoid AND [clientid] = @clientid AND [empid] = @empid AND [depid] = @depid AND [proid] = @proid AND [billtype] = @billtype AND [billid] = @billid AND [ctime] = @ctime ";
 			this.DataParameter = new DbParameter[]
             {
                 new SqlParameter("@sn", data.sn),
@@ -105,7 +105,7 @@ namespace CPSS.Data.DataAccess
                 new SqlParameter("@ctime", data.ctime),
                 new SqlParameter("@makedate", data.makedate),
                 new SqlParameter("@validdate", data.validdate),
-                new SqlParameter("@modifydate", data.modifydate),
+                new SqlParameter("@deleted", data.deleted),
             };
 	        return this.ExecuteNonQuery(tansaction);
 	    }

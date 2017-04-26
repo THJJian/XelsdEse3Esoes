@@ -37,7 +37,7 @@ namespace CPSS.Data.DataAccess
             entity.ctime = (DateTime)dataReader["ctime"];
             entity.makedate = dataReader.IsDBNull(dataReader.GetOrdinal("makedate"))? null: (DateTime?)dataReader["makedate"];
             entity.validdate = dataReader.IsDBNull(dataReader.GetOrdinal("validdate"))? null: (DateTime?)dataReader["validdate"];
-            entity.modifydate = (System.Byte[])dataReader["modifydate"];
+            entity.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
 	    }
 
 		/// <summary>
@@ -61,7 +61,7 @@ namespace CPSS.Data.DataAccess
             result.ctime = (DateTime)dataReader["ctime"];
 			result.makedate = dataReader.IsDBNull(dataReader.GetOrdinal("makedate"))? null: (DateTime?)dataReader["makedate"];
 			result.validdate = dataReader.IsDBNull(dataReader.GetOrdinal("validdate"))? null: (DateTime?)dataReader["validdate"];
-            result.modifydate = (System.Byte[])dataReader["modifydate"];
+			result.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
 			return result;
 	    }
 

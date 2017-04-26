@@ -6,6 +6,7 @@ using CPSS.Common.Core;
 using CPSS.Common.Core.DataAccess.DataAccess;
 using CPSS.Common.Core.Exception;
 using CPSS.Common.Core.Helper.Cached;
+using CPSS.Common.Core.Helper.Extension;
 using CPSS.Common.Core.Helper.Generated;
 using CPSS.Common.Core.Type.EnumType;
 using CPSS.Data.DataAccess.Interfaces;
@@ -37,7 +38,7 @@ namespace CPSS.Service.ViewService.Basic
             if (request.data == null) request.data = new RequestQueryEmployeeViewModel();
             return MemcacheHelper.Get(new RequestMemcacheParameter<RespondWebViewData<List<RespondQueryEmployeeViewModel>>>
             {
-                CacheKey = string.Format(PRE_CACHE_KEY, "GetQueryDepartmentList"),
+                CacheKey = string.Format(PRE_CACHE_KEY, "GetQueryEmployeeList"),
 
                 #region =================
                 CallBackFunc = () =>
@@ -46,7 +47,7 @@ namespace CPSS.Service.ViewService.Basic
                     {
                         Comment = request.data.Comment,
                         Deleted = request.data.Deleted,
-                        DepIds = request.data.DepIds,
+                        DepId = request.data.DepId,
                         SerialNumber = request.data.SerialNumber,
                         Mobile = request.data.Mobile,
                         Name = request.data.Name,
@@ -73,8 +74,8 @@ namespace CPSS.Service.ViewService.Basic
                             Mobile = item.mobile,
                             Name = item.name,
                             ParentId = item.parentid,
-                            PreInAdvanceTotal = item.preinadvancetotal.HasValue ? item.preinadvancetotal.Value : 0,
-                            PrePayFeeTotal = item.prepayfeetotal.HasValue ? item.prepayfeetotal.Value : 0,
+                            PreInAdvanceTotal = item.preinadvancetotal.HasValue ? item.preinadvancetotal.Value.ToCurrencyString(5) : "0.00000",
+                            PrePayFeeTotal = item.prepayfeetotal.HasValue ? item.prepayfeetotal.Value.ToCurrencyString(5) : "0.00000",
                             SerialNumber = item.serialnumber,
                             Sort = item.sort.HasValue ? item.sort.Value : 0,
                             Spelling = item.pinyin,
@@ -91,7 +92,7 @@ namespace CPSS.Service.ViewService.Basic
                 {
                     request.data.Status,
                     request.data.Comment,
-                    string.Join("/", request.data.DepIds),
+                    request.data.DepId,
                     request.data.Mobile,
                     request.data.Deleted,
                     request.data.Name,
@@ -181,8 +182,8 @@ namespace CPSS.Service.ViewService.Basic
                             Mobile = employee.mobile,
                             Name = employee.name,
                             ParentId = employee.parentid,
-                            PreInAdvanceTotal = employee.preinadvancetotal.HasValue ? employee.preinadvancetotal.Value : 0,
-                            PrePayFeeTotal = employee.prepayfeetotal.HasValue ? employee.prepayfeetotal.Value : 0,
+                            PreInAdvanceTotal = employee.preinadvancetotal.HasValue ? employee.preinadvancetotal.Value.ToCurrencyString(5) : "0.00000",
+                            PrePayFeeTotal = employee.prepayfeetotal.HasValue ? employee.prepayfeetotal.Value.ToCurrencyString(5) : "0.00000",
                             SerialNumber = employee.serialnumber,
                             Status = employee.status.Value,
                             Spelling = employee.pinyin,

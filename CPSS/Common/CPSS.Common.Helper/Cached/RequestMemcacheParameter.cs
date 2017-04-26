@@ -6,6 +6,7 @@ namespace CPSS.Common.Core.Helper.Cached
     {
         public RequestMemcacheParameter()
         {
+            this.ManageCacheKeyForKey = string.Empty;
             this.ParamsKeys = new object[]{};
         }
 

@@ -424,6 +424,9 @@
     <Content Include="Scripts\Basic\Department\AddDepartment.js" />
     <Content Include="Scripts\Basic\Department\DepartmentList.js" />
     <Content Include="Scripts\Basic\Department\EditDepartment.js" />
+    <Content Include="Scripts\Basic\Employee\AddEmployee.js" />
+    <Content Include="Scripts\Basic\Employee\EmployeeList.js" />
+    <Content Include="Scripts\Basic\Employee\EditDepartment.js" />
     <Content Include="Scripts\Basic\SubCompany\AddSubCompany.js" />
     <Content Include="Scripts\Basic\SubCompany\EditSubCompany.js" />
     <Content Include="Scripts\Basic\SubCompany\SubCompanyList.js" />
