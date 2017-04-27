@@ -4,6 +4,7 @@ using CPSS.Common.Core.Mvc;
 using CPSS.Common.Core.Mvc.Filters;
 using CPSS.Common.Core.Type.ConstDefined;
 using CPSS.Service.ViewService.Interfaces.Basic;
+using CPSS.Service.ViewService.ViewModels.Client.Request;
 using CPSS.Service.ViewService.ViewModels.Department.Request;
 using CPSS.Service.ViewService.ViewModels.SubCompany.Request;
 using CPSS.Web.Controllers.Filters;
@@ -19,15 +20,17 @@ namespace CPSS.Web.Controllers
         private readonly ISubCompanyViewService mSubCompanyViewService;
         private readonly IDepartmentViewService mDepartmentViewService;
         private readonly IEmployeeViewService mEmployeeViewService;
+        private readonly IClientViewService mClientViewService;
 
         #endregion
 
         #region 构造函数
-        public BasicController(ISubCompanyViewService subCompanyViewService, IDepartmentViewService departmentViewService, IEmployeeViewService employeeViewService)
+        public BasicController(ISubCompanyViewService subCompanyViewService, IDepartmentViewService departmentViewService, IEmployeeViewService employeeViewService, IClientViewService clientViewService)
         {
             this.mSubCompanyViewService = subCompanyViewService;
             this.mDepartmentViewService = departmentViewService;
             this.mEmployeeViewService = employeeViewService;
+            this.mClientViewService = clientViewService;
         }
 
         #endregion
@@ -255,6 +258,83 @@ namespace CPSS.Web.Controllers
         public JsonResult ReDeleteEmployee(RequestWebViewData<RequestDeleteEmployeeViewModel> request)
         {
             var respond = this.mEmployeeViewService.ReDeleteEmployee(request);
+            return Json(respond);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 往来客户资料
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicClient)]
+        public ActionResult ClientList()
+        {
+            return View("~/views/basic/client/clientlist.cshtml");
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicClient_TB_Add)]
+        public ActionResult AddClient()
+        {
+            return View("~/views/basic/client/addclient.cshtml");
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicClient_TB_Edit)]
+        public ActionResult EditClient()
+        {
+            var clientId = this.WorkContext.GetQueryInt("cid");
+            var request = new RequestWebViewData<RequestGetClientByIdViewModel>
+            {
+                data = new RequestGetClientByIdViewModel
+                {
+                    ClientId = clientId
+                }
+            };
+            var model = this.mClientViewService.GetClientByClientId(request);
+            return View("~/views/basic/client/editclient.cshtml", model);
+        }
+
+        #region Ajax操作方法
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicClient)]
+        [HttpPost]
+        public JsonResult GetClientList(RequestWebViewData<RequestQueryClientViewModel> request)
+        {
+            if (string.IsNullOrEmpty(request.data.ParentId)) request.data.ParentId = "000001";
+            var respond = this.mClientViewService.GetQueryClientList(request);
+            respond.parentId = request.data.ParentId;
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicClient_TB_Add)]
+        [HttpPost]
+        public JsonResult AddClient(RequestWebViewData<RequestAddClientViewModel> request)
+        {
+            var respond = this.mClientViewService.AddClient(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicClient_TB_Edit)]
+        [HttpPost]
+        public JsonResult EditClient(RequestWebViewData<RequestEditClientViewModel> request)
+        {
+            var respond = this.mClientViewService.EditClient(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicClient_TB_Delete)]
+        [HttpPost]
+        public JsonResult DeleteClient(RequestWebViewData<RequestDeleteClientViewModel> request)
+        {
+            var respond = this.mClientViewService.DeleteClient(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicClient_TB_Resume)]
+        [HttpPost]
+        public JsonResult ReDeleteClient(RequestWebViewData<RequestDeleteClientViewModel> request)
+        {
+            var respond = this.mClientViewService.ReDeleteClient(request);
             return Json(respond);
         }
 

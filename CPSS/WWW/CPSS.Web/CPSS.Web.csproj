@@ -167,6 +167,9 @@
     <Content Include="Views\Basic\Employee\EmployeeList.cshtml" />
     <Content Include="Views\Basic\Employee\AddEmployee.cshtml" />
     <Content Include="Views\Basic\Employee\EditEmployee.cshtml" />
+    <Content Include="Views\Basic\Client\ClientList.cshtml" />
+    <Content Include="Views\Basic\Client\AddClient.cshtml" />
+    <Content Include="Views\Basic\Client\EditClient.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
