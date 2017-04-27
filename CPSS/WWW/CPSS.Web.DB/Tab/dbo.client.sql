@@ -23,7 +23,7 @@ CREATE TABLE [dbo].[client](
 	[credits] NUMERIC(18,5) NULL DEFAULT(''),
 	[pricemode] SMALLINT NULL DEFAULT(0),
 	[comment] VARCHAR(256) NULL DEFAULT(''),
-	[status] INT NULL DEFAULT(0),
+	[status] SMALLINT NULL DEFAULT(0),
 	[deleted] SMALLINT NULL DEFAULT(0),
 	[sort] INT NULL DEFAULT(0),
  CONSTRAINT [PK_client_clientid] PRIMARY KEY CLUSTERED 
@@ -31,4 +31,7 @@ CREATE TABLE [dbo].[client](
 	[clientid] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 99) ON [PRIMARY]
 ) ON [PRIMARY]
+GO
+INSERT INTO dbo.client(classid,parentid,childnumber,childcount,serialnumber,name,pinyin,alias,[address],zipcode,linkman,linktel,linkaddress,credits,pricemode,comment,[status],deleted,sort)
+	VALUES  ('000001','',0,0,'root','root','root','root','','','','','',0,0,'',1,1,0)
 GO

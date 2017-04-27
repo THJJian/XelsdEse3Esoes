@@ -5,19 +5,24 @@ var CPSSLib = (function () {
         window.console.log = function () {
         };
     }
+
+    var hostName = window.location.hostname;
+    var domain = [".", hostName.substring(hostName.lastIndexOf(".", hostName.lastIndexOf(".") - 1) + 1)].join("");
+
     return {
         RegNameSpace: function (ns) {
             var domains = ns.split(".");
             var cur_domain = CPSSLib;
             for (var i = 0; i < domains.length; i++) {
-                var domain = domains[i];
-                if (typeof (cur_domain[domain]) === "undefined") {
-                    cur_domain[domain] = {};
+                var _domain = domains[i];
+                if (typeof (cur_domain[_domain]) === "undefined") {
+                    cur_domain[_domain] = {};
                 }
-                cur_domain = cur_domain[domain];
+                cur_domain = cur_domain[_domain];
             }
             return cur_domain;
-        }
+        },
+        Domain: domain
     };
 })();
 
