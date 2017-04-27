@@ -105,7 +105,7 @@
                     _msgbox.alert("删除状态的仓库资料不允许修改");
                     return;
                 }
-                url = ["/basic/editstorage?userid=", userId_g, "&depid=", selectRow.StorageId].join("");
+                url = ["/basic/editstorage?userid=", userId_g, "&sid=", selectRow.StorageId].join("");
                 _window.open("edit_cstorage", "修改仓库资料", 600, 550, url);
                 break;
             case "rtBasicStorage_TB_Delete":
@@ -118,6 +118,10 @@
                 selectRow = self.grid.datagrid("getSelected");
                 if (!fn_check_select_row(selectRow)) {
                     _msgbox.success("请选择仓库资料再进行新增下级操作");
+                    return;
+                }
+                if (selectRow.Deleted === 2) {
+                    _msgbox.alert("删除状态的仓库资料不允许新增下级");
                     return;
                 }
                 url = ["/basic/addstorage?userid=", userId_g, "&parentid=", selectRow.ClassId].join("");

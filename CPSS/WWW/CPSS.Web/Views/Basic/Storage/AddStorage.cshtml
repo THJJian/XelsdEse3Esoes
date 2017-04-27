@@ -1,7 +1,37 @@
-﻿
+﻿@using CPSS.Common.Core.Mvc.UIControl
+@using CPSS.Service.ViewService.ViewModels.HeadButtons.Respond
+
 @{
     ViewBag.Title = "AddStorage";
+    WorkContext.Resource
+        //.AddPageCss("")
+        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "grid/tablegrid", "controlshelper", "basic/storage/addstorage");
+    var buttonModel = new List<RespondHeadButtonsViewModel>
+    {
+        new RespondHeadButtonsViewModel{ ButtonName = "rtBasicStorage_TB_Add_Save", ButtonText = "保存"},
+        //new RespondHeadButtonsViewModel{ ButtonName = "rtBasicStorage_TB_Add_Save_Go", ButtonText = "保存并继续"},
+        new RespondHeadButtonsViewModel{ ButtonName = "rtBasicStorage_TB_Add_Cancel", ButtonText = "取消"},
+    };
+}
+@section buttons{
+    @Html.Partial("~/Views/Shared/CommonPartial/HeadButtons.cshtml", buttonModel)
 }
 
-<h2>AddStorage</h2>
+<div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 500px; max-width: 100%; overflow: hidden;">
+    <input type="hidden" id="txtParentId" value="@this.WorkContext.GetQueryString("parentid")" />
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSerialNumber", TabIndex = 1, LabelName = "编号" })
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtName", TabIndex = 2, LabelName = "名称" })
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSpelling", TabIndex = 3, LabelName = "拼音" })
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtAlias", TabIndex = 4, LabelName = "别名" })
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSort", TabIndex = 5, LabelName = "排序" })
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtComment", TabIndex = 6, LabelName = "备注", Multiline = true, Width = 520, Height = 100 })
+</div>
 
+@section scripts{
+    <script type="text/javascript">
+        $(document.body)
+            .ready(function () {
+                CPSSLib.Page.addStorage.init();
+            });
+    </script>
+}

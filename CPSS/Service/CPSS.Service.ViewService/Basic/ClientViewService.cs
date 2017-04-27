@@ -115,6 +115,10 @@ namespace CPSS.Service.ViewService.Basic
             var rData = request.data;
             try
             {
+                var deparment = this.mClientDataAccess.GetClientByClassID(new QueryClientListParameter { ParentId = rData.ParentId });
+                if (deparment == null) return new RespondWebViewData<RespondAddClientViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                if (deparment.deleted.HasValue && deparment.deleted.Value == (short)CommonDeleted.Deleted) return new RespondWebViewData<RespondAddClientViewModel>(WebViewErrorCode.NotExistsDataInfo);
+
                 this.mDbConnection.ExecuteTransaction(tran =>
                 {
                     var parameter = new QueryClientListParameter()

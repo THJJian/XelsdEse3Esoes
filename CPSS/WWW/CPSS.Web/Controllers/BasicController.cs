@@ -405,7 +405,7 @@ namespace CPSS.Web.Controllers
 
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicStorage_TB_Delete)]
         [HttpPost]
-        public JsonResult DeleteClient(RequestWebViewData<RequestDeleteStorageViewModel> request)
+        public JsonResult DeleteStorage(RequestWebViewData<RequestDeleteStorageViewModel> request)
         {
             var respond = this.mStorageViewService.DeleteStorage(request);
             return Json(respond);
@@ -413,7 +413,7 @@ namespace CPSS.Web.Controllers
 
         [OperateRight(MenuID = MenuValueConstDefined.rtBasicStorage_TB_Resume)]
         [HttpPost]
-        public JsonResult ReDeleteClient(RequestWebViewData<RequestDeleteStorageViewModel> request)
+        public JsonResult ReDeleteStorage(RequestWebViewData<RequestDeleteStorageViewModel> request)
         {
             var respond = this.mStorageViewService.ReDeleteStorage(request);
             return Json(respond);

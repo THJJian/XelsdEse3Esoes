@@ -103,6 +103,10 @@ namespace CPSS.Service.ViewService.Basic
             var rData = request.data;
             try
             {
+                var storage = this.mStorageDataAccess.GetStorageByClassID(new QueryStorageListParameter{ ParentId = rData.ParentId});
+                if(storage == null) return new RespondWebViewData<RespondAddStorageViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                if (storage.deleted.HasValue && storage.deleted.Value == (short)CommonDeleted.Deleted) return new RespondWebViewData<RespondAddStorageViewModel>(WebViewErrorCode.NotExistsDataInfo);
+
                 this.mDbConnection.ExecuteTransaction(tran =>
                 {
                     var parameter = new QueryStorageListParameter
@@ -269,7 +273,7 @@ namespace CPSS.Service.ViewService.Basic
             var parameter = new DeleteStorageParameter
             {
                 StorageId = request.data.StorageId,
-                Deleted = (short)CommonDeleted.Deleted
+                Deleted = (short)CommonDeleted.NotDeleted
             };
             var dataResult = this.mStorageDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;

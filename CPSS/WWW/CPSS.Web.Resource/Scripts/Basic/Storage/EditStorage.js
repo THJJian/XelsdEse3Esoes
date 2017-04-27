@@ -9,9 +9,10 @@
                 SerialNumber: textBoxHelper.getValue("txtSerialNumber"),
                 Name: textBoxHelper.getValue("txtName"),
                 Spelling: textBoxHelper.getValue("txtSpelling"),
+                Alias: textBoxHelper.getValue("txtAlias"),
                 Sort: textBoxHelper.getValue("txtSort"),
                 Comment: textBoxHelper.getValue("txtComment"),
-                StorageId: self.depId
+                StorageId: self.storageId
             };
             return data;
         }
@@ -42,7 +43,7 @@
                         if (result.ErrorCode === 0)
                             _msgbox.success(result.ErrorMessage,
                                 function() {
-                                    parent.subCompany.level(undefined, 1);
+                                    parent.storage.level(undefined, 1);
                                     parent._window.close();
                                 });
                         else
@@ -55,9 +56,9 @@
             }
         }
 
-        var fn_init = function (depId) {
+        var fn_init = function (storageId) {
             self = this;
-            self.depId = depId;
+            self.storageId = storageId;
             $("#txtName").textbox({
                 onChange: function (nVal, oVal) {
                     if (nVal === oVal) return;

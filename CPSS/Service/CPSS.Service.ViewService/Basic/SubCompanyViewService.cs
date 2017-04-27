@@ -110,41 +110,51 @@ namespace CPSS.Service.ViewService.Basic
         {
             var respond = new RespondWebViewData<RespondAddSubCompanyViewModel>(WebViewErrorCode.Success);
             var rData = request.data;
-            this.mDbConnection.ExecuteTransaction(tran =>
+            try
             {
-                var parameter = new QuerySubCompanyListParameter
+                var subCompany = this.mSubCompanyDataAccess.GetSubCompanyByClassID(new QuerySubCompanyListParameter { ParentId = rData.ParentId });
+                if (subCompany == null) return new RespondWebViewData<RespondAddSubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                if (subCompany.deleted.HasValue && subCompany.deleted.Value == (short)CommonDeleted.Deleted) return new RespondWebViewData<RespondAddSubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                this.mDbConnection.ExecuteTransaction(tran =>
                 {
-                    ParentId = rData.ParentId
-                };
-                var classId = string.Concat(rData.ParentId, "000001");
-                var companyList = this.mSubCompanyDataAccess.GetSubCompanyListByParentID(parameter);
-                if (companyList.Count > 0)
-                    classId = BuildNewClassIdByLastClassId.GeneratedNewClassIdByLastClassId(companyList[0].classid);
+                    var parameter = new QuerySubCompanyListParameter
+                    {
+                        ParentId = rData.ParentId
+                    };
+                    var classId = string.Concat(rData.ParentId, "000001");
+                    var companyList = this.mSubCompanyDataAccess.GetSubCompanyListByParentID(parameter);
+                    if (companyList.Count > 0)
+                        classId = BuildNewClassIdByLastClassId.GeneratedNewClassIdByLastClassId(companyList[0].classid);
 
-                var data = new subcompanyDataModel
-                {
-                    childnumber = 0,
-                    classid = classId,
-                    comment = rData.Comment,
-                    email = rData.Email,
-                    linktel = rData.LinkTel,
-                    linkman = rData.LinkMan,
-                    name = rData.Name,
-                    parentid = rData.ParentId,
-                    pinyin = rData.Spelling,
-                    pricemode = rData.PriceMode,
-                    serialnumber = rData.SerialNumber,
-                    sort = rData.Sort,
-                    status = (short)CommonStatus.Used,
-                    deleted = (short)CommonDeleted.NotDeleted
-                };
-                var addResult = this.mSubCompanyDataAccess.Add(data, tran);
-                if (addResult > 0) this.mSubCompanyDataAccess.UpdateChildNumberByClassId(tran, parameter);
-                MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+                    var data = new subcompanyDataModel
+                    {
+                        childnumber = 0,
+                        classid = classId,
+                        comment = rData.Comment,
+                        email = rData.Email,
+                        linktel = rData.LinkTel,
+                        linkman = rData.LinkMan,
+                        name = rData.Name,
+                        parentid = rData.ParentId,
+                        pinyin = rData.Spelling,
+                        pricemode = rData.PriceMode,
+                        serialnumber = rData.SerialNumber,
+                        sort = rData.Sort,
+                        status = (short)CommonStatus.Used,
+                        deleted = (short)CommonDeleted.NotDeleted
+                    };
+                    var addResult = this.mSubCompanyDataAccess.Add(data, tran);
+                    if (addResult > 0) this.mSubCompanyDataAccess.UpdateChildNumberByClassId(tran, parameter);
+                    MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
                 
-                //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
-                //this.SaveMongoDbData("新增分公司资料", request, respond, this.GetType());
-            });
+                    //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
+                    //this.SaveMongoDbData("新增分公司资料", request, respond, this.GetType());
+                });
+            }
+            catch (Exception ex)
+            {
+                respond = new RespondWebViewData<RespondAddSubCompanyViewModel>(new ErrorCodeItem(WebViewErrorCode.Exception.ErrorCode, ex.Message));
+            }
             return respond;
         }
 

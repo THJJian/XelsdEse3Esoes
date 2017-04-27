@@ -25,108 +25,124 @@ namespace CPSS.Service.ViewService.Basic
         private readonly IDbConnection mDbConnection;
         private readonly IdepartmentDataAccess mDepartmentDataAccess;
 
-        public DepartmentViewService(IDbConnection dbConnection, IdepartmentDataAccess departmentDataAccess, IMongoDbDataAccess mongoDbDataAccess) : base(mongoDbDataAccess)
+        public DepartmentViewService(IDbConnection dbConnection, IdepartmentDataAccess departmentDataAccess,
+            IMongoDbDataAccess mongoDbDataAccess) : base(mongoDbDataAccess)
         {
             mDbConnection = dbConnection;
             this.mDepartmentDataAccess = departmentDataAccess;
         }
 
 
-        public RespondWebViewData<List<RespondQueryDepartmentViewModel>> GetQueryDepartmentList(RequestWebViewData<RequestQueryDepartmentViewModel> request)
+        public RespondWebViewData<List<RespondQueryDepartmentViewModel>> GetQueryDepartmentList(
+            RequestWebViewData<RequestQueryDepartmentViewModel> request)
         {
             if (request.data == null) request.data = new RequestQueryDepartmentViewModel();
-            return MemcacheHelper.Get(new RequestMemcacheParameter<RespondWebViewData<List<RespondQueryDepartmentViewModel>>>
-            {
-                CacheKey = string.Format(PRE_CACHE_KEY, "GetQueryDepartmentList"),
+            return
+                MemcacheHelper.Get(new RequestMemcacheParameter
+                    <RespondWebViewData<List<RespondQueryDepartmentViewModel>>>
+                    {
+                        CacheKey = string.Format(PRE_CACHE_KEY, "GetQueryDepartmentList"),
 
-                #region =================
-                CallBackFunc = () =>
-                {
-                    var parameter = new QueryDepartmentListParameter
-                    {
-                        Deleted = request.data.Deleted,
-                        SerialNumber = request.data.SerialNumber,
-                        Name = request.data.Name,
-                        PageIndex = request.page,
-                        PageSize = request.rows,
-                        Status = request.data.Status,
-                        ParentId = request.data.ParentId,
-                        Spelling = request.data.Spelling
-                    };
-                    var pageDataList = this.mDepartmentDataAccess.GetQueryDepartmentList(parameter);
-                    var respond = new RespondWebViewData<List<RespondQueryDepartmentViewModel>>
-                    {
-                        total = pageDataList.DataCount,
-                        rows = pageDataList.Datas.Select(item=> new RespondQueryDepartmentViewModel
+                        #region =================
+                        CallBackFunc = () =>
                         {
-                            ChildNumber = item.childnumber,
-                            ClassId = item.classid,
-                            ChildCount = item.childcount,
-                            Comment = item.comment,
-                            Deleted = item.deleted,
-                            DepId = item.depid,
-                            Name = item.name,
-                            ParentId = item.parentid,
-                            SerialNumber = item.serialnumber,
-                            Sort = item.sort.ToString(),
-                            Spelling = item.pinyin,
-                            Status = item.status
-                        }).ToList()
-                    };
-                    return respond;
-                },
-                #endregion
+                            var parameter = new QueryDepartmentListParameter
+                            {
+                                Deleted = request.data.Deleted,
+                                SerialNumber = request.data.SerialNumber,
+                                Name = request.data.Name,
+                                PageIndex = request.page,
+                                PageSize = request.rows,
+                                Status = request.data.Status,
+                                ParentId = request.data.ParentId,
+                                Spelling = request.data.Spelling
+                            };
+                            var pageDataList = this.mDepartmentDataAccess.GetQueryDepartmentList(parameter);
+                            var respond = new RespondWebViewData<List<RespondQueryDepartmentViewModel>>
+                            {
+                                total = pageDataList.DataCount,
+                                rows = pageDataList.Datas.Select(item => new RespondQueryDepartmentViewModel
+                                {
+                                    ChildNumber = item.childnumber,
+                                    ClassId = item.classid,
+                                    ChildCount = item.childcount,
+                                    Comment = item.comment,
+                                    Deleted = item.deleted,
+                                    DepId = item.depid,
+                                    Name = item.name,
+                                    ParentId = item.parentid,
+                                    SerialNumber = item.serialnumber,
+                                    Sort = item.sort.ToString(),
+                                    Spelling = item.pinyin,
+                                    Status = item.status
+                                }).ToList()
+                            };
+                            return respond;
+                        },
+
+                        #endregion
                 
-                ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
-                ParamsKeys = new object[]
-                {
-                    request.data.Deleted,
-                    request.data.SerialNumber,
-                    request.data.Name,
-                    request.page,
-                    request.rows,
-                    request.data.Status,
-                    request.data.ParentId
-                }
-            });
+                        ExpiresAt = DateTime.Now.AddMinutes(30),
+                        ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
+                        ParamsKeys = new object[]
+                        {
+                            request.data.Deleted,
+                            request.data.SerialNumber,
+                            request.data.Name,
+                            request.page,
+                            request.rows,
+                            request.data.Status,
+                            request.data.ParentId
+                        }
+                    });
         }
 
         public RespondWebViewData<RespondAddDepartmentViewModel> AddDepartment(RequestWebViewData<RequestAddDepartmentViewModel> request)
         {
             var respond = new RespondWebViewData<RespondAddDepartmentViewModel>(WebViewErrorCode.Success);
             var rData = request.data;
-            this.mDbConnection.ExecuteTransaction(tran =>
+            try
             {
-                var parameter = new QueryDepartmentListParameter()
-                {
-                    ParentId = rData.ParentId
-                };
-                var classId = string.Concat(rData.ParentId, "000001");
-                var depList = this.mDepartmentDataAccess.GetDepartmentListByParentID(parameter);
-                if (depList.Count > 0)
-                    classId = BuildNewClassIdByLastClassId.GeneratedNewClassIdByLastClassId(depList[0].classid);
+                var deparment = this.mDepartmentDataAccess.GetDepartmentByClassID(new QueryDepartmentListParameter{ ParentId = rData.ParentId });
+                if (deparment == null) return new RespondWebViewData<RespondAddDepartmentViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                if (deparment.deleted == (short)CommonDeleted.Deleted) return new RespondWebViewData<RespondAddDepartmentViewModel>(WebViewErrorCode.NotExistsDataInfo);
 
-                var data = new departmentDataModel
+                this.mDbConnection.ExecuteTransaction(tran =>
                 {
-                    childnumber = 0,
-                    classid = classId,
-                    comment = rData.Comment,
-                    name = rData.Name,
-                    parentid = rData.ParentId,
-                    pinyin = rData.Spelling,
-                    serialnumber = rData.SerialNumber,
-                    sort = rData.Sort,
-                    status = (short)CommonStatus.Used,
-                    deleted = (short)CommonDeleted.NotDeleted
-                };
-                var addResult = this.mDepartmentDataAccess.Add(data, tran);
-                if (addResult > 0) this.mDepartmentDataAccess.UpdateChildNumberByClassId(tran, parameter);
-                MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+                    var parameter = new QueryDepartmentListParameter()
+                    {
+                        ParentId = rData.ParentId
+                    };
+                    var classId = string.Concat(rData.ParentId, "000001");
+                    var depList = this.mDepartmentDataAccess.GetDepartmentListByParentID(parameter);
+                    if (depList.Count > 0)
+                        classId = BuildNewClassIdByLastClassId.GeneratedNewClassIdByLastClassId(depList[0].classid);
 
-                //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
-                //this.SaveMongoDbData("新增部门资料", request, respond, this.GetType());
-            });
+                    var data = new departmentDataModel
+                    {
+                        childnumber = 0,
+                        classid = classId,
+                        comment = rData.Comment,
+                        name = rData.Name,
+                        parentid = rData.ParentId,
+                        pinyin = rData.Spelling,
+                        serialnumber = rData.SerialNumber,
+                        sort = rData.Sort,
+                        status = (short)CommonStatus.Used,
+                        deleted = (short)CommonDeleted.NotDeleted
+                    };
+                    var addResult = this.mDepartmentDataAccess.Add(data, tran);
+                    if (addResult > 0) this.mDepartmentDataAccess.UpdateChildNumberByClassId(tran, parameter);
+                    MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+
+                    //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
+                    //this.SaveMongoDbData("新增部门资料", request, respond, this.GetType());
+                });
+            }
+            catch (Exception ex)
+            {
+                respond = new RespondWebViewData<RespondAddDepartmentViewModel>(new ErrorCodeItem(WebViewErrorCode.Exception.ErrorCode, ex.Message));
+            }
             return respond;
         }
 

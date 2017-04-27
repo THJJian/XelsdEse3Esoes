@@ -17,6 +17,7 @@
                 SerialNumber: textBoxHelper.getValue("txtSerialNumber"),
                 Name: textBoxHelper.getValue("txtName"),
                 Spelling: textBoxHelper.getValue("txtSpelling"),
+                Alias: textBoxHelper.getValue("txtAlias"),
                 Sort: textBoxHelper.getValue("txtSort"),
                 Comment: textBoxHelper.getValue("txtComment"),
                 ParentId: $("#txtParentId").val()
