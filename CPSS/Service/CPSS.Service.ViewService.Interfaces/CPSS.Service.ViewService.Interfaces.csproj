@@ -43,6 +43,7 @@
     <Compile Include="Basic\IDepartmentViewService.cs" />
     <Compile Include="Basic\IClientViewService.cs" />
     <Compile Include="Basic\IEmployeeViewService.cs" />
+    <Compile Include="Basic\IStorageViewService.cs" />
     <Compile Include="Basic\ISubCompanyViewService.cs" />
     <Compile Include="Common\ICommonAjaxViewService.cs" />
     <Compile Include="HeadButtons\IHeadButtonsViewService.cs" />

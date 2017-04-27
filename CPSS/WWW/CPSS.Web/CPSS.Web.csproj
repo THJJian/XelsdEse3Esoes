@@ -170,6 +170,9 @@
     <Content Include="Views\Basic\Client\ClientList.cshtml" />
     <Content Include="Views\Basic\Client\AddClient.cshtml" />
     <Content Include="Views\Basic\Client\EditClient.cshtml" />
+    <Content Include="Views\Basic\Storage\StorageList.cshtml" />
+    <Content Include="Views\Basic\Storage\AddStorage.cshtml" />
+    <Content Include="Views\Basic\Storage\EditStorage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

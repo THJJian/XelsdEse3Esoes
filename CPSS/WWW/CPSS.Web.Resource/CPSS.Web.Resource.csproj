@@ -430,6 +430,9 @@
     <Content Include="Scripts\Basic\Employee\AddEmployee.js" />
     <Content Include="Scripts\Basic\Employee\EmployeeList.js" />
     <Content Include="Scripts\Basic\Employee\EditEmployee.js" />
+    <Content Include="Scripts\Basic\Storage\AddStorage.js" />
+    <Content Include="Scripts\Basic\Storage\StorageList.js" />
+    <Content Include="Scripts\Basic\Storage\EditStorage.js" />
     <Content Include="Scripts\Basic\SubCompany\AddSubCompany.js" />
     <Content Include="Scripts\Basic\SubCompany\EditSubCompany.js" />
     <Content Include="Scripts\Basic\SubCompany\SubCompanyList.js" />

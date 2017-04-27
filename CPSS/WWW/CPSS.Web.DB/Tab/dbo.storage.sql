@@ -25,3 +25,6 @@ CREATE TABLE [dbo].[storage](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 99) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
+INSERT INTO dbo.storage(classid,parentid,childnumber,childcount,serialnumber,name,PinYin,alias,status,deleted,comment,sort)
+	VALUES( '000001','',0,0,'root','root','root','root',1,1,'',0)
+GO

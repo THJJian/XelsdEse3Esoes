@@ -9,6 +9,7 @@ using CPSS.Service.ViewService.ViewModels.Department.Request;
 using CPSS.Service.ViewService.ViewModels.SubCompany.Request;
 using CPSS.Web.Controllers.Filters;
 using CPSS.Service.ViewService.ViewModels.Employee.Request;
+using CPSS.Service.ViewService.ViewModels.Storage.Request;
 
 namespace CPSS.Web.Controllers
 {
@@ -21,16 +22,19 @@ namespace CPSS.Web.Controllers
         private readonly IDepartmentViewService mDepartmentViewService;
         private readonly IEmployeeViewService mEmployeeViewService;
         private readonly IClientViewService mClientViewService;
+        private readonly IStorageViewService mStorageViewService;
 
         #endregion
 
         #region 构造函数
-        public BasicController(ISubCompanyViewService subCompanyViewService, IDepartmentViewService departmentViewService, IEmployeeViewService employeeViewService, IClientViewService clientViewService)
+        public BasicController(ISubCompanyViewService subCompanyViewService, IDepartmentViewService departmentViewService, IEmployeeViewService employeeViewService, IClientViewService clientViewService,
+            IStorageViewService storageViewService)
         {
             this.mSubCompanyViewService = subCompanyViewService;
             this.mDepartmentViewService = departmentViewService;
             this.mEmployeeViewService = employeeViewService;
             this.mClientViewService = clientViewService;
+            this.mStorageViewService = storageViewService;
         }
 
         #endregion
@@ -335,6 +339,83 @@ namespace CPSS.Web.Controllers
         public JsonResult ReDeleteClient(RequestWebViewData<RequestDeleteClientViewModel> request)
         {
             var respond = this.mClientViewService.ReDeleteClient(request);
+            return Json(respond);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 仓库资料
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicStorage)]
+        public ActionResult StorageList()
+        {
+            return View("~/views/basic/storage/storagelist.cshtml");
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicStorage_TB_Add)]
+        public ActionResult AddStorage()
+        {
+            return View("~/views/basic/storage/addstorage.cshtml");
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicStorage_TB_Edit)]
+        public ActionResult EditStorage()
+        {
+            var storageId = this.WorkContext.GetQueryInt("sid");
+            var request = new RequestWebViewData<RequestGetStorageByIdViewModel>
+            {
+                data = new RequestGetStorageByIdViewModel
+                {
+                    StorageId = storageId
+                }
+            };
+            var model = this.mStorageViewService.GetStorageByStorageId(request);
+            return View("~/views/basic/storage/editstorage.cshtml", model);
+        }
+
+        #region Ajax操作方法
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicStorage)]
+        [HttpPost]
+        public JsonResult GetStorageList(RequestWebViewData<RequestQueryStorageViewModel> request)
+        {
+            if (string.IsNullOrEmpty(request.data.ParentId)) request.data.ParentId = "000001";
+            var respond = this.mStorageViewService.GetQueryStorageList(request);
+            respond.parentId = request.data.ParentId;
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicStorage_TB_Add)]
+        [HttpPost]
+        public JsonResult AddStorage(RequestWebViewData<RequestAddStorageViewModel> request)
+        {
+            var respond = this.mStorageViewService.AddStorage(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicStorage_TB_Edit)]
+        [HttpPost]
+        public JsonResult EditStorage(RequestWebViewData<RequestEditStorageViewModel> request)
+        {
+            var respond = this.mStorageViewService.EditStorage(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicStorage_TB_Delete)]
+        [HttpPost]
+        public JsonResult DeleteClient(RequestWebViewData<RequestDeleteStorageViewModel> request)
+        {
+            var respond = this.mStorageViewService.DeleteStorage(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicStorage_TB_Resume)]
+        [HttpPost]
+        public JsonResult ReDeleteClient(RequestWebViewData<RequestDeleteStorageViewModel> request)
+        {
+            var respond = this.mStorageViewService.ReDeleteStorage(request);
             return Json(respond);
         }
 

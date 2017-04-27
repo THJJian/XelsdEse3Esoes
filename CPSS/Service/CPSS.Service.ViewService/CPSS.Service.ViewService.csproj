@@ -49,6 +49,7 @@
     <Compile Include="Basic\DepartmentViewService.cs" />
     <Compile Include="Basic\ClientViewService.cs" />
     <Compile Include="Basic\EmployeeViewService.cs" />
+    <Compile Include="Basic\StorageViewService.cs" />
     <Compile Include="Basic\SubCompanyViewService.cs" />
     <Compile Include="Common\CommonAjaxViewService.cs" />
     <Compile Include="HeadButtons\HeadButtonsViewService.cs" />

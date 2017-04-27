@@ -113,46 +113,53 @@ namespace CPSS.Service.ViewService.Basic
         {
             var respond = new RespondWebViewData<RespondAddClientViewModel>(WebViewErrorCode.Success);
             var rData = request.data;
-            this.mDbConnection.ExecuteTransaction(tran =>
+            try
             {
-                var parameter = new QueryClientListParameter()
+                this.mDbConnection.ExecuteTransaction(tran =>
                 {
-                    ParentId = rData.ParentId
-                };
-                var classId = string.Concat(rData.ParentId, "000001");
-                var clientList = this.mClientDataAccess.GetClientListByParentID(parameter);
-                if (clientList.Count > 0)
-                    classId = BuildNewClassIdByLastClassId.GeneratedNewClassIdByLastClassId(clientList[0].classid);
+                    var parameter = new QueryClientListParameter()
+                    {
+                        ParentId = rData.ParentId
+                    };
+                    var classId = string.Concat(rData.ParentId, "000001");
+                    var clientList = this.mClientDataAccess.GetClientListByParentID(parameter);
+                    if (clientList.Count > 0)
+                        classId = BuildNewClassIdByLastClassId.GeneratedNewClassIdByLastClassId(clientList[0].classid);
 
-                var data = new clientDataModel
-                {
-                    address = rData.Address,
-                    alias = rData.Alias,
-                    childnumber = 0,
-                    childcount = 0,
-                    classid = classId,
-                    comment = rData.Comment,
-                    credits = rData.Credits,
-                    deleted = (short)CommonDeleted.NotDeleted,
-                    linktel = rData.LinkTel,
-                    linkman = rData.LinkMan,
-                    linkaddress = rData.LinkAddress,
-                    name = rData.Name,
-                    pinyin = rData.Spelling,
-                    parentid = rData.ParentId,
-                    pricemode = rData.PriceMode,
-                    status = (short)CommonStatus.Used,
-                    serialnumber = rData.SerialNumber,
-                    sort = rData.Sort,
-                    zipcode = rData.ZipCode
-                };
-                var addResult = this.mClientDataAccess.Add(data, tran);
-                if (addResult > 0) this.mClientDataAccess.UpdateChildNumberByClassId(tran, parameter);
-                MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+                    var data = new clientDataModel
+                    {
+                        address = rData.Address,
+                        alias = rData.Alias,
+                        childnumber = 0,
+                        childcount = 0,
+                        classid = classId,
+                        comment = rData.Comment,
+                        credits = rData.Credits,
+                        deleted = (short)CommonDeleted.NotDeleted,
+                        linktel = rData.LinkTel,
+                        linkman = rData.LinkMan,
+                        linkaddress = rData.LinkAddress,
+                        name = rData.Name,
+                        pinyin = rData.Spelling,
+                        parentid = rData.ParentId,
+                        pricemode = rData.PriceMode,
+                        status = (short)CommonStatus.Used,
+                        serialnumber = rData.SerialNumber,
+                        sort = rData.Sort,
+                        zipcode = rData.ZipCode
+                    };
+                    var addResult = this.mClientDataAccess.Add(data, tran);
+                    if (addResult > 0) this.mClientDataAccess.UpdateChildNumberByClassId(tran, parameter);
+                    MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
 
-                //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
-                //this.SaveMongoDbData("新增往来客户资料", request, respond, this.GetType());
-            });
+                    //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
+                    //this.SaveMongoDbData("新增往来客户资料", request, respond, this.GetType());
+                });
+            }
+            catch (Exception exception)
+            {
+                respond = new RespondWebViewData<RespondAddClientViewModel>(new ErrorCodeItem(WebViewErrorCode.Exception.ErrorCode, exception.Message));
+            }
             return respond;
         }
 

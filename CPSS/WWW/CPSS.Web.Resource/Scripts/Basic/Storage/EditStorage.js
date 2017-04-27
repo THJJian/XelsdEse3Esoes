@@ -1,6 +1,6 @@
 ﻿;
 (function(ns) {
-    CPSSLib.RegNameSpace(ns).editDepartment = (function () {
+    CPSSLib.RegNameSpace(ns).editStorage = (function () {
         var self;
 
         //数据封装
@@ -11,7 +11,7 @@
                 Spelling: textBoxHelper.getValue("txtSpelling"),
                 Sort: textBoxHelper.getValue("txtSort"),
                 Comment: textBoxHelper.getValue("txtComment"),
-                DepId: self.depId
+                StorageId: self.depId
             };
             return data;
         }
@@ -37,8 +37,8 @@
         var fn_button_click = function (sender) {
             var id = $(sender).attr("id");
             switch (id) {
-                case "rtBasicDep_TB_Edit_Save":
-                    fn_postData(undefined, "/basic/editdepartment", function (result) {
+                case "rtBasicStorage_TB_Edit_Save":
+                    fn_postData(undefined, "/basic/editstorage", function (result) {
                         if (result.ErrorCode === 0)
                             _msgbox.success(result.ErrorMessage,
                                 function() {
@@ -49,7 +49,7 @@
                             _msgbox.error(result.ErrorMessage);
                     });
                     break;
-                case "rtBasicDep_TB_Edit_Cancel":
+                case "rtBasicStorage_TB_Edit_Cancel":
                     parent._window.close();
                     break;
             }
