@@ -15,7 +15,7 @@
 {
     <div style="padding-top: 5px; float: left;">
         <input class="easyui-numberbox" id="@option.Id" type="text" tabindex="@option.TabIndex"
-               data-options="label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign: '@option.LabelAlign', labelWidth: '@string.Concat(option.LabelWidth, "px")', width: '@string.Concat(option.Width, "px")', height: '@string.Concat(option.Height, "px")', value: '@option.Value', min: @option.Min, max: @option.Max, precision: @option.Precision, decimalSeparator: '@option.DecimalSeparator', groupSeparator: '@option.GroupSeparator', prefix: '@option.Prefix'"
+               data-options="label:'@option.LabelName', labelPosition: '@option.LabelPosition', labelAlign: '@option.LabelAlign', labelWidth: '@string.Concat(option.LabelWidth, "px")', width: '@string.Concat(option.Width, "px")', height: '@string.Concat(option.Height, "px")', value: '@option.Value', disabled: @option.Disabled.ToLowerString(), min: @option.Min, max: @option.Max, precision: @option.Precision, decimalSeparator: '@option.DecimalSeparator', groupSeparator: '@option.GroupSeparator', prefix: '@option.Prefix'"
                style="padding-top: 5px;" />
     </div>
 }

@@ -9,6 +9,8 @@
                 SerialNumber: textBoxHelper.getValue("txtSerialNumber"),
                 Name: textBoxHelper.getValue("txtName"),
                 Spelling: textBoxHelper.getValue("txtSpelling"),
+                Mobile: textBoxHelper.getValue("txtMobile"),
+                Address: textBoxHelper.getValue("txtAddress"),
                 Sort: textBoxHelper.getValue("txtSort"),
                 Comment: textBoxHelper.getValue("txtComment"),
                 EmpId: self.empId
@@ -38,7 +40,7 @@
             var id = $(sender).attr("id");
             switch (id) {
                 case "rtBasicEmp_TB_Edit_Save":
-                    fn_postData(undefined, "/basic/editcompany", function (result) {
+                    fn_postData(undefined, "/basic/editemployee", function (result) {
                         if (result.ErrorCode === 0)
                             _msgbox.success(result.ErrorMessage,
                                 function() {

@@ -3,17 +3,13 @@
     public class RequestEditEmployeeViewModel
     {
 
-        public int EepId { get; set; }
+        public int EmpId { get; set; }
 
         public string SerialNumber { get; set; }
 
         public string Name { get; set; }
 
         public string Spelling { get; set; }
-
-        public int DepId { set; get; }
-
-        public string DepName { set; get; }
 
         public string Mobile { set; get; }
 

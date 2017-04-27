@@ -211,7 +211,7 @@ namespace CPSS.Service.ViewService.Basic
 
             this.mDbConnection.ExecuteTransaction(tran =>
             {
-                var employee = this.mEmployeeDataAccess.GetemployeeDataModelById(rData.DepId);
+                var employee = this.mEmployeeDataAccess.GetemployeeDataModelById(rData.EmpId);
                 if (employee == null)
                 {
                     respond = new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
@@ -233,12 +233,12 @@ namespace CPSS.Service.ViewService.Basic
                     depid = employee.depid,
                     depname = employee.depname,
                     deleted = employee.deleted,
-                    empid = rData.EepId,
+                    empid = rData.EmpId,
                     mobile = rData.Mobile,
-                    name = employee.name,
+                    name = rData.Name,
                     prepayfeetotal = employee.prepayfeetotal,
                     preinadvancetotal = employee.preinadvancetotal,
-                    pinyin = employee.pinyin,
+                    pinyin = rData.Spelling,
                     parentid = employee.parentid,
                     serialnumber = rData.SerialNumber,
                     sort = rData.Sort,
@@ -278,7 +278,7 @@ namespace CPSS.Service.ViewService.Basic
             var parameter = new DeleteEmployeeParameter
             {
                 empid = request.data.EmpId,
-                Deleted = (short)CommonDeleted.Deleted
+                Deleted = (short)CommonDeleted.NotDeleted
             };
             var dataResult = this.mEmployeeDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;
