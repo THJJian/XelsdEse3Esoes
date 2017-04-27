@@ -52,8 +52,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Basic\IdepartmentDataAccess.cs" />
+    <Compile Include="Basic\IclientDataAccess.cs" />
     <Compile Include="Basic\IemployeeDataAccess.cs" />
     <Compile Include="Basic\IsubcompanyDataAccess.cs" />
+    <Compile Include="Basic\Parameters\Client\DeleteClientParameter.cs" />
+    <Compile Include="Basic\Parameters\Client\QueryClientListParameter.cs" />
     <Compile Include="Basic\Parameters\Department\DeleteDepartmentParameter.cs" />
     <Compile Include="Basic\Parameters\Employee\DeleteEmployeeParameter.cs" />
     <Compile Include="Basic\Parameters\Department\QueryDepartmentListParameter.cs" />

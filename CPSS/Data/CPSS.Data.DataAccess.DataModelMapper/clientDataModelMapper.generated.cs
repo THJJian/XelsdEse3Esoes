@@ -41,7 +41,7 @@ namespace CPSS.Data.DataAccess
             entity.credits = dataReader.IsDBNull(dataReader.GetOrdinal("credits"))? null: (System.Nullable<System.Decimal>)dataReader["credits"];
             entity.pricemode = dataReader.IsDBNull(dataReader.GetOrdinal("pricemode"))? null: (System.Nullable<short>)dataReader["pricemode"];
             entity.comment = (string)dataReader["comment"];
-            entity.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (int?)dataReader["status"];
+            entity.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (short?)dataReader["status"];
             entity.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
             entity.sort = dataReader.IsDBNull(dataReader.GetOrdinal("sort"))? null: (int?)dataReader["sort"];
 	    }
@@ -71,7 +71,7 @@ namespace CPSS.Data.DataAccess
 			result.credits = dataReader.IsDBNull(dataReader.GetOrdinal("credits"))? null: (System.Nullable<System.Decimal>)dataReader["credits"];
 			result.pricemode = dataReader.IsDBNull(dataReader.GetOrdinal("pricemode"))? null: (System.Nullable<short>)dataReader["pricemode"];
             result.comment = (string)dataReader["comment"];
-			result.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (int?)dataReader["status"];
+			result.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (short?)dataReader["status"];
 			result.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
 			result.sort = dataReader.IsDBNull(dataReader.GetOrdinal("sort"))? null: (int?)dataReader["sort"];
 			return result;
