@@ -117,8 +117,8 @@ namespace CPSS.Service.ViewService.Basic
                     pinyin = rData.Spelling,
                     serialnumber = rData.SerialNumber,
                     sort = rData.Sort,
-                    status = 1,
-                    deleted = 1
+                    status = (short)CommonStatus.Used,
+                    deleted = (short)CommonDeleted.NotDeleted
                 };
                 var addResult = this.mDepartmentDataAccess.Add(data, tran);
                 if (addResult > 0) this.mDepartmentDataAccess.UpdateChildNumberByClassId(tran, parameter);

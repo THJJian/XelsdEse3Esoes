@@ -126,7 +126,7 @@ namespace CPSS.Service.ViewService.Basic
                     childnumber = 0,
                     classid = classId,
                     comment = rData.Comment,
-                    deleted = 1,
+                    deleted = (short)CommonDeleted.NotDeleted,
                     depid = rData.DepId,
                     depname = rData.DepName,
                     lowestdiscount = rData.LowestDiscount,
@@ -136,7 +136,7 @@ namespace CPSS.Service.ViewService.Basic
                     pinyin = rData.Spelling,
                     serialnumber = rData.SerialNumber,
                     sort = rData.Sort,
-                    status = 1,
+                    status = (short)CommonStatus.Used,
                     preinadvancetotal = rData.PreInAdvanceTotal,
                     prepayfeetotal = rData.PrepayFeeTotal
                 };
@@ -280,7 +280,7 @@ namespace CPSS.Service.ViewService.Basic
                 empid = request.data.EmpId,
                 Deleted = (short)CommonDeleted.NotDeleted
             };
-            var dataResult = this.mEmployeeDataAccess.Delete(parameter);
+            var dataResult = this.mEmployeeDataAccess.ReDelete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteEmployeeViewModel>(WebViewErrorCode.Success);
             MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
