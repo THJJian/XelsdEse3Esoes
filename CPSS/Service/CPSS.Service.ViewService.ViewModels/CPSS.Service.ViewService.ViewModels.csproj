@@ -41,6 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client\Request\RequestAddClientViewModel.cs" />
+    <Compile Include="Client\Request\RequestDeleteClientViewModel.cs" />
+    <Compile Include="Client\Request\RequestEditClientViewModel.cs" />
+    <Compile Include="Client\Request\RequestGetClientByIdViewModel.cs" />
+    <Compile Include="Client\Request\RequestQueryClientViewModel.cs" />
+    <Compile Include="Client\Respond\RespondAddClientViewModel.cs" />
+    <Compile Include="Client\Respond\RespondDeleteClientViewModel.cs" />
+    <Compile Include="Client\Respond\RespondEditClientViewModel.cs" />
+    <Compile Include="Client\Respond\RespondQueryClientViewModel.cs" />
     <Compile Include="Common\Request\RequestGetAllDepartmentViewModel.cs" />
     <Compile Include="Common\Request\RequestGetNameSpellingViewModel.cs" />
     <Compile Include="Common\Request\RequestGetPrintDesignStyleViewModel.cs" />
