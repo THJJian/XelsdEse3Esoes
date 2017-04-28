@@ -184,10 +184,11 @@
                     { title: "编号", type: "text", id: "txtSerialNumber", labelWidth: 70 },
                     { title: "名称", type: "text", id: "txtName", labelWidth: 70 },
                     { title: "拼音", type: "text", id: "txtSpelling", labelWidth: 70 },
-                    { title: "联系电话", type: "text", id: "txtMobile", labelWidth: 70 },
-                    { title: "所属部门", type: "combogrid", id: "ddlDepartment", labelWidth: 70 },
+                    { title: "别名", type: "text", id: "txtAlias", labelWidth: 70 },
+                    { title: "联系人", type: "text", id: "txtLinkMan", labelWidth: 70 },
+                    { title: "联系人电话", type: "text", id: "txtLinkTel", labelWidth: 70 },
                     { title: "状态", type: "combobox", id: "ddlStatus", labelWidth: 70 },
-                    { title: "备注", type: "text", id: "txtComment", labelWidth: 70 }
+                    { title: "售价方式", type: "combobox", id: "ddlPriceMode", labelWidth: 70 }
                 ],
                 billGrid: self.grid
             });
@@ -204,13 +205,14 @@
                         self.grid.datagrid("load",
                         {
                             data: {
-                                Comment: textBoxHelper.getValue("txtComment"),
                                 SerialNumber: textBoxHelper.getValue("txtSerialNumber"),
                                 Name: textBoxHelper.getValue("txtName"),
                                 Spelling: textBoxHelper.getValue("txtSpelling"),
-                                Mobile: textBoxHelper.getValue("txtMobile"),
-                                DepId: combogridHelper.getValue("ddlDepartment"),
+                                Alias: textBoxHelper.getValue("txtAlias"),
+                                LinkMan: textBoxHelper.getValue("txtLinkMan"),
+                                LinkTel: textBoxHelper.getValue("txtLinkTel"),
                                 Status: comboboxHelper.getValue("ddlStatus"),
+                                PriceMode: comboboxHelper.getValue("ddlPriceMode"),
                                 ParentId: ($("#txtParentId").val() === null || $("#txtParentId").val() === "") ? "000001" : $("#txtParentId").val()
                             }
                         });

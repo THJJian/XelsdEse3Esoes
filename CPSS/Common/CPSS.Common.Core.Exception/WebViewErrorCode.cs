@@ -25,5 +25,6 @@
 
         public static ErrorCodeItem NotExistsDataInfo = new ErrorCodeItem(9, "数据不存在");
 
+        public static ErrorCodeItem ExistsDataInfo = new ErrorCodeItem(10, "数据已经存在");
     }
 }

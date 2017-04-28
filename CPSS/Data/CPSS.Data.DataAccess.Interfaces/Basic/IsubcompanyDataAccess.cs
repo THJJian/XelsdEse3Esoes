@@ -48,5 +48,12 @@ namespace CPSS.Data.DataAccess.Interfaces
         /// </summary>
         /// <returns></returns>
         int ReDelete(DeleteSubCompanyParameter parameter);
+
+        /// <summary>
+        /// 检查分公司是否已经存在
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        bool CheckSubCompanyIsExist(QuerySubCompanyListParameter parameter);
     }
 }

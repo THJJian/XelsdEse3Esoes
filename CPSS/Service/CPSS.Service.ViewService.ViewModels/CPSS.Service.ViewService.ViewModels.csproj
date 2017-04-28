@@ -103,6 +103,15 @@
     <Compile Include="SubCompany\Respond\RespondQuerySubCompanyViewModel.cs" />
     <Compile Include="SystemParameterConfig\Request\RequestSystemParameterConfigViewModel.cs" />
     <Compile Include="SystemParameterConfig\Respond\RespondSystemParameterConfigViewModel.cs" />
+    <Compile Include="Unit\Request\RequestAddUnitViewModel.cs" />
+    <Compile Include="Unit\Request\RequestDeleteUnitViewModel.cs" />
+    <Compile Include="Unit\Request\RequestEditUnitViewModel.cs" />
+    <Compile Include="Unit\Request\RequestGetUnitByIdViewModel.cs" />
+    <Compile Include="Unit\Request\RequestQueryUnitViewModel.cs" />
+    <Compile Include="Unit\Respond\RespondAddUnitViewModel.cs" />
+    <Compile Include="Unit\Respond\RespondDeleteUnitViewModel.cs" />
+    <Compile Include="Unit\Respond\RespondEditUnitViewModel.cs" />
+    <Compile Include="Unit\Respond\RespondQueryUnitViewModel.cs" />
     <Compile Include="User\Request\RequestCompanyInfoViewModel.cs" />
     <Compile Include="User\Request\RequestOnlineSigninUserViewModel.cs" />
     <Compile Include="User\Request\RequestSigninUserViewModel.cs" />

@@ -16,6 +16,13 @@ namespace CPSS.Data.DataAccess.Interfaces
         PageData<departmentDataModel> GetQueryDepartmentList(QueryDepartmentListParameter parameter);
 
         /// <summary>
+        /// 检查部门是否已经存在
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        bool CheckDepartmentIsExist(QueryDepartmentListParameter parameter);
+
+        /// <summary>
         /// 根据parentid查询部门信息列表(ORDER BY classid DESC)
         /// </summary>
         /// <param name="parameter"></param>

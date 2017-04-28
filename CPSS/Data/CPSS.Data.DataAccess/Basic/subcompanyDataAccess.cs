@@ -81,5 +81,17 @@ namespace CPSS.Data.DataAccess
             };
             return this.ExecuteNonQuery();
         }
+
+        public bool CheckSubCompanyIsExist(QuerySubCompanyListParameter parameter)
+        {
+            this.ExecuteSQL = "SELECT * FROM dbo.subcompany WHERE name=@name AND serialnumber=@serialnumber";
+            this.DataParameter = new IDbDataParameter[]
+            {
+                new SqlParameter("@name", parameter.Name), 
+                new SqlParameter("@serialnumber", parameter.SerialNumber)
+            };
+            var subCompany = this.ExecuteReadSqlToCompanyInfoDataModel();
+            return subCompany != null;
+        }
     }
 }

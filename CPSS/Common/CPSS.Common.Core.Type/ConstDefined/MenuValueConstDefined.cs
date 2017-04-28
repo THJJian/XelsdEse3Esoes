@@ -539,7 +539,11 @@
 
         public const int rtBasicUnit_TB_Add = 514;
 
-        public const int rtBasicUnit_TB_Del = 515;
+        public const int rtBasicUnit_TB_Edit = 646;
+
+        public const int rtBasicUnit_TB_Delete = 515;
+
+        public const int rtBasicUnit_TB_Resume = 647;
 
         public const int rtBasicUnit_TB_Preview = 516;
 

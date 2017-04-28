@@ -16,6 +16,13 @@ namespace CPSS.Data.DataAccess.Interfaces
         PageData<clientDataModel> GetQueryClientList(QueryClientListParameter parameter);
 
         /// <summary>
+        /// 检查往来单位是否已经存在
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        bool CheckClientIsExist(QueryClientListParameter parameter);
+
+        /// <summary>
         /// 根据parentid查询往来客户信息列表(ORDER BY classid DESC)
         /// </summary>
         /// <param name="parameter"></param>

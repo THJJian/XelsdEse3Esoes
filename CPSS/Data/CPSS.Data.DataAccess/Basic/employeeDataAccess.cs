@@ -29,6 +29,19 @@ namespace CPSS.Data.DataAccess
             return this.ExecuteReadSqlToemployeeDataModelPageData("empid", parameter.PageIndex, parameter.PageSize, "classid ASC, sort DESC");
         }
 
+        public bool CheckEmployeeIsExist(QueryEmployeeListParameter parameter)
+        {
+            this.ExecuteSQL = "SELECT * FROM dbo.employee WHERE name=@name AND serialnumber=@serialnumber AND depid=@depid";
+            this.DataParameter = new IDbDataParameter[]
+            {
+                new SqlParameter("@name", parameter.Name), 
+                new SqlParameter("@serialnumber", parameter.SerialNumber),
+                new SqlParameter("@depid", parameter.DepId)
+            };
+            var employee = this.ExecuteReadSqlToemployeeDataModel();
+            return employee != null;
+        }
+
         public List<employeeDataModel> GetEmployeeListByParentID(QueryEmployeeListParameter parameter)
         {
             this.ExecuteSQL = "SELECT * FROM dbo.employee WHERE parentid=@parentid ORDER BY classid DESC";

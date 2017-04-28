@@ -1,4 +1,6 @@
-﻿IF EXISTS(SELECT 1 FROM sysobjects WHERE id=object_id(N'[dbo].[menu]') AND objectproperty(id,N'IsUserTable')=1)
+﻿USE CPSS
+GO
+IF EXISTS(SELECT 1 FROM sysobjects WHERE id=object_id(N'[dbo].[menu]') AND objectproperty(id,N'IsUserTable')=1)
 BEGIN
 	DROP TABLE [dbo].[menu]
 END
@@ -567,9 +569,11 @@ INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isr
 INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(538,'000001000006000005000007','000001000006000005','rtBasicStorage_TB_Design','样式设计','','',1,0,1,0,0)
 INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(513,'000001000006000006','000001000006','rtBasicUnit','计量单位','','/basic/unitlist',0,0,1,0,0)
 INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(514,'000001000006000006000001','000001000006000006','rtBasicUnit_TB_Add','新增','','',1,0,1,0,0)
-INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(515,'000001000006000006000002','000001000006000006','rtBasicUnit_TB_Del','删除','','',1,0,1,0,0)
-INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(516,'000001000006000006000003','000001000006000006','rtBasicUnit_TB_Preview','打印预览','','',1,0,1,0,0)
-INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(517,'000001000006000006000004','000001000006000006','rtBasicUnit_TB_Design','样式设计','','',1,0,1,0,0)
+INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(646,'000001000006000006000002','000001000006000006','rtBasicUnit_TB_Edit','修改','','',1,0,1,0,0)
+INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(515,'000001000006000006000003','000001000006000006','rtBasicUnit_TB_Delete','删除','','',1,0,1,0,0)
+INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(647,'000001000006000006000004','000001000006000006','rtBasicUnit_TB_Resume','恢复删除','','',1,0,1,0,0)
+INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(516,'000001000006000006000005','000001000006000006','rtBasicUnit_TB_Preview','打印预览','','',1,0,1,0,0)
+INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(517,'000001000006000006000006','000001000006000006','rtBasicUnit_TB_Design','样式设计','','',1,0,1,0,0)
 INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(543,'000001000006000007','000001000006','rtBasicProduct','商品资料','','/basic/productlist',0,0,1,0,0)
 INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(544,'000001000006000007000001','000001000006000007','rtBasicProduct_TB_Add','新增','','',1,0,1,0,0)
 INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(545,'000001000006000007000002','000001000006000007','rtBasicProduct_TB_CopyAdd','复制新增','','',1,0,1,0,0)

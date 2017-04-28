@@ -27,78 +27,75 @@ namespace CPSS.Service.ViewService.Basic
         private readonly IemployeeDataAccess mEmployeeDataAccess;
 
 
-        public EmployeeViewService(IMongoDbDataAccess mongoDbDataAccess, IDbConnection dbConnection,
-            IemployeeDataAccess employeeDataAccess) : base(mongoDbDataAccess)
+        public EmployeeViewService(IMongoDbDataAccess mongoDbDataAccess, IDbConnection dbConnection, IemployeeDataAccess employeeDataAccess) : base(mongoDbDataAccess)
         {
             this.mDbConnection = dbConnection;
             this.mEmployeeDataAccess = employeeDataAccess;
         }
 
-        public RespondWebViewData<List<RespondQueryEmployeeViewModel>> GetQueryEmployeeList(
-            RequestWebViewData<RequestQueryEmployeeViewModel> request)
+        public RespondWebViewData<List<RespondQueryEmployeeViewModel>> GetQueryEmployeeList(RequestWebViewData<RequestQueryEmployeeViewModel> request)
         {
             if (request.data == null) request.data = new RequestQueryEmployeeViewModel();
-            return
-                MemcacheHelper.Get(new RequestMemcacheParameter<RespondWebViewData<List<RespondQueryEmployeeViewModel>>>
+            return MemcacheHelper.Get(new RequestMemcacheParameter<RespondWebViewData<List<RespondQueryEmployeeViewModel>>>
+            {
+                CacheKey = string.Format(PRE_CACHE_KEY, "GetQueryEmployeeList"),
+
+                #region =================
+                CallBackFunc = () =>
                 {
-                    CacheKey = string.Format(PRE_CACHE_KEY, "GetQueryEmployeeList"),
-
-                    #region =================
-                    CallBackFunc = () =>
+                    var parameter = new QueryEmployeeListParameter()
                     {
-                        var parameter = new QueryEmployeeListParameter()
+                        Comment = request.data.Comment,
+                        Deleted = request.data.Deleted,
+                        DepId = request.data.DepId,
+                        SerialNumber = request.data.SerialNumber,
+                        Mobile = request.data.Mobile,
+                        Name = request.data.Name,
+                        PageIndex = request.page,
+                        PageSize = request.rows,
+                        Status = request.data.Status,
+                        ParentId = request.data.ParentId,
+                        Spelling = request.data.Spelling,
+                    };
+                    var pageDataList = this.mEmployeeDataAccess.GetQueryEmployeeList(parameter);
+                    var respond = new RespondWebViewData<List<RespondQueryEmployeeViewModel>>
+                    {
+                        total = pageDataList.DataCount,
+                        rows = pageDataList.Datas.Select(item => new RespondQueryEmployeeViewModel
                         {
-                            Comment = request.data.Comment,
-                            Deleted = request.data.Deleted,
-                            DepId = request.data.DepId,
-                            SerialNumber = request.data.SerialNumber,
-                            Mobile = request.data.Mobile,
-                            Name = request.data.Name,
-                            PageIndex = request.page,
-                            PageSize = request.rows,
-                            Status = request.data.Status,
-                            ParentId = request.data.ParentId,
-                            Spelling = request.data.Spelling,
-                        };
-                        var pageDataList = this.mEmployeeDataAccess.GetQueryEmployeeList(parameter);
-                        var respond = new RespondWebViewData<List<RespondQueryEmployeeViewModel>>
-                        {
-                            total = pageDataList.DataCount,
-                            rows = pageDataList.Datas.Select(item => new RespondQueryEmployeeViewModel
-                            {
-                                Address = item.address,
-                                ChildNumber = item.childnumber,
-                                ClassId = item.classid,
-                                Comment = item.comment,
-                                Deleted = item.deleted.HasValue ? item.deleted.Value : (short) CommonDeleted.NotDeleted,
-                                DepName = item.depname,
-                                EmpId = item.empid,
-                                LowestDiscount = item.lowestdiscount.HasValue ? item.lowestdiscount.Value : (short) 100,
-                                Mobile = item.mobile,
-                                Name = item.name,
-                                ParentId = item.parentid,
-                                PreInAdvanceTotal =
-                                    item.preinadvancetotal.HasValue
-                                        ? item.preinadvancetotal.Value.ToCurrencyString(5)
-                                        : "0.00000",
-                                PrePayFeeTotal =
-                                    item.prepayfeetotal.HasValue
-                                        ? item.prepayfeetotal.Value.ToCurrencyString(5)
-                                        : "0.00000",
-                                SerialNumber = item.serialnumber,
-                                Sort = item.sort.HasValue ? item.sort.Value : 0,
-                                Spelling = item.pinyin,
-                                Status = item.status.HasValue ? item.status.Value : (short) CommonStatus.Used
-                            }).ToList()
-                        };
-                        return respond;
-                    },
+                            Address = item.address,
+                            ChildNumber = item.childnumber,
+                            ClassId = item.classid,
+                            Comment = item.comment,
+                            Deleted = item.deleted.HasValue ? item.deleted.Value : (short)CommonDeleted.NotDeleted,
+                            DepName = item.depname,
+                            EmpId = item.empid,
+                            LowestDiscount = item.lowestdiscount.HasValue ? item.lowestdiscount.Value : (short)100,
+                            Mobile = item.mobile,
+                            Name = item.name,
+                            ParentId = item.parentid,
+                            PreInAdvanceTotal =
+                                item.preinadvancetotal.HasValue
+                                    ? item.preinadvancetotal.Value.ToCurrencyString(5)
+                                    : "0.00000",
+                            PrePayFeeTotal =
+                                item.prepayfeetotal.HasValue
+                                    ? item.prepayfeetotal.Value.ToCurrencyString(5)
+                                    : "0.00000",
+                            SerialNumber = item.serialnumber,
+                            Sort = item.sort.HasValue ? item.sort.Value : 0,
+                            Spelling = item.pinyin,
+                            Status = item.status.HasValue ? item.status.Value : (short)CommonStatus.Used
+                        }).ToList()
+                    };
+                    return respond;
+                },
 
-                    #endregion
+                #endregion
 
-                    ExpiresAt = DateTime.Now.AddMinutes(30),
-                    ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
-                    ParamsKeys = new object[]
+                ExpiresAt = DateTime.Now.AddMinutes(30),
+                ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
+                ParamsKeys = new object[]
                     {
                         request.data.Status,
                         request.data.Comment,
@@ -112,14 +109,16 @@ namespace CPSS.Service.ViewService.Basic
                         request.page,
                         request.rows
                     }
-                });
+            });
         }
 
         public RespondWebViewData<RespondAddEmployeeViewModel> AddEmployee(RequestWebViewData<RequestAddEmployeeViewModel> request)
         {
-            var respond = new RespondWebViewData<RespondAddEmployeeViewModel>(WebViewErrorCode.Success);
             var rData = request.data;
+            if (this.mEmployeeDataAccess.CheckEmployeeIsExist(new QueryEmployeeListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber, DepId = rData.DepId }))
+                return new RespondWebViewData<RespondAddEmployeeViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的职员已经存在", rData.Name, rData.SerialNumber));
 
+            var respond = new RespondWebViewData<RespondAddEmployeeViewModel>(WebViewErrorCode.Success);
             try
             {
                 var employee = this.mEmployeeDataAccess.GetEmployeeByClassID(new QueryEmployeeListParameter {ParentId = rData.ParentId});
@@ -227,51 +226,51 @@ namespace CPSS.Service.ViewService.Basic
 
         public RespondWebViewData<RequestEditEmployeeViewModel> EditEmployee(RequestWebViewData<RequestEditEmployeeViewModel> request)
         {
-            var respond = new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.Success);
             var rData = request.data;
+            var employee = this.mEmployeeDataAccess.GetemployeeDataModelById(rData.EmpId);
+            if (employee == null) return new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
+            if (employee.deleted == (short)CommonDeleted.Deleted) return new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
+            if (this.mEmployeeDataAccess.CheckEmployeeIsExist(new QueryEmployeeListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber, DepId = employee.depid }))
+                return new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的职员已经存在", rData.Name, rData.SerialNumber));
 
-            this.mDbConnection.ExecuteTransaction(tran =>
+            var respond = new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.Success);
+            try
             {
-                var employee = this.mEmployeeDataAccess.GetemployeeDataModelById(rData.EmpId);
-                if (employee == null)
+                this.mDbConnection.ExecuteTransaction(tran =>
                 {
-                    respond = new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
-                    return;
-                }
-                if (employee.deleted == (short)CommonDeleted.Deleted)
-                {
-                    respond = new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
-                    return;
-                }
+                    //TODO 开账后部门、名称、折扣、预收、预付等字段是不允许修改的，未实现。
+                    var data = new employeeDataModel
+                    {
+                        address = rData.Address,
+                        childnumber = employee.childnumber,
+                        classid = employee.classid,
+                        comment = rData.Comment,
+                        depid = employee.depid,
+                        depname = employee.depname,
+                        deleted = employee.deleted,
+                        empid = rData.EmpId,
+                        mobile = rData.Mobile,
+                        name = rData.Name,
+                        prepayfeetotal = employee.prepayfeetotal,
+                        preinadvancetotal = employee.preinadvancetotal,
+                        pinyin = rData.Spelling,
+                        parentid = employee.parentid,
+                        serialnumber = rData.SerialNumber,
+                        sort = rData.Sort,
+                        status = employee.status,
+                        lowestdiscount = employee.lowestdiscount
+                    };
+                    this.mEmployeeDataAccess.Update(data, tran);
+                    MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
 
-                //TODO 开账后部门、名称、折扣、预收、预付等字段是不允许修改的，未实现。
-                var data = new employeeDataModel
-                {
-                    address = rData.Address,
-                    childnumber = employee.childnumber,
-                    classid = employee.classid,
-                    comment = rData.Comment,
-                    depid = employee.depid,
-                    depname = employee.depname,
-                    deleted = employee.deleted,
-                    empid = rData.EmpId,
-                    mobile = rData.Mobile,
-                    name = rData.Name,
-                    prepayfeetotal = employee.prepayfeetotal,
-                    preinadvancetotal = employee.preinadvancetotal,
-                    pinyin = rData.Spelling,
-                    parentid = employee.parentid,
-                    serialnumber = rData.SerialNumber,
-                    sort = rData.Sort,
-                    status = employee.status,
-                    lowestdiscount = employee.lowestdiscount
-                };
-                this.mEmployeeDataAccess.Update(data, tran);
-                MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
-
-                //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
-                //this.SaveMongoDbData("编辑职员资料", request, respond, this.GetType());
-            });
+                    //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
+                    //this.SaveMongoDbData("编辑职员资料", request, respond, this.GetType());
+                });
+            }
+            catch (Exception ex)
+            {
+                respond = new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.Exception.ErrorCode, ex.Message);
+            }
             return respond;
         }
 

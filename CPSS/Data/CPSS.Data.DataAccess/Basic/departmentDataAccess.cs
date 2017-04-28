@@ -25,6 +25,18 @@ namespace CPSS.Data.DataAccess
             return this.ExecuteReadSqlTodepartmentDataModelPageData("depid", parameter.PageIndex, parameter.PageSize, "classid ASC, [sort] DESC");
         }
 
+        public bool CheckDepartmentIsExist(QueryDepartmentListParameter parameter)
+        {
+            this.ExecuteSQL = "SELECT * FROM dbo.department WHERE name=@name AND serialnumber=@serialnumber";
+            this.DataParameter = new IDbDataParameter[]
+            {
+                new SqlParameter("@name", parameter.Name), 
+                new SqlParameter("@serialnumber", parameter.SerialNumber)
+            };
+            var department = this.ExecuteReadSqlTodepartmentDataModel();
+            return department != null;
+        }
+
         public List<departmentDataModel> GetDepartmentListByParentID(QueryDepartmentListParameter parameter)
         {
             this.ExecuteSQL = "SELECT * FROM dbo.department WHERE parentid=@parentid ORDER BY classid DESC";

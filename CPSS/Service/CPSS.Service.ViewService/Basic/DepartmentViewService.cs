@@ -25,82 +25,81 @@ namespace CPSS.Service.ViewService.Basic
         private readonly IDbConnection mDbConnection;
         private readonly IdepartmentDataAccess mDepartmentDataAccess;
 
-        public DepartmentViewService(IDbConnection dbConnection, IdepartmentDataAccess departmentDataAccess,
-            IMongoDbDataAccess mongoDbDataAccess) : base(mongoDbDataAccess)
+        public DepartmentViewService(IDbConnection dbConnection, IdepartmentDataAccess departmentDataAccess, IMongoDbDataAccess mongoDbDataAccess) : base(mongoDbDataAccess)
         {
             mDbConnection = dbConnection;
             this.mDepartmentDataAccess = departmentDataAccess;
         }
 
 
-        public RespondWebViewData<List<RespondQueryDepartmentViewModel>> GetQueryDepartmentList(
-            RequestWebViewData<RequestQueryDepartmentViewModel> request)
+        public RespondWebViewData<List<RespondQueryDepartmentViewModel>> GetQueryDepartmentList(RequestWebViewData<RequestQueryDepartmentViewModel> request)
         {
             if (request.data == null) request.data = new RequestQueryDepartmentViewModel();
-            return
-                MemcacheHelper.Get(new RequestMemcacheParameter
-                    <RespondWebViewData<List<RespondQueryDepartmentViewModel>>>
+            return MemcacheHelper.Get(new RequestMemcacheParameter<RespondWebViewData<List<RespondQueryDepartmentViewModel>>>
+            {
+                CacheKey = string.Format(PRE_CACHE_KEY, "GetQueryDepartmentList"),
+
+                #region =================
+                CallBackFunc = () =>
+                {
+                    var parameter = new QueryDepartmentListParameter
                     {
-                        CacheKey = string.Format(PRE_CACHE_KEY, "GetQueryDepartmentList"),
-
-                        #region =================
-                        CallBackFunc = () =>
+                        Deleted = request.data.Deleted,
+                        SerialNumber = request.data.SerialNumber,
+                        Name = request.data.Name,
+                        PageIndex = request.page,
+                        PageSize = request.rows,
+                        Status = request.data.Status,
+                        ParentId = request.data.ParentId,
+                        Spelling = request.data.Spelling
+                    };
+                    var pageDataList = this.mDepartmentDataAccess.GetQueryDepartmentList(parameter);
+                    var respond = new RespondWebViewData<List<RespondQueryDepartmentViewModel>>
+                    {
+                        total = pageDataList.DataCount,
+                        rows = pageDataList.Datas.Select(item => new RespondQueryDepartmentViewModel
                         {
-                            var parameter = new QueryDepartmentListParameter
-                            {
-                                Deleted = request.data.Deleted,
-                                SerialNumber = request.data.SerialNumber,
-                                Name = request.data.Name,
-                                PageIndex = request.page,
-                                PageSize = request.rows,
-                                Status = request.data.Status,
-                                ParentId = request.data.ParentId,
-                                Spelling = request.data.Spelling
-                            };
-                            var pageDataList = this.mDepartmentDataAccess.GetQueryDepartmentList(parameter);
-                            var respond = new RespondWebViewData<List<RespondQueryDepartmentViewModel>>
-                            {
-                                total = pageDataList.DataCount,
-                                rows = pageDataList.Datas.Select(item => new RespondQueryDepartmentViewModel
-                                {
-                                    ChildNumber = item.childnumber,
-                                    ClassId = item.classid,
-                                    ChildCount = item.childcount,
-                                    Comment = item.comment,
-                                    Deleted = item.deleted,
-                                    DepId = item.depid,
-                                    Name = item.name,
-                                    ParentId = item.parentid,
-                                    SerialNumber = item.serialnumber,
-                                    Sort = item.sort.ToString(),
-                                    Spelling = item.pinyin,
-                                    Status = item.status
-                                }).ToList()
-                            };
-                            return respond;
-                        },
+                            ChildNumber = item.childnumber,
+                            ClassId = item.classid,
+                            ChildCount = item.childcount,
+                            Comment = item.comment,
+                            Deleted = item.deleted,
+                            DepId = item.depid,
+                            Name = item.name,
+                            ParentId = item.parentid,
+                            SerialNumber = item.serialnumber,
+                            Sort = item.sort.ToString(),
+                            Spelling = item.pinyin,
+                            Status = item.status
+                        }).ToList()
+                    };
+                    return respond;
+                },
 
-                        #endregion
-                
-                        ExpiresAt = DateTime.Now.AddMinutes(30),
-                        ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
-                        ParamsKeys = new object[]
-                        {
-                            request.data.Deleted,
-                            request.data.SerialNumber,
-                            request.data.Name,
-                            request.page,
-                            request.rows,
-                            request.data.Status,
-                            request.data.ParentId
-                        }
-                    });
+                #endregion
+
+                ExpiresAt = DateTime.Now.AddMinutes(30),
+                ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
+                ParamsKeys = new object[]
+                {
+                    request.data.Deleted,
+                    request.data.SerialNumber,
+                    request.data.Name,
+                    request.page,
+                    request.rows,
+                    request.data.Status,
+                    request.data.ParentId
+                }
+            });
         }
 
         public RespondWebViewData<RespondAddDepartmentViewModel> AddDepartment(RequestWebViewData<RequestAddDepartmentViewModel> request)
         {
-            var respond = new RespondWebViewData<RespondAddDepartmentViewModel>(WebViewErrorCode.Success);
             var rData = request.data;
+            if (this.mDepartmentDataAccess.CheckDepartmentIsExist(new QueryDepartmentListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber }))
+                return new RespondWebViewData<RespondAddDepartmentViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号为[{1}]的部门已经存在", rData.Name, rData.SerialNumber));
+
+            var respond = new RespondWebViewData<RespondAddDepartmentViewModel>(WebViewErrorCode.Success);
             try
             {
                 var deparment = this.mDepartmentDataAccess.GetDepartmentByClassID(new QueryDepartmentListParameter{ ParentId = rData.ParentId });
@@ -150,7 +149,7 @@ namespace CPSS.Service.ViewService.Basic
         {
             return MemcacheHelper.Get(new RequestMemcacheParameter<RespondWebViewData<RespondQueryDepartmentViewModel>>
             {
-                CacheKey = string.Format(PRE_CACHE_KEY, "GetDepartmentByComId"),
+                CacheKey = string.Format(PRE_CACHE_KEY, "GetDepartmentByDepId"),
 
                 #region ====================
                 CallBackFunc = () =>
@@ -193,22 +192,24 @@ namespace CPSS.Service.ViewService.Basic
             });
         }
 
-        public RespondWebViewData<RequestEditDepartmentViewModel> EditDepartment(RequestWebViewData<RequestEditDepartmentViewModel> request)
+        public RespondWebViewData<RespondEditDepartmentViewModel> EditDepartment(RequestWebViewData<RequestEditDepartmentViewModel> request)
         {
-            var respond = new RespondWebViewData<RequestEditDepartmentViewModel>(WebViewErrorCode.Success);
             var rData = request.data;
+            if (this.mDepartmentDataAccess.CheckDepartmentIsExist(new QueryDepartmentListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber }))
+                return new RespondWebViewData<RespondEditDepartmentViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号为[{1}]的部门已经存在", rData.Name, rData.SerialNumber));
 
+            var respond = new RespondWebViewData<RespondEditDepartmentViewModel>(WebViewErrorCode.Success);
             this.mDbConnection.ExecuteTransaction(tran =>
             {
                 var department = this.mDepartmentDataAccess.GetdepartmentDataModelById(rData.DepId);
                 if (department == null)
                 {
-                    respond = new RespondWebViewData<RequestEditDepartmentViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                    respond = new RespondWebViewData<RespondEditDepartmentViewModel>(WebViewErrorCode.NotExistsDataInfo);
                     return;
                 }
                 if (department.deleted == (short)CommonDeleted.Deleted)
                 {
-                    respond = new RespondWebViewData<RequestEditDepartmentViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                    respond = new RespondWebViewData<RespondEditDepartmentViewModel>(WebViewErrorCode.NotExistsDataInfo);
                     return;
                 }
 

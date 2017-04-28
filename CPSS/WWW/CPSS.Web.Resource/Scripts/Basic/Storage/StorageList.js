@@ -188,6 +188,7 @@
                     { title: "编号", type: "text", id: "txtSerialNumber", labelWidth: 70 },
                     { title: "名称", type: "text", id: "txtName", labelWidth: 70 },
                     { title: "拼音", type: "text", id: "txtSpelling", labelWidth: 70 },
+                    { title: "别名", type: "text", id: "txtAlias", labelWidth: 70 },
                     { title: "状态", type: "combobox", id: "ddlStatus", labelWidth: 70 }
                 ],
                 billGrid: self.grid
@@ -208,11 +209,8 @@
                                 SerialNumber: textBoxHelper.getValue("txtSerialNumber"),
                                 Name: textBoxHelper.getValue("txtName"),
                                 Spelling: textBoxHelper.getValue("txtSpelling"),
-                                PriceMode: comboboxHelper.getValue("ddlPriceMode"),
                                 Status: comboboxHelper.getValue("ddlStatus"),
-                                Email: textBoxHelper.getValue("txtEmail"),
-                                LinkMan: textBoxHelper.getValue("txtLinkMan"),
-                                LinkTel: textBoxHelper.getValue("txtLinkTel"),
+                                Alias: textBoxHelper.getValue("txtAlias"),
                                 ParentId: ($("#txtParentId").val() === null || $("#txtParentId").val() === "") ? "000001" : $("#txtParentId").val()
                             }
                         });

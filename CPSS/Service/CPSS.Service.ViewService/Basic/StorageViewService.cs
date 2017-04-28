@@ -25,8 +25,7 @@ namespace CPSS.Service.ViewService.Basic
         private readonly IDbConnection mDbConnection;
         private readonly IstorageDataAccess mStorageDataAccess;
 
-        public StorageViewService(IMongoDbDataAccess mongoDbDataAccess, IDbConnection dbConnection,
-            IstorageDataAccess storageDataAccess) : base(mongoDbDataAccess)
+        public StorageViewService(IMongoDbDataAccess mongoDbDataAccess, IDbConnection dbConnection, IstorageDataAccess storageDataAccess) : base(mongoDbDataAccess)
         {
             this.mDbConnection = dbConnection;
             this.mStorageDataAccess = storageDataAccess;
@@ -35,72 +34,74 @@ namespace CPSS.Service.ViewService.Basic
         public RespondWebViewData<List<RespondQueryStorageViewModel>> GetQueryStorageList(RequestWebViewData<RequestQueryStorageViewModel> request)
         {
             if (request.data == null) request.data = new RequestQueryStorageViewModel();
-            return 
-                MemcacheHelper.Get(new RequestMemcacheParameter<RespondWebViewData<List<RespondQueryStorageViewModel>>>
+            return MemcacheHelper.Get(new RequestMemcacheParameter<RespondWebViewData<List<RespondQueryStorageViewModel>>>
+            {
+                CacheKey = string.Format(PRE_CACHE_KEY, "GetQueryStorageList"),
+
+                #region =================
+                CallBackFunc = () =>
                 {
-                    CacheKey = string.Format(PRE_CACHE_KEY, "GetQueryStorageList"),
-
-                    #region =================
-                    CallBackFunc = () =>
+                    var parameter = new QueryStorageListParameter
                     {
-                        var parameter = new QueryStorageListParameter
-                        {
-                            Alias = request.data.Alias,
-                            Deleted = request.data.Deleted,
-                            Name = request.data.Name,
-                            PageSize = request.rows,
-                            PageIndex = request.page,
-                            ParentId = request.data.ParentId,
-                            SerialNumber = request.data.SerialNumber,
-                            Spelling = request.data.Spelling,
-                            Status = request.data.Status
-                        };
-                        var pageDataList = this.mStorageDataAccess.GetQueryStorageList(parameter);
-                        var respond = new RespondWebViewData<List<RespondQueryStorageViewModel>>
-                        {
-                            total = pageDataList.DataCount,
-                            rows = pageDataList.Datas.Select(item => new RespondQueryStorageViewModel
-                            {
-                                Alias = item.alias,
-                                ParentId = item.parentid,
-                                Spelling = item.PinYin,
-                                ChildNumber = item.childnumber,
-                                ClassId= item.classid,
-                                Comment = item.comment,
-                                Deleted = item.deleted,
-                                Name = item.name,
-                                SerialNumber = item.serialnumber,
-                                Sort = item.sort,
-                                StorageId = item.stoid,
-                                Status = item.status
-                            }).ToList()
-                        };
-                        return respond;
-                    },
-
-                    #endregion
-
-                    ExpiresAt = DateTime.Now.AddMinutes(30),
-                    ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
-                    ParamsKeys = new object[]
+                        Alias = request.data.Alias,
+                        Deleted = request.data.Deleted,
+                        Name = request.data.Name,
+                        PageSize = request.rows,
+                        PageIndex = request.page,
+                        ParentId = request.data.ParentId,
+                        SerialNumber = request.data.SerialNumber,
+                        Spelling = request.data.Spelling,
+                        Status = request.data.Status
+                    };
+                    var pageDataList = this.mStorageDataAccess.GetQueryStorageList(parameter);
+                    var respond = new RespondWebViewData<List<RespondQueryStorageViewModel>>
                     {
-                        request.page,
-                        request.rows,
-                        request.data.Alias,
-                        request.data.Deleted,
-                        request.data.Name,
-                        request.data.ParentId,
-                        request.data.SerialNumber,
-                        request.data.Spelling,
-                        request.data.Status
-                    }
-                });
+                        total = pageDataList.DataCount,
+                        rows = pageDataList.Datas.Select(item => new RespondQueryStorageViewModel
+                        {
+                            Alias = item.alias,
+                            ParentId = item.parentid,
+                            Spelling = item.PinYin,
+                            ChildNumber = item.childnumber,
+                            ClassId = item.classid,
+                            Comment = item.comment,
+                            Deleted = item.deleted,
+                            Name = item.name,
+                            SerialNumber = item.serialnumber,
+                            Sort = item.sort,
+                            StorageId = item.stoid,
+                            Status = item.status
+                        }).ToList()
+                    };
+                    return respond;
+                },
+
+                #endregion
+
+                ExpiresAt = DateTime.Now.AddMinutes(30),
+                ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
+                ParamsKeys = new object[]
+                {
+                    request.page,
+                    request.rows,
+                    request.data.Alias,
+                    request.data.Deleted,
+                    request.data.Name,
+                    request.data.ParentId,
+                    request.data.SerialNumber,
+                    request.data.Spelling,
+                    request.data.Status
+                }
+            });
         }
 
         public RespondWebViewData<RespondAddStorageViewModel> AddStorage(RequestWebViewData<RequestAddStorageViewModel> request)
         {
-            var respond = new RespondWebViewData<RespondAddStorageViewModel>(WebViewErrorCode.Success);
             var rData = request.data;
+            if (this.mStorageDataAccess.CheckStorageIsExist(new QueryStorageListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber }))
+                return new RespondWebViewData<RespondAddStorageViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的仓库已经存在", rData.Name, rData.SerialNumber));
+
+            var respond = new RespondWebViewData<RespondAddStorageViewModel>(WebViewErrorCode.Success);
             try
             {
                 var storage = this.mStorageDataAccess.GetStorageByClassID(new QueryStorageListParameter{ ParentId = rData.ParentId});
@@ -200,10 +201,13 @@ namespace CPSS.Service.ViewService.Basic
 
         public RespondWebViewData<RespondEditStorageViewModel> EditStorage(RequestWebViewData<RequestEditStorageViewModel> request)
         {
+            var rData = request.data;
+            if (this.mStorageDataAccess.CheckStorageIsExist(new QueryStorageListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber }))
+                return new RespondWebViewData<RespondEditStorageViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的仓库已经存在", rData.Name, rData.SerialNumber));
+
             var respond = new RespondWebViewData<RespondEditStorageViewModel>(WebViewErrorCode.Success);
             try
             {
-                var rData = request.data;
                 this.mDbConnection.ExecuteTransaction(tran =>
                 {
                     var storage = this.mStorageDataAccess.GetstorageDataModelById(rData.StorageId);

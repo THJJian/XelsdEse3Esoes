@@ -32,7 +32,7 @@ namespace CPSS.Service.ViewService.Interfaces.Basic
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondWebViewData<RequestEditDepartmentViewModel> EditDepartment(RequestWebViewData<RequestEditDepartmentViewModel> request);
+        RespondWebViewData<RespondEditDepartmentViewModel> EditDepartment(RequestWebViewData<RequestEditDepartmentViewModel> request);
         
         /// <summary>
         /// 删除部门资料(逻辑删除)

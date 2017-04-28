@@ -16,7 +16,7 @@ namespace CPSS.Data.DataAccess.HeadButtons
         
         public IList<HeadButtonsDataModel> QueryHeadButtonsViewModelsByMenuID(HeadButtonsParameter parameter)
         {
-            this.ExecuteSQL = "SELECT title ButtonText,buttonid ButtonName, isenabled ButtonDisabled, iconcls ButtonIconCls FROM dbo.menu WHERE parentid IN(SELECT classid FROM dbo.menu WHERE menuid = @menuid)";
+            this.ExecuteSQL = "SELECT title ButtonText,buttonid ButtonName, isenabled ButtonDisabled, iconcls ButtonIconCls FROM dbo.menu WHERE parentid IN(SELECT classid FROM dbo.menu WHERE menuid = @menuid) ORDER BY classid ASC";
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@menuid", parameter.MenuID)

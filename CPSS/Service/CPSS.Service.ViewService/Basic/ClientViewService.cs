@@ -111,8 +111,11 @@ namespace CPSS.Service.ViewService.Basic
 
         public RespondWebViewData<RespondAddClientViewModel> AddClient(RequestWebViewData<RequestAddClientViewModel> request)
         {
-            var respond = new RespondWebViewData<RespondAddClientViewModel>(WebViewErrorCode.Success);
             var rData = request.data;
+            if (this.mClientDataAccess.CheckClientIsExist(new QueryClientListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber }))
+                return new RespondWebViewData<RespondAddClientViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号为[{1}]的往来单位已经存在", rData.Name, rData.SerialNumber));
+
+            var respond = new RespondWebViewData<RespondAddClientViewModel>(WebViewErrorCode.Success);
             try
             {
                 var deparment = this.mClientDataAccess.GetClientByClassID(new QueryClientListParameter { ParentId = rData.ParentId });
@@ -121,7 +124,7 @@ namespace CPSS.Service.ViewService.Basic
 
                 this.mDbConnection.ExecuteTransaction(tran =>
                 {
-                    var parameter = new QueryClientListParameter()
+                    var parameter = new QueryClientListParameter
                     {
                         ParentId = rData.ParentId
                     };
@@ -222,9 +225,11 @@ namespace CPSS.Service.ViewService.Basic
 
         public RespondWebViewData<RequestEditClientViewModel> EditClient(RequestWebViewData<RequestEditClientViewModel> request)
         {
-            var respond = new RespondWebViewData<RequestEditClientViewModel>(WebViewErrorCode.Success);
             var rData = request.data;
+            if (this.mClientDataAccess.CheckClientIsExist(new QueryClientListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber }))
+                return new RespondWebViewData<RequestEditClientViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号为[{1}]的往来单位已经存在", rData.Name, rData.SerialNumber));
 
+            var respond = new RespondWebViewData<RequestEditClientViewModel>(WebViewErrorCode.Success);
             this.mDbConnection.ExecuteTransaction(tran =>
             {
                 var client = this.mClientDataAccess.GetclientDataModelById(rData.ClientId);

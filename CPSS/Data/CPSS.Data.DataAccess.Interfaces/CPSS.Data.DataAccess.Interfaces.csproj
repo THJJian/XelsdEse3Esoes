@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic\IunitDataAccess.cs" />
     <Compile Include="Basic\IstorageDataAccess.cs" />
     <Compile Include="Basic\IdepartmentDataAccess.cs" />
     <Compile Include="Basic\IclientDataAccess.cs" />
@@ -66,6 +67,8 @@
     <Compile Include="Basic\Parameters\Storage\QueryStorageListParameter.cs" />
     <Compile Include="Basic\Parameters\SubCompany\DeleteSubCompanyParameter.cs" />
     <Compile Include="Basic\Parameters\SubCompany\QuerySubCompanyListParameter.cs" />
+    <Compile Include="Basic\Parameters\Unit\DeleteUnitParameter.cs" />
+    <Compile Include="Basic\Parameters\Unit\QueryUnitListParameter.cs" />
     <Compile Include="HeadButtons\IHeadButtonsDataAccess.cs" />
     <Compile Include="HeadButtons\Parameters\HeadButtonsParameter.cs" />
     <Compile Include="IclientDataAccess.generated.cs">

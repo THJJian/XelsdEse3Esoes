@@ -27,6 +27,18 @@ namespace CPSS.Data.DataAccess
             return this.ExecuteReadSqlTostorageDataModelPageData("stoid", parameter.PageIndex, parameter.PageSize, "classid ASC, sort DESC");
         }
 
+        public bool CheckStorageIsExist(QueryStorageListParameter parameter)
+        {
+            this.ExecuteSQL = "SELECT * FROM dbo.storage WHERE name=@name AND serialnumber=@serialnumber";
+            this.DataParameter = new IDbDataParameter[]
+            {
+                new SqlParameter("@name", parameter.Name), 
+                new SqlParameter("@serialnumber", parameter.SerialNumber)
+            };
+            var storage = this.ExecuteReadSqlTostorageDataModel();
+            return storage != null;
+        }
+
         public List<storageDataModel> GetStorageListByParentID(QueryStorageListParameter parameter)
         {
             this.ExecuteSQL = "SELECT * FROM dbo.storage WHERE parentid=@parentid ORDER BY classid DESC";

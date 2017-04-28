@@ -16,6 +16,13 @@ namespace CPSS.Data.DataAccess.Interfaces
         PageData<employeeDataModel> GetQueryEmployeeList(QueryEmployeeListParameter parameter);
 
         /// <summary>
+        /// 检查职员是否已经存在
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        bool CheckEmployeeIsExist(QueryEmployeeListParameter parameter);
+
+        /// <summary>
         /// 根据parentid查询职员信息列表(ORDER BY classid DESC)
         /// </summary>
         /// <param name="parameter"></param>

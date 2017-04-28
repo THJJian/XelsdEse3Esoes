@@ -16,6 +16,13 @@ namespace CPSS.Data.DataAccess.Interfaces
         PageData<storageDataModel> GetQueryStorageList(QueryStorageListParameter parameter);
 
         /// <summary>
+        /// 检查仓库是否已经存在
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        bool CheckStorageIsExist(QueryStorageListParameter parameter);
+
+        /// <summary>
         /// 根据parentid查询仓库信息列表(ORDER BY classid DESC)
         /// </summary>
         /// <param name="parameter"></param>

@@ -30,6 +30,18 @@ namespace CPSS.Data.DataAccess
             return this.ExecuteReadSqlToclientDataModelPageData("clientid", parameter.PageIndex, parameter.PageSize, "classid ASC, sort DESC");
         }
 
+        public bool CheckClientIsExist(QueryClientListParameter parameter)
+        {
+            this.ExecuteSQL = "SELECT * FROM dbo.client WHERE name=@name AND serialnumber=@serialnumber";
+            this.DataParameter = new IDbDataParameter[]
+            {
+                new SqlParameter("@name", parameter.Name), 
+                new SqlParameter("@serialnumber", parameter.SerialNumber)
+            };
+            var client = this.ExecuteReadSqlToclientDataModel();
+            return client != null;
+        }
+
         public List<clientDataModel> GetClientListByParentID(QueryClientListParameter parameter)
         {
             this.ExecuteSQL = "SELECT * FROM dbo.client WHERE parentid=@parentid ORDER BY classid DESC";

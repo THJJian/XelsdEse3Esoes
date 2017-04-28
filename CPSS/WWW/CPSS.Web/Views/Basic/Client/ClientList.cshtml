@@ -22,7 +22,7 @@
         @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSpelling", TabIndex = 3, LabelName = "拼音" })
         @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtAlias", TabIndex = 4, LabelName = "别名" })
         @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtLinkMan", TabIndex = 5, LabelName = "联系人" })
-        @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtLinkTel", TabIndex = 6, LabelName = "联系电话" })
+        @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtLinkTel", TabIndex = 6, LabelName = "联系人电话" })
         @UIHelper.dropDownList(new DropDownOption { LabelName = "状态", Id = "ddlStatus", TabIndex = 7, Value = ((short)CommonStatus.Default).ToString(), SelectPanelHeight = 70, SelectItems = new List<DropDownSelectItem> { new DropDownSelectItem { Text = "无", Value = ((short)CommonStatus.Default).ToString() }, new DropDownSelectItem { Text = "正常", Value = ((short)CommonStatus.Used).ToString() }, new DropDownSelectItem { Text = "停用", Value = ((short)CommonStatus.Stopped).ToString() } } })
         @UIHelper.dropDownList(new DropDownOption { LabelName = "售价方式", Id = "ddlPriceMode", TabIndex = 4, Value = "0", SelectPanelHeight = 90, SelectItems = new List<DropDownSelectItem> { new DropDownSelectItem { Text = "无", Value = "0" }, new DropDownSelectItem { Text = "售价1", Value = "1" }, new DropDownSelectItem { Text = "售价2", Value = "2" }, new DropDownSelectItem { Text = "售价3", Value = "3" } } })
     </div>

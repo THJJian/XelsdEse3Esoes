@@ -10,6 +10,7 @@ using CPSS.Service.ViewService.ViewModels.SubCompany.Request;
 using CPSS.Web.Controllers.Filters;
 using CPSS.Service.ViewService.ViewModels.Employee.Request;
 using CPSS.Service.ViewService.ViewModels.Storage.Request;
+using CPSS.Service.ViewService.ViewModels.Unit.Request;
 
 namespace CPSS.Web.Controllers
 {
@@ -23,18 +24,20 @@ namespace CPSS.Web.Controllers
         private readonly IEmployeeViewService mEmployeeViewService;
         private readonly IClientViewService mClientViewService;
         private readonly IStorageViewService mStorageViewService;
+        private readonly IUnitViewService mUnitViewService;
 
         #endregion
 
         #region 构造函数
         public BasicController(ISubCompanyViewService subCompanyViewService, IDepartmentViewService departmentViewService, IEmployeeViewService employeeViewService, IClientViewService clientViewService,
-            IStorageViewService storageViewService)
+            IStorageViewService storageViewService, IUnitViewService unitViewService)
         {
             this.mSubCompanyViewService = subCompanyViewService;
             this.mDepartmentViewService = departmentViewService;
             this.mEmployeeViewService = employeeViewService;
             this.mClientViewService = clientViewService;
             this.mStorageViewService = storageViewService;
+            this.mUnitViewService = unitViewService;
         }
 
         #endregion
@@ -416,6 +419,81 @@ namespace CPSS.Web.Controllers
         public JsonResult ReDeleteStorage(RequestWebViewData<RequestDeleteStorageViewModel> request)
         {
             var respond = this.mStorageViewService.ReDeleteStorage(request);
+            return Json(respond);
+        }
+
+        #endregion
+
+        #endregion
+
+        #region 计量单位
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicUnit)]
+        public ActionResult UnitList()
+        {
+            return View("~/views/basic/unit/unitlist.cshtml");
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicUnit_TB_Add)]
+        public ActionResult AddUnit()
+        {
+            return View("~/views/basic/unit/addunit.cshtml");
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicUnit_TB_Edit)]
+        public ActionResult EditUnit()
+        {
+            var unitId = this.WorkContext.GetQueryInt("unitid");
+            var request = new RequestWebViewData<RequestGetUnitByIdViewModel>
+            {
+                data = new RequestGetUnitByIdViewModel
+                {
+                    UnitId = unitId
+                }
+            };
+            var model = this.mUnitViewService.GetUnitByUnitId(request);
+            return View("~/views/basic/unit/editunit.cshtml", model);
+        }
+
+        #region Ajax操作方法
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicUnit)]
+        [HttpPost]
+        public JsonResult GetUnitList(RequestWebViewData<RequestQueryUnitViewModel> request)
+        {
+            var respond = this.mUnitViewService.GetQueryUnitList(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicUnit_TB_Add)]
+        [HttpPost]
+        public JsonResult AddUnit(RequestWebViewData<RequestAddUnitViewModel> request)
+        {
+            var respond = this.mUnitViewService.AddUnit(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicUnit_TB_Edit)]
+        [HttpPost]
+        public JsonResult EditUnit(RequestWebViewData<RequestEditUnitViewModel> request)
+        {
+            var respond = this.mUnitViewService.EditUnit(request);
+            return Json(respond);
+        }
+        
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicUnit_TB_Delete)]
+        [HttpPost]
+        public JsonResult DeleteUnit(RequestWebViewData<RequestDeleteUnitViewModel> request)
+        {
+            var respond = this.mUnitViewService.DeleteUnit(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicUnit_TB_Resume)]
+        [HttpPost]
+        public JsonResult ReDeleteUnit(RequestWebViewData<RequestDeleteUnitViewModel> request)
+        {
+            var respond = this.mUnitViewService.ReDeleteUnit(request);
             return Json(respond);
         }
 

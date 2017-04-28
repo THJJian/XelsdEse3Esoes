@@ -173,6 +173,9 @@
     <Content Include="Views\Basic\Storage\StorageList.cshtml" />
     <Content Include="Views\Basic\Storage\AddStorage.cshtml" />
     <Content Include="Views\Basic\Storage\EditStorage.cshtml" />
+    <Content Include="Views\Basic\Unit\UnitList.cshtml" />
+    <Content Include="Views\Basic\Unit\AddUnit.cshtml" />
+    <Content Include="Views\Basic\Unit\EditUnit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic\IUnitViewService.cs" />
     <Compile Include="Basic\IDepartmentViewService.cs" />
     <Compile Include="Basic\IClientViewService.cs" />
     <Compile Include="Basic\IEmployeeViewService.cs" />
