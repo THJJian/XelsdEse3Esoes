@@ -33,7 +33,7 @@ namespace CPSS.Service.ViewService.Interfaces.Basic
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        RespondWebViewData<RequestEditEmployeeViewModel> EditEmployee(RequestWebViewData<RequestEditEmployeeViewModel> request);
+        RespondWebViewData<RespondEditEmployeeViewModel> EditEmployee(RequestWebViewData<RequestEditEmployeeViewModel> request);
 
         /// <summary>
         /// 删除职员资料(逻辑删除)

@@ -176,6 +176,9 @@
     <Content Include="Views\Basic\Unit\UnitList.cshtml" />
     <Content Include="Views\Basic\Unit\AddUnit.cshtml" />
     <Content Include="Views\Basic\Unit\EditUnit.cshtml" />
+    <Content Include="Views\Basic\Product\ProductList.cshtml" />
+    <Content Include="Views\Basic\Product\AddProduct.cshtml" />
+    <Content Include="Views\Basic\Product\EditProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

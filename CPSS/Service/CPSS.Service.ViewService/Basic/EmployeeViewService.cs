@@ -110,7 +110,7 @@ namespace CPSS.Service.ViewService.Basic
         {
             var rData = request.data;
             if (this.mEmployeeDataAccess.CheckEmployeeIsExist(new QueryEmployeeListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber, DepId = rData.DepId }))
-                return new RespondWebViewData<RespondAddEmployeeViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的职员已经存在", rData.Name, rData.SerialNumber));
+                return new RespondWebViewData<RespondAddEmployeeViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号为[{1}]的职员已经存在", rData.Name, rData.SerialNumber));
 
             var respond = new RespondWebViewData<RespondAddEmployeeViewModel>(WebViewErrorCode.Success);
             try
@@ -218,16 +218,16 @@ namespace CPSS.Service.ViewService.Basic
             });
         }
 
-        public RespondWebViewData<RequestEditEmployeeViewModel> EditEmployee(RequestWebViewData<RequestEditEmployeeViewModel> request)
+        public RespondWebViewData<RespondEditEmployeeViewModel> EditEmployee(RequestWebViewData<RequestEditEmployeeViewModel> request)
         {
             var rData = request.data;
             var employee = this.mEmployeeDataAccess.GetemployeeDataModelById(rData.EmpId);
-            if (employee == null) return new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
-            if (employee.deleted == (short)CommonDeleted.Deleted) return new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
+            if (employee == null) return new RespondWebViewData<RespondEditEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
+            if (employee.deleted == (short)CommonDeleted.Deleted) return new RespondWebViewData<RespondEditEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
             if (this.mEmployeeDataAccess.CheckEmployeeIsExist(new QueryEmployeeListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber, DepId = employee.depid, EmpId = rData.EmpId }))
-                return new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的职员已经存在", rData.Name, rData.SerialNumber));
+                return new RespondWebViewData<RespondEditEmployeeViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号为[{1}]的职员已经存在", rData.Name, rData.SerialNumber));
 
-            var respond = new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.Success);
+            var respond = new RespondWebViewData<RespondEditEmployeeViewModel>(WebViewErrorCode.Success);
             try
             {
                 this.mDbConnection.ExecuteTransaction(tran =>
@@ -263,7 +263,7 @@ namespace CPSS.Service.ViewService.Basic
             }
             catch (Exception ex)
             {
-                respond = new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.Exception.ErrorCode, ex.Message);
+                respond = new RespondWebViewData<RespondEditEmployeeViewModel>(WebViewErrorCode.Exception.ErrorCode, ex.Message);
             }
             return respond;
         }

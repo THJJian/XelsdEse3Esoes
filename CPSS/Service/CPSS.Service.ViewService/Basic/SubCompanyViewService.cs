@@ -110,7 +110,7 @@ namespace CPSS.Service.ViewService.Basic
         {
             var rData = request.data;
             if (this.mSubCompanyDataAccess.CheckSubCompanyIsExist(new QuerySubCompanyListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber}))
-                return new RespondWebViewData<RespondAddSubCompanyViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的分公司已经存在", rData.Name, rData.SerialNumber));
+                return new RespondWebViewData<RespondAddSubCompanyViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号为[{1}]的分公司已经存在", rData.Name, rData.SerialNumber));
 
             var respond = new RespondWebViewData<RespondAddSubCompanyViewModel>(WebViewErrorCode.Success);
             try
@@ -212,7 +212,7 @@ namespace CPSS.Service.ViewService.Basic
         {
             var rData = request.data;
             if (this.mSubCompanyDataAccess.CheckSubCompanyIsExist(new QuerySubCompanyListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber, SubComId = rData.ComId }))
-                return new RespondWebViewData<RespondEditSubCompanyViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的分公司已经存在", rData.Name, rData.SerialNumber));
+                return new RespondWebViewData<RespondEditSubCompanyViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号为[{1}]的分公司已经存在", rData.Name, rData.SerialNumber));
 
             var respond = new RespondWebViewData<RespondEditSubCompanyViewModel>(WebViewErrorCode.Success);
             this.mDbConnection.ExecuteTransaction(tran =>

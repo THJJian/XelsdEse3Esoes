@@ -9,6 +9,7 @@ using CPSS.Service.ViewService.ViewModels.Department.Request;
 using CPSS.Service.ViewService.ViewModels.SubCompany.Request;
 using CPSS.Web.Controllers.Filters;
 using CPSS.Service.ViewService.ViewModels.Employee.Request;
+using CPSS.Service.ViewService.ViewModels.Product.Request;
 using CPSS.Service.ViewService.ViewModels.Storage.Request;
 using CPSS.Service.ViewService.ViewModels.Unit.Request;
 
@@ -25,12 +26,13 @@ namespace CPSS.Web.Controllers
         private readonly IClientViewService mClientViewService;
         private readonly IStorageViewService mStorageViewService;
         private readonly IUnitViewService mUnitViewService;
+        private readonly IProductViewService mProductViewService;
 
         #endregion
 
         #region 构造函数
         public BasicController(ISubCompanyViewService subCompanyViewService, IDepartmentViewService departmentViewService, IEmployeeViewService employeeViewService, IClientViewService clientViewService,
-            IStorageViewService storageViewService, IUnitViewService unitViewService)
+            IStorageViewService storageViewService, IUnitViewService unitViewService, IProductViewService productViewService)
         {
             this.mSubCompanyViewService = subCompanyViewService;
             this.mDepartmentViewService = departmentViewService;
@@ -38,6 +40,7 @@ namespace CPSS.Web.Controllers
             this.mClientViewService = clientViewService;
             this.mStorageViewService = storageViewService;
             this.mUnitViewService = unitViewService;
+            this.mProductViewService = productViewService;
         }
 
         #endregion
@@ -500,5 +503,83 @@ namespace CPSS.Web.Controllers
         #endregion
 
         #endregion
+
+        #region 商品资料
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicProduct)]
+        public ActionResult ProductList()
+        {
+            return View("~/views/basic/product/productlist.cshtml");
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicProduct_TB_Add)]
+        public ActionResult AddProduct()
+        {
+            return View("~/views/basic/product/addproduct.cshtml");
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicProduct_TB_Edit)]
+        public ActionResult EditProduct()
+        {
+            var proId = this.WorkContext.GetQueryInt("proid");
+            var request = new RequestWebViewData<RequestGetProductByIdViewModel>
+            {
+                data = new RequestGetProductByIdViewModel
+                {
+                    ProId = proId
+                }
+            };
+            var model = this.mProductViewService.GetProductByProId(request);
+            return View("~/views/basic/product/editproduct.cshtml", model);
+        }
+
+        #region Ajax操作方法
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicProduct)]
+        [HttpPost]
+        public JsonResult GetProductList(RequestWebViewData<RequestQueryProductViewModel> request)
+        {
+            if (string.IsNullOrEmpty(request.data.ParentId)) request.data.ParentId = "000001";
+            var respond = this.mProductViewService.GetQueryProductList(request);
+            respond.parentId = request.data.ParentId;
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicProduct_TB_Add)]
+        [HttpPost]
+        public JsonResult AddProduct(RequestWebViewData<RequestAddProductViewModel> request)
+        {
+            var respond = this.mProductViewService.AddProduct(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicProduct_TB_Edit)]
+        [HttpPost]
+        public JsonResult EditProduct(RequestWebViewData<RequestEditProductViewModel> request)
+        {
+            var respond = this.mProductViewService.EditProduct(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicProduct_TB_Delete)]
+        [HttpPost]
+        public JsonResult DeleteProduct(RequestWebViewData<RequestDeleteProductViewModel> request)
+        {
+            var respond = this.mProductViewService.DeleteProduct(request);
+            return Json(respond);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtBasicProduct_TB_Resume)]
+        [HttpPost]
+        public JsonResult ReDeleteProduct(RequestWebViewData<RequestDeleteProductViewModel> request)
+        {
+            var respond = this.mProductViewService.ReDeleteProduct(request);
+            return Json(respond);
+        }
+
+        #endregion
+
+        #endregion
+
     }
 }

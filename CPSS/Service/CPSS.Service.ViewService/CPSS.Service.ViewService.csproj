@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseViewService.cs" />
+    <Compile Include="Basic\ProductViewService.cs" />
     <Compile Include="Basic\UnitViewService.cs" />
     <Compile Include="Basic\DepartmentViewService.cs" />
     <Compile Include="Basic\ClientViewService.cs" />

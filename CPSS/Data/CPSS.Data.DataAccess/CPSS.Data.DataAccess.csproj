@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic\productDataAccess.cs" />
     <Compile Include="Basic\unitDataAccess.cs" />
     <Compile Include="Basic\storageDataAccess.cs" />
     <Compile Include="Basic\departmentDataAccess.cs" />

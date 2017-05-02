@@ -74,6 +74,15 @@
     <Compile Include="Employee\Respond\RespondDeleteEmployeeViewModel.cs" />
     <Compile Include="Employee\Respond\RespondEditEmployeeViewModel.cs" />
     <Compile Include="Employee\Respond\RespondQueryEmployeeViewModel.cs" />
+    <Compile Include="Product\Request\RequestAddProductViewModel.cs" />
+    <Compile Include="Product\Request\RequestDeleteProductViewModel.cs" />
+    <Compile Include="Product\Request\RequestEditProductViewModel.cs" />
+    <Compile Include="Product\Request\RequestGetProductByIdViewModel.cs" />
+    <Compile Include="Product\Request\RequestQueryProductViewModel.cs" />
+    <Compile Include="Product\Respond\RespondAddProductViewModel.cs" />
+    <Compile Include="Product\Respond\RespondDeleteProductViewModel.cs" />
+    <Compile Include="Product\Respond\RespondEditProductViewModel.cs" />
+    <Compile Include="Product\Respond\RespondQueryProductViewModel.cs" />
     <Compile Include="Storage\Request\RequestAddStorageViewModel.cs" />
     <Compile Include="Storage\Request\RequestDeleteStorageViewModel.cs" />
     <Compile Include="Storage\Request\RequestEditStorageViewModel.cs" />

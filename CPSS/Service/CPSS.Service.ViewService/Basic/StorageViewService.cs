@@ -99,7 +99,7 @@ namespace CPSS.Service.ViewService.Basic
         {
             var rData = request.data;
             if (this.mStorageDataAccess.CheckStorageIsExist(new QueryStorageListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber }))
-                return new RespondWebViewData<RespondAddStorageViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的仓库已经存在", rData.Name, rData.SerialNumber));
+                return new RespondWebViewData<RespondAddStorageViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号为[{1}]的仓库已经存在", rData.Name, rData.SerialNumber));
 
             var respond = new RespondWebViewData<RespondAddStorageViewModel>(WebViewErrorCode.Success);
             try
@@ -203,7 +203,7 @@ namespace CPSS.Service.ViewService.Basic
         {
             var rData = request.data;
             if (this.mStorageDataAccess.CheckStorageIsExist(new QueryStorageListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber, StorageId = rData.StorageId }))
-                return new RespondWebViewData<RespondEditStorageViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的仓库已经存在", rData.Name, rData.SerialNumber));
+                return new RespondWebViewData<RespondEditStorageViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号为[{1}]的仓库已经存在", rData.Name, rData.SerialNumber));
 
             var respond = new RespondWebViewData<RespondEditStorageViewModel>(WebViewErrorCode.Success);
             try
