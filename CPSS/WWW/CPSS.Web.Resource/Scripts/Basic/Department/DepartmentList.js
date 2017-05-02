@@ -106,7 +106,7 @@
                     return;
                 }
                 url = ["/basic/editdepartment?userid=", userId_g, "&depid=", selectRow.DepId].join("");
-                _window.open("edit_cdepartment", "修改部门资料", 600, 550, url);
+                _window.open("edit_department", "修改部门资料", 600, 550, url);
                 break;
             case "rtBasicDep_TB_Delete":
                 fn_postData(0);

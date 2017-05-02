@@ -42,7 +42,7 @@
                         if (result.ErrorCode === 0)
                             _msgbox.success(result.ErrorMessage,
                                 function() {
-                                    parent.subCompany.level(undefined, 1);
+                                    parent.department.level(undefined, 1);
                                     parent._window.close();
                                 });
                         else
