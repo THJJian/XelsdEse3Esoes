@@ -28,5 +28,7 @@ namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters.SubCompany
         public short Status { set; get; }
 
         public short Deleted { get; set; }
+
+        public int SubComId { get; set; }
     }
 }

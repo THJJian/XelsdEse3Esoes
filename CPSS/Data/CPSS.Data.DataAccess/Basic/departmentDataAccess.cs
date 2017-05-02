@@ -27,7 +27,7 @@ namespace CPSS.Data.DataAccess
 
         public bool CheckDepartmentIsExist(QueryDepartmentListParameter parameter)
         {
-            this.ExecuteSQL = "SELECT * FROM dbo.department WHERE name=@name AND serialnumber=@serialnumber";
+            this.ExecuteSQL = string.Format("SELECT * FROM dbo.department WHERE name=@name AND serialnumber=@serialnumber{0}", parameter.DepId == 0 ? string.Empty : string.Concat(" AND depid<>", parameter.DepId));
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@name", parameter.Name), 

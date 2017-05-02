@@ -6,5 +6,7 @@
 
 
         public string ClassID { set; get; }
+
+        public int UserId { get; set; }
     }
 }

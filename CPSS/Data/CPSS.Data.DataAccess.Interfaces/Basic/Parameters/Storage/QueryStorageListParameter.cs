@@ -18,5 +18,7 @@ namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Storage
         public short Status { get; set; }
 
         public short Deleted { get; set; }
+
+        public int StorageId { get; set; }
     }
 }

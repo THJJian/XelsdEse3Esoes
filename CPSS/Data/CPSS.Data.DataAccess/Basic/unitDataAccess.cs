@@ -22,7 +22,7 @@ namespace CPSS.Data.DataAccess
 
         public bool CheckUnitIsExist(QueryUnitListParameter parameter)
         {
-            this.ExecuteSQL = "SELECT * FROM dbo.unit WHERE name=@name";
+            this.ExecuteSQL = string.Format("SELECT * FROM dbo.unit WHERE name=@name{0}", parameter.UnitId == 0 ? string.Empty : string.Concat(" AND unitid<>", parameter.UnitId));
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@name", parameter.Name)

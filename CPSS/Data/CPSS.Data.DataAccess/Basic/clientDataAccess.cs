@@ -32,7 +32,7 @@ namespace CPSS.Data.DataAccess
 
         public bool CheckClientIsExist(QueryClientListParameter parameter)
         {
-            this.ExecuteSQL = "SELECT * FROM dbo.client WHERE name=@name AND serialnumber=@serialnumber";
+            this.ExecuteSQL = string.Format("SELECT * FROM dbo.client WHERE name=@name AND serialnumber=@serialnumber{0}", parameter.ClientId == 0 ? string.Empty : string.Concat(" AND clientid<>", parameter.ClientId));
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@name", parameter.Name), 

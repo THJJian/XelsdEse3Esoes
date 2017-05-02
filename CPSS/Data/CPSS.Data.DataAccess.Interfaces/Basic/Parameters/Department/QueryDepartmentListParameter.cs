@@ -16,5 +16,7 @@ namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Department
         public short Status { get; set; }
 
         public short Deleted { get; set; }
+
+        public int DepId { get; set; }
     }
 }

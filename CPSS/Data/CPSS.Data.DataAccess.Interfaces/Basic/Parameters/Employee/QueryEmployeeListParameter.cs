@@ -23,5 +23,7 @@ namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Employee
         public short Deleted { get; set; }
 
         public string Comment { get; set; }
+
+        public int EmpId { get; set; }
     }
 }

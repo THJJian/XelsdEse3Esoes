@@ -23,5 +23,7 @@ namespace CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Client
         public short Status { get; set; }
 
         public short Deleted { get; set; }
+
+        public int ClientId { get; set; }
     }
 }

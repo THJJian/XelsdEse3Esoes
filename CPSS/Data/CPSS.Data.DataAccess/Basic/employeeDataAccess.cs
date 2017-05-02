@@ -31,7 +31,7 @@ namespace CPSS.Data.DataAccess
 
         public bool CheckEmployeeIsExist(QueryEmployeeListParameter parameter)
         {
-            this.ExecuteSQL = "SELECT * FROM dbo.employee WHERE name=@name AND serialnumber=@serialnumber AND depid=@depid";
+            this.ExecuteSQL = string.Format("SELECT * FROM dbo.employee WHERE name=@name AND serialnumber=@serialnumber AND depid=@depid{0}", parameter.EmpId == 0 ? string.Empty : string.Concat(" AND empid<>", parameter.EmpId));
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@name", parameter.Name), 

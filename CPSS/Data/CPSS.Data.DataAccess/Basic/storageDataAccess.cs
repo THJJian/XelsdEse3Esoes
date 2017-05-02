@@ -29,7 +29,7 @@ namespace CPSS.Data.DataAccess
 
         public bool CheckStorageIsExist(QueryStorageListParameter parameter)
         {
-            this.ExecuteSQL = "SELECT * FROM dbo.storage WHERE name=@name AND serialnumber=@serialnumber";
+            this.ExecuteSQL = string.Format("SELECT * FROM dbo.storage WHERE name=@name AND serialnumber=@serialnumber{0}", parameter.StorageId == 0 ? string.Empty : string.Concat(" AND stoid<>", parameter.StorageId));
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@name", parameter.Name), 

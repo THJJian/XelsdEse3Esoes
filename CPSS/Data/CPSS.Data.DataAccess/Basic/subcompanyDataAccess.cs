@@ -84,7 +84,7 @@ namespace CPSS.Data.DataAccess
 
         public bool CheckSubCompanyIsExist(QuerySubCompanyListParameter parameter)
         {
-            this.ExecuteSQL = "SELECT * FROM dbo.subcompany WHERE name=@name AND serialnumber=@serialnumber";
+            this.ExecuteSQL = string.Format("SELECT * FROM dbo.subcompany WHERE name=@name AND serialnumber=@serialnumber{0}", parameter.SubComId == 0 ? string.Empty : string.Concat(" AND subcomid<>", parameter.SubComId));
             this.DataParameter = new IDbDataParameter[]
             {
                 new SqlParameter("@name", parameter.Name), 
