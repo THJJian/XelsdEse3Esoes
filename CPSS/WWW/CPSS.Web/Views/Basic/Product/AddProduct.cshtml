@@ -1,7 +1,42 @@
-﻿
+﻿@using CPSS.Common.Core.Mvc.UIControl
+@using CPSS.Service.ViewService.ViewModels.HeadButtons.Respond
+
 @{
     ViewBag.Title = "AddProduct";
+
+    WorkContext.Resource
+        //.AddPageCss("")
+        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "grid/tablegrid", "controlshelper", "basic/product/addproduct");
+    var buttonModel = new List<RespondHeadButtonsViewModel>
+    {
+        new RespondHeadButtonsViewModel{ ButtonName = "rtBasicProduct_TB_Add_Save", ButtonText = "保存"},
+        //new RespondHeadButtonsViewModel{ ButtonName = "rtBasicDep_TB_Add_Save_Go", ButtonText = "保存并继续"},
+        new RespondHeadButtonsViewModel{ ButtonName = "rtBasicProduct_TB_Add_Cancel", ButtonText = "取消"},
+    };
+}
+@section buttons{
+    @Html.Partial("~/Views/Shared/CommonPartial/HeadButtons.cshtml", buttonModel)
 }
 
-<h2>AddProduct</h2>
-
+<div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 500px; max-width: 100%; overflow: hidden;">
+    <input type="hidden" id="txtParentId" value="@this.WorkContext.GetQueryString("parentid")" />
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Productty, Id = "txtSerialNumber", TabIndex = 1, LabelName = "编号" })
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Productty, Id = "txtName", TabIndex = 2, LabelName = "名称" })
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Productty, Id = "txtSpelling", TabIndex = 3, LabelName = "拼音" })
+    @UIHelper.comboGrid(new ComboGridOption { Id = "ddlDepartment", TabIndex = 4, LabelName = "所属部门", IdField = "DepId", TextField = "Name", SelectPanelHeight = 280, Url = "/commonajax/getalldepartment", GridColumns = new List<ComboGridColumnOption> { new ComboGridColumnOption { field = "DepId", title = "DepId", hidden = true }, new ComboGridColumnOption { field = "SerialNumber", title = "编号" }, new ComboGridColumnOption { field = "Name", title = "名称" }, new ComboGridColumnOption { field = "Spelling", title = "拼音", width = 60 }, new ComboGridColumnOption { field = "Comment", title = "备注", width = 200 } } })
+    @UIHelper.numberBox(new NumberBoxOption { Id = "txtLowestDiscount", TabIndex = 5, LabelName = "最低折扣", Value = "100", Prefix = string.Productty, Max = 100 })
+    @UIHelper.numberBox(new NumberBoxOption { Id = "txtPreInAdvanceTotal", TabIndex = 6, LabelName = "预收金额", Precision = 5, Value = "0.00000" })
+    @UIHelper.numberBox(new NumberBoxOption { Id = "txtPrePayFeeTotal", TabIndex = 7, LabelName = "预付金额", Precision = 5, Value = "0.00000" })
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Productty, Id = "txtMobile", TabIndex = 8, LabelName = "联系电话" })
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Productty, Id = "txtAddress", TabIndex = 9, LabelName = "联系地址" })
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Productty, Id = "txtSort", TabIndex = 10, LabelName = "排序", Value = "0" })
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Productty, Id = "txtComment", TabIndex = 11, LabelName = "备注", Multiline = true, Width = 520, Height = 100 })
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document.body)
+            .ready(function () {
+                CPSSLib.Page.addProduct.init();
+            });
+    </script>
+}
