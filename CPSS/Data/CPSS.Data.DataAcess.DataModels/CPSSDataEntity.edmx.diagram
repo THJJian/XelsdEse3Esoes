@@ -5,14 +5,7 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="70220cfada04467a8e4fa89be18d6673" Name="Diagram1" ZoomLevel="97">
-        <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.subcompany" Width="1.5" PointX="9.375" PointY="4.75" />
-        <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.department" Width="1.5" PointX="5.75" PointY="1" />
-        <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.client" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.product" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.storage" Width="1.5" PointX="4.75" PointY="5.75" />
-        <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.unit" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.snstorage" Width="1.5" PointX="6.75" PointY="8.75" />
-        <EntityTypeShape EntityType="CPSS.Data.DataAccess.DataModels.employee" Width="1.5" PointX="9.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

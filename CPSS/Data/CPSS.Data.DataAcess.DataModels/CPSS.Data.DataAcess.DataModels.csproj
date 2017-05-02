@@ -49,9 +49,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="clientDataModel.cs">
-      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
-    </Compile>
+    <Compile Include="Basic\clientDataModel.cs" />
+    <Compile Include="Basic\departmentDataModel.cs" />
+    <Compile Include="Basic\employeeDataModel.cs" />
+    <Compile Include="Basic\productDataModel.cs" />
+    <Compile Include="Basic\storageDataModel.cs" />
+    <Compile Include="Basic\subcompanyDataModel.cs" />
+    <Compile Include="Basic\unitDataModel.cs" />
     <Compile Include="CPSSDataEntity.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -67,32 +71,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CPSSDataEntity.edmx</DependentUpon>
     </Compile>
-    <Compile Include="departmentDataModel.cs">
-      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="employeeDataModel.cs">
-      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="HeadButtons\HeadButtonsDataModel.cs" />
     <Compile Include="MainPage\LeftNavMenuDataModel.cs" />
     <Compile Include="MenuRight\MenuRightCheckDataModel.cs" />
-    <Compile Include="productDataModel.cs">
-      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="snstorageDataModel.cs">
       <DependentUpon>CPSSDataEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="storageDataModel.cs">
-      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
-    </Compile>
-    <Compile Include="subcompanyDataModel.cs">
-      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="SystemParameterConfig\SystemParameterConfigDataModel.cs" />
-    <Compile Include="unitDataModel.cs">
-      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="User\CompanyInfoDataModel.cs" />
     <Compile Include="User\OnlineSigninUserDataModel.cs" />
     <Compile Include="User\SigninUserDataModel.cs" />
@@ -121,6 +107,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

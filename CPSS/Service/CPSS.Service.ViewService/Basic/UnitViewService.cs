@@ -57,7 +57,7 @@ namespace CPSS.Service.ViewService.Basic
                         {
                             UnitId = item.unitid,
                             Name = item.name,
-                            Deleted = item.deleted.HasValue ? item.deleted.Value : (short)CommonDeleted.NotDeleted,
+                            Deleted = item.deleted,
                             Status = item.status,
                             Sort = item.sort.ToString()
                         }).ToList()
@@ -134,7 +134,7 @@ namespace CPSS.Service.ViewService.Basic
                         rows = new RespondQueryUnitViewModel
                         {
                             UnitId = unit.unitid,
-                            Deleted = unit.deleted.HasValue ? unit.deleted.Value : (short)CommonDeleted.NotDeleted,
+                            Deleted = unit.deleted,
                             Name = unit.name,
                             Status = unit.status,
                             Sort = unit.sort.ToString()

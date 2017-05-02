@@ -34,7 +34,7 @@ namespace CPSS.Data.DataAccess
             entity.PinYin = (string)dataReader["PinYin"];
             entity.alias = (string)dataReader["alias"];
             entity.status = (short)dataReader["status"];
-            entity.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
+            entity.deleted = (short)dataReader["deleted"];
             entity.comment = (string)dataReader["comment"];
             entity.sort = (int)dataReader["sort"];
 	    }
@@ -57,7 +57,7 @@ namespace CPSS.Data.DataAccess
             result.PinYin = (string)dataReader["PinYin"];
             result.alias = (string)dataReader["alias"];
             result.status = (short)dataReader["status"];
-			result.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
+			result.deleted = (short)dataReader["deleted"];
             result.comment = (string)dataReader["comment"];
             result.sort = (int)dataReader["sort"];
 			return result;

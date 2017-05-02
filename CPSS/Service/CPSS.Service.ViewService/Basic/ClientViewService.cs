@@ -70,18 +70,18 @@ namespace CPSS.Service.ViewService.Basic
                             ClassId = item.classid,
                             ClientId = item.clientid,
                             Comment = item.comment,
-                            Credits = item.credits.HasValue ? item.credits.Value.ToCurrencyString(5) : "0",
-                            Deleted = item.deleted.HasValue ? item.deleted.Value : (short)CommonDeleted.NotDeleted,
+                            Credits = item.credits.ToCurrencyString(5),
+                            Deleted = item.deleted,
                             LinkAddress = item.linkaddress,
                             LinkMan = item.linkman,
                             LinkTel = item.linktel,
                             Name = item.name,
                             ParentId = item.parentid,
                             Spelling = item.pinyin,
-                            PriceMode = item.pricemode.HasValue ? item.pricemode.Value : 0,
+                            PriceMode = item.pricemode,
                             SerialNumber = item.serialnumber,
-                            Status = item.status.HasValue ? item.status.Value : (short)CommonStatus.Used,
-                            Sort = item.sort.HasValue ? item.sort.Value : 0,
+                            Status = item.status,
+                            Sort = item.sort,
                             ZipCode = item.zipcode
                         }).ToList()
                     };
@@ -118,9 +118,9 @@ namespace CPSS.Service.ViewService.Basic
             var respond = new RespondWebViewData<RespondAddClientViewModel>(WebViewErrorCode.Success);
             try
             {
-                var deparment = this.mClientDataAccess.GetClientByClassID(new QueryClientListParameter { ParentId = rData.ParentId });
-                if (deparment == null) return new RespondWebViewData<RespondAddClientViewModel>(WebViewErrorCode.NotExistsDataInfo);
-                if (deparment.deleted.HasValue && deparment.deleted.Value == (short)CommonDeleted.Deleted) return new RespondWebViewData<RespondAddClientViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                var client = this.mClientDataAccess.GetClientByClassID(new QueryClientListParameter { ParentId = rData.ParentId });
+                if (client == null) return new RespondWebViewData<RespondAddClientViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                if (client.deleted == (short)CommonDeleted.Deleted) return new RespondWebViewData<RespondAddClientViewModel>(WebViewErrorCode.NotExistsDataInfo);
 
                 this.mDbConnection.ExecuteTransaction(tran =>
                 {
@@ -197,16 +197,16 @@ namespace CPSS.Service.ViewService.Basic
                             ClassId = client.classid,
                             ClientId = client.clientid,
                             Comment = client.comment,
-                            Credits = client.credits.HasValue ? client.credits.Value.ToNumberString(5) : "0",
+                            Credits = client.credits.ToNumberString(5),
                             LinkAddress = client.linkaddress,
                             LinkMan = client.linkman,
                             LinkTel = client.linktel,
                             Name = client.name,
                             ParentId = client.parentid,
                             Spelling = client.pinyin,
-                            PriceMode = client.pricemode.HasValue ? client.pricemode.Value : 0,
+                            PriceMode = client.pricemode,
                             SerialNumber = client.serialnumber,
-                            Sort = client.sort.HasValue ? client.sort.Value : 0,
+                            Sort = client.sort,
                             ZipCode = client.zipcode
                         }
                     };

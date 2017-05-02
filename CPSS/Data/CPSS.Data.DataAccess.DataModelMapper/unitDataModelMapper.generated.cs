@@ -27,8 +27,8 @@ namespace CPSS.Data.DataAccess
             entity.unitid = (int)dataReader["unitid"];
             entity.name = (string)dataReader["name"];
             entity.status = (short)dataReader["status"];
-            entity.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
-            entity.sort = dataReader.IsDBNull(dataReader.GetOrdinal("sort"))? null: (int?)dataReader["sort"];
+            entity.deleted = (short)dataReader["deleted"];
+            entity.sort = (int)dataReader["sort"];
 	    }
 
 		/// <summary>
@@ -42,8 +42,8 @@ namespace CPSS.Data.DataAccess
             result.unitid = (int)dataReader["unitid"];
             result.name = (string)dataReader["name"];
             result.status = (short)dataReader["status"];
-			result.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
-			result.sort = dataReader.IsDBNull(dataReader.GetOrdinal("sort"))? null: (int?)dataReader["sort"];
+			result.deleted = (short)dataReader["deleted"];
+			result.sort = (int)dataReader["sort"];
 			return result;
 	    }
 

@@ -67,25 +67,19 @@ namespace CPSS.Service.ViewService.Basic
                             ChildNumber = item.childnumber,
                             ClassId = item.classid,
                             Comment = item.comment,
-                            Deleted = item.deleted.HasValue ? item.deleted.Value : (short)CommonDeleted.NotDeleted,
+                            Deleted = item.deleted,
                             DepName = item.depname,
                             EmpId = item.empid,
-                            LowestDiscount = item.lowestdiscount.HasValue ? item.lowestdiscount.Value : (short)100,
+                            LowestDiscount = item.lowestdiscount,
                             Mobile = item.mobile,
                             Name = item.name,
                             ParentId = item.parentid,
-                            PreInAdvanceTotal =
-                                item.preinadvancetotal.HasValue
-                                    ? item.preinadvancetotal.Value.ToCurrencyString(5)
-                                    : "0.00000",
-                            PrePayFeeTotal =
-                                item.prepayfeetotal.HasValue
-                                    ? item.prepayfeetotal.Value.ToCurrencyString(5)
-                                    : "0.00000",
+                            PreInAdvanceTotal = item.preinadvancetotal.ToCurrencyString(5),
+                            PrePayFeeTotal = item.prepayfeetotal.ToCurrencyString(5),
                             SerialNumber = item.serialnumber,
-                            Sort = item.sort.HasValue ? item.sort.Value : 0,
+                            Sort = item.sort,
                             Spelling = item.pinyin,
-                            Status = item.status.HasValue ? item.status.Value : (short)CommonStatus.Used
+                            Status = item.status
                         }).ToList()
                     };
                     return respond;
@@ -123,7 +117,7 @@ namespace CPSS.Service.ViewService.Basic
             {
                 var employee = this.mEmployeeDataAccess.GetEmployeeByClassID(new QueryEmployeeListParameter {ParentId = rData.ParentId});
                 if (employee == null) return new RespondWebViewData<RespondAddEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
-                if (employee.deleted.HasValue && employee.deleted.Value == (short) CommonDeleted.Deleted) return new RespondWebViewData<RespondAddEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                if (employee.deleted == (short) CommonDeleted.Deleted) return new RespondWebViewData<RespondAddEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
                 this.mDbConnection.ExecuteTransaction(tran =>
                 {
                     var parameter = new QueryEmployeeListParameter()
@@ -195,20 +189,20 @@ namespace CPSS.Service.ViewService.Basic
                             ChildNumber = employee.childnumber,
                             ClassId = employee.classid,
                             Comment = employee.comment,
-                            Deleted = employee.deleted.HasValue ? employee.deleted.Value : (short)CommonDeleted.NotDeleted,
+                            Deleted = employee.deleted,
                             DepId = employee.depid,
                             DepName = employee.depname,
                             EmpId = employee.empid,
-                            LowestDiscount = employee.lowestdiscount.HasValue ? employee.lowestdiscount.Value : (short)100,
+                            LowestDiscount = employee.lowestdiscount,
                             Mobile = employee.mobile,
                             Name = employee.name,
                             ParentId = employee.parentid,
-                            PreInAdvanceTotal = employee.preinadvancetotal.HasValue ? employee.preinadvancetotal.Value.ToNumberString(5) : "0.00000",
-                            PrePayFeeTotal = employee.prepayfeetotal.HasValue ? employee.prepayfeetotal.Value.ToNumberString(5) : "0.00000",
+                            PreInAdvanceTotal = employee.preinadvancetotal.ToNumberString(5),
+                            PrePayFeeTotal = employee.prepayfeetotal.ToNumberString(5),
                             SerialNumber = employee.serialnumber,
-                            Status = employee.status.Value,
+                            Status = employee.status,
                             Spelling = employee.pinyin,
-                            Sort = employee.sort.HasValue ? employee.sort.Value : 0
+                            Sort = employee.sort
                         }
                     };
                     return respond;

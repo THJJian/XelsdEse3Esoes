@@ -38,12 +38,12 @@ namespace CPSS.Data.DataAccess
             entity.linkman = (string)dataReader["linkman"];
             entity.linktel = (string)dataReader["linktel"];
             entity.linkaddress = (string)dataReader["linkaddress"];
-            entity.credits = dataReader.IsDBNull(dataReader.GetOrdinal("credits"))? null: (System.Nullable<System.Decimal>)dataReader["credits"];
-            entity.pricemode = dataReader.IsDBNull(dataReader.GetOrdinal("pricemode"))? null: (System.Nullable<short>)dataReader["pricemode"];
+            entity.credits = (decimal)dataReader["credits"];
+            entity.pricemode = (short)dataReader["pricemode"];
             entity.comment = (string)dataReader["comment"];
-            entity.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (short?)dataReader["status"];
-            entity.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
-            entity.sort = dataReader.IsDBNull(dataReader.GetOrdinal("sort"))? null: (int?)dataReader["sort"];
+            entity.status = (short)dataReader["status"];
+            entity.deleted = (short)dataReader["deleted"];
+            entity.sort = (int)dataReader["sort"];
 	    }
 
 		/// <summary>
@@ -68,12 +68,12 @@ namespace CPSS.Data.DataAccess
             result.linkman = (string)dataReader["linkman"];
             result.linktel = (string)dataReader["linktel"];
             result.linkaddress = (string)dataReader["linkaddress"];
-			result.credits = dataReader.IsDBNull(dataReader.GetOrdinal("credits"))? null: (System.Nullable<System.Decimal>)dataReader["credits"];
-			result.pricemode = dataReader.IsDBNull(dataReader.GetOrdinal("pricemode"))? null: (System.Nullable<short>)dataReader["pricemode"];
+			result.credits = (decimal)dataReader["credits"];
+			result.pricemode = (short)dataReader["pricemode"];
             result.comment = (string)dataReader["comment"];
-			result.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (short?)dataReader["status"];
-			result.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
-			result.sort = dataReader.IsDBNull(dataReader.GetOrdinal("sort"))? null: (int?)dataReader["sort"];
+			result.status = (short)dataReader["status"];
+			result.deleted = (short)dataReader["deleted"];
+			result.sort = (int)dataReader["sort"];
 			return result;
 	    }
 

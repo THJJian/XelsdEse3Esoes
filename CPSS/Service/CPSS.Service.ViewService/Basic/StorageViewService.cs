@@ -106,7 +106,7 @@ namespace CPSS.Service.ViewService.Basic
             {
                 var storage = this.mStorageDataAccess.GetStorageByClassID(new QueryStorageListParameter{ ParentId = rData.ParentId});
                 if(storage == null) return new RespondWebViewData<RespondAddStorageViewModel>(WebViewErrorCode.NotExistsDataInfo);
-                if (storage.deleted.HasValue && storage.deleted.Value == (short)CommonDeleted.Deleted) return new RespondWebViewData<RespondAddStorageViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                if (storage.deleted == (short)CommonDeleted.Deleted) return new RespondWebViewData<RespondAddStorageViewModel>(WebViewErrorCode.NotExistsDataInfo);
 
                 this.mDbConnection.ExecuteTransaction(tran =>
                 {

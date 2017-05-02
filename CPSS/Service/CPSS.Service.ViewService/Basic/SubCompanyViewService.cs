@@ -78,7 +78,7 @@ namespace CPSS.Service.ViewService.Basic
                                     Status = item.status.ToString(),
                                     Spelling = item.pinyin,
                                     ChildNumber = item.childnumber,
-                                    Deleted = item.deleted.HasValue ? item.deleted.Value : (short)CommonDeleted.NotDeleted
+                                    Deleted = item.deleted
                                 }).ToList()
                             };
                             return respond;
@@ -117,7 +117,7 @@ namespace CPSS.Service.ViewService.Basic
             {
                 var subCompany = this.mSubCompanyDataAccess.GetSubCompanyByClassID(new QuerySubCompanyListParameter { ParentId = rData.ParentId });
                 if (subCompany == null) return new RespondWebViewData<RespondAddSubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo);
-                if (subCompany.deleted.HasValue && subCompany.deleted.Value == (short)CommonDeleted.Deleted) return new RespondWebViewData<RespondAddSubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo);
+                if (subCompany.deleted == (short)CommonDeleted.Deleted) return new RespondWebViewData<RespondAddSubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo);
                 this.mDbConnection.ExecuteTransaction(tran =>
                 {
                     var parameter = new QuerySubCompanyListParameter

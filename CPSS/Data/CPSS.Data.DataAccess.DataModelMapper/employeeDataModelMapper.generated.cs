@@ -33,14 +33,14 @@ namespace CPSS.Data.DataAccess
             entity.pinyin = (string)dataReader["pinyin"];
             entity.depid = (int)dataReader["depid"];
             entity.depname = (string)dataReader["depname"];
-            entity.lowestdiscount = dataReader.IsDBNull(dataReader.GetOrdinal("lowestdiscount"))? null: (System.Nullable<short>)dataReader["lowestdiscount"];
-            entity.preinadvancetotal = dataReader.IsDBNull(dataReader.GetOrdinal("preinadvancetotal"))? null: (System.Nullable<System.Decimal>)dataReader["preinadvancetotal"];
-            entity.prepayfeetotal = dataReader.IsDBNull(dataReader.GetOrdinal("prepayfeetotal"))? null: (System.Nullable<System.Decimal>)dataReader["prepayfeetotal"];
+            entity.lowestdiscount = (short)dataReader["lowestdiscount"];
+            entity.preinadvancetotal = (decimal)dataReader["preinadvancetotal"];
+            entity.prepayfeetotal = (decimal)dataReader["prepayfeetotal"];
             entity.mobile = (string)dataReader["mobile"];
             entity.address = (string)dataReader["address"];
-            entity.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (System.Nullable<short>)dataReader["status"];
-            entity.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
-            entity.sort = dataReader.IsDBNull(dataReader.GetOrdinal("sort"))? null: (int?)dataReader["sort"];
+            entity.status = (short)dataReader["status"];
+            entity.deleted = (short)dataReader["deleted"];
+            entity.sort = (int)dataReader["sort"];
             entity.comment = (string)dataReader["comment"];
 	    }
 
@@ -61,14 +61,14 @@ namespace CPSS.Data.DataAccess
             result.pinyin = (string)dataReader["pinyin"];
             result.depid = (int)dataReader["depid"];
             result.depname = (string)dataReader["depname"];
-			result.lowestdiscount = dataReader.IsDBNull(dataReader.GetOrdinal("lowestdiscount"))? null: (System.Nullable<short>)dataReader["lowestdiscount"];
-			result.preinadvancetotal = dataReader.IsDBNull(dataReader.GetOrdinal("preinadvancetotal"))? null: (System.Nullable<System.Decimal>)dataReader["preinadvancetotal"];
-			result.prepayfeetotal = dataReader.IsDBNull(dataReader.GetOrdinal("prepayfeetotal"))? null: (System.Nullable<System.Decimal>)dataReader["prepayfeetotal"];
+			result.lowestdiscount = (short)dataReader["lowestdiscount"];
+			result.preinadvancetotal = (decimal)dataReader["preinadvancetotal"];
+			result.prepayfeetotal = (decimal)dataReader["prepayfeetotal"];
             result.mobile = (string)dataReader["mobile"];
             result.address = (string)dataReader["address"];
-			result.status = dataReader.IsDBNull(dataReader.GetOrdinal("status"))? null: (System.Nullable<short>)dataReader["status"];
-			result.deleted = dataReader.IsDBNull(dataReader.GetOrdinal("deleted"))? null: (System.Nullable<short>)dataReader["deleted"];
-			result.sort = dataReader.IsDBNull(dataReader.GetOrdinal("sort"))? null: (int?)dataReader["sort"];
+			result.status = (short)dataReader["status"];
+			result.deleted = (short)dataReader["deleted"];
+			result.sort = (int)dataReader["sort"];
             result.comment = (string)dataReader["comment"];
 			return result;
 	    }
