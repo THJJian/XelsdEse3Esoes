@@ -230,7 +230,7 @@ namespace CPSS.Service.ViewService.Basic
             var employee = this.mEmployeeDataAccess.GetemployeeDataModelById(rData.EmpId);
             if (employee == null) return new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
             if (employee.deleted == (short)CommonDeleted.Deleted) return new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.NotExistsDataInfo);
-            if (this.mEmployeeDataAccess.CheckEmployeeIsExist(new QueryEmployeeListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber, DepId = employee.depid }))
+            if (this.mEmployeeDataAccess.CheckEmployeeIsExist(new QueryEmployeeListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber, DepId = employee.depid, EmpId = rData.EmpId }))
                 return new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的职员已经存在", rData.Name, rData.SerialNumber));
 
             var respond = new RespondWebViewData<RequestEditEmployeeViewModel>(WebViewErrorCode.Success);

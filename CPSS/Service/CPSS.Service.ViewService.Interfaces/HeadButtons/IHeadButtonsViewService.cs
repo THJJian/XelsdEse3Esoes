@@ -6,6 +6,6 @@ namespace CPSS.Service.ViewService.Interfaces.HeadButtons
 {
     public interface IHeadButtonsViewService
     {
-        IList<RespondHeadButtonsViewModel> QueryHeadButtonsViewModelsByMenuID(RequestHeadButtonsViewModel request);
+        List<RespondHeadButtonsViewModel> QueryHeadButtonsViewModelsByMenuID(RequestHeadButtonsViewModel request);
     }
 }

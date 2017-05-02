@@ -211,7 +211,7 @@ namespace CPSS.Service.ViewService.Basic
         public RespondWebViewData<RespondEditSubCompanyViewModel> EditSubCompany(RequestWebViewData<RequestEditSubCompanyViewModel> request)
         {
             var rData = request.data;
-            if (this.mSubCompanyDataAccess.CheckSubCompanyIsExist(new QuerySubCompanyListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber }))
+            if (this.mSubCompanyDataAccess.CheckSubCompanyIsExist(new QuerySubCompanyListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber, SubComId = rData.ComId }))
                 return new RespondWebViewData<RespondEditSubCompanyViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的分公司已经存在", rData.Name, rData.SerialNumber));
 
             var respond = new RespondWebViewData<RespondEditSubCompanyViewModel>(WebViewErrorCode.Success);
@@ -223,7 +223,7 @@ namespace CPSS.Service.ViewService.Basic
                     respond = new RespondWebViewData<RespondEditSubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo);
                     return;
                 }
-                if (company.deleted == 1)
+                if (company.deleted == (short)CommonDeleted.Deleted)
                 {
                     respond = new RespondWebViewData<RespondEditSubCompanyViewModel>(WebViewErrorCode.NotExistsDataInfo);
                     return;

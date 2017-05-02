@@ -27,7 +27,7 @@ namespace CPSS.Service.ViewService.SystemParameterConfig
             this.mSigninUser = CPSSAuthenticate.GetCurrentUser();
         }
 
-        public IList<RespondSystemParameterConfigViewModel> GetSystemParameterConfigViewModels()
+        public List<RespondSystemParameterConfigViewModel> GetSystemParameterConfigViewModels()
         {
             return MemcacheHelper.Get(() =>
                 {

@@ -10,7 +10,7 @@ namespace CPSS.Service.ViewService.Interfaces.SystemParameterConfig
         /// 获取系统配置参数
         /// </summary>
         /// <returns></returns>
-        IList<RespondSystemParameterConfigViewModel> GetSystemParameterConfigViewModels();
+        List<RespondSystemParameterConfigViewModel> GetSystemParameterConfigViewModels();
 
         /// <summary>
         /// 获取指定系统配置参数

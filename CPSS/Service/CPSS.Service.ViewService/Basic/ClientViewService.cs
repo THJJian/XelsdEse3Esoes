@@ -226,7 +226,7 @@ namespace CPSS.Service.ViewService.Basic
         public RespondWebViewData<RequestEditClientViewModel> EditClient(RequestWebViewData<RequestEditClientViewModel> request)
         {
             var rData = request.data;
-            if (this.mClientDataAccess.CheckClientIsExist(new QueryClientListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber }))
+            if (this.mClientDataAccess.CheckClientIsExist(new QueryClientListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber, ClientId = rData.ClientId }))
                 return new RespondWebViewData<RequestEditClientViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号为[{1}]的往来单位已经存在", rData.Name, rData.SerialNumber));
 
             var respond = new RespondWebViewData<RequestEditClientViewModel>(WebViewErrorCode.Success);

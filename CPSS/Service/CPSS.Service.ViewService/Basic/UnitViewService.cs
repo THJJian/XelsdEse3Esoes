@@ -156,7 +156,7 @@ namespace CPSS.Service.ViewService.Basic
         public RespondWebViewData<RespondEditUnitViewModel> EditUnit(RequestWebViewData<RequestEditUnitViewModel> request)
         {
             var rData = request.data;
-            if (this.mUnitDataAccess.CheckUnitIsExist(new QueryUnitListParameter { Name = rData.Name }))
+            if (this.mUnitDataAccess.CheckUnitIsExist(new QueryUnitListParameter { Name = rData.Name, UnitId = rData.UnitId }))
                 return new RespondWebViewData<RespondEditUnitViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]的计量单位已经存在", rData.Name));
 
             var respond = new RespondWebViewData<RespondEditUnitViewModel>(WebViewErrorCode.Success);

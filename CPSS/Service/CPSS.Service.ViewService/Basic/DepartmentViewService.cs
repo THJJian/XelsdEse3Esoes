@@ -195,7 +195,7 @@ namespace CPSS.Service.ViewService.Basic
         public RespondWebViewData<RespondEditDepartmentViewModel> EditDepartment(RequestWebViewData<RequestEditDepartmentViewModel> request)
         {
             var rData = request.data;
-            if (this.mDepartmentDataAccess.CheckDepartmentIsExist(new QueryDepartmentListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber }))
+            if (this.mDepartmentDataAccess.CheckDepartmentIsExist(new QueryDepartmentListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber, DepId = rData.DepId }))
                 return new RespondWebViewData<RespondEditDepartmentViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号为[{1}]的部门已经存在", rData.Name, rData.SerialNumber));
 
             var respond = new RespondWebViewData<RespondEditDepartmentViewModel>(WebViewErrorCode.Success);

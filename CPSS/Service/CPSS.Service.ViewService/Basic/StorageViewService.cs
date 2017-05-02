@@ -202,7 +202,7 @@ namespace CPSS.Service.ViewService.Basic
         public RespondWebViewData<RespondEditStorageViewModel> EditStorage(RequestWebViewData<RequestEditStorageViewModel> request)
         {
             var rData = request.data;
-            if (this.mStorageDataAccess.CheckStorageIsExist(new QueryStorageListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber }))
+            if (this.mStorageDataAccess.CheckStorageIsExist(new QueryStorageListParameter { Name = rData.Name, SerialNumber = rData.SerialNumber, StorageId = rData.StorageId }))
                 return new RespondWebViewData<RespondEditStorageViewModel>(WebViewErrorCode.ExistsDataInfo.ErrorCode, string.Format("名称为[{0}]或编号[{1}]的仓库已经存在", rData.Name, rData.SerialNumber));
 
             var respond = new RespondWebViewData<RespondEditStorageViewModel>(WebViewErrorCode.Success);

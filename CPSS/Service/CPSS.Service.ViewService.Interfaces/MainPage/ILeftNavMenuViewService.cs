@@ -10,6 +10,6 @@ namespace CPSS.Service.ViewService.Interfaces.MainPage
         /// 获取用户菜单列表
         /// </summary>
         /// <returns></returns>
-        IList<RespondPanelViewModel> GetLeftNavMenuDataModels();
+        List<RespondPanelViewModel> GetLeftNavMenuDataModels();
     }
 }
