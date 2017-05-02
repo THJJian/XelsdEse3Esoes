@@ -1,7 +1,56 @@
-﻿
+﻿@using CPSS.Common.Core.Mvc.UIControl
+@using CPSS.Common.Core.Type.ConstDefined
+@using CPSS.Common.Core.Type.EnumType
+@using CPSS.Service.ViewService.ViewModels.HeadButtons.Request
+
 @{
     ViewBag.Title = "UnitList";
+    WorkContext.Resource
+        //.AddPageCss("")
+        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "grid/tablegrid", "controlshelper", "basic/unit/unitlist", "lodop/lodopfuncs");
+}
+@section buttons{
+    @{
+        Html.RenderAction("headbuttons", "commonpartial", new RequestHeadButtonsViewModel { MenuID = MenuValueConstDefined.rtBasicUnit });
+    }
 }
 
-<h2>UnitList</h2>
+<div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 300px; max-width: 100%; overflow: hidden;">
+    <input type="hidden" id="txtParentId" value="" />
+    <div class="easyui-panel" data-options="border: false">
+        @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtName", TabIndex = 2, LabelName = "名称" })
+        @UIHelper.dropDownList(new DropDownOption { LabelName = "状态", Id = "ddlStatus", TabIndex = 4, Value = ((short)CommonStatus.Default).ToString(), SelectPanelHeight = 70, SelectItems = new List<DropDownSelectItem> { new DropDownSelectItem { Text = "无", Value = ((short)CommonStatus.Default).ToString() }, new DropDownSelectItem { Text = "正常", Value = ((short)CommonStatus.Used).ToString() }, new DropDownSelectItem { Text = "停用", Value = ((short)CommonStatus.Stopped).ToString() } } })
+    </div>
+    <div class="easyui-panel" data-options="border: false" style="padding-right: 20px; text-align: right;">
+        @UIHelper.linkButton("查  询", "btnSearch")
+    </div>
+</div>
 
+@section grid{
+    <div id="billgrid" class="easyui-panel" data-options="border: false" style="padding-top: 3px;">
+        <table class="easyui-datagrid" id="dvgDataGrid">
+            <thead>
+                <tr>
+                    <th field="UnitId" data-options="hidden: true">UnitId</th>
+                    <th field="Deleted" data-options="hidden: true">Deleted</th>
+                    <th field="Name" width="180px;">名称</th>
+                    <th field="Status" class="notPrint" width="60px;">状态</th>
+                    <th field="Sort" class="notPrint" width="50px;">排序</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+}
+
+@section scripts{
+    <script type="text/javascript" src="http://localhost:18000/CLodopfuncs.js?priority=1"></script>
+    <script type="text/javascript">
+        var userId_g = "@this.WorkContext.GetQueryString("userid")";
+        var unit;
+        $(document.body)
+            .ready(function () {
+                unit = CPSSLib.Page.unitList.init(userId_g, @MenuValueConstDefined.rtBasicUnit);
+            });
+
+    </script>
+}

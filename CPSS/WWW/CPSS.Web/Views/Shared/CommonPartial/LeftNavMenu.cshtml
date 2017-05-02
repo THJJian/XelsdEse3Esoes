@@ -1,5 +1,5 @@
 ﻿@using CPSS.Common.Core.Authenticate
-@model IList<CPSS.Service.ViewService.ViewModels.MainPage.Respond.RespondPanelViewModel>
+@model List<CPSS.Service.ViewService.ViewModels.MainPage.Respond.RespondPanelViewModel>
 @{
     var isFirst = true;
 }
@@ -13,7 +13,7 @@
             {
                 <li>
                     <div>
-                        <a href="javascript:void(0);" sub-title="@_menu.Title" url="@string.Concat(_menu.Url, "?userid=", CPSSAuthenticate.GetCurrentUser().UserID_g, "&classid=", _menu.ClassID)" id="@string.Concat(_menu.ButtonID,"_", _menu.MenuID)">
+                        <a href="javascript:void(0);" sub-title="@_menu.Title" url="@string.Concat(_menu.Url, "?userid=", CPSSAuthenticate.GetCurrentUser().UserID_g)" id="@string.Concat(_menu.ButtonID,"_", _menu.MenuID)">
                             <span class="icon icon-word @_menu.IconCls">&nbsp;</span><span class="nav">@_menu.Title</span>
                         </a>
                     </div>

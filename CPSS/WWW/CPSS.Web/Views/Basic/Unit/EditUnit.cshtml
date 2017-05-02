@@ -1,7 +1,31 @@
-﻿
+﻿@model CPSS.Common.Core.RespondWebViewData<CPSS.Service.ViewService.ViewModels.Unit.Respond.RespondQueryUnitViewModel>
+@using CPSS.Common.Core.Mvc.UIControl
+@using CPSS.Service.ViewService.ViewModels.HeadButtons.Respond
 @{
     ViewBag.Title = "EditUnit";
+    WorkContext.Resource
+        //.AddPageCss("")
+        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "controlshelper", "basic/unit/editunit");
+    var buttonModel = new List<RespondHeadButtonsViewModel>
+    {
+        new RespondHeadButtonsViewModel{ ButtonName = "rtBasicUnit_TB_Edit_Save", ButtonText = "保存"},
+        new RespondHeadButtonsViewModel{ ButtonName = "rtBasicUnit_TB_Edit_Cancel", ButtonText = "取消"},
+    };
+    var _model = Model.rows;
+}
+@section buttons{
+    @Html.Partial("~/Views/Shared/CommonPartial/HeadButtons.cshtml", buttonModel)
 }
 
-<h2>EditUnit</h2>
-
+<div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 500px; max-width: 100%; overflow: hidden;">
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtName", TabIndex = 2, LabelName = "名称", Value = _model.Name })
+    @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSort", TabIndex = 4, LabelName = "排序", Value = _model.Sort })
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $(document.body)
+            .ready(function () {
+                CPSSLib.Page.editUnit.init(@this.WorkContext.GetQueryInt("unitid"));
+            });
+    </script>
+}

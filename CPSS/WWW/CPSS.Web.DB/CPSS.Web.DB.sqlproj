@@ -73,6 +73,7 @@
     <None Include="Tab\Sys\dbo.syscompany.sql" />
     <None Include="Init\dbo.menu.sql" />
     <None Include="Proc\dbo.do_common_paging.sql" />
+    <None Include="Tab\dbo.sysconfig.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Tab\dbo.client.sql" />

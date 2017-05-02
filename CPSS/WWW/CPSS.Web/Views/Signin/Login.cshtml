@@ -73,6 +73,8 @@
         });
     }
 
+    var returnUrl = "@this.WorkContext.GetQueryString("returnUrl")";
+
     $(document.body).ready(function () {
         var remember = CPSSLib.Utils.LocalStorage.getCookie("user_login_name_remember");
         if (remember && remember.length > 0) {
@@ -120,7 +122,16 @@
                         }
                         tmpForm.submit();
                         */
-                        window.location.href = "/main/index?userid=" + result.rows.CurrentUser.UserID_g;
+                        var userId_g = result.rows.CurrentUser.UserID_g;
+                        if (returnUrl === "" || returnUrl === null)
+                            window.location.href = ["/main/index?userid=", userId_g].join("");
+                        else {
+                            var urls = returnUrl.split("?");
+                            if (urls.length === 1)
+                                window.location.href = [returnUrl, "?userid=", userId_g].join("");
+                            else
+                                window.location.href = [urls[0], "?userid=", userId_g].join("");
+                        }
                     } else
                         _msgbox.error(result.ErrorMessage);
                 }, function(result) {
