@@ -436,6 +436,9 @@
     <Content Include="Scripts\Basic\SubCompany\AddSubCompany.js" />
     <Content Include="Scripts\Basic\SubCompany\EditSubCompany.js" />
     <Content Include="Scripts\Basic\SubCompany\SubCompanyList.js" />
+    <Content Include="Scripts\Basic\Unit\AddUnit.js" />
+    <Content Include="Scripts\Basic\Unit\EditUnit.js" />
+    <Content Include="Scripts\Basic\Unit\UnitList.js" />
     <Content Include="Scripts\cspplib.js" />
     <Content Include="Scripts\easyui-1.5\easyloader.js" />
     <Content Include="Scripts\easyui-1.5\jquery.easyui.min.js" />
