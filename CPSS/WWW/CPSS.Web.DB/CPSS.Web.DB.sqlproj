@@ -92,5 +92,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Fun\Function1.sql" />
+    <None Include="Init\dbo.sysconfig.sql" />
   </ItemGroup>
 </Project>

@@ -1,8 +1,10 @@
 ﻿using System.Web.Mvc;
+using CPSS.Common.Core;
 using CPSS.Common.Core.Mvc;
 using CPSS.Common.Core.Mvc.Filters;
 using CPSS.Common.Core.Type.ConstDefined;
 using CPSS.Service.ViewService.Interfaces.SystemParameterConfig;
+using CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Request;
 using CPSS.Web.Controllers.Filters;
 
 namespace CPSS.Web.Controllers
@@ -22,6 +24,13 @@ namespace CPSS.Web.Controllers
         {
             var viewModels = this.mSystemParameterConfigViewService.GetSystemParameterConfigViewModels();
             return View(viewModels);
+        }
+
+        [OperateRight(MenuID = MenuValueConstDefined.rtSystemParameter)]
+        public JsonResult SaveSystemParameterConfig(RequestWebViewData<RequestSystemParameterConfigListViewModel> request)
+        {
+            var respond =this.mSystemParameterConfigViewService.SaveSystemParameterConfig(request);
+            return Json(respond);
         }
     }
 }
