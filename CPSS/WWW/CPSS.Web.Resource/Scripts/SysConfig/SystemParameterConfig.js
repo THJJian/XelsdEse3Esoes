@@ -2,9 +2,9 @@
 (function(ns) {
     CPSSLib.RegNameSpace(ns).systemParameterConfig = (function() {
         var fn_init = function() {
-            $("#UseSameTaxRate,#UseSaleTrace,#UseBuyTrace,#UseRecentBuyPrice2CostPrice,#AutoGenerateBillNumber,#PrintAddCount,#NotModifyBillDate,#KeepOrignalInputMan,#RetailUsePos,#RetailCanMakeBalance,#ProductRepeatAlert,#CheckeSNIsSell,#FilterZeroProduct,#LessThanStorageQtyAlert,#NotCheckSNForSave,#QuickInputDisplayWithRows")
+            $("#UseSameTaxRate,#UseSaleTrace,#UseBuyTrace,#UseRecentBuyPrice2CostPrice,#AutoGenerateBillNumber,#PrintAddCount,#NotModifyBillDate,#KeepOrignalInputMan,#RetailUsePos,#RetailCanMakeBalance,#ProductRepeatAlert,#CheckSNIsSell,#FilterZeroProduct,#LessThanStorageQtyAlert,#NotCheckSNForSave,#QuickInputDisplayWithRows")
                 .switchbutton({
-                    checked: true,
+                    //checked: true,
                     onChange: function(checked) {
                         console.log(checked);
                     }
