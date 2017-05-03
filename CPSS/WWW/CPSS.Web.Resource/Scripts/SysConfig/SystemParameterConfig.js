@@ -5,7 +5,8 @@
             $("#UseSameTaxRate,#UseSaleTrace,#UseBuyTrace,#UseRecentBuyPrice2CostPrice,#AutoGenerateBillNumber,#PrintAddCount,#NotModifyBillDate,#KeepOrignalInputMan,#RetailUsePos,#RetailCanMakeBalance,#ProductRepeatAlert,#CheckSNIsSell,#FilterZeroProduct,#LessThanStorageQtyAlert,#NotCheckSNForSave,#QuickInputDisplayWithRows")
                 .switchbutton({
                     //checked: true,
-                    onChange: function(checked) {
+                    onChange: function (checked) {
+                        debugger;
                         console.log(checked);
                     }
                 });
@@ -23,11 +24,11 @@
                                         //TODO 保存相应更改
                                         var data = {
                                             ParameterConfigList: [
-                                                { ParameterConfigName: "QtyScale", ParameterConfigValue: "" },
-                                                { ParameterConfigName: "UnitPriceScale", ParameterConfigValue: "" },
-                                                { ParameterConfigName: "TotalScale", ParameterConfigValue: "" },
-                                                { ParameterConfigName: "DiscountRateScale", ParameterConfigValue: "" },
-                                                { ParameterConfigName: "TaxRate", ParameterConfigValue: "" },
+                                                { ParameterConfigName: "QtyScale", ParameterConfigValue: numberboxHelper.getValue("QtyScale") },
+                                                { ParameterConfigName: "UnitPriceScale", ParameterConfigValue: numberboxHelper.getValue("UnitPriceScale") },
+                                                { ParameterConfigName: "TotalScale", ParameterConfigValue: numberboxHelper.getValue("TotalScale") },
+                                                { ParameterConfigName: "DiscountRateScale", ParameterConfigValue: numberboxHelper.getValue("DiscountRateScale") },
+                                                { ParameterConfigName: "TaxRate", ParameterConfigValue: numberboxHelper.getValue("TaxRate") },
                                                 { ParameterConfigName: "UseSameTaxRate", ParameterConfigValue: "" }
                                             ]
                                         };
