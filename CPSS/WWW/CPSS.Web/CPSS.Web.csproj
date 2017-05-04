@@ -154,7 +154,6 @@
     <Content Include="Views\Main\DefaultHome.cshtml" />
     <Content Include="Views\Shared\CommonPartial\HeadButtons.cshtml" />
     <Content Include="Views\Main\Window.cshtml" />
-    <Content Include="Views\SystemParameterConfig\Index.cshtml" />
     <Content Include="Views\VerifyCodeImage\Index.cshtml" />
     <Content Include="Views\Buy\BuyOrder.cshtml" />
     <Content Include="config\mongodbconfig.config" />
