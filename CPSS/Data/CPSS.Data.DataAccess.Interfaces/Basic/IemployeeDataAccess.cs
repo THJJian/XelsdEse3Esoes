@@ -55,5 +55,12 @@ namespace CPSS.Data.DataAccess.Interfaces
         /// </summary>
         /// <returns></returns>
         int ReDelete(DeleteEmployeeParameter parameter);
+
+        /// <summary>
+        /// 获取所有没有子节点的职员信息
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        List<employeeDataModel> GetAllEmployee(QueryEmployeeListParameter parameter);
     }
 }

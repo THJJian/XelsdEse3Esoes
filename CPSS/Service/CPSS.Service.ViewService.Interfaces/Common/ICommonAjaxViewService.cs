@@ -12,6 +12,13 @@ namespace CPSS.Service.ViewService.Interfaces.Common
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
-        List<RespondGetAllDepartmentViewModel> GetAllDepartment(RequestWebViewData<RequestGetAllDepartmentViewModel> request);
+        List<RespondGetAllDepartmentViewModel> GetAllDepartment(RequestWebViewData<RequestGetAllEnityDataViewModel> request);
+
+        /// <summary>
+        /// 获取所有没有子节点的职员信息
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
+        List<RespondGetAllEmployeeViewModel> GetAllEmployee(RequestWebViewData<RequestGetAllEnityDataViewModel> request);
     }
 }

@@ -93,5 +93,14 @@ namespace CPSS.Data.DataAccess
             };
             return this.ExecuteNonQuery();
         }
+
+        public List<employeeDataModel> GetAllEmployee(QueryEmployeeListParameter parameter)
+        {
+            this.ExecuteSQL = string.Format("SELECT * FROM dbo.employee WHERE childnumber=0 AND (serialnumber LIKE '%{0}%' OR name LIKE '%{0}%' OR pinyin LIKE '%{0}%' OR comment LIKE '%{0}%') AND ISNULL(parentid,'')<>'' AND [status]={1} AND deleted={2}",
+                parameter.SerialNumber,
+                (short)CommonStatus.Used,
+                (short)CommonDeleted.NotDeleted);
+            return this.ExecuteReadSqlToemployeeDataModelList();
+        }
     }
 }

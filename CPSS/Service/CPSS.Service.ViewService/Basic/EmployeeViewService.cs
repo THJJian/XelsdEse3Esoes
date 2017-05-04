@@ -8,12 +8,15 @@ using CPSS.Common.Core.Exception;
 using CPSS.Common.Core.Helper.Cached;
 using CPSS.Common.Core.Helper.Extension;
 using CPSS.Common.Core.Helper.Generated;
+using CPSS.Common.Core.SysConfig;
+using CPSS.Common.Core.Type.ConstDefined;
 using CPSS.Common.Core.Type.EnumType;
 using CPSS.Data.DataAccess.Interfaces;
 using CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Employee;
 using CPSS.Data.DataAccess.Interfaces.MongoDB;
 using CPSS.Data.DataAcess.DataModels;
 using CPSS.Service.ViewService.Interfaces.Basic;
+using CPSS.Service.ViewService.Interfaces.SystemParameterConfig;
 using CPSS.Service.ViewService.ViewModels.Employee.Request;
 using CPSS.Service.ViewService.ViewModels.Employee.Respond;
 
@@ -21,16 +24,16 @@ namespace CPSS.Service.ViewService.Basic
 {
     public class EmployeeViewService : BaseViewService, IEmployeeViewService
     {
-        private const string THISSERVICE_PRE_CACHE_KEY_MANAGE = "CPSS.Service.ViewService.Basic.EmployeeViewService";
         private const string PRE_CACHE_KEY = "CPSS.Service.ViewService.Basic.EmployeeViewService.{0}";
         private readonly IDbConnection mDbConnection;
         private readonly IemployeeDataAccess mEmployeeDataAccess;
+        private readonly ISystemParameterConfigViewService mSystemParameterConfigViewService;
 
-
-        public EmployeeViewService(IMongoDbDataAccess mongoDbDataAccess, IDbConnection dbConnection, IemployeeDataAccess employeeDataAccess) : base(mongoDbDataAccess)
+        public EmployeeViewService(IMongoDbDataAccess mongoDbDataAccess, IDbConnection dbConnection, IemployeeDataAccess employeeDataAccess, ISystemParameterConfigViewService systemParameterConfigViewService) : base(mongoDbDataAccess)
         {
             this.mDbConnection = dbConnection;
             this.mEmployeeDataAccess = employeeDataAccess;
+            this.mSystemParameterConfigViewService = systemParameterConfigViewService;
         }
 
         public RespondWebViewData<List<RespondQueryEmployeeViewModel>> GetQueryEmployeeList(RequestWebViewData<RequestQueryEmployeeViewModel> request)
@@ -58,6 +61,7 @@ namespace CPSS.Service.ViewService.Basic
                         Spelling = request.data.Spelling,
                     };
                     var pageDataList = this.mEmployeeDataAccess.GetQueryEmployeeList(parameter);
+                    var totalScale = this.mSystemParameterConfigViewService.SystemParameterConfig()[SystemParameterConfigConst.TotalScale].ParameterConfigValue.ToInt16();
                     var respond = new RespondWebViewData<List<RespondQueryEmployeeViewModel>>
                     {
                         total = pageDataList.DataCount,
@@ -74,8 +78,8 @@ namespace CPSS.Service.ViewService.Basic
                             Mobile = item.mobile,
                             Name = item.name,
                             ParentId = item.parentid,
-                            PreInAdvanceTotal = item.preinadvancetotal.ToCurrencyString(5),
-                            PrePayFeeTotal = item.prepayfeetotal.ToCurrencyString(5),
+                            PreInAdvanceTotal = item.preinadvancetotal.ToCurrencyString(totalScale),
+                            PrePayFeeTotal = item.prepayfeetotal.ToCurrencyString(totalScale),
                             SerialNumber = item.serialnumber,
                             Sort = item.sort,
                             Spelling = item.pinyin,
@@ -88,7 +92,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
 
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
+                ManageCacheKeyForKey = ServiceClassNameConst.BasicEmployee,
                 ParamsKeys = new object[]
                     {
                         request.data.Status,
@@ -151,7 +155,7 @@ namespace CPSS.Service.ViewService.Basic
                     };
                     var addResult = this.mEmployeeDataAccess.Add(data, tran);
                     if (addResult > 0) this.mEmployeeDataAccess.UpdateChildNumberByClassId(tran, parameter);
-                    MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+                    MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicEmployee);
 
                     //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                     //this.SaveMongoDbData("新增职员资料", request, respond, this.GetType());
@@ -180,6 +184,7 @@ namespace CPSS.Service.ViewService.Basic
                     var employee = this.mEmployeeDataAccess.GetemployeeDataModelById(request.data.EmpId);
                     if (employee == null) return respond;
                     if (employee.deleted == (short)CommonDeleted.Deleted || employee.status != (short)CommonStatus.Used) return respond;
+                    var totalScale = this.mSystemParameterConfigViewService.SystemParameterConfig()[SystemParameterConfigConst.TotalScale].ParameterConfigValue.ToInt16();
                     
                     respond = new RespondWebViewData<RespondQueryEmployeeViewModel>
                     {
@@ -197,8 +202,8 @@ namespace CPSS.Service.ViewService.Basic
                             Mobile = employee.mobile,
                             Name = employee.name,
                             ParentId = employee.parentid,
-                            PreInAdvanceTotal = employee.preinadvancetotal.ToNumberString(5),
-                            PrePayFeeTotal = employee.prepayfeetotal.ToNumberString(5),
+                            PreInAdvanceTotal = employee.preinadvancetotal.ToNumberString(totalScale),
+                            PrePayFeeTotal = employee.prepayfeetotal.ToNumberString(totalScale),
                             SerialNumber = employee.serialnumber,
                             Status = employee.status,
                             Spelling = employee.pinyin,
@@ -210,7 +215,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
 
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
+                ManageCacheKeyForKey = ServiceClassNameConst.BasicEmployee,
                 ParamsKeys = new object[]
                 {
                     request.data.EmpId
@@ -255,7 +260,7 @@ namespace CPSS.Service.ViewService.Basic
                         lowestdiscount = employee.lowestdiscount
                     };
                     this.mEmployeeDataAccess.Update(data, tran);
-                    MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+                    MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicEmployee);
 
                     //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                     //this.SaveMongoDbData("编辑职员资料", request, respond, this.GetType());
@@ -279,7 +284,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mEmployeeDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteEmployeeViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicEmployee);
 
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("删除删除资料", request, respond, this.GetType());
@@ -297,7 +302,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mEmployeeDataAccess.ReDelete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteEmployeeViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicEmployee);
 
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("删除职员资料", request, respond, this.GetType());

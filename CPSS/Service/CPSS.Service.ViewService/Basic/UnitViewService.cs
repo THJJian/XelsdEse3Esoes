@@ -6,6 +6,7 @@ using CPSS.Common.Core;
 using CPSS.Common.Core.DataAccess.DataAccess;
 using CPSS.Common.Core.Exception;
 using CPSS.Common.Core.Helper.Cached;
+using CPSS.Common.Core.Type.ConstDefined;
 using CPSS.Common.Core.Type.EnumType;
 using CPSS.Data.DataAccess.Interfaces;
 using CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Unit;
@@ -19,7 +20,6 @@ namespace CPSS.Service.ViewService.Basic
 {
     public class UnitViewService : BaseViewService, IUnitViewService
     {
-        private const string THISSERVICE_PRE_CACHE_KEY_MANAGE = "CPSS.Service.ViewService.Basic.UnitViewService";
         private const string PRE_CACHE_KEY = "CPSS.Service.ViewService.Basic.UnitViewService.{0}";
         private readonly IDbConnection mDbConnection;
         private readonly IunitDataAccess mUnitDataAccess;
@@ -68,7 +68,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
 
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
+                ManageCacheKeyForKey = ServiceClassNameConst.BasicUnit,
                 ParamsKeys = new object[]
                 {
                     request.data.Name,
@@ -100,7 +100,7 @@ namespace CPSS.Service.ViewService.Basic
                         sort = rData.Sort
                     };
                     this.mUnitDataAccess.Add(data, tran);
-                    MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+                    MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicUnit);
 
                     //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                     //this.SaveMongoDbData("新增部门资料", request, respond, this.GetType());
@@ -145,7 +145,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
 
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
+                ManageCacheKeyForKey = ServiceClassNameConst.BasicUnit,
                 ParamsKeys = new object[]
                 {
                     request.data.UnitId
@@ -183,7 +183,7 @@ namespace CPSS.Service.ViewService.Basic
                     sort = rData.Sort
                 };
                 this.mUnitDataAccess.Update(data, tran);
-                MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+                MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicUnit);
 
                 //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                 //this.SaveMongoDbData("编辑分公司资料", request, respond, this.GetType());
@@ -202,7 +202,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mUnitDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteUnitViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicUnit);
 
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("删除部门资料", request, respond, this.GetType());
@@ -220,7 +220,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mUnitDataAccess.ReDelete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteUnitViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
+            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicUnit);
 
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("恢复删除部门资料", request, respond, this.GetType());

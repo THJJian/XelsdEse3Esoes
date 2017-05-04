@@ -1,5 +1,9 @@
-﻿@using CPSS.Common.Core.Mvc.UIControl
+﻿@using CPSS.Common.Core.Helper.Extension
+@using CPSS.Common.Core.Mvc.UIControl
+@using CPSS.Common.Core.SysConfig
+@using CPSS.Service.ViewService.Interfaces.SystemParameterConfig
 @using CPSS.Service.ViewService.ViewModels.HeadButtons.Respond
+@using CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Respond
 
 @{
     ViewBag.Title = "AddEmployee";
@@ -14,6 +18,12 @@
         //new RespondHeadButtonsViewModel{ ButtonName = "rtBasicDep_TB_Add_Save_Go", ButtonText = "保存并继续"},
         new RespondHeadButtonsViewModel{ ButtonName = "rtBasicEmp_TB_Add_Cancel", ButtonText = "取消"},
     };
+    Dictionary<string, RespondSystemParameterConfigViewModel> sysConfig = null;
+    this.WorkContext.LifetimeScopeHandler<ISystemParameterConfigViewService>(service =>
+    {
+        sysConfig = service.SystemParameterConfig();
+    });
+    var totalScale = sysConfig[SystemParameterConfigConst.TotalScale].ParameterConfigValue.ToInt16();
 }
 @section buttons{
     @Html.Partial("~/Views/Shared/CommonPartial/HeadButtons.cshtml", buttonModel)
@@ -26,8 +36,8 @@
     @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSpelling", TabIndex = 3, LabelName = "拼音" })
     @UIHelper.comboGrid(new ComboGridOption { Id = "ddlDepartment", TabIndex = 4, LabelName = "所属部门", IdField = "DepId", TextField = "Name", SelectPanelHeight = 280, Url = "/commonajax/getalldepartment", GridColumns = new List<ComboGridColumnOption> { new ComboGridColumnOption { field = "DepId", title = "DepId", hidden = true }, new ComboGridColumnOption { field = "SerialNumber", title = "编号" }, new ComboGridColumnOption { field = "Name", title = "名称" }, new ComboGridColumnOption { field = "Spelling", title = "拼音", width = 60 }, new ComboGridColumnOption { field = "Comment", title = "备注", width = 200 } } })
     @UIHelper.numberBox(new NumberBoxOption { Id = "txtLowestDiscount", TabIndex = 5, LabelName = "最低折扣", Value = "100", Prefix = string.Empty, Max = 100 })
-    @UIHelper.numberBox(new NumberBoxOption { Id = "txtPreInAdvanceTotal", TabIndex = 6, LabelName = "预收金额", Precision = 5, Value = "0.00000" })
-    @UIHelper.numberBox(new NumberBoxOption { Id = "txtPrePayFeeTotal", TabIndex = 7, LabelName = "预付金额", Precision = 5, Value = "0.00000" })
+    @UIHelper.numberBox(new NumberBoxOption { Id = "txtPreInAdvanceTotal", TabIndex = 6, LabelName = "预收金额", Precision = totalScale, Value = "0.00000" })
+    @UIHelper.numberBox(new NumberBoxOption { Id = "txtPrePayFeeTotal", TabIndex = 7, LabelName = "预付金额", Precision = totalScale, Value = "0.00000" })
     @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtMobile", TabIndex = 8, LabelName = "联系电话" })
     @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtAddress", TabIndex = 9, LabelName = "联系地址" })
     @UIHelper.textBox(new TextBoxOption { ButtonText = string.Empty, Id = "txtSort", TabIndex = 10, LabelName = "排序", Value = "0" })

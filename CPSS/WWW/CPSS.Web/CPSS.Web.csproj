@@ -124,6 +124,7 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\SigninController.cs" />
     <Compile Include="Controllers\SystemParameterConfigController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VerifyCodeImageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -179,6 +180,7 @@
     <Content Include="Views\Basic\Product\AddProduct.cshtml" />
     <Content Include="Views\Basic\Product\EditProduct.cshtml" />
     <Content Include="Views\SystemParameterConfig\SysConfig.cshtml" />
+    <Content Include="Views\Users\UserManageList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

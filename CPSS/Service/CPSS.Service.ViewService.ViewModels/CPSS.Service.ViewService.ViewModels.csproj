@@ -50,9 +50,10 @@
     <Compile Include="Client\Respond\RespondDeleteClientViewModel.cs" />
     <Compile Include="Client\Respond\RespondEditClientViewModel.cs" />
     <Compile Include="Client\Respond\RespondQueryClientViewModel.cs" />
-    <Compile Include="Common\Request\RequestGetAllDepartmentViewModel.cs" />
+    <Compile Include="Common\Request\RequestGetAllEntityDataViewModel.cs" />
     <Compile Include="Common\Request\RequestGetNameSpellingViewModel.cs" />
     <Compile Include="Common\Request\RequestGetPrintDesignStyleViewModel.cs" />
+    <Compile Include="Common\Respond\RespondGetAllEmployeeViewModel.cs" />
     <Compile Include="Common\Respond\RespondGetAllDepartmentViewModel.cs" />
     <Compile Include="Common\Respond\RespondGetNameSpellingViewModel.cs" />
     <Compile Include="Common\Respond\RespondGetPrintDesignStyleViewModel.cs" />

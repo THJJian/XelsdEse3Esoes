@@ -427,6 +427,31 @@
         /// </summary>
         public const int rtSystemParameter = 569;
 
+        /// <summary>
+        /// 用户管理
+        /// </summary>
+        public const int rtUserManage = 571;
+
+        /// <summary>
+        /// 新增用户
+        /// </summary>
+        public const int rtUserManage_TB_Add = 572;
+
+        /// <summary>
+        /// 编辑用户
+        /// </summary>
+        public const int rtUserManage_TB_Edit = 573;
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        public const int rtUserManage_TB_Delete = 574;
+
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        public const int rtUserManage_TB_Reset = 648;
+
         #endregion
 
         #region 基础资料
@@ -580,5 +605,7 @@
         #endregion
 
         #endregion
+    
+
     }
 }

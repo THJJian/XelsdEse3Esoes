@@ -99,14 +99,28 @@ namespace CPSS.Web.Controllers
         [HttpPost]
         public JsonResult GetAllDepartment()
         {
-            var request = new RequestWebViewData<RequestGetAllDepartmentViewModel>
+            var request = new RequestWebViewData<RequestGetAllEnityDataViewModel>
             {
-                data = new RequestGetAllDepartmentViewModel
+                data = new RequestGetAllEnityDataViewModel
                 {
                     Keywords = this.WorkContext.GetQueryString("q")
                 }
             };
             var respond = this.mCommonAjaxViewService.GetAllDepartment(request);
+            return Json(respond);
+        }
+
+        [HttpPost]
+        public JsonResult GetAllEmployee()
+        {
+            var request = new RequestWebViewData<RequestGetAllEnityDataViewModel>
+            {
+                data = new RequestGetAllEnityDataViewModel
+                {
+                    Keywords = this.WorkContext.GetQueryString("q")
+                }
+            };
+            var respond = this.mCommonAjaxViewService.GetAllEmployee(request);
             return Json(respond);
         }
     }

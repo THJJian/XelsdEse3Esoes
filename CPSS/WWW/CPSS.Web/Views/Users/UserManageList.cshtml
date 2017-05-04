@@ -1,0 +1,68 @@
+﻿@using CPSS.Common.Core.Mvc.UIControl
+@using CPSS.Common.Core.Type.ConstDefined
+@using CPSS.Common.Core.Type.EnumType
+@using CPSS.Service.ViewService.ViewModels.HeadButtons.Request
+@{
+    ViewBag.Title = "UserManageList";
+    WorkContext.Resource
+        //.AddPageCss("")
+        .AddPageScripts("easyui-1.5/locale/easyui-lang-zh_CN", "grid/tablegrid", "controlshelper", "basic/user/managelist", "lodop/lodopfuncs");
+}
+@section buttons{
+    @{
+        Html.RenderAction("headbuttons", "commonpartial", new RequestHeadButtonsViewModel { MenuID = MenuValueConstDefined.rtUserManage });
+    }
+}
+
+<div id="billhead" class="easyui-panel" data-options="border: false" style="max-height: 300px; max-width: 100%; overflow: hidden;">
+    <input type="hidden" id="txtParentId" value="" />
+    <div class="easyui-panel" data-options="border: false">
+        @UIHelper.comboGrid(new ComboGridOption { Id = "ddlEmployee", TabIndex = 1, LabelName = "职员信息", IdField = "EmpId", TextField = "Name", SelectPanelHeight = 280, Url = "/commonajax/getallemployee", GridColumns = new List<ComboGridColumnOption> { new ComboGridColumnOption { field = "EmpId", title = "EmpId", hidden = true }, new ComboGridColumnOption { field = "SerialNumber", title = "编号" }, new ComboGridColumnOption { field = "Name", title = "名称" }, new ComboGridColumnOption { field = "Spelling", title = "拼音", width = 60 }, new ComboGridColumnOption { field = "Comment", title = "备注", width = 200 } } })
+        @UIHelper.textBox(new TextBoxOption {ButtonText = string.Empty, Id = "txtUserName", TabIndex = 2, LabelName = "用户名"})
+    </div>
+    <div class="easyui-panel" data-options="border: false" style="padding-right: 20px; text-align: right;">
+        @UIHelper.linkButton("查  询", "btnSearch")
+    </div>
+</div>
+
+@section grid{
+    <div id="billgrid" class="easyui-panel" data-options="border: false" style="padding-top: 3px;">
+        <table class="easyui-datagrid" id="dvgDataGrid">
+            <thead>
+                <tr>
+                    <th field="ClientId" data-options="hidden: true">ClientId</th>
+                    <th field="ClassId" data-options="hidden: true">ClassId</th>
+                    <th field="ParentId" data-options="hidden: true">ParentId</th>
+                    <th field="Deleted" data-options="hidden: true">Deleted</th>
+                    <th field="LevelClassId" data-options="width:60, align:'center', formatter: function(val, row, index){return client.cellFormatter(val, row, index);}"></th>
+                    <th field="SerialNumber" width="80px;">编号</th>
+                    <th field="Alias" width="80px;">别名</th>
+                    <th field="Name" width="80px;">名称</th>
+                    <th field="Spelling" class="notPrint" width="80px;">拼音</th>
+                    <th field="Address" width="180px;">地址</th>
+                    <th field="ZipCode" width="80px;">邮编</th>
+                    <th field="LinkMan" width="100px;">联系人</th>
+                    <th field="LinkTel" width="100px;">联系电话</th>
+                    <th field="LinkAddress" width="100px;">联系地址</th>
+                    <th field="PriceMode" class="notPrint" width="60px;">售价方式</th>
+                    <th field="Credits" width="60px;">信用额度</th>
+                    <th field="Status" class="notPrint" width="60px;">状态</th>
+                    <th field="Comment" width="512px;">备注</th>
+                    <th field="Sort" class="notPrint" width="50px;">排序</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+}
+
+@section scripts{
+    <script type="text/javascript" src="http://localhost:18000/CLodopfuncs.js?priority=1"></script>
+    <script type="text/javascript">
+        var userId_g = "@this.WorkContext.GetQueryString("userid")";
+        var user;
+        $(document.body)
+            .ready(function () {
+                user = CPSSLib.Page.manageList.init(userId_g, @MenuValueConstDefined.rtUserManage);
+            });
+    </script>
+}
