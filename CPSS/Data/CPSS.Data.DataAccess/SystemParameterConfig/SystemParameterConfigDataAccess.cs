@@ -36,7 +36,7 @@ namespace CPSS.Data.DataAccess.SystemParameterConfig
             StringBuilder builder = new StringBuilder();
             foreach (var parameter in parameters)
             {
-                builder.AppendFormat("UPDATE dbo.sysconfig SET configvlaue={1} WHERE configname='{0}'\n\r", parameter.ParameterConfigName, parameter.ParameterConfigValue);
+                builder.AppendFormat("UPDATE dbo.sysconfig SET configvlaue='{1}' WHERE configname='{0}'\n\r", parameter.ParameterConfigName, parameter.ParameterConfigValue);
             }
             this.ExecuteSQL = builder.ToString();
             return this.ExecuteNonQuery() > 0;

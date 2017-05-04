@@ -599,7 +599,7 @@ INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isr
 INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(557,'000001000006000007000014','000001000006000007','rtBasicProduct_TB_BatchDelete','批量删除','','',1,0,1,0,0)
 GO
 INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(568,'000001000007','000001','rtSystemConfig','系统管理','','',0,0,1,0,0)
-INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(569,'000001000007000001','000001000007','rtSystemParameter','系统参数','','/systemparameterconfig/index',0,0,1,0,0)
+INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(569,'000001000007000001','000001000007','rtSystemParameter','系统参数','','/systemparameterconfig/sysconfig',0,0,1,0,0)
 --INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(570,'000001000007000002','000001000007','rtRoleManage','分销角色维护','','',0,0,1,0,0)
 INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(571,'000001000007000003','000001000007','rtUserSet','用户管理','','/users/index',0,0,1,0,0)
 INSERT INTO menu(menuid,classid,parentid,buttonid,title,iconcls,url,isbutton,isroot,isenabled,isbeginsplit,isendsplit) VALUES(572,'000001000007000003000001','000001000007000003','rtUserSet_TB_Add','新增用户','','',1,0,1,0,0)

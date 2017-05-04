@@ -48,7 +48,6 @@ namespace CPSS.Service.ViewService.SystemParameterConfig
                 },
                 #endregion
                 
-                ExpiresAt = DateTime.Now.AddMinutes(WebConfigHelper.MemCachedExpTime()),
                 ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
                 ParamsKeys = new object[]
                 {
@@ -67,29 +66,45 @@ namespace CPSS.Service.ViewService.SystemParameterConfig
                 #region ===================================================
                 CallBackFunc = () =>
                 {
-                    var parameter = new SystemParameterConfigParameter
+                    var kvConfig = this.BuildDictionay();
+                    var value = kvConfig[request.data.ParameterConfigName];
+                    return  new RespondWebViewData<RespondSystemParameterConfigViewModel>
                     {
-                        ParameterConfigName = request.data.ParameterConfigName
-                    };
-                    var dataModel = this.mSystemParameterConfigDataAccess.GetSystemParameterConfigDataModel(parameter);
-                    if (dataModel == null) return new RespondWebViewData<RespondSystemParameterConfigViewModel>(WebViewErrorCode.NotExistsDataInfo);
-                    return new RespondWebViewData<RespondSystemParameterConfigViewModel>
-                    {
-                        rows = new RespondSystemParameterConfigViewModel
-                        {
-                            ParameterConfigName = dataModel.ParameterConfigName,
-                            ParameterConfigValue = dataModel.ParameterConfigValue
-                        }
+                        rows = value
                     };
                 },
                 #endregion
 
-                ExpiresAt = DateTime.Now.AddMinutes(WebConfigHelper.MemCachedExpTime()),
                 ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
                 ParamsKeys = new object[]
                 {
                     request.data.ParameterConfigName,
-                    this.mSigninUser.UserID,
+                    this.mSigninUser.CompanySerialNum
+                }
+            });
+        }
+
+        /// <summary>
+        /// 把系统配置参数缓存为键值对的格式方便使用
+        /// </summary>
+        /// <returns></returns>
+        private Dictionary<string, RespondSystemParameterConfigViewModel> BuildDictionay()
+        {
+            return MemcacheHelper.Get(new RequestMemcacheParameter<Dictionary<string, RespondSystemParameterConfigViewModel>>
+            {
+                CacheKey = string.Format(PRE_CACHE_KEY, "BuildDictionay"),
+
+                #region =============================================
+                CallBackFunc = () =>
+                {
+                    var configList = this.GetSystemParameterConfigViewModels();
+                    var kvConfig = configList.rows.ToDictionary(item => item.ParameterConfigName, item => new RespondSystemParameterConfigViewModel{ ParameterConfigName = item.ParameterConfigName, ParameterConfigValue = item.ParameterConfigValue});
+                    return kvConfig;
+                },
+                #endregion
+                ManageCacheKeyForKey = THISSERVICE_PRE_CACHE_KEY_MANAGE,
+                ParamsKeys = new object[]
+                {
                     this.mSigninUser.CompanySerialNum
                 }
             });
@@ -103,6 +118,7 @@ namespace CPSS.Service.ViewService.SystemParameterConfig
                 ParameterConfigValue = item.ParameterConfigValue
             }).ToList();
             var dataResult = this.mSystemParameterConfigDataAccess.SaveSystemParameterConfig(parameters);
+            if (dataResult) MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
             return new RespondWebViewData<RespondSaveSystemParameterConfigViewModel>(dataResult ? WebViewErrorCode.Success : WebViewErrorCode.Exception);
         }
     }

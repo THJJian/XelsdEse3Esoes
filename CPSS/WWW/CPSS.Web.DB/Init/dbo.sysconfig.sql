@@ -18,7 +18,7 @@ INSERT INTO dbo.sysconfig(configname,configvlaue) VALUES ('KeepOrignalInputMan',
 INSERT INTO dbo.sysconfig(configname,configvlaue) VALUES ('RetailUsePos', 0)
 INSERT INTO dbo.sysconfig(configname,configvlaue) VALUES ('RetailCanMakeBalance', 0)
 INSERT INTO dbo.sysconfig(configname,configvlaue) VALUES ('ProductRepeatAlert', 0)
-INSERT INTO dbo.sysconfig(configname,configvlaue) VALUES ('CheckeSNIsSell', 1)
+INSERT INTO dbo.sysconfig(configname,configvlaue) VALUES ('CheckSNIsSell', 1)
 INSERT INTO dbo.sysconfig(configname,configvlaue) VALUES ('FilterZeroProduct', 1)
 INSERT INTO dbo.sysconfig(configname,configvlaue) VALUES ('LessThanStorageQtyAlert', 1)
 INSERT INTO dbo.sysconfig(configname,configvlaue) VALUES ('NotCheckSNForSave', 1)

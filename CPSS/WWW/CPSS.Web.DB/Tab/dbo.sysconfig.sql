@@ -7,8 +7,8 @@ END
 GO
 CREATE TABLE [dbo].[sysconfig](
 	[configid] INT IDENTITY(1,1) NOT NULL,
-	[configname] VARCHAR(50) NOT NULL,
-	[configvlaue] INT NOT NULL,
+	[configname] VARCHAR(120) NOT NULL,
+	[configvlaue] VARCHAR(80) NOT NULL,
  CONSTRAINT [PK_sysconfig_configid] PRIMARY KEY CLUSTERED 
 (
 	[configid] ASC

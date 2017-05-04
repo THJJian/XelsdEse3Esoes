@@ -8,13 +8,14 @@ namespace CPSS.Common.Core.Helper.Cached
         {
             this.ManageCacheKeyForKey = string.Empty;
             this.ParamsKeys = new object[]{};
+            this.ExpiresAt = null;
         }
 
         public Func<T> CallBackFunc { set; get; }
 
         public string CacheKey { set; get; }
 
-        public DateTime ExpiresAt { set; get; }
+        public DateTime? ExpiresAt { set; get; }
 
         public object[] ParamsKeys { set; get; }
         

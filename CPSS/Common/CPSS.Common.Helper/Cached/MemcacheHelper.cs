@@ -22,7 +22,7 @@ namespace CPSS.Common.Core.Helper.Cached
         }
 
         /// <summary>
-        /// 根据真实缓存键移除缓存
+        /// 根据真实缓存键移除当前服务的所有缓存
         /// </summary>
         /// <param name="cacheKey"></param>
         public static void RemoveBy(string cacheKey)
@@ -93,7 +93,7 @@ namespace CPSS.Common.Core.Helper.Cached
             var realCacheKey = GetRealCacheKey(parameter.CacheKey, parameter.ParamsKeys);
             if (!string.IsNullOrEmpty(parameter.ManageCacheKeyForKey))
                 Update(parameter.ManageCacheKeyForKey, realCacheKey);
-            return Get(parameter.CallBackFunc, realCacheKey, parameter.ExpiresAt, true, parameter.ParamsKeys);
+            return Get(parameter.CallBackFunc, realCacheKey, parameter.ExpiresAt.HasValue ? parameter.ExpiresAt.Value : NotExpirersTime, true, parameter.ParamsKeys);
         }
 
         /// <summary>

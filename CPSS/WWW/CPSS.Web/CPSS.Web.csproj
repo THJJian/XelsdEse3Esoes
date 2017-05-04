@@ -179,6 +179,7 @@
     <Content Include="Views\Basic\Product\ProductList.cshtml" />
     <Content Include="Views\Basic\Product\AddProduct.cshtml" />
     <Content Include="Views\Basic\Product\EditProduct.cshtml" />
+    <Content Include="Views\SystemParameterConfig\SysConfig.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

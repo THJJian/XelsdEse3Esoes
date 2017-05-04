@@ -18,14 +18,14 @@ namespace CPSS.Web.Controllers
             this.mSystemParameterConfigViewService = _systemParameterConfigViewService;
         }
 
-        // GET: SystemParameterConfig
-        [OperateRight(MenuID =  MenuValueConstDefined.rtSystemParameter)]
-        public ActionResult Index()
+        [OperateRight(MenuID = MenuValueConstDefined.rtSystemParameter)]
+        public ActionResult SysConfig()
         {
             var viewModels = this.mSystemParameterConfigViewService.GetSystemParameterConfigViewModels();
             return View(viewModels);
         }
 
+        [HttpPost]
         [OperateRight(MenuID = MenuValueConstDefined.rtSystemParameter)]
         public JsonResult SaveSystemParameterConfig(RequestWebViewData<RequestSystemParameterConfigListViewModel> request)
         {

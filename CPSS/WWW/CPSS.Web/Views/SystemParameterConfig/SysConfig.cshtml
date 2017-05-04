@@ -1,7 +1,7 @@
 ﻿@using CPSS.Common.Core.SysConfig
 @model  CPSS.Common.Core.RespondWebViewData<List<CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Respond.RespondSystemParameterConfigViewModel>>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "SysConfig";
     this.WorkContext.Resource
         .AddPageScripts("sysconfig/systemparameterconfig");
     var models = Model.rows.ToDictionary(model => model.ParameterConfigName, model => model.ParameterConfigValue);
@@ -40,12 +40,15 @@
         #use_same_tax_rate .switchbutton {
             margin: 0 0 0 -6px;
         }
+
         #price_set_panel .switchbutton {
             margin: 0 0 0 -6px;
         }
+
         #bill_set_panel .switchbutton {
             margin: 0 0 0 -6px;
         }
+
         #other_set_panel .switchbutton {
             margin: 0 0 0 -6px;
         }
@@ -54,24 +57,24 @@
 <div id="container" style="width: 100%;">
     <div id="basic_set_panel" title="基本设置" class="easyui-panel" data-options="width:220">
         <div style="width: 100%; padding: 5px 0">
-            <input id="QtyScale" class="easyui-numberbox" 
-                   data-options="min: 2, max: 5, label:'数量保留小数位数(2-5)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px',width: '200px', height: '26px', value: @qtyScale"/>
+            <input id="QtyScale" class="easyui-numberbox"
+                   data-options="min: 2, max: 5, label:'数量保留小数位数(2-5)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px',width: '200px', height: '26px', value: @qtyScale" />
         </div>
         <div style="width: 100%; padding: 5px 0">
-            <input id="UnitPriceScale" class="easyui-numberbox" 
-                   data-options="min: 2, max: 5, label:'单价保留小数位数(2-5)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px', width: '200px', height: '26px', value: @unitPriceScale"/>
+            <input id="UnitPriceScale" class="easyui-numberbox"
+                   data-options="min: 2, max: 5, label:'单价保留小数位数(2-5)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px', width: '200px', height: '26px', value: @unitPriceScale" />
         </div>
         <div style="width: 100%; padding: 5px 0">
-            <input id="TotalScale" class="easyui-numberbox" 
-                   data-options="min: 2, max: 4, label:'金额保留小数位数(2-5)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px', width: '200px', height: '26px', value: @totalScale"/>
+            <input id="TotalScale" class="easyui-numberbox"
+                   data-options="min: 2, max: 4, label:'金额保留小数位数(2-5)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px', width: '200px', height: '26px', value: @totalScale" />
         </div>
         <div style="width: 100%; padding: 5px 0">
-            <input id="DiscountRateScale" class="easyui-numberbox" 
-                   data-options="min: 0, max: 5, label:'扣率保留小数位数(0-5)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px', width: '200px', height: '26px', value: @discountRateScale"/>
+            <input id="DiscountRateScale" class="easyui-numberbox"
+                   data-options="min: 0, max: 5, label:'扣率保留小数位数(0-5)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px', width: '200px', height: '26px', value: @discountRateScale" />
         </div>
         <div style="width: 100%; padding: 5px 0">
-            <input id="TaxRate" class="easyui-numberbox" 
-                   data-options="min: 0, max: 100, label:'默认税率(%)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px', width: '200px', height: '26px', value: @taxRate"/>
+            <input id="TaxRate" class="easyui-numberbox"
+                   data-options="min: 0, max: 100, label:'默认税率(%)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px', width: '200px', height: '26px', value: @taxRate" />
         </div>
         <div id="use_same_tax_rate" style="width: 100%; padding: 5px 0">
             <label class="textbox-label textbox-label-before" for="UseSameTaxRate" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">统一使用默认税率(%)：</label>
@@ -97,7 +100,7 @@
             </select>
         </div>
     </div>
-    
+
     <div id="bill_set_panel" title="单据设置" class="easyui-panel" data-options="width:440">
         <div id="use_recent_buy_price_2_cost_price" style="width: 50%; padding: 5px 0; float: left;">
             <label class="textbox-label textbox-label-before" for="UseRecentBuyPrice2CostPrice" style="text-align: right; width: 145px; height: 26px; line-height: 26px;">使用最近进价作为成本价：</label>
@@ -118,7 +121,7 @@
         </div>
 
         <div id="sn_print_style" style="width: 50%; padding: 5px 0; float: left;">
-            <input id="SNPrintStyle" class="easyui-numberbox" 
+            <input id="SNPrintStyle" class="easyui-numberbox"
                    data-options="min: 0, max: 100, label:'序列号打印，每行打印：', labelPosition: 'before', labelAlign: 'right', labelWidth: '150px', width: '200px', height: '26px', value: @snPrintStyle" />
         </div>
         <div id="keep_orignal_input_man" style="width: 50%; padding: 5px 0; float: left;">
@@ -167,11 +170,11 @@
 
     <div id="other_set_panel" title="其它设置" class="easyui-panel" data-options="width:330">
         @*<div id="allow_cash_blance_less_than_zero" style="width: 100%; padding: 5px 0">
-            <label class="textbox-label textbox-label-before" for="AllowCashBlanceLessThanZero" style="text-align: right; width: 230px; height: 26px; line-height: 26px;">不允许现金银行、预收预付科目余额为负：</label>
-            <input id="AllowCashBlanceLessThanZero" class="easyui-switchbutton">
-        </div>*@
+                <label class="textbox-label textbox-label-before" for="AllowCashBlanceLessThanZero" style="text-align: right; width: 230px; height: 26px; line-height: 26px;">不允许现金银行、预收预付科目余额为负：</label>
+                <input id="AllowCashBlanceLessThanZero" class="easyui-switchbutton">
+            </div>*@
         <div id="data_select_page_size" style="width: 100%; padding: 5px 0">
-            <input id="DataSelectPageSize" class="easyui-numberbox" 
+            <input id="DataSelectPageSize" class="easyui-numberbox"
                    data-options="min: 10, max: 50, label:'基础数据选择和报表每页显示行数(10-50)：', labelPosition: 'before', labelAlign: 'right', labelWidth: '245px', width: '295px', height: '26px', value: @dataSelectPageSize" />
         </div>
     </div>
