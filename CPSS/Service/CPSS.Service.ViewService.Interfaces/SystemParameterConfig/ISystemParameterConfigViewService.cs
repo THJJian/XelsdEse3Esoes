@@ -14,6 +14,12 @@ namespace CPSS.Service.ViewService.Interfaces.SystemParameterConfig
         RespondWebViewData<List<RespondSystemParameterConfigViewModel>> GetSystemParameterConfigViewModels();
 
         /// <summary>
+        /// 获取全局系统参数配置
+        /// </summary>
+        /// <returns></returns>
+        Dictionary<string, RespondSystemParameterConfigViewModel> SystemParameterConfig();
+
+        /// <summary>
         /// 获取指定系统配置参数
         /// </summary>
         /// <param name="request"></param>

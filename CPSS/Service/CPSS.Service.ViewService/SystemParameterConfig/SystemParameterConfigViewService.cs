@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using CPSS.Common.Core;
 using CPSS.Common.Core.Exception;
 using CPSS.Common.Core.Helper.Cached;
-using CPSS.Common.Core.Helper.WebConfig;
 using CPSS.Data.DataAccess.Interfaces.MongoDB;
 using CPSS.Data.DataAccess.Interfaces.SystemParameterConfig;
 using CPSS.Data.DataAccess.Interfaces.SystemParameterConfig.Parameters;
@@ -120,6 +118,11 @@ namespace CPSS.Service.ViewService.SystemParameterConfig
             var dataResult = this.mSystemParameterConfigDataAccess.SaveSystemParameterConfig(parameters);
             if (dataResult) MemcacheHelper.RemoveBy(THISSERVICE_PRE_CACHE_KEY_MANAGE);
             return new RespondWebViewData<RespondSaveSystemParameterConfigViewModel>(dataResult ? WebViewErrorCode.Success : WebViewErrorCode.Exception);
+        }
+
+        public Dictionary<string, RespondSystemParameterConfigViewModel> SystemParameterConfig()
+        {
+            return this.BuildDictionay();
         }
     }
 }
