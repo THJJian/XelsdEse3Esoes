@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using CPSS.Common.Core.Helper.MD5;
 
 namespace CPSS.Common.Core.Helper.Extension
 {
@@ -123,6 +124,16 @@ namespace CPSS.Common.Core.Helper.Extension
             return defaultVal;
         }
 
+        /// <summary>
+        /// 将字符串转换成MD5码(UTF8)
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static string ToMD5String(this string source)
+        {
+            return MD5Helper.GetMD5HashCode(source);
+        }
+
         #endregion
 
         #region Byte Converter Object
@@ -158,6 +169,16 @@ namespace CPSS.Common.Core.Helper.Extension
         {
             var result = Encoding.Default.GetString(source);
             return result;
+        }
+
+        /// <summary>
+        /// 将字符串转换成MD5码
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        public static string ToMD5String(this byte[] source)
+        {
+            return MD5Helper.GetMD5HashCode(source);
         }
 
         #endregion

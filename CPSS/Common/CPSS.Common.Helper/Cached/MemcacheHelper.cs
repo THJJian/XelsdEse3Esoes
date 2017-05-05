@@ -112,7 +112,7 @@ namespace CPSS.Common.Core.Helper.Cached
             SetCache(cacheKey, value, IsNotExpired ? NotExpirersTime : expiresAt, StoreMode.Set);
             return value;
         }
-
+        
         #region 服务类的缓存的缓存键管理缓存
 
         /// <summary>
@@ -154,7 +154,6 @@ namespace CPSS.Common.Core.Helper.Cached
 
         #endregion
         
-
         #region 私有方法
 
         private static object GetCache(string cacheKey)

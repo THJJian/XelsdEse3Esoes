@@ -4,6 +4,7 @@ using System.IO;
 using System.Web;
 using System.Xml.Serialization;
 using CPSS.Common.Core.Helper.Cached;
+using CPSS.Common.Core.Helper.Extension;
 using CPSS.Common.Core.Helper.MD5;
 
 namespace CPSS.Common.Core.Helper.Config
@@ -30,7 +31,7 @@ namespace CPSS.Common.Core.Helper.Config
         /// <returns>配置对象</returns>
         public static T GetConfig<T>(string configFilePath, int expiresAt) where T : class
         {
-            var cacheKey = string.Concat(configFilePath, typeof(T).FullName, HttpContext.Current == null ? MD5Helper.GetMD5HashCode(AppDomain.CurrentDomain.BaseDirectory) : HttpContext.Current.Request.Url.Host);
+            var cacheKey = string.Concat(configFilePath, typeof(T).FullName, HttpContext.Current == null ? AppDomain.CurrentDomain.BaseDirectory.ToMD5String() : HttpContext.Current.Request.Url.Host);
             return MemcacheHelper.Get(() =>
             {
                 T config;
@@ -57,7 +58,7 @@ namespace CPSS.Common.Core.Helper.Config
         /// <returns>配置对象</returns>
         public static T GetConfig<T>(string configFilePath) where T : class
         {
-            var cacheKey = string.Concat(configFilePath, typeof(T).FullName, HttpContext.Current == null ? MD5Helper.GetMD5HashCode(AppDomain.CurrentDomain.BaseDirectory) : HttpContext.Current.Request.Url.Host);
+            var cacheKey = string.Concat(configFilePath, typeof(T).FullName, HttpContext.Current == null ? AppDomain.CurrentDomain.BaseDirectory.ToMD5String() : HttpContext.Current.Request.Url.Host);
             return MemcacheHelper.Get(() =>
             {
                 T config;

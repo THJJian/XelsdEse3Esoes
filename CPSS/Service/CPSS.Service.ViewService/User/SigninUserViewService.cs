@@ -37,7 +37,7 @@ namespace CPSS.Service.ViewService.User
             var parameter = new SigninUserParameter
             {
                 UserName = _tmp[1],
-                UserPwd = MD5Helper.GetMD5HashCode(request.UserPwd),
+                UserPwd = request.UserPwd.ToMD5String(),
                 CompanySerialNum = _tmp[0]
             };
             var dataModel = this.mSiginUserDataAccess.QuerySigninUserDataModel(parameter);
