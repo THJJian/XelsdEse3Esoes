@@ -5,7 +5,6 @@ using System.Web;
 using System.Xml.Serialization;
 using CPSS.Common.Core.Helper.Cached;
 using CPSS.Common.Core.Helper.Extension;
-using CPSS.Common.Core.Helper.MD5;
 
 namespace CPSS.Common.Core.Helper.Config
 {

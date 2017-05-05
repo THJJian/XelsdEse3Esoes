@@ -14,7 +14,8 @@ CREATE TABLE [dbo].[user](
 	[prefix] VARCHAR(4) NULL,
 	[manager] SMALLINT NOT NULL,
 	[status] SMALLINT NOT NULL,
-	[deleted] smallint  NULL DEFAULT(0),
+	[deleted] SMALLINT  NULL DEFAULT(0),
+	[synchron] SMALLINT NOT NULL DEFAULT(0),--标志是否已经同步到中心库，由windows服务更新
 	[comment] VARCHAR(256) NULL DEFAULT('')
  CONSTRAINT [PK_sys_user_userid] PRIMARY KEY CLUSTERED 
 (
@@ -22,6 +23,6 @@ CREATE TABLE [dbo].[user](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, FILLFACTOR = 99) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-INSERT INTO dbo.[user](comid,empid,username,usepwd,prefix,manager,status,deleted,comment)
-	VALUES  (12110,1,'Admin','670b14728ad9902aecba32e22fa4f6bd','',1,1,1,'')
+INSERT INTO dbo.[user](comid,empid,username,usepwd,prefix,manager,status,deleted,synchron,comment)
+	VALUES  (12110,1,'Admin','670b14728ad9902aecba32e22fa4f6bd','',1,1,1,1,'')
 GO
