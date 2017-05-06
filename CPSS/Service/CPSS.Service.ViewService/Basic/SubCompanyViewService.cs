@@ -87,7 +87,7 @@ namespace CPSS.Service.ViewService.Basic
                         #endregion
                         
                         ExpiresAt = DateTime.Now.AddMinutes(30),
-                        ManageCacheKeyForKey = ServiceClassNameConst.BasicSubCompany,
+                        ManageCacheKeyForKey = ServiceMemcachedKeyManageConst.BasicSubCompany,
                         ParamsKeys = new object[]
                         {
                             request.page,
@@ -148,7 +148,7 @@ namespace CPSS.Service.ViewService.Basic
                     };
                     var addResult = this.mSubCompanyDataAccess.Add(data, tran);
                     if (addResult > 0) this.mSubCompanyDataAccess.UpdateChildNumberByClassId(tran, parameter);
-                    MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicSubCompany);
+                    MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicSubCompany);
                 
                     //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                     //this.SaveMongoDbData("新增分公司资料", request, respond, this.GetType());
@@ -200,7 +200,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
             
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = ServiceClassNameConst.BasicSubCompany,
+                ManageCacheKeyForKey = ServiceMemcachedKeyManageConst.BasicSubCompany,
                 ParamsKeys = new object[]
                 {
                     request.data.ComId
@@ -248,7 +248,7 @@ namespace CPSS.Service.ViewService.Basic
                     parentid = company.parentid
                 };
                 this.mSubCompanyDataAccess.Update(data, tran);
-                MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicSubCompany);
+                MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicSubCompany);
 
                 //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                 //this.SaveMongoDbData("编辑分公司资料", request, respond, this.GetType());
@@ -267,7 +267,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mSubCompanyDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicSubCompany);
+            MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicSubCompany);
            
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("删除分公司资料", request, respond, this.GetType());
@@ -285,7 +285,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mSubCompanyDataAccess.ReDelete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteSubCompanyViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicSubCompany);
+            MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicSubCompany);
             
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("恢复删除分公司资料", request, respond, this.GetType());

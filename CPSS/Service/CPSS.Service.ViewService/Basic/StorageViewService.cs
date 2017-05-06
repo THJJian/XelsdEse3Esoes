@@ -79,7 +79,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
 
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = ServiceClassNameConst.BasicStorage,
+                ManageCacheKeyForKey = ServiceMemcachedKeyManageConst.BasicStorage,
                 ParamsKeys = new object[]
                 {
                     request.page,
@@ -136,7 +136,7 @@ namespace CPSS.Service.ViewService.Basic
                     };
                     var addResult = this.mStorageDataAccess.Add(data, tran);
                     if (addResult > 0) this.mStorageDataAccess.UpdateChildNumberByClassId(tran, parameter);
-                    MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicStorage);
+                    MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicStorage);
 
                     //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                     //this.SaveMongoDbData("新增往来客户资料", request, respond, this.GetType());
@@ -191,7 +191,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
 
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = ServiceClassNameConst.BasicStorage,
+                ManageCacheKeyForKey = ServiceMemcachedKeyManageConst.BasicStorage,
                 ParamsKeys = new object[]
                 {
                     request.data.StorageId
@@ -239,7 +239,7 @@ namespace CPSS.Service.ViewService.Basic
                         status = storage.status
                     };
                     this.mStorageDataAccess.Update(data, tran);
-                    MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicStorage);
+                    MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicStorage);
 
                     //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                     //this.SaveMongoDbData("编辑往来客户资料", request, respond, this.GetType());
@@ -264,7 +264,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mStorageDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteStorageViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicStorage);
+            MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicStorage);
 
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("删除往来客户资料", request, respond, this.GetType());
@@ -282,7 +282,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mStorageDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteStorageViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicStorage);
+            MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicStorage);
 
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("删除往来客户资料", request, respond, this.GetType());

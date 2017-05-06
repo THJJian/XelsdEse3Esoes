@@ -92,7 +92,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
 
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = ServiceClassNameConst.BasicEmployee,
+                ManageCacheKeyForKey = ServiceMemcachedKeyManageConst.BasicEmployee,
                 ParamsKeys = new object[]
                     {
                         request.data.Status,
@@ -155,7 +155,7 @@ namespace CPSS.Service.ViewService.Basic
                     };
                     var addResult = this.mEmployeeDataAccess.Add(data, tran);
                     if (addResult > 0) this.mEmployeeDataAccess.UpdateChildNumberByClassId(tran, parameter);
-                    MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicEmployee);
+                    MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicEmployee);
 
                     //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                     //this.SaveMongoDbData("新增职员资料", request, respond, this.GetType());
@@ -215,7 +215,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
 
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = ServiceClassNameConst.BasicEmployee,
+                ManageCacheKeyForKey = ServiceMemcachedKeyManageConst.BasicEmployee,
                 ParamsKeys = new object[]
                 {
                     request.data.EmpId
@@ -260,7 +260,7 @@ namespace CPSS.Service.ViewService.Basic
                         lowestdiscount = employee.lowestdiscount
                     };
                     this.mEmployeeDataAccess.Update(data, tran);
-                    MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicEmployee);
+                    MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicEmployee);
 
                     //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                     //this.SaveMongoDbData("编辑职员资料", request, respond, this.GetType());
@@ -284,7 +284,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mEmployeeDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteEmployeeViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicEmployee);
+            MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicEmployee);
 
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("删除删除资料", request, respond, this.GetType());
@@ -302,7 +302,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mEmployeeDataAccess.ReDelete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteEmployeeViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicEmployee);
+            MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicEmployee);
 
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("删除职员资料", request, respond, this.GetType());

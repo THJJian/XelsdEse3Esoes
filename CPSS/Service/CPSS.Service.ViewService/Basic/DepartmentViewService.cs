@@ -79,7 +79,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
 
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = ServiceClassNameConst.BasicDepartment,
+                ManageCacheKeyForKey = ServiceMemcachedKeyManageConst.BasicDepartment,
                 ParamsKeys = new object[]
                 {
                     request.data.Deleted,
@@ -132,7 +132,7 @@ namespace CPSS.Service.ViewService.Basic
                     };
                     var addResult = this.mDepartmentDataAccess.Add(data, tran);
                     if (addResult > 0) this.mDepartmentDataAccess.UpdateChildNumberByClassId(tran, parameter);
-                    MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicDepartment);
+                    MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicDepartment);
 
                     //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                     //this.SaveMongoDbData("新增部门资料", request, respond, this.GetType());
@@ -184,7 +184,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
 
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = ServiceClassNameConst.BasicDepartment,
+                ManageCacheKeyForKey = ServiceMemcachedKeyManageConst.BasicDepartment,
                 ParamsKeys = new object[]
                 {
                     request.data.DepId
@@ -228,7 +228,7 @@ namespace CPSS.Service.ViewService.Basic
                     parentid = department.parentid
                 };
                 this.mDepartmentDataAccess.Update(data, tran);
-                MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicDepartment);
+                MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicDepartment);
 
                 //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                 //this.SaveMongoDbData("编辑分公司资料", request, respond, this.GetType());
@@ -247,7 +247,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mDepartmentDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteDepartmentViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicDepartment);
+            MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicDepartment);
 
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("删除部门资料", request, respond, this.GetType());
@@ -265,7 +265,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mDepartmentDataAccess.ReDelete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteDepartmentViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicDepartment);
+            MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicDepartment);
 
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("恢复删除部门资料", request, respond, this.GetType());

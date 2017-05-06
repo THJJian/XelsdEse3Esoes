@@ -1,6 +1,6 @@
 ﻿namespace CPSS.Common.Core.Type.ConstDefined
 {
-    public class ServiceClassNameConst
+    public class ServiceMemcachedKeyManageConst
     {
         /// <summary>
         /// ClientViewService服务类缓存管理键

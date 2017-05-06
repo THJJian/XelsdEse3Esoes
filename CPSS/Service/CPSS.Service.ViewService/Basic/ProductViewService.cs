@@ -93,7 +93,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
 
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = ServiceClassNameConst.BasicProduct,
+                ManageCacheKeyForKey = ServiceMemcachedKeyManageConst.BasicProduct,
                 ParamsKeys = new object[]
                     {
                         request.data.ParentId,
@@ -139,7 +139,7 @@ namespace CPSS.Service.ViewService.Basic
                     };
                     var addResult = this.mProductDataAccess.Add(data, tran);
                     if (addResult > 0) this.mProductDataAccess.UpdateChildNumberByClassId(tran, parameter);
-                    MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicProduct);
+                    MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicProduct);
 
                     //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                     //this.SaveMongoDbData("新增商品资料", request, respond, this.GetType());
@@ -189,7 +189,7 @@ namespace CPSS.Service.ViewService.Basic
                 #endregion
 
                 ExpiresAt = DateTime.Now.AddMinutes(30),
-                ManageCacheKeyForKey = ServiceClassNameConst.BasicProduct,
+                ManageCacheKeyForKey = ServiceMemcachedKeyManageConst.BasicProduct,
                 ParamsKeys = new object[]
                 {
                     request.data.ProId
@@ -225,7 +225,7 @@ namespace CPSS.Service.ViewService.Basic
                         status = product.status
                     };
                     this.mProductDataAccess.Update(data, tran);
-                    MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicProduct);
+                    MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicProduct);
 
                     //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
                     //this.SaveMongoDbData("编辑商品资料", request, respond, this.GetType());
@@ -249,7 +249,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mProductDataAccess.Delete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteProductViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicProduct);
+            MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicProduct);
 
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("删除删除资料", request, respond, this.GetType());
@@ -267,7 +267,7 @@ namespace CPSS.Service.ViewService.Basic
             var dataResult = this.mProductDataAccess.ReDelete(parameter);
             if (dataResult <= 0) return respond;
             respond = new RespondWebViewData<RespondDeleteProductViewModel>(WebViewErrorCode.Success);
-            MemcacheHelper.RemoveBy(ServiceClassNameConst.BasicProduct);
+            MemcacheHelper.RemoveBy(ServiceMemcachedKeyManageConst.BasicProduct);
 
             //由于电脑配置不上mongodb固暂时先屏蔽掉此段mongodb的数据操作
             //this.SaveMongoDbData("删除商品资料", request, respond, this.GetType());

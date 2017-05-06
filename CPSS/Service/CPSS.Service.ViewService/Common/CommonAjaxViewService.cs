@@ -52,7 +52,7 @@ namespace CPSS.Service.ViewService.Common
                 },
                 #endregion
                 
-                ManageCacheKeyForKey = ServiceClassNameConst.CommonAjax,
+                ManageCacheKeyForKey = ServiceMemcachedKeyManageConst.CommonAjax,
                 ExpiresAt = DateTime.Now.AddMinutes(30),
                 ParamsKeys = new object[]
                 {
@@ -89,7 +89,7 @@ namespace CPSS.Service.ViewService.Common
                 },
                 #endregion
 
-                ManageCacheKeyForKey = ServiceClassNameConst.CommonAjax,
+                ManageCacheKeyForKey = ServiceMemcachedKeyManageConst.CommonAjax,
                 ExpiresAt = DateTime.Now.AddMinutes(30),
                 ParamsKeys = new object[]
                 {
