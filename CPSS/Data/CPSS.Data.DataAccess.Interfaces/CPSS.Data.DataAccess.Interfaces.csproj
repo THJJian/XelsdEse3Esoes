@@ -111,6 +111,7 @@
     <Compile Include="MongoDB\Parameters\MongoDbDemoParameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemManage\ParameterConfig\ISystemParameterConfigDataAccess.cs" />
+    <Compile Include="SystemManage\ParameterConfig\Parameters\SystemParameterConfigParameter.cs" />
     <Compile Include="SystemManage\UserManage\IUserDataAccess.cs" />
     <Compile Include="User\ICompanyInfoDataAccess.cs" />
     <Compile Include="User\ISiginUserDataAccess.cs" />
