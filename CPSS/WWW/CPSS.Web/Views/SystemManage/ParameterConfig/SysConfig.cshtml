@@ -1,9 +1,9 @@
 ﻿@using CPSS.Common.Core.SysConfig
-@model  CPSS.Common.Core.RespondWebViewData<List<CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Respond.RespondSystemParameterConfigViewModel>>
+@model  CPSS.Common.Core.RespondWebViewData<List<CPSS.Service.ViewService.ViewModels.SystemManage.Respond.RespondSystemParameterConfigViewModel>>
 @{
     ViewBag.Title = "SysConfig";
     this.WorkContext.Resource
-        .AddPageScripts("sysconfig/systemparameterconfig");
+        .AddPageScripts("systemmanage/parameterconfig/systemparameterconfig");
     var models = Model.rows.ToDictionary(model => model.ParameterConfigName, model => model.ParameterConfigValue);
 
     var qtyScale = models[SystemParameterConfigConst.QtyScale];
