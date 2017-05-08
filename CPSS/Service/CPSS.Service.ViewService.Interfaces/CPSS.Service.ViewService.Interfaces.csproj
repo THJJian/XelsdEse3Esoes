@@ -54,7 +54,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SystemManage\ParameterConfig\ISystemParameterConfigViewService.cs" />
     <Compile Include="SystemManage\UserManage\IUserManageViewService.cs" />
-    <Compile Include="SystemParameterConfig\ISystemParameterConfigViewService.cs" />
     <Compile Include="User\ICompanyInfoViewService.cs" />
     <Compile Include="User\ISigninUserViewService.cs" />
   </ItemGroup>
