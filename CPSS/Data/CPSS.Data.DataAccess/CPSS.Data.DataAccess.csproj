@@ -83,6 +83,7 @@
     <Compile Include="subcompanyDataAccess.generated.cs">
       <DependentUpon>DataAccessTemplate.tt</DependentUpon>
     </Compile>
+    <Compile Include="SystemManage\UserDataAccess.cs" />
     <Compile Include="SystemParameterConfig\SystemParameterConfigDataAccess.cs" />
     <Compile Include="unitDataAccess.generated.cs">
       <DependentUpon>DataAccessTemplate.tt</DependentUpon>

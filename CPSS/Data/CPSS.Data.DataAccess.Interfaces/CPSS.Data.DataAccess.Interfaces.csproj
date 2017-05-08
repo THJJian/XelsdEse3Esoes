@@ -110,6 +110,7 @@
     <Compile Include="SystemManage\ParameterConfig\ISystemParameterConfigDataAccess.cs" />
     <Compile Include="SystemManage\ParameterConfig\Parameters\SystemParameterConfigParameter.cs" />
     <Compile Include="SystemManage\UserManage\IUserDataAccess.cs" />
+    <Compile Include="SystemManage\UserManage\Parameters\QueryUserParameter.cs" />
     <Compile Include="User\ICompanyInfoDataAccess.cs" />
     <Compile Include="User\ISiginUserDataAccess.cs" />
     <Compile Include="User\Parameters\CompanyInfoParameter.cs" />

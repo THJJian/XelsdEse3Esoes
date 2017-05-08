@@ -499,6 +499,8 @@
     <Content Include="Scripts\controlshelper.js" />
     <Content Include="Scripts\printer.js" />
     <Content Include="Scripts\SysConfig\SystemParameterConfig.js" />
+    <Content Include="Scripts\SystemManage\ParameterConfig\SystemParameterConfig.js" />
+    <Content Include="Scripts\SystemManage\Users\UserManageList.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
