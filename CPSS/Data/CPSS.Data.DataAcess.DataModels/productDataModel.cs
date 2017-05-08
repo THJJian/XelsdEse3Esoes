@@ -29,16 +29,16 @@ namespace CPSS.Data.DataAcess.DataModels
         public string trademark { get; set; }
         public string makearea { get; set; }
         public string barcode { get; set; }
-        public Nullable<decimal> price { get; set; }
-        public Nullable<decimal> taxrate { get; set; }
+        public decimal price { get; set; }
+        public decimal taxrate { get; set; }
         public short unitid { get; set; }
-        public Nullable<short> validmonth { get; set; }
-        public Nullable<short> validday { get; set; }
-        public Nullable<short> status { get; set; }
-        public Nullable<short> costmethod { get; set; }
+        public short validmonth { get; set; }
+        public short validday { get; set; }
+        public short status { get; set; }
+        public short costmethod { get; set; }
         public int snmanage { get; set; }
         public short snlength { get; set; }
-        public Nullable<short> deleted { get; set; }
+        public short deleted { get; set; }
         public int sort { get; set; }
         public string comment { get; set; }
     }

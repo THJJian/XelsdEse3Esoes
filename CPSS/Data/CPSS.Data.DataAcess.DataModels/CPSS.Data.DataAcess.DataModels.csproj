@@ -91,9 +91,6 @@
     <Compile Include="unitDataModel.cs">
       <DependentUpon>CPSSDataEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="userDataModel.cs">
-      <DependentUpon>CPSSDataEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="User\CompanyInfoDataModel.cs" />
     <Compile Include="User\OnlineSigninUserDataModel.cs" />
     <Compile Include="User\SigninUserDataModel.cs" />

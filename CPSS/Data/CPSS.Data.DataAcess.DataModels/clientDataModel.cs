@@ -28,11 +28,11 @@ namespace CPSS.Data.DataAcess.DataModels
         public string linkman { get; set; }
         public string linktel { get; set; }
         public string linkaddress { get; set; }
-        public Nullable<decimal> credits { get; set; }
-        public Nullable<short> pricemode { get; set; }
+        public decimal credits { get; set; }
+        public short pricemode { get; set; }
         public string comment { get; set; }
-        public Nullable<short> status { get; set; }
-        public Nullable<short> deleted { get; set; }
-        public Nullable<int> sort { get; set; }
+        public short status { get; set; }
+        public short deleted { get; set; }
+        public int sort { get; set; }
     }
 }

@@ -150,23 +150,6 @@
           <Property Name="deleted" Type="smallint" />
           <Property Name="sort" Type="int" />
         </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="userid" />
-          </Key>
-          <Property Name="userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="comid" Type="int" Nullable="false" />
-          <Property Name="empid" Type="int" />
-          <Property Name="username" Type="varchar" MaxLength="26" Nullable="false" />
-          <Property Name="usepwd" Type="varchar" MaxLength="100" />
-          <Property Name="prefix" Type="varchar" MaxLength="4" />
-          <Property Name="manager" Type="smallint" Nullable="false" />
-          <Property Name="status" Type="smallint" Nullable="false" />
-          <Property Name="deleted" Type="smallint" />
-          <Property Name="synchron" Type="smallint" Nullable="false" />
-          <Property Name="ctime" Type="datetime" Nullable="false" />
-          <Property Name="comment" Type="varchar" MaxLength="256" />
-        </EntityType>
         <EntityContainer Name="CPSSDataDataAccessDataModelsStoreContainer">
           <EntitySet Name="client" EntityType="Self.client" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="department" EntityType="Self.department" Schema="dbo" store:Type="Tables" />
@@ -175,7 +158,6 @@
           <EntitySet Name="storage" EntityType="Self.storage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="subcompany" EntityType="Self.subcompany" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="unit" EntityType="Self.unit" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -189,7 +171,6 @@
           <EntitySet Name="storage" EntityType="CPSS.Data.DataAccess.DataModels.storage" />
           <EntitySet Name="subcompany" EntityType="CPSS.Data.DataAccess.DataModels.subcompany" />
           <EntitySet Name="unit" EntityType="CPSS.Data.DataAccess.DataModels.unit" />
-          <EntitySet Name="user" EntityType="CPSS.Data.DataAccess.DataModels.user" />
         </EntityContainer>
         <EntityType Name="client">
           <Key>
@@ -335,23 +316,6 @@
           <Property Name="status" Type="Int16" Nullable="false" />
           <Property Name="deleted" Type="Int16" />
           <Property Name="sort" Type="Int32" />
-        </EntityType>
-        <EntityType Name="user">
-          <Key>
-            <PropertyRef Name="userid" />
-          </Key>
-          <Property Name="userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="comid" Type="Int32" Nullable="false" />
-          <Property Name="empid" Type="Int32" />
-          <Property Name="username" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="false" />
-          <Property Name="usepwd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="prefix" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
-          <Property Name="manager" Type="Int16" Nullable="false" />
-          <Property Name="status" Type="Int16" Nullable="false" />
-          <Property Name="deleted" Type="Int16" />
-          <Property Name="synchron" Type="Int16" Nullable="false" />
-          <Property Name="ctime" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="comment" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -508,24 +472,6 @@
                 <ScalarProperty Name="status" ColumnName="status" />
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="unitid" ColumnName="unitid" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="user">
-            <EntityTypeMapping TypeName="CPSS.Data.DataAccess.DataModels.user">
-              <MappingFragment StoreEntitySet="user">
-                <ScalarProperty Name="comment" ColumnName="comment" />
-                <ScalarProperty Name="ctime" ColumnName="ctime" />
-                <ScalarProperty Name="synchron" ColumnName="synchron" />
-                <ScalarProperty Name="deleted" ColumnName="deleted" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="manager" ColumnName="manager" />
-                <ScalarProperty Name="prefix" ColumnName="prefix" />
-                <ScalarProperty Name="usepwd" ColumnName="usepwd" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="empid" ColumnName="empid" />
-                <ScalarProperty Name="comid" ColumnName="comid" />
-                <ScalarProperty Name="userid" ColumnName="userid" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

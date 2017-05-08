@@ -24,7 +24,7 @@ namespace CPSS.Data.DataAcess.DataModels
         public string PinYin { get; set; }
         public string alias { get; set; }
         public short status { get; set; }
-        public Nullable<short> deleted { get; set; }
+        public short deleted { get; set; }
         public string comment { get; set; }
         public int sort { get; set; }
     }

@@ -23,14 +23,14 @@ namespace CPSS.Data.DataAcess.DataModels
         public string pinyin { get; set; }
         public int depid { get; set; }
         public string depname { get; set; }
-        public Nullable<short> lowestdiscount { get; set; }
-        public Nullable<decimal> preinadvancetotal { get; set; }
-        public Nullable<decimal> prepayfeetotal { get; set; }
+        public short lowestdiscount { get; set; }
+        public decimal preinadvancetotal { get; set; }
+        public decimal prepayfeetotal { get; set; }
         public string mobile { get; set; }
         public string address { get; set; }
-        public Nullable<short> status { get; set; }
-        public Nullable<short> deleted { get; set; }
-        public Nullable<int> sort { get; set; }
+        public short status { get; set; }
+        public short deleted { get; set; }
+        public int sort { get; set; }
         public string comment { get; set; }
     }
 }

@@ -52,50 +52,6 @@ namespace CPSS.Data.DataAccess
         /// </summary>
         /// <param name="reader"></param>
         /// <param name="entity"></param>
-		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.productDataModel entity)
-		{
-			var mapper = new DataReaderToproductDataModelMapper();
-			mapper.Map(reader, entity);
-		}
-	
-		/// <summary>
-        /// 映射
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="entity"></param>
-		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.storageDataModel entity)
-		{
-			var mapper = new DataReaderTostorageDataModelMapper();
-			mapper.Map(reader, entity);
-		}
-	
-		/// <summary>
-        /// 映射
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="entity"></param>
-		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.subcompanyDataModel entity)
-		{
-			var mapper = new DataReaderTosubcompanyDataModelMapper();
-			mapper.Map(reader, entity);
-		}
-	
-		/// <summary>
-        /// 映射
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="entity"></param>
-		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.unitDataModel entity)
-		{
-			var mapper = new DataReaderTounitDataModelMapper();
-			mapper.Map(reader, entity);
-		}
-	
-		/// <summary>
-        /// 映射
-        /// </summary>
-        /// <param name="reader"></param>
-        /// <param name="entity"></param>
 		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel entity)
 		{
 			var mapper = new DataReaderToHeadButtonsDataModelMapper();
@@ -129,6 +85,39 @@ namespace CPSS.Data.DataAccess
         /// </summary>
         /// <param name="reader"></param>
         /// <param name="entity"></param>
+		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.productDataModel entity)
+		{
+			var mapper = new DataReaderToproductDataModelMapper();
+			mapper.Map(reader, entity);
+		}
+	
+		/// <summary>
+        /// 映射
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="entity"></param>
+		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.storageDataModel entity)
+		{
+			var mapper = new DataReaderTostorageDataModelMapper();
+			mapper.Map(reader, entity);
+		}
+	
+		/// <summary>
+        /// 映射
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="entity"></param>
+		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.subcompanyDataModel entity)
+		{
+			var mapper = new DataReaderTosubcompanyDataModelMapper();
+			mapper.Map(reader, entity);
+		}
+	
+		/// <summary>
+        /// 映射
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="entity"></param>
 		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel entity)
 		{
 			var mapper = new DataReaderToSystemParameterConfigDataModelMapper();
@@ -143,6 +132,17 @@ namespace CPSS.Data.DataAccess
 		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.SystemManage.UserManage.UserDataModel entity)
 		{
 			var mapper = new DataReaderToUserDataModelMapper();
+			mapper.Map(reader, entity);
+		}
+	
+		/// <summary>
+        /// 映射
+        /// </summary>
+        /// <param name="reader"></param>
+        /// <param name="entity"></param>
+		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.unitDataModel entity)
+		{
+			var mapper = new DataReaderTounitDataModelMapper();
 			mapper.Map(reader, entity);
 		}
 	
@@ -460,6 +460,273 @@ namespace CPSS.Data.DataAccess
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
+		public static CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel ExecuteReadSqlToHeadButtonsDataModel(this DataAccessBase dataAccessBase, bool isProc = false)
+        {			
+            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
+			{
+				if(reader.Read())
+				{
+					var result = new CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel();
+					DataReaderMapHelper.Map(reader, result);
+					reader.Close();
+					dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+					return result;
+				}
+                dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+			}
+			return null;
+        }
+
+		/// <summary>
+		/// 执行sql转换到单个实体
+		/// </summary>
+		public static CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel ExecuteReadSqlToHeadButtonsDataModel(this DataAccessBase dataAccessBase,IDbTransaction trans, bool isProc = false)
+        {			
+            var reader = dataAccessBase.QueryGetDataReader(trans,isProc);
+			CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel result = null;
+			if(reader.Read())
+			{
+				result = new CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel();
+				DataReaderMapHelper.Map(reader, result);
+			}
+			reader.Close();
+			dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+			return result;
+        }
+		
+		/// <summary>
+		/// 执行sql转换到实体列表
+		/// </summary>
+		public static List<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel> ExecuteReadSqlToHeadButtonsDataModelList(this DataAccessBase dataAccessBase, bool isProc = false)
+        {			
+			var result = new  List<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel>();
+            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
+			{
+				while(reader.Read())
+				{
+					var entity = new CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel();
+					DataReaderMapHelper.Map(reader, entity);
+					result.Add(entity);
+				}
+				reader.Close();
+				dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+			}
+			return result;
+        }
+		
+        /// <summary>
+        ///     获取分页数据
+        /// </summary>
+        /// <param name="dataAccessBase"></param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">页记录数</param>
+        /// <param name="primaryKey">主键</param>
+        /// <param name="pageSort">排序</param>
+        /// <param name="isReturnTotalCount">是否返回总记录数</param>
+        /// <returns></returns>
+		public static PageData<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel> ExecuteReadSqlToHeadButtonsDataModelPageData(this DataAccessBase dataAccessBase, string primaryKey, int pageIndex = 1, int pageSize = 30, string pageSort = "", bool isReturnTotalCount = true)
+		{			
+			var result = new  PageData<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel>();
+			using(var reader = dataAccessBase.GetPagingList(primaryKey, pageIndex, pageSize, pageSort, isReturnTotalCount))
+			{
+				var listData = new List<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel>();
+				while(reader.Read())
+				{
+					var entity = new CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel();
+					DataReaderMapHelper.Map(reader, entity);
+					listData.Add(entity);
+				}
+				result.Datas = listData;
+				result.PageIndex = pageIndex;
+				result.PageSize = pageSize;
+				if (!isReturnTotalCount) return result;
+				reader.NextResult();
+				if (reader.Read()) result.DataCount = (int) reader[0];
+			}
+			return result;
+		}
+
+		/// <summary>
+		/// 执行sql转换到单个实体
+		/// </summary>
+		public static CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel ExecuteReadSqlToLeftNavMenuDataModel(this DataAccessBase dataAccessBase, bool isProc = false)
+        {			
+            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
+			{
+				if(reader.Read())
+				{
+					var result = new CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel();
+					DataReaderMapHelper.Map(reader, result);
+					reader.Close();
+					dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+					return result;
+				}
+                dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+			}
+			return null;
+        }
+
+		/// <summary>
+		/// 执行sql转换到单个实体
+		/// </summary>
+		public static CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel ExecuteReadSqlToLeftNavMenuDataModel(this DataAccessBase dataAccessBase,IDbTransaction trans, bool isProc = false)
+        {			
+            var reader = dataAccessBase.QueryGetDataReader(trans,isProc);
+			CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel result = null;
+			if(reader.Read())
+			{
+				result = new CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel();
+				DataReaderMapHelper.Map(reader, result);
+			}
+			reader.Close();
+			dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+			return result;
+        }
+		
+		/// <summary>
+		/// 执行sql转换到实体列表
+		/// </summary>
+		public static List<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel> ExecuteReadSqlToLeftNavMenuDataModelList(this DataAccessBase dataAccessBase, bool isProc = false)
+        {			
+			var result = new  List<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel>();
+            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
+			{
+				while(reader.Read())
+				{
+					var entity = new CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel();
+					DataReaderMapHelper.Map(reader, entity);
+					result.Add(entity);
+				}
+				reader.Close();
+				dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+			}
+			return result;
+        }
+		
+        /// <summary>
+        ///     获取分页数据
+        /// </summary>
+        /// <param name="dataAccessBase"></param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">页记录数</param>
+        /// <param name="primaryKey">主键</param>
+        /// <param name="pageSort">排序</param>
+        /// <param name="isReturnTotalCount">是否返回总记录数</param>
+        /// <returns></returns>
+		public static PageData<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel> ExecuteReadSqlToLeftNavMenuDataModelPageData(this DataAccessBase dataAccessBase, string primaryKey, int pageIndex = 1, int pageSize = 30, string pageSort = "", bool isReturnTotalCount = true)
+		{			
+			var result = new  PageData<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel>();
+			using(var reader = dataAccessBase.GetPagingList(primaryKey, pageIndex, pageSize, pageSort, isReturnTotalCount))
+			{
+				var listData = new List<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel>();
+				while(reader.Read())
+				{
+					var entity = new CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel();
+					DataReaderMapHelper.Map(reader, entity);
+					listData.Add(entity);
+				}
+				result.Datas = listData;
+				result.PageIndex = pageIndex;
+				result.PageSize = pageSize;
+				if (!isReturnTotalCount) return result;
+				reader.NextResult();
+				if (reader.Read()) result.DataCount = (int) reader[0];
+			}
+			return result;
+		}
+
+		/// <summary>
+		/// 执行sql转换到单个实体
+		/// </summary>
+		public static CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel ExecuteReadSqlToMenuRightCheckDataModel(this DataAccessBase dataAccessBase, bool isProc = false)
+        {			
+            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
+			{
+				if(reader.Read())
+				{
+					var result = new CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel();
+					DataReaderMapHelper.Map(reader, result);
+					reader.Close();
+					dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+					return result;
+				}
+                dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+			}
+			return null;
+        }
+
+		/// <summary>
+		/// 执行sql转换到单个实体
+		/// </summary>
+		public static CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel ExecuteReadSqlToMenuRightCheckDataModel(this DataAccessBase dataAccessBase,IDbTransaction trans, bool isProc = false)
+        {			
+            var reader = dataAccessBase.QueryGetDataReader(trans,isProc);
+			CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel result = null;
+			if(reader.Read())
+			{
+				result = new CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel();
+				DataReaderMapHelper.Map(reader, result);
+			}
+			reader.Close();
+			dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+			return result;
+        }
+		
+		/// <summary>
+		/// 执行sql转换到实体列表
+		/// </summary>
+		public static List<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel> ExecuteReadSqlToMenuRightCheckDataModelList(this DataAccessBase dataAccessBase, bool isProc = false)
+        {			
+			var result = new  List<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel>();
+            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
+			{
+				while(reader.Read())
+				{
+					var entity = new CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel();
+					DataReaderMapHelper.Map(reader, entity);
+					result.Add(entity);
+				}
+				reader.Close();
+				dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+			}
+			return result;
+        }
+		
+        /// <summary>
+        ///     获取分页数据
+        /// </summary>
+        /// <param name="dataAccessBase"></param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">页记录数</param>
+        /// <param name="primaryKey">主键</param>
+        /// <param name="pageSort">排序</param>
+        /// <param name="isReturnTotalCount">是否返回总记录数</param>
+        /// <returns></returns>
+		public static PageData<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel> ExecuteReadSqlToMenuRightCheckDataModelPageData(this DataAccessBase dataAccessBase, string primaryKey, int pageIndex = 1, int pageSize = 30, string pageSort = "", bool isReturnTotalCount = true)
+		{			
+			var result = new  PageData<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel>();
+			using(var reader = dataAccessBase.GetPagingList(primaryKey, pageIndex, pageSize, pageSort, isReturnTotalCount))
+			{
+				var listData = new List<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel>();
+				while(reader.Read())
+				{
+					var entity = new CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel();
+					DataReaderMapHelper.Map(reader, entity);
+					listData.Add(entity);
+				}
+				result.Datas = listData;
+				result.PageIndex = pageIndex;
+				result.PageSize = pageSize;
+				if (!isReturnTotalCount) return result;
+				reader.NextResult();
+				if (reader.Read()) result.DataCount = (int) reader[0];
+			}
+			return result;
+		}
+
+		/// <summary>
+		/// 执行sql转换到单个实体
+		/// </summary>
 		public static CPSS.Data.DataAcess.DataModels.productDataModel ExecuteReadSqlToproductDataModel(this DataAccessBase dataAccessBase, bool isProc = false)
         {			
             using(var reader = dataAccessBase.QueryGetDataReader(isProc))
@@ -727,361 +994,6 @@ namespace CPSS.Data.DataAccess
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
-		public static CPSS.Data.DataAcess.DataModels.unitDataModel ExecuteReadSqlTounitDataModel(this DataAccessBase dataAccessBase, bool isProc = false)
-        {			
-            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
-			{
-				if(reader.Read())
-				{
-					var result = new CPSS.Data.DataAcess.DataModels.unitDataModel();
-					DataReaderMapHelper.Map(reader, result);
-					reader.Close();
-					dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-					return result;
-				}
-                dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			}
-			return null;
-        }
-
-		/// <summary>
-		/// 执行sql转换到单个实体
-		/// </summary>
-		public static CPSS.Data.DataAcess.DataModels.unitDataModel ExecuteReadSqlTounitDataModel(this DataAccessBase dataAccessBase,IDbTransaction trans, bool isProc = false)
-        {			
-            var reader = dataAccessBase.QueryGetDataReader(trans,isProc);
-			CPSS.Data.DataAcess.DataModels.unitDataModel result = null;
-			if(reader.Read())
-			{
-				result = new CPSS.Data.DataAcess.DataModels.unitDataModel();
-				DataReaderMapHelper.Map(reader, result);
-			}
-			reader.Close();
-			dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			return result;
-        }
-		
-		/// <summary>
-		/// 执行sql转换到实体列表
-		/// </summary>
-		public static List<CPSS.Data.DataAcess.DataModels.unitDataModel> ExecuteReadSqlTounitDataModelList(this DataAccessBase dataAccessBase, bool isProc = false)
-        {			
-			var result = new  List<CPSS.Data.DataAcess.DataModels.unitDataModel>();
-            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
-			{
-				while(reader.Read())
-				{
-					var entity = new CPSS.Data.DataAcess.DataModels.unitDataModel();
-					DataReaderMapHelper.Map(reader, entity);
-					result.Add(entity);
-				}
-				reader.Close();
-				dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			}
-			return result;
-        }
-		
-        /// <summary>
-        ///     获取分页数据
-        /// </summary>
-        /// <param name="dataAccessBase"></param>
-        /// <param name="pageIndex">当前页码</param>
-        /// <param name="pageSize">页记录数</param>
-        /// <param name="primaryKey">主键</param>
-        /// <param name="pageSort">排序</param>
-        /// <param name="isReturnTotalCount">是否返回总记录数</param>
-        /// <returns></returns>
-		public static PageData<CPSS.Data.DataAcess.DataModels.unitDataModel> ExecuteReadSqlTounitDataModelPageData(this DataAccessBase dataAccessBase, string primaryKey, int pageIndex = 1, int pageSize = 30, string pageSort = "", bool isReturnTotalCount = true)
-		{			
-			var result = new  PageData<CPSS.Data.DataAcess.DataModels.unitDataModel>();
-			using(var reader = dataAccessBase.GetPagingList(primaryKey, pageIndex, pageSize, pageSort, isReturnTotalCount))
-			{
-				var listData = new List<CPSS.Data.DataAcess.DataModels.unitDataModel>();
-				while(reader.Read())
-				{
-					var entity = new CPSS.Data.DataAcess.DataModels.unitDataModel();
-					DataReaderMapHelper.Map(reader, entity);
-					listData.Add(entity);
-				}
-				result.Datas = listData;
-				result.PageIndex = pageIndex;
-				result.PageSize = pageSize;
-				if (!isReturnTotalCount) return result;
-				reader.NextResult();
-				if (reader.Read()) result.DataCount = (int) reader[0];
-			}
-			return result;
-		}
-
-		/// <summary>
-		/// 执行sql转换到单个实体
-		/// </summary>
-		public static CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel ExecuteReadSqlToHeadButtonsDataModel(this DataAccessBase dataAccessBase, bool isProc = false)
-        {			
-            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
-			{
-				if(reader.Read())
-				{
-					var result = new CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel();
-					DataReaderMapHelper.Map(reader, result);
-					reader.Close();
-					dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-					return result;
-				}
-                dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			}
-			return null;
-        }
-
-		/// <summary>
-		/// 执行sql转换到单个实体
-		/// </summary>
-		public static CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel ExecuteReadSqlToHeadButtonsDataModel(this DataAccessBase dataAccessBase,IDbTransaction trans, bool isProc = false)
-        {			
-            var reader = dataAccessBase.QueryGetDataReader(trans,isProc);
-			CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel result = null;
-			if(reader.Read())
-			{
-				result = new CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel();
-				DataReaderMapHelper.Map(reader, result);
-			}
-			reader.Close();
-			dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			return result;
-        }
-		
-		/// <summary>
-		/// 执行sql转换到实体列表
-		/// </summary>
-		public static List<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel> ExecuteReadSqlToHeadButtonsDataModelList(this DataAccessBase dataAccessBase, bool isProc = false)
-        {			
-			var result = new  List<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel>();
-            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
-			{
-				while(reader.Read())
-				{
-					var entity = new CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel();
-					DataReaderMapHelper.Map(reader, entity);
-					result.Add(entity);
-				}
-				reader.Close();
-				dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			}
-			return result;
-        }
-		
-        /// <summary>
-        ///     获取分页数据
-        /// </summary>
-        /// <param name="dataAccessBase"></param>
-        /// <param name="pageIndex">当前页码</param>
-        /// <param name="pageSize">页记录数</param>
-        /// <param name="primaryKey">主键</param>
-        /// <param name="pageSort">排序</param>
-        /// <param name="isReturnTotalCount">是否返回总记录数</param>
-        /// <returns></returns>
-		public static PageData<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel> ExecuteReadSqlToHeadButtonsDataModelPageData(this DataAccessBase dataAccessBase, string primaryKey, int pageIndex = 1, int pageSize = 30, string pageSort = "", bool isReturnTotalCount = true)
-		{			
-			var result = new  PageData<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel>();
-			using(var reader = dataAccessBase.GetPagingList(primaryKey, pageIndex, pageSize, pageSort, isReturnTotalCount))
-			{
-				var listData = new List<CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel>();
-				while(reader.Read())
-				{
-					var entity = new CPSS.Data.DataAcess.DataModels.HeadButtons.HeadButtonsDataModel();
-					DataReaderMapHelper.Map(reader, entity);
-					listData.Add(entity);
-				}
-				result.Datas = listData;
-				result.PageIndex = pageIndex;
-				result.PageSize = pageSize;
-				if (!isReturnTotalCount) return result;
-				reader.NextResult();
-				if (reader.Read()) result.DataCount = (int) reader[0];
-			}
-			return result;
-		}
-
-		/// <summary>
-		/// 执行sql转换到单个实体
-		/// </summary>
-		public static CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel ExecuteReadSqlToLeftNavMenuDataModel(this DataAccessBase dataAccessBase, bool isProc = false)
-        {			
-            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
-			{
-				if(reader.Read())
-				{
-					var result = new CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel();
-					DataReaderMapHelper.Map(reader, result);
-					reader.Close();
-					dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-					return result;
-				}
-                dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			}
-			return null;
-        }
-
-		/// <summary>
-		/// 执行sql转换到单个实体
-		/// </summary>
-		public static CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel ExecuteReadSqlToLeftNavMenuDataModel(this DataAccessBase dataAccessBase,IDbTransaction trans, bool isProc = false)
-        {			
-            var reader = dataAccessBase.QueryGetDataReader(trans,isProc);
-			CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel result = null;
-			if(reader.Read())
-			{
-				result = new CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel();
-				DataReaderMapHelper.Map(reader, result);
-			}
-			reader.Close();
-			dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			return result;
-        }
-		
-		/// <summary>
-		/// 执行sql转换到实体列表
-		/// </summary>
-		public static List<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel> ExecuteReadSqlToLeftNavMenuDataModelList(this DataAccessBase dataAccessBase, bool isProc = false)
-        {			
-			var result = new  List<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel>();
-            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
-			{
-				while(reader.Read())
-				{
-					var entity = new CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel();
-					DataReaderMapHelper.Map(reader, entity);
-					result.Add(entity);
-				}
-				reader.Close();
-				dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			}
-			return result;
-        }
-		
-        /// <summary>
-        ///     获取分页数据
-        /// </summary>
-        /// <param name="dataAccessBase"></param>
-        /// <param name="pageIndex">当前页码</param>
-        /// <param name="pageSize">页记录数</param>
-        /// <param name="primaryKey">主键</param>
-        /// <param name="pageSort">排序</param>
-        /// <param name="isReturnTotalCount">是否返回总记录数</param>
-        /// <returns></returns>
-		public static PageData<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel> ExecuteReadSqlToLeftNavMenuDataModelPageData(this DataAccessBase dataAccessBase, string primaryKey, int pageIndex = 1, int pageSize = 30, string pageSort = "", bool isReturnTotalCount = true)
-		{			
-			var result = new  PageData<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel>();
-			using(var reader = dataAccessBase.GetPagingList(primaryKey, pageIndex, pageSize, pageSort, isReturnTotalCount))
-			{
-				var listData = new List<CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel>();
-				while(reader.Read())
-				{
-					var entity = new CPSS.Data.DataAcess.DataModels.MainPage.LeftNavMenuDataModel();
-					DataReaderMapHelper.Map(reader, entity);
-					listData.Add(entity);
-				}
-				result.Datas = listData;
-				result.PageIndex = pageIndex;
-				result.PageSize = pageSize;
-				if (!isReturnTotalCount) return result;
-				reader.NextResult();
-				if (reader.Read()) result.DataCount = (int) reader[0];
-			}
-			return result;
-		}
-
-		/// <summary>
-		/// 执行sql转换到单个实体
-		/// </summary>
-		public static CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel ExecuteReadSqlToMenuRightCheckDataModel(this DataAccessBase dataAccessBase, bool isProc = false)
-        {			
-            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
-			{
-				if(reader.Read())
-				{
-					var result = new CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel();
-					DataReaderMapHelper.Map(reader, result);
-					reader.Close();
-					dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-					return result;
-				}
-                dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			}
-			return null;
-        }
-
-		/// <summary>
-		/// 执行sql转换到单个实体
-		/// </summary>
-		public static CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel ExecuteReadSqlToMenuRightCheckDataModel(this DataAccessBase dataAccessBase,IDbTransaction trans, bool isProc = false)
-        {			
-            var reader = dataAccessBase.QueryGetDataReader(trans,isProc);
-			CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel result = null;
-			if(reader.Read())
-			{
-				result = new CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel();
-				DataReaderMapHelper.Map(reader, result);
-			}
-			reader.Close();
-			dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			return result;
-        }
-		
-		/// <summary>
-		/// 执行sql转换到实体列表
-		/// </summary>
-		public static List<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel> ExecuteReadSqlToMenuRightCheckDataModelList(this DataAccessBase dataAccessBase, bool isProc = false)
-        {			
-			var result = new  List<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel>();
-            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
-			{
-				while(reader.Read())
-				{
-					var entity = new CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel();
-					DataReaderMapHelper.Map(reader, entity);
-					result.Add(entity);
-				}
-				reader.Close();
-				dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
-			}
-			return result;
-        }
-		
-        /// <summary>
-        ///     获取分页数据
-        /// </summary>
-        /// <param name="dataAccessBase"></param>
-        /// <param name="pageIndex">当前页码</param>
-        /// <param name="pageSize">页记录数</param>
-        /// <param name="primaryKey">主键</param>
-        /// <param name="pageSort">排序</param>
-        /// <param name="isReturnTotalCount">是否返回总记录数</param>
-        /// <returns></returns>
-		public static PageData<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel> ExecuteReadSqlToMenuRightCheckDataModelPageData(this DataAccessBase dataAccessBase, string primaryKey, int pageIndex = 1, int pageSize = 30, string pageSort = "", bool isReturnTotalCount = true)
-		{			
-			var result = new  PageData<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel>();
-			using(var reader = dataAccessBase.GetPagingList(primaryKey, pageIndex, pageSize, pageSort, isReturnTotalCount))
-			{
-				var listData = new List<CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel>();
-				while(reader.Read())
-				{
-					var entity = new CPSS.Data.DataAcess.DataModels.MenuRight.MenuRightCheckDataModel();
-					DataReaderMapHelper.Map(reader, entity);
-					listData.Add(entity);
-				}
-				result.Datas = listData;
-				result.PageIndex = pageIndex;
-				result.PageSize = pageSize;
-				if (!isReturnTotalCount) return result;
-				reader.NextResult();
-				if (reader.Read()) result.DataCount = (int) reader[0];
-			}
-			return result;
-		}
-		/// <summary>
-		/// 执行sql转换到单个实体
-		/// </summary>
 		public static CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel ExecuteReadSqlToSystemParameterConfigDataModel(this DataAccessBase dataAccessBase, bool isProc = false)
         {			
             using(var reader = dataAccessBase.QueryGetDataReader(isProc))
@@ -1244,6 +1156,95 @@ namespace CPSS.Data.DataAccess
 				while(reader.Read())
 				{
 					var entity = new CPSS.Data.DataAcess.DataModels.SystemManage.UserManage.UserDataModel();
+					DataReaderMapHelper.Map(reader, entity);
+					listData.Add(entity);
+				}
+				result.Datas = listData;
+				result.PageIndex = pageIndex;
+				result.PageSize = pageSize;
+				if (!isReturnTotalCount) return result;
+				reader.NextResult();
+				if (reader.Read()) result.DataCount = (int) reader[0];
+			}
+			return result;
+		}
+
+		/// <summary>
+		/// 执行sql转换到单个实体
+		/// </summary>
+		public static CPSS.Data.DataAcess.DataModels.unitDataModel ExecuteReadSqlTounitDataModel(this DataAccessBase dataAccessBase, bool isProc = false)
+        {			
+            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
+			{
+				if(reader.Read())
+				{
+					var result = new CPSS.Data.DataAcess.DataModels.unitDataModel();
+					DataReaderMapHelper.Map(reader, result);
+					reader.Close();
+					dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+					return result;
+				}
+                dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+			}
+			return null;
+        }
+
+		/// <summary>
+		/// 执行sql转换到单个实体
+		/// </summary>
+		public static CPSS.Data.DataAcess.DataModels.unitDataModel ExecuteReadSqlTounitDataModel(this DataAccessBase dataAccessBase,IDbTransaction trans, bool isProc = false)
+        {			
+            var reader = dataAccessBase.QueryGetDataReader(trans,isProc);
+			CPSS.Data.DataAcess.DataModels.unitDataModel result = null;
+			if(reader.Read())
+			{
+				result = new CPSS.Data.DataAcess.DataModels.unitDataModel();
+				DataReaderMapHelper.Map(reader, result);
+			}
+			reader.Close();
+			dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+			return result;
+        }
+		
+		/// <summary>
+		/// 执行sql转换到实体列表
+		/// </summary>
+		public static List<CPSS.Data.DataAcess.DataModels.unitDataModel> ExecuteReadSqlTounitDataModelList(this DataAccessBase dataAccessBase, bool isProc = false)
+        {			
+			var result = new  List<CPSS.Data.DataAcess.DataModels.unitDataModel>();
+            using(var reader = dataAccessBase.QueryGetDataReader(isProc))
+			{
+				while(reader.Read())
+				{
+					var entity = new CPSS.Data.DataAcess.DataModels.unitDataModel();
+					DataReaderMapHelper.Map(reader, entity);
+					result.Add(entity);
+				}
+				reader.Close();
+				dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
+			}
+			return result;
+        }
+		
+        /// <summary>
+        ///     获取分页数据
+        /// </summary>
+        /// <param name="dataAccessBase"></param>
+        /// <param name="pageIndex">当前页码</param>
+        /// <param name="pageSize">页记录数</param>
+        /// <param name="primaryKey">主键</param>
+        /// <param name="pageSort">排序</param>
+        /// <param name="isReturnTotalCount">是否返回总记录数</param>
+        /// <returns></returns>
+		public static PageData<CPSS.Data.DataAcess.DataModels.unitDataModel> ExecuteReadSqlTounitDataModelPageData(this DataAccessBase dataAccessBase, string primaryKey, int pageIndex = 1, int pageSize = 30, string pageSort = "", bool isReturnTotalCount = true)
+		{			
+			var result = new  PageData<CPSS.Data.DataAcess.DataModels.unitDataModel>();
+			using(var reader = dataAccessBase.GetPagingList(primaryKey, pageIndex, pageSize, pageSort, isReturnTotalCount))
+			{
+				var listData = new List<CPSS.Data.DataAcess.DataModels.unitDataModel>();
+				while(reader.Read())
+				{
+					var entity = new CPSS.Data.DataAcess.DataModels.unitDataModel();
 					DataReaderMapHelper.Map(reader, entity);
 					listData.Add(entity);
 				}

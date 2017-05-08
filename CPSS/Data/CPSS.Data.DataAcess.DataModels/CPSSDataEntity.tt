@@ -508,7 +508,7 @@ public class TypeMapper
             typeName = FixNamespaces(typeName);
 
             return clrType.IsValueType && isNullable == true ?
-                String.Format(CultureInfo.InvariantCulture, "Nullable<{0}>", typeName) :
+                String.Format(CultureInfo.InvariantCulture, "{0}", typeName) :
                 typeName;
         }
 

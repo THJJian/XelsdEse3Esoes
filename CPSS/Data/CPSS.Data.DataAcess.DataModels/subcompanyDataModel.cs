@@ -28,6 +28,6 @@ namespace CPSS.Data.DataAcess.DataModels
         public short status { get; set; }
         public string comment { get; set; }
         public int sort { get; set; }
-        public Nullable<short> deleted { get; set; }
+        public short deleted { get; set; }
     }
 }
