@@ -3,8 +3,8 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using CPSS.Common.Core.DataAccess.DataAccess;
-using CPSS.Data.DataAccess.Interfaces.SystemParameterConfig;
-using CPSS.Data.DataAccess.Interfaces.SystemParameterConfig.Parameters;
+using CPSS.Data.DataAccess.Interfaces.SystemManage;
+using CPSS.Data.DataAccess.Interfaces.SystemManage.Parameters;
 using CPSS.Data.DataAcess.DataModels.SystemParameterConfig;
 
 namespace CPSS.Data.DataAccess.SystemParameterConfig
