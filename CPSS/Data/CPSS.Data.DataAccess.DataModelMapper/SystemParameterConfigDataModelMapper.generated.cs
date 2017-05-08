@@ -22,7 +22,7 @@ namespace CPSS.Data.DataAccess
         /// </summary>
         /// <param name="dataReader"></param>
         /// <param name="entity"></param>
-		public void Map(IDataReader dataReader, CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel entity)
+		public void Map(IDataReader dataReader, CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel entity)
 	    {            
             entity.ParameterConfigName = (string)dataReader["ParameterConfigName"];
             entity.ParameterConfigValue = (string)dataReader["ParameterConfigValue"];
@@ -33,9 +33,9 @@ namespace CPSS.Data.DataAccess
         /// </summary>
         /// <param name="dataReader"></param>
         /// <returns></returns>
-	    public CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel Map(IDataReader dataReader)
+	    public CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel Map(IDataReader dataReader)
 	    {
-			var result = new CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel();
+			var result = new CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel();
             result.ParameterConfigName = (string)dataReader["ParameterConfigName"];
             result.ParameterConfigValue = (string)dataReader["ParameterConfigValue"];
 			return result;
@@ -48,7 +48,7 @@ namespace CPSS.Data.DataAccess
         /// <param name="entity"></param>
 		public void MapObject(IDataReader dataReader, object entity)
 	    {
-	        this.Map(dataReader, entity as CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel);
+	        this.Map(dataReader, entity as CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel);
 	    }
 
 		/// <summary>

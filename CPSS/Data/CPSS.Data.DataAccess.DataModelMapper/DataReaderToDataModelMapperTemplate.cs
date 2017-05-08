@@ -129,7 +129,7 @@ namespace CPSS.Data.DataAccess
         /// </summary>
         /// <param name="reader"></param>
         /// <param name="entity"></param>
-		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel entity)
+		public static void Map(IDataReader reader, CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel entity)
 		{
 			var mapper = new DataReaderToSystemParameterConfigDataModelMapper();
 			mapper.Map(reader, entity);
@@ -1083,13 +1083,13 @@ namespace CPSS.Data.DataAccess
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
-		public static CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel ExecuteReadSqlToSystemParameterConfigDataModel(this DataAccessBase dataAccessBase, bool isProc = false)
+		public static CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel ExecuteReadSqlToSystemParameterConfigDataModel(this DataAccessBase dataAccessBase, bool isProc = false)
         {			
             using(var reader = dataAccessBase.QueryGetDataReader(isProc))
 			{
 				if(reader.Read())
 				{
-					var result = new CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel();
+					var result = new CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel();
 					DataReaderMapHelper.Map(reader, result);
 					reader.Close();
 					dataAccessBase.AfterDataAccessHandler(dataAccessBase.DataParameter);
@@ -1103,13 +1103,13 @@ namespace CPSS.Data.DataAccess
 		/// <summary>
 		/// 执行sql转换到单个实体
 		/// </summary>
-		public static CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel ExecuteReadSqlToSystemParameterConfigDataModel(this DataAccessBase dataAccessBase,IDbTransaction trans, bool isProc = false)
+		public static CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel ExecuteReadSqlToSystemParameterConfigDataModel(this DataAccessBase dataAccessBase,IDbTransaction trans, bool isProc = false)
         {			
             var reader = dataAccessBase.QueryGetDataReader(trans,isProc);
-			CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel result = null;
+			CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel result = null;
 			if(reader.Read())
 			{
-				result = new CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel();
+				result = new CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel();
 				DataReaderMapHelper.Map(reader, result);
 			}
 			reader.Close();
@@ -1120,14 +1120,14 @@ namespace CPSS.Data.DataAccess
 		/// <summary>
 		/// 执行sql转换到实体列表
 		/// </summary>
-		public static List<CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel> ExecuteReadSqlToSystemParameterConfigDataModelList(this DataAccessBase dataAccessBase, bool isProc = false)
+		public static List<CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel> ExecuteReadSqlToSystemParameterConfigDataModelList(this DataAccessBase dataAccessBase, bool isProc = false)
         {			
-			var result = new  List<CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel>();
+			var result = new  List<CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel>();
             using(var reader = dataAccessBase.QueryGetDataReader(isProc))
 			{
 				while(reader.Read())
 				{
-					var entity = new CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel();
+					var entity = new CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel();
 					DataReaderMapHelper.Map(reader, entity);
 					result.Add(entity);
 				}
@@ -1147,15 +1147,15 @@ namespace CPSS.Data.DataAccess
         /// <param name="pageSort">排序</param>
         /// <param name="isReturnTotalCount">是否返回总记录数</param>
         /// <returns></returns>
-		public static PageData<CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel> ExecuteReadSqlToSystemParameterConfigDataModelPageData(this DataAccessBase dataAccessBase, string primaryKey, int pageIndex = 1, int pageSize = 30, string pageSort = "", bool isReturnTotalCount = true)
+		public static PageData<CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel> ExecuteReadSqlToSystemParameterConfigDataModelPageData(this DataAccessBase dataAccessBase, string primaryKey, int pageIndex = 1, int pageSize = 30, string pageSort = "", bool isReturnTotalCount = true)
 		{			
-			var result = new  PageData<CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel>();
+			var result = new  PageData<CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel>();
 			using(var reader = dataAccessBase.GetPagingList(primaryKey, pageIndex, pageSize, pageSort, isReturnTotalCount))
 			{
-				var listData = new List<CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel>();
+				var listData = new List<CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel>();
 				while(reader.Read())
 				{
-					var entity = new CPSS.Data.DataAcess.DataModels.SystemParameterConfig.SystemParameterConfigDataModel();
+					var entity = new CPSS.Data.DataAcess.DataModels.SystemManage.SystemParameterConfigDataModel();
 					DataReaderMapHelper.Map(reader, entity);
 					listData.Add(entity);
 				}

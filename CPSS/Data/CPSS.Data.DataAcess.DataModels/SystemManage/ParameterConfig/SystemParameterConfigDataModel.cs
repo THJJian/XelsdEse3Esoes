@@ -1,4 +1,4 @@
-﻿namespace CPSS.Data.DataAcess.DataModels.SystemParameterConfig
+﻿namespace CPSS.Data.DataAcess.DataModels.SystemManage
 {
     public class SystemParameterConfigDataModel
     {

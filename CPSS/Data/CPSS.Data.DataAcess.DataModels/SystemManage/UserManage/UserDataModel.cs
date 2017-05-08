@@ -1,4 +1,6 @@
-﻿namespace CPSS.Data.DataAcess.DataModels.SystemManage.UserManage
+﻿using System;
+
+namespace CPSS.Data.DataAcess.DataModels.SystemManage.UserManage
 {
     public class UserDataModel
     {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using CPSS.Data.DataAccess.Interfaces.SystemManage.Parameters;
-using CPSS.Data.DataAcess.DataModels.SystemParameterConfig;
+using CPSS.Data.DataAcess.DataModels.SystemManage;
 
 namespace CPSS.Data.DataAccess.Interfaces.SystemManage
 {
