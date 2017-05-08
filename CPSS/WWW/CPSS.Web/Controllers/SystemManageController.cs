@@ -4,6 +4,7 @@ using CPSS.Common.Core.Mvc;
 using CPSS.Common.Core.Mvc.Filters;
 using CPSS.Common.Core.Type.ConstDefined;
 using CPSS.Service.ViewService.Interfaces.SystemParameterConfig;
+using CPSS.Service.ViewService.ViewModels.SystemManage.UserManage.Request;
 using CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Request;
 using CPSS.Web.Controllers.Filters;
 
