@@ -4,7 +4,6 @@ using System.Data.Common;
 using System.Data.SqlClient;
 using System.IO;
 using System.Threading;
-using System.Xml.Serialization;
 using CPSS.Common.Core;
 using SynchronTool.ConfigEntity;
 
