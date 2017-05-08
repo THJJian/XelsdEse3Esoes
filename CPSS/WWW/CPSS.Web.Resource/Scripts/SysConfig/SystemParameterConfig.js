@@ -54,7 +54,7 @@
                                                 { ParameterConfigName: "UseSameTaxRate", ParameterConfigValue: self.option.UseSameTaxRate }
                                             ]
                                         };
-                                        fn_postData(data, "/systemparameterconfig/savesystemparameterconfig", function (result) {
+                                        fn_postData(data, "/systemmanage/savesystemparameterconfig", function (result) {
                                             if (result.ErrorCode === 0)
                                                 _msgbox.alert(result.ErrorMessage);
                                             else
@@ -69,7 +69,7 @@
                                                 { ParameterConfigName: "SaleBuyPriceTrace", ParameterConfigValue: comboboxHelper.getValue("TotalScale") }
                                             ]
                                         };
-                                        fn_postData(data, "/systemparameterconfig/savesystemparameterconfig", function (result) {
+                                        fn_postData(data, "/systemmanage/savesystemparameterconfig", function (result) {
                                             if (result.ErrorCode === 0)
                                                 _msgbox.alert(result.ErrorMessage);
                                             else
@@ -95,7 +95,7 @@
                                                 { ParameterConfigName: "QuickInputDisplayWithRows", ParameterConfigValue: self.option.QuickInputDisplayWithRows }
                                             ]
                                         };
-                                        fn_postData(data, "/systemparameterconfig/savesystemparameterconfig", function (result) {
+                                        fn_postData(data, "/systemmanage/savesystemparameterconfig", function (result) {
                                             if (result.ErrorCode === 0)
                                                 _msgbox.alert(result.ErrorMessage);
                                             else
@@ -108,7 +108,7 @@
                                                 { ParameterConfigName: "DataSelectPageSize", ParameterConfigValue: numberboxHelper.getValue("DataSelectPageSize") }
                                             ]
                                         };
-                                        fn_postData(data, "/systemparameterconfig/savesystemparameterconfig", function (result) {
+                                        fn_postData(data, "/systemmanage/savesystemparameterconfig", function (result) {
                                             if (result.ErrorCode === 0)
                                                 _msgbox.alert(result.ErrorMessage);
                                             else
