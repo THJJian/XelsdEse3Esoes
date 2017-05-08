@@ -34,8 +34,8 @@ namespace CPSS.Data.DataAccess
             entity.depid = (int)dataReader["depid"];
             entity.depname = (string)dataReader["depname"];
             entity.lowestdiscount = (short)dataReader["lowestdiscount"];
-            entity.preinadvancetotal = (decimal)dataReader["preinadvancetotal"];
-            entity.prepayfeetotal = (decimal)dataReader["prepayfeetotal"];
+            entity.preinadvancetotal = (System.Decimal)dataReader["preinadvancetotal"];
+            entity.prepayfeetotal = (System.Decimal)dataReader["prepayfeetotal"];
             entity.mobile = (string)dataReader["mobile"];
             entity.address = (string)dataReader["address"];
             entity.status = (short)dataReader["status"];
@@ -61,14 +61,14 @@ namespace CPSS.Data.DataAccess
             result.pinyin = (string)dataReader["pinyin"];
             result.depid = (int)dataReader["depid"];
             result.depname = (string)dataReader["depname"];
-			result.lowestdiscount = (short)dataReader["lowestdiscount"];
-			result.preinadvancetotal = (decimal)dataReader["preinadvancetotal"];
-			result.prepayfeetotal = (decimal)dataReader["prepayfeetotal"];
+            result.lowestdiscount = (short)dataReader["lowestdiscount"];
+            result.preinadvancetotal = (System.Decimal)dataReader["preinadvancetotal"];
+            result.prepayfeetotal = (System.Decimal)dataReader["prepayfeetotal"];
             result.mobile = (string)dataReader["mobile"];
             result.address = (string)dataReader["address"];
-			result.status = (short)dataReader["status"];
-			result.deleted = (short)dataReader["deleted"];
-			result.sort = (int)dataReader["sort"];
+            result.status = (short)dataReader["status"];
+            result.deleted = (short)dataReader["deleted"];
+            result.sort = (int)dataReader["sort"];
             result.comment = (string)dataReader["comment"];
 			return result;
 	    }

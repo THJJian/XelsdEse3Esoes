@@ -91,9 +91,6 @@
     <Compile Include="IproductDataAccess.generated.cs">
       <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="IsnstorageDataAccess.generated.cs">
-      <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
-    </Compile>
     <Compile Include="IstorageDataAccess.generated.cs">
       <DependentUpon>IDataAccessTextTemplate.tt</DependentUpon>
     </Compile>

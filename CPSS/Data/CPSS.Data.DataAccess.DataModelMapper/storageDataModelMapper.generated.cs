@@ -57,7 +57,7 @@ namespace CPSS.Data.DataAccess
             result.PinYin = (string)dataReader["PinYin"];
             result.alias = (string)dataReader["alias"];
             result.status = (short)dataReader["status"];
-			result.deleted = (short)dataReader["deleted"];
+            result.deleted = (short)dataReader["deleted"];
             result.comment = (string)dataReader["comment"];
             result.sort = (int)dataReader["sort"];
 			return result;

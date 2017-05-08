@@ -77,9 +77,6 @@
       <DependentUpon>DataAccessTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="snstorageDataAccess.generated.cs">
-      <DependentUpon>DataAccessTemplate.tt</DependentUpon>
-    </Compile>
     <Compile Include="storageDataAccess.generated.cs">
       <DependentUpon>DataAccessTemplate.tt</DependentUpon>
     </Compile>

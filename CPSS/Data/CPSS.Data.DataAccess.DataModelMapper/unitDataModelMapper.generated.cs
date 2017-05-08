@@ -42,8 +42,8 @@ namespace CPSS.Data.DataAccess
             result.unitid = (int)dataReader["unitid"];
             result.name = (string)dataReader["name"];
             result.status = (short)dataReader["status"];
-			result.deleted = (short)dataReader["deleted"];
-			result.sort = (int)dataReader["sort"];
+            result.deleted = (short)dataReader["deleted"];
+            result.sort = (int)dataReader["sort"];
 			return result;
 	    }
 

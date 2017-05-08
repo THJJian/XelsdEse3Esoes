@@ -80,9 +80,6 @@
     <Compile Include="SigninUserDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
-    <Compile Include="snstorageDataModelMapper.generated.cs">
-      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
-    </Compile>
     <Compile Include="storageDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
@@ -93,6 +90,9 @@
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
     <Compile Include="unitDataModelMapper.generated.cs">
+      <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserDataModelMapper.generated.cs">
       <DependentUpon>DataReaderToDataModelMapperTemplate.tt</DependentUpon>
     </Compile>
   </ItemGroup>

@@ -38,7 +38,7 @@ namespace CPSS.Data.DataAccess
             entity.linkman = (string)dataReader["linkman"];
             entity.linktel = (string)dataReader["linktel"];
             entity.linkaddress = (string)dataReader["linkaddress"];
-            entity.credits = (decimal)dataReader["credits"];
+            entity.credits = (System.Decimal)dataReader["credits"];
             entity.pricemode = (short)dataReader["pricemode"];
             entity.comment = (string)dataReader["comment"];
             entity.status = (short)dataReader["status"];
@@ -68,12 +68,12 @@ namespace CPSS.Data.DataAccess
             result.linkman = (string)dataReader["linkman"];
             result.linktel = (string)dataReader["linktel"];
             result.linkaddress = (string)dataReader["linkaddress"];
-			result.credits = (decimal)dataReader["credits"];
-			result.pricemode = (short)dataReader["pricemode"];
+            result.credits = (System.Decimal)dataReader["credits"];
+            result.pricemode = (short)dataReader["pricemode"];
             result.comment = (string)dataReader["comment"];
-			result.status = (short)dataReader["status"];
-			result.deleted = (short)dataReader["deleted"];
-			result.sort = (int)dataReader["sort"];
+            result.status = (short)dataReader["status"];
+            result.deleted = (short)dataReader["deleted"];
+            result.sort = (int)dataReader["sort"];
 			return result;
 	    }
 

@@ -63,7 +63,7 @@ namespace CPSS.Data.DataAccess
             result.status = (short)dataReader["status"];
             result.comment = (string)dataReader["comment"];
             result.sort = (int)dataReader["sort"];
-			result.deleted = (short)dataReader["deleted"];
+            result.deleted = (short)dataReader["deleted"];
 			return result;
 	    }
 
