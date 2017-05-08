@@ -15,6 +15,9 @@ using CPSS.Service.ViewService.ViewModels.Unit.Request;
 
 namespace CPSS.Web.Controllers
 {
+    /// <summary>
+    /// 基础资料
+    /// </summary>
     [HaveToLogin]
     public class BasicController : WebBaseController
     {

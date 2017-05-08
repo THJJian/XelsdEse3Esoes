@@ -123,7 +123,7 @@
     <Compile Include="Controllers\Filters\OperateRightAttribute.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\SigninController.cs" />
-    <Compile Include="Controllers\SystemParameterConfigController.cs" />
+    <Compile Include="Controllers\SystemManageController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VerifyCodeImageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,8 +179,8 @@
     <Content Include="Views\Basic\Product\ProductList.cshtml" />
     <Content Include="Views\Basic\Product\AddProduct.cshtml" />
     <Content Include="Views\Basic\Product\EditProduct.cshtml" />
-    <Content Include="Views\SystemParameterConfig\SysConfig.cshtml" />
-    <Content Include="Views\Users\UserManageList.cshtml" />
+    <Content Include="Views\SystemManage\ParameterConfig\SysConfig.cshtml" />
+    <Content Include="Views\SystemManage\Users\UserManageList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
