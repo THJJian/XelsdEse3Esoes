@@ -78,6 +78,8 @@
     <Compile Include="snstorageDataModel.cs">
       <DependentUpon>CPSSDataEntity.tt</DependentUpon>
     </Compile>
+    <Compile Include="SystemManage\ParameterConfig\SystemParameterConfigDataModel.cs" />
+    <Compile Include="SystemManage\UserManage\UserDataModel.cs" />
     <Compile Include="SystemParameterConfig\SystemParameterConfigDataModel.cs" />
     <Compile Include="User\CompanyInfoDataModel.cs" />
     <Compile Include="User\OnlineSigninUserDataModel.cs" />
