@@ -16,7 +16,7 @@ using CPSS.Data.DataAccess.Interfaces.Basic.Parameters.Employee;
 using CPSS.Data.DataAccess.Interfaces.MongoDB;
 using CPSS.Data.DataAcess.DataModels;
 using CPSS.Service.ViewService.Interfaces.Basic;
-using CPSS.Service.ViewService.Interfaces.SystemParameterConfig;
+using CPSS.Service.ViewService.Interfaces.SystemManage;
 using CPSS.Service.ViewService.ViewModels.Employee.Request;
 using CPSS.Service.ViewService.ViewModels.Employee.Respond;
 

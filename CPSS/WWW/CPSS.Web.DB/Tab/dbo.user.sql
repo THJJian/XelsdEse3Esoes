@@ -8,7 +8,7 @@ GO
 CREATE TABLE [dbo].[user](
 	[userid] INT IDENTITY(1,1) NOT NULL,
 	[comid] INT NOT NULL,--所属企业ID，即saas(companyinfo表)新增客户时分配的ID
-	[empid] INT NULL,--职员ID
+	[empid] INT NOT NULL,--职员ID
 	[username] VARCHAR(26) NOT NULL,
 	[usepwd] VARCHAR(100) NULL,
 	[prefix] VARCHAR(4) NULL,

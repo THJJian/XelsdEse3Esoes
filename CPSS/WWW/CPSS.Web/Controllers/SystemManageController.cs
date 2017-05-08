@@ -3,9 +3,10 @@ using CPSS.Common.Core;
 using CPSS.Common.Core.Mvc;
 using CPSS.Common.Core.Mvc.Filters;
 using CPSS.Common.Core.Type.ConstDefined;
-using CPSS.Service.ViewService.Interfaces.SystemParameterConfig;
+using CPSS.Service.ViewService.Interfaces.SystemManage;
+using CPSS.Service.ViewService.Interfaces.SystemManage.UserManage;
 using CPSS.Service.ViewService.ViewModels.SystemManage.UserManage.Request;
-using CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Request;
+using CPSS.Service.ViewService.ViewModels.SystemManage.Request;
 using CPSS.Web.Controllers.Filters;
 
 namespace CPSS.Web.Controllers
@@ -19,14 +20,16 @@ namespace CPSS.Web.Controllers
         #region Private Field
 
         private readonly ISystemParameterConfigViewService mSystemParameterConfigViewService;
+        private readonly IUserManageViewService mUserManageViewService;
 
         #endregion
 
         #region 构造函数
 
-        public SystemManageController(ISystemParameterConfigViewService _systemParameterConfigViewService)
+        public SystemManageController(ISystemParameterConfigViewService systemParameterConfigViewService, IUserManageViewService userManageViewService)
         {
-            this.mSystemParameterConfigViewService = _systemParameterConfigViewService;
+            this.mSystemParameterConfigViewService = systemParameterConfigViewService;
+            this.mUserManageViewService = userManageViewService;
         }
         
 
@@ -70,7 +73,7 @@ namespace CPSS.Web.Controllers
         [HttpPost]
         public JsonResult GetUserList(RequestWebViewData<RequestQueryUserViewModel> request)
         {
-
+            var respond = this.mUserManageViewService.GetUserList(request);
             return Json(new object());
         }
 

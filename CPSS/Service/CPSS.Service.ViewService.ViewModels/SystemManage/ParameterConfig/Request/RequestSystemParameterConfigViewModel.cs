@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Request
+namespace CPSS.Service.ViewService.ViewModels.SystemManage.Request
 {
     public class RequestSystemParameterConfigListViewModel
     {

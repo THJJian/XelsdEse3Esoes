@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using CPSS.Common.Core;
-using CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Request;
-using CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Respond;
+using CPSS.Service.ViewService.ViewModels.SystemManage.Request;
+using CPSS.Service.ViewService.ViewModels.SystemManage.Respond;
 
-namespace CPSS.Service.ViewService.Interfaces.SystemParameterConfig
+namespace CPSS.Service.ViewService.Interfaces.SystemManage
 {
     public interface ISystemParameterConfigViewService
     {

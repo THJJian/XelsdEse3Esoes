@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Respond
+namespace CPSS.Service.ViewService.ViewModels.SystemManage.Respond
 {
     [Serializable]
     public class RespondSaveSystemParameterConfigViewModel

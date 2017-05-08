@@ -4,13 +4,13 @@ using CPSS.Common.Core;
 using CPSS.Common.Core.Exception;
 using CPSS.Common.Core.Helper.Cached;
 using CPSS.Data.DataAccess.Interfaces.MongoDB;
-using CPSS.Data.DataAccess.Interfaces.SystemParameterConfig;
-using CPSS.Data.DataAccess.Interfaces.SystemParameterConfig.Parameters;
-using CPSS.Service.ViewService.Interfaces.SystemParameterConfig;
-using CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Request;
-using CPSS.Service.ViewService.ViewModels.SystemParameterConfig.Respond;
+using CPSS.Data.DataAccess.Interfaces.SystemManage;
+using CPSS.Data.DataAccess.Interfaces.SystemManage.Parameters;
+using CPSS.Service.ViewService.Interfaces.SystemManage;
+using CPSS.Service.ViewService.ViewModels.SystemManage.Request;
+using CPSS.Service.ViewService.ViewModels.SystemManage.Respond;
 
-namespace CPSS.Service.ViewService.SystemParameterConfig
+namespace CPSS.Service.ViewService.SystemManage
 {
     public class SystemParameterConfigViewService : BaseViewService, ISystemParameterConfigViewService
     {
