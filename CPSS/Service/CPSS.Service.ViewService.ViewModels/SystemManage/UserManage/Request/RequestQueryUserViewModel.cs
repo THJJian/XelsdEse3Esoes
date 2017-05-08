@@ -2,6 +2,7 @@
 {
     public class RequestQueryUserViewModel
     {
+        public int UserId { set; get; }
 
         public string UserName { get; set; }
 

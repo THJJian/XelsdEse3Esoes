@@ -21,6 +21,16 @@ namespace CPSS.Data.DataAccess.SystemManage
             return this.ExecuteReadSqlToUserDataModelPageData("userid", parameter.PageIndex, parameter.PageSize, "comid ASC,username ASC, deleted ASC");
         }
 
+        public UserDataModel GetUserDataByUserId(QueryUserParameter parameter)
+        {
+            this.ExecuteSQL = "SELECT * FROM dbo.[user] WHERE userid=@userid";
+            this.DataParameter = new IDbDataParameter[]
+            {
+                new SqlParameter("@userid", parameter.userid)
+            };
+            return this.ExecuteReadSqlToUserDataModel();
+        }
+
         public int AddUser(UserDataModel data)
         {
             this.ExecuteSQL = "INSERT INTO dbo.[user] (comid,empid,username,usepwd,prefix,manager,[status],deleted,synchron,ctime,comment) VALUES  (@comid,@empid,@username,@userpwd,@prefix,@manager,@status,1,0,@ctime,@comment)";
@@ -73,5 +83,6 @@ namespace CPSS.Data.DataAccess.SystemManage
             };
             return this.ExecuteNonQuery();
         }
+
     }
 }

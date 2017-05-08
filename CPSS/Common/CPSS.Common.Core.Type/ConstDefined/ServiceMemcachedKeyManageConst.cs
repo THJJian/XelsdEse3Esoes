@@ -42,5 +42,9 @@
         /// </summary>
         public const string CommonAjax = "CPSS.Service.ViewService.Common.CommonAjaxViewService";
 
+        /// <summary>
+        /// UserManageViewService服务类缓存管理键
+        /// </summary>
+        public const string UserManage = "CPSS.Service.ViewService.SystemManage.UserManageViewService";
     }
 }

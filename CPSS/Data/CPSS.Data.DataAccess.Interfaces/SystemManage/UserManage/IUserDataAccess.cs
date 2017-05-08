@@ -14,6 +14,13 @@ namespace CPSS.Data.DataAccess.Interfaces.SystemManage.UserManage
         PageData<UserDataModel> GetUserPageData(QueryUserParameter parameter);
 
         /// <summary>
+        /// 根据用户ID获取用户数据
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        UserDataModel GetUserDataByUserId(QueryUserParameter parameter);
+
+        /// <summary>
         /// 新增用户
         /// </summary>
         /// <param name="data"></param>

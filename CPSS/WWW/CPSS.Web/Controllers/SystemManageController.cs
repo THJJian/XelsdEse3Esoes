@@ -62,6 +62,26 @@ namespace CPSS.Web.Controllers
             return View("~/views/systemmanage/users/usermanagelist.cshtml");
         }
 
+        [OperateRight(MenuID = MenuValueConstDefined.rtUserManage_TB_Add)]
+        public ActionResult AddUser()
+        {
+            return View("~/views/systemmanage/users/adduser.cshtml");
+        }
+
+        public ActionResult EditUser()
+        {
+            var userId = this.WorkContext.GetQueryInt("uid");
+            var request = new RequestWebViewData<RequestQueryUserViewModel>
+            {
+                data = new RequestQueryUserViewModel
+                {
+                    UserId = userId
+                }
+            };
+            var respond = this.mUserManageViewService.GetUserDataByUserId(request);
+            return View("~/views/systemmanage/users/edituser.cshtml", respond);
+        }
+
         #region Ajax操作Action
 
         /// <summary>
