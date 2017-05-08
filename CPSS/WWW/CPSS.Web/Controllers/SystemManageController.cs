@@ -71,6 +71,7 @@ namespace CPSS.Web.Controllers
         public JsonResult GetUserList(RequestWebViewData<RequestQueryUserViewModel> request)
         {
 
+            return Json(new object());
         }
 
         #endregion
